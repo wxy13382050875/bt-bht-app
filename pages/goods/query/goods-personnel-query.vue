@@ -1,0 +1,138 @@
+<template>
+	<view class="app-content">
+		<aca-nav-bar :level="2" title="商品申报查询"></aca-nav-bar>
+		<bht-layout-container>
+			<bht-query-box @searchEvent="searchEvent">
+				<template class="left" slot="show-left">
+					<text class="title">总票数</text>
+					<text class="value">{{total.size}}</text>
+				</template>
+				<template class="right" slot="show-right">
+					<text class="title">总金额</text>
+					<text class="value">¥{{total.totalAmount}}</text>
+				</template>
+			</bht-query-box>
+			<view class="query-main">
+				<mescroll-uni @init="initMescroll" :down="downOption" :up="upOption" @down="downCallback" :fixed="false" @up="upCallback">
+					<view class="query-show">
+						<bht-goods-list :dataList="dataList"></bht-goods-list>
+					</view>
+				</mescroll-uni>
+			</view>
+		</bht-layout-container>
+		<popup-modal-query-goods @emptyclick="fuck" v-model="showPopup" @queryEvent="searchHandler" @initModalData="initModalData"></popup-modal-query-goods>
+	</view>
+</template>
+<script>
+	import PopupModalQueryGoods from '@/components/modal/popup-modal-query-goods.vue'
+	import BhtQueryBox from '@/components/common/bht-query-box.vue'
+	import BhtGoodsList from '@/components/goods/bht-goods-list.vue'
+	import {
+		goodsPersonnelQuery
+	} from '@/api/bht'
+	export default {
+		components: {
+			PopupModalQueryGoods,
+			BhtQueryBox,
+			BhtGoodsList
+		},
+		data() {
+			return {
+				//弹窗状态
+				showPopup: false,
+				//滚动加载配置
+				downOption: {
+					autoShowLoading: true,
+					textInOffset: '下拉即可刷新...',
+					textOutOffset: '松开即可刷新...',
+					textLoading: '努力加载中...'
+				},
+				upOption: {
+					auto: true,
+					noMoreSize: 5,
+					empty: {
+						tip: '没有查询到数据',
+						icon: '',
+					},
+					textNoMore: '数据已全部加载'
+				},
+				//数据
+				dataList: [],
+				//查询参数
+				formData: {},
+				//统计数据
+				total: {
+					size: 0,
+					totalAmount: 0
+				},
+				//滚动对象
+				mescroll: null
+			}
+		},
+		methods: {
+			searchEvent() {
+				this.showPopup = true
+			},
+			fuck(m) {
+				console.log(m);
+			},
+			//监听弹窗创建时 发射到数据
+			initModalData(data) {
+				//赋值数据
+				this.formData = data
+			},
+			//获取mescroll对象
+			initMescroll(mescroll) {
+				this.mescroll = mescroll;
+			},
+			//处理搜索事件
+			searchHandler(data) {
+				//重置数据
+				this.dataList = [];
+				this.total.size = 0;
+				this.total.totalAmount = 0;
+				//重新赋值请求参数
+				this.formData = data;
+				//重置mescroll页码
+				this.mescroll.setPageNum(1);
+				//触发刷新
+				this.mescroll.triggerDownScroll();
+			},
+			//下拉刷新
+			downCallback(mescroll) {
+				mescroll.resetUpScroll();
+			},
+			//上拉拴心
+			upCallback(mescroll) {
+				this.formData.page = mescroll.num;
+				this.formData.limit = mescroll.size;
+				goodsPersonnelQuery(this.formData).then(res => {
+
+					let curPageData = [];
+					let totalSize = 0;
+					if ((Object.keys(res).length) !== 0) {
+						let {
+							results,
+							total
+						} = res;
+						this.total = total;
+						curPageData = results;
+						totalSize = total.size;
+					}
+					if (mescroll.num == 1) this.dataList = [];
+					this.dataList = this.dataList.concat(curPageData);
+					mescroll.endBySize(
+						curPageData.length, totalSize);
+					this.$nextTick(() => {
+						mescroll.endSuccess(curPageData.length)
+					})
+				}).catch(error => {
+					mescroll.endSuccess();
+				})
+			}
+		}
+	}
+</script>
+<style lang="scss" scoped>
+
+</style>

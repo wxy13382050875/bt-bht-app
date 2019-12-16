@@ -1,0 +1,71 @@
+{
+  "pages": [
+    "pages/staff/index",
+    "pages/staff/borderer-jc-statistics",
+    "pages/staff/goods-jc-statistics",
+    "pages/staff/statement-bill-charts",
+    "pages/index/index",
+    "pages/goods/query/goods-borderer-query",
+    "pages/vehicle/query/vehicle-borderer-query",
+    "pages/goods/query/goods-personnel-query",
+    "pages/vehicle/query/vehicle-personnel-query",
+    "pages/vehicle/query/vehicle-personnel-check",
+    "pages/user/center",
+    "pages/user/edit-profile",
+    "pages/user/profile",
+    "pages/bill/bill-mangement",
+    "pages/common/login",
+    "pages/common/register",
+    "pages/common/forget",
+    "pages/news/news-list",
+    "pages/news/news-details",
+    "pages/staff/statistics-charts"
+  ],
+  "tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#E40011",
+    "borderStyle": "white",
+    "backgroundColor": "#f8f8f8",
+    "list": [
+      {
+        "pagePath": "pages/staff/index",
+        "iconPath": "static/tab/home_def_icon.png",
+        "selectedIconPath": "static/tab/home_sel_icon.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/staff/statistics-charts",
+        "iconPath": "static/tab/tjbb_def_icon.png",
+        "selectedIconPath": "static/tab/tjbb_sel_icon.png",
+        "text": "统计报表"
+      },
+      {
+        "pagePath": "pages/user/center",
+        "iconPath": "static/tab/my_def_icon.png",
+        "selectedIconPath": "static/tab/my_sel_icon.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 60000
+  },
+  "nvueCompiler": "uni-app",
+  "renderer": "auto",
+  "splashscreen": {
+    "alwaysShowBeforeRender": true,
+    "autoclose": false
+  },
+  "appname": "边互通",
+  "compilerVersion": "2.4.2",
+  "usingComponents": {
+    "bht-layout-container": "/components/common/bht-layout-container",
+    "aca-nav-bar": "/third/acaui/nav/header-nav-bar",
+    "nav-bar-location": "/components/navbar/navbar-location",
+    "nav-bar-back": "/components/navbar/navbar-back",
+    "mescroll-uni": "/third/mescroll-uni/mescroll-uni",
+    "router-link": "/third/uni-app-router/component/router-link",
+    "uni-calendar": "/third/uni-calendar/uni-calendar",
+    "uni-echarts": "/components/mpvue-echarts/echarts"
+  }
+}

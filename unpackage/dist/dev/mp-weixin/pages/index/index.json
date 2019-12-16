@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "uni-app",
+  "navigationStyle": "custom",
+  "disableScroll": true,
+  "usingComponents": {
+    "bht-banner": "/components/common/bht-banner",
+    "bht-fn": "/components/common/bht-fn",
+    "bht-adv": "/components/common/bht-adv",
+    "bht-news": "/components/common/bht-news"
+  }
+}

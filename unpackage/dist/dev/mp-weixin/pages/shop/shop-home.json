@@ -1,0 +1,9 @@
+{
+  "navigationStyle": "custom",
+  "disableScroll": true,
+  "usingComponents": {
+    "banner": "/components/common/xw-dth-banner",
+    "grid": "/components/common/xw-dth-grid",
+    "goods": "/components/common/xw-dth-goods"
+  }
+}

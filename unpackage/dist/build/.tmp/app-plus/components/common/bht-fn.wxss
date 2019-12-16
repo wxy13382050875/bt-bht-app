@@ -1,0 +1,155 @@
+.bht-fun-wrapper.data-v-5aeafe49 {
+  padding: 0 18rpx;
+}
+.bht-fun-wrapper .bht-fun.data-v-5aeafe49 {
+    margin-top: 20rpx;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+}
+.bht-fun-wrapper .bht-fun .items.data-v-5aeafe49 {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: column;
+          -ms-flex-direction: column;
+              flex-direction: column;
+      -webkit-box-pack: center;
+      -webkit-justify-content: center;
+          -ms-flex-pack: center;
+              justify-content: center;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+          -ms-flex-align: center;
+              align-items: center;
+      width: 224rpx;
+      height: 260rpx;
+      background: white;
+      -webkit-box-shadow: 0px 0px 10px 0px rgba(134, 134, 134, 0.2);
+              box-shadow: 0px 0px 10px 0px rgba(134, 134, 134, 0.2);
+      border-radius: 8px;
+      margin-bottom: 20rpx;
+}
+.bht-fun-wrapper .bht-fun .items image.data-v-5aeafe49 {
+        width: 146rpx;
+        height: 146rpx;
+}
+.bht-fun-wrapper .bht-fun .items .title.data-v-5aeafe49 {
+        margin-top: 19rpx;
+        font-size: 28rpx;
+        color: #868686;
+}
+.bht-fun-wrapper .bht-borderer-fun.data-v-5aeafe49 {
+    margin-top: 20rpx;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+}
+.bht-fun-wrapper .bht-borderer-fun .items.data-v-5aeafe49 {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: column;
+          -ms-flex-direction: column;
+              flex-direction: column;
+      -webkit-box-pack: center;
+      -webkit-justify-content: center;
+          -ms-flex-pack: center;
+              justify-content: center;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+          -ms-flex-align: center;
+              align-items: center;
+      margin-bottom: 20rpx;
+      width: 347rpx;
+      height: 365rpx;
+      -webkit-box-shadow: 0px 0px 10px 0px rgba(134, 134, 134, 0.2);
+              box-shadow: 0px 0px 10px 0px rgba(134, 134, 134, 0.2);
+      border-radius: 8px;
+}
+.bht-fun-wrapper .bht-borderer-fun .items image.data-v-5aeafe49 {
+        width: 199rpx;
+        height: 199rpx;
+}
+.bht-fun-wrapper .bht-borderer-fun .items .title.data-v-5aeafe49 {
+        margin-top: 14rpx;
+        color: #fff;
+        font-size: 34rpx;
+}
+.bht-fun-wrapper .bht-borderer-fun .goods-items.data-v-5aeafe49 {
+      background: -o-linear-gradient(315deg, #ff8f05, #fe5206);
+      background: linear-gradient(135deg, #ff8f05, #fe5206);
+}
+.bht-fun-wrapper .bht-borderer-fun .vehicle-items.data-v-5aeafe49 {
+      background: -o-linear-gradient(315deg, #1fd4f5, #0096ff);
+      background: linear-gradient(135deg, #1fd4f5, #0096ff);
+}
+.bht-fun-wrapper .bht-fun-invocie.data-v-5aeafe49 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    margin-bottom: 20rpx;
+    width: 100%;
+    height: 100rpx;
+    background-color: #e42332;
+    border-radius: 20rpx;
+}
+.bht-fun-wrapper .bht-fun-invocie .invoice-icon.data-v-5aeafe49 {
+      width: 85rpx;
+      height: 85rpx;
+      margin-right: 9rpx;
+}
+.bht-fun-wrapper .bht-fun-invocie .invoice-title.data-v-5aeafe49 {
+      font-size: 49rpx;
+      color: white;
+      font-weight: 400;
+      margin-right: 9rpx;
+}
+.bht-fun-wrapper .bht-fun-invocie .msg-box.data-v-5aeafe49 {
+      position: relative;
+      height: 100%;
+}
+.bht-fun-wrapper .bht-fun-invocie .msg-box .msg-icon.data-v-5aeafe49 {
+        margin-top: 9rpx;
+        width: 58rpx;
+        height: 47rpx;
+}
+.bht-fun-wrapper .bht-fun-invocie .msg-box .txt.data-v-5aeafe49 {
+        position: absolute;
+        left: 8rpx;
+        top: 12rpx;
+        width: 22px;
+        font-size: 22rpx;
+        font-weight: 500;
+        color: #e42332;
+        text-align: center;
+}
+

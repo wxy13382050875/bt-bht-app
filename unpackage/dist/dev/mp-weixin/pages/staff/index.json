@@ -1,0 +1,8 @@
+{
+  "navigationStyle": "custom",
+  "disableScroll": true,
+  "usingComponents": {
+    "day-of-statistics": "/components/staff/day-of-statistics",
+    "bill-statistics": "/components/staff/bill-statistics"
+  }
+}

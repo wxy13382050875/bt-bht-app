@@ -1,0 +1,2 @@
+setCssToHead([".",[1],"app-register.",[1],"data-v-a7f8f4e2 { padding: ",[0,60]," ",[0,60]," 0; }\n.",[1],"app-register .",[1],"se-code.",[1],"data-v-a7f8f4e2 { margin: 0 ",[0,24],"; font-size: ",[0,30],"; color: #e40011; }\n.",[1],"app-register .",[1],"arrow-right.",[1],"data-v-a7f8f4e2 { width: ",[0,80],"; text-align: center; color: #A9A8A8; }\n",],undefined,{path:"./pages/common/register.wxss"})();
+document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/common/register.wxml') } }));

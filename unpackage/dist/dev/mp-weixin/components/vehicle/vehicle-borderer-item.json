@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "bht-vehicle-list": "/components/vehicle/bht-vehicle-list"
+  },
+  "component": true
+}

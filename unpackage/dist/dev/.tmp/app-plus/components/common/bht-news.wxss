@@ -1,0 +1,52 @@
+@charset "UTF-8";
+/*统计标题样式*/
+/*box*/
+/*统计页面头部 chart-header-bg*/
+.bht-news-w {
+  padding: 0 18rpx;
+}
+.bht-news-w .bht-news-content {
+    padding: 21rpx 21rpx;
+    background-color: #fff;
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(134, 134, 134, 0.2);
+            box-shadow: 0px 0px 10px 0px rgba(134, 134, 134, 0.2);
+    border-radius: 8px;
+}
+.bht-news-w .bht-news-content .news-title {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+          -ms-flex-align: center;
+              align-items: center;
+      -webkit-box-pack: justify;
+      -webkit-justify-content: space-between;
+          -ms-flex-pack: justify;
+              justify-content: space-between;
+}
+.bht-news-w .bht-news-content .news-title label {
+        position: relative;
+        height: 34rpx;
+        padding-left: 10rpx;
+        font-size: 34rpx;
+        color: #fe5906;
+}
+.bht-news-w .bht-news-content .news-title label::before {
+          content: ' ';
+          position: absolute;
+          left: 0;
+          bottom: -3px;
+          width: 4rpx;
+          height: 34rpx;
+          background-color: #fe5906;
+}
+.bht-news-w .bht-news-content .news-title .more {
+        font-size: 24rpx;
+        color: #636363;
+}
+.bht-news-w .bht-news-content .news-list {
+      margin-top: 17rpx;
+}
+

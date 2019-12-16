@@ -1,0 +1,9 @@
+{
+  "navigationStyle": "custom",
+  "disableScroll": true,
+  "usingComponents": {
+    "popup-modal-query-goods": "/components/modal/popup-modal-query-goods",
+    "bht-query-box": "/components/common/bht-query-box",
+    "bht-goods-list": "/components/goods/bht-goods-list"
+  }
+}

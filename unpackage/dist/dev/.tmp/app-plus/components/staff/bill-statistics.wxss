@@ -1,0 +1,114 @@
+@charset "UTF-8";
+/*统计标题样式*/
+/*box*/
+/*统计页面头部 chart-header-bg*/
+.bill-statistics-components {
+  padding: 0 18rpx;
+  margin-bottom: 20rpx;
+}
+.bill-statistics-components .statistics-title {
+    position: relative;
+    margin-bottom: 9rpx;
+    height: 52rpx;
+    font-size: 32rpx;
+    color: #383838;
+    font-weight: 400;
+}
+.bill-statistics-components .statistics-title::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      width: 60rpx;
+      height: 4rpx;
+      background: #ff3333;
+      border-radius: 2px;
+}
+.bill-statistics-components .bill-statistics-list {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    width: 100%;
+}
+.bill-statistics-components .bill-statistics-list .item {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: column;
+          -ms-flex-direction: column;
+              flex-direction: column;
+      -webkit-box-pack: center;
+      -webkit-justify-content: center;
+          -ms-flex-pack: center;
+              justify-content: center;
+      margin-top: 8px;
+      width: calc(50% - 4px);
+      height: 158rpx;
+      border-radius: 8px;
+}
+.bill-statistics-components .bill-statistics-list .item .content {
+        padding-left: 38rpx;
+}
+.bill-statistics-components .bill-statistics-list .item .value {
+        display: inline-block;
+        padding-top: 12rpx;
+        font-size: 34rpx;
+        font-weight: bold;
+}
+.bill-statistics-components .bill-statistics-list .item .title {
+        font-size: 28rpx;
+        font-weight: 400;
+}
+.bill-statistics-components .bill-statistics-list .item-bg1 {
+      background-color: #ff9999;
+}
+.bill-statistics-components .bill-statistics-list .item-bg1 .value,
+      .bill-statistics-components .bill-statistics-list .item-bg1 .title {
+        color: #ffffff;
+}
+.bill-statistics-components .bill-statistics-list .item-bg1 .value {
+        position: relative;
+}
+.bill-statistics-components .bill-statistics-list .item-bg1 .value::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          right: 0;
+          left: 0;
+          height: 4rpx;
+          background: white;
+}
+.bill-statistics-components .bill-statistics-list .item-bg2 {
+      background-color: #ffcccc;
+}
+.bill-statistics-components .bill-statistics-list .item-bg2 .value {
+        position: relative;
+        color: #ff3333;
+}
+.bill-statistics-components .bill-statistics-list .item-bg2 .value::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          right: 0;
+          left: 0;
+          height: 4rpx;
+          background: #ff6666;
+}
+.bill-statistics-components .bill-statistics-list .item-bg2 .title {
+        color: #525252;
+}
+.bill-statistics-components .data-line {
+    height: 2px;
+    background-color: #e5e5e5;
+}
+

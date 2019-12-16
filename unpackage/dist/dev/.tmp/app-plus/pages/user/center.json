@@ -1,0 +1,10 @@
+{
+  "navigationStyle": "custom",
+  "disableScroll": true,
+  "bounce": "none",
+  "usingComponents": {
+    "bht-layout-container": "/components/common/bht-layout-container",
+    "router-link": "/third/uni-app-router/component/router-link",
+    "center-nav-bar": "/third/acaui/nav/center-nav-bar"
+  }
+}

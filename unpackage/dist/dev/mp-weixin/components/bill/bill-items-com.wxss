@@ -1,0 +1,12 @@
+@charset "UTF-8";
+/*统计标题样式*/
+/*box*/
+/*统计页面头部 chart-header-bg*/
+.bill-status {
+  position: absolute;
+  top: 69rpx;
+  left: 159rpx;
+  width: 93rpx;
+  height: 75rpx;
+}
+

@@ -1,0 +1,12 @@
+{
+  "navigationStyle": "custom",
+  "disableScroll": true,
+  "bounce": "none",
+  "softinputNavBar": "none",
+  "softinputMode": "adjustResize",
+  "usingComponents": {
+    "aca-nav-bar": "/third/acaui/nav/header-nav-bar",
+    "bht-layout-container": "/components/common/bht-layout-container",
+    "mp-picker": "/third/MpPicker/mpvuePicker"
+  }
+}

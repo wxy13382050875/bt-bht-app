@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "popup-nav-bar": "/third/acaui/nav/popup-nav-bar"
+  },
+  "component": true
+}

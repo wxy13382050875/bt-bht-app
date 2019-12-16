@@ -1,0 +1,7 @@
+{
+  "navigationStyle": "custom",
+  "disableScroll": true,
+  "usingComponents": {
+    "stat-date-picker": "/components/staff/stat-date-picker"
+  }
+}

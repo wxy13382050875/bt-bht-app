@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "news-list-items": "/components/news/news-list-items"
+  },
+  "component": true
+}

@@ -1,0 +1,39 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/demo/index",
+    "pages/goods/query/goods-borderer-query",
+    "pages/user/profile",
+    "pages/common/login"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#868686",
+    "selectedColor": "#E40011",
+    "borderStyle": "black",
+    "backgroundColor": "#F7F3F0",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "static/tab/home_def_icon.png",
+        "selectedIconPath": "static/tab/home_sel_icon.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/demo/index",
+        "iconPath": "static/tab/my_def_icon.png",
+        "selectedIconPath": "static/tab/my_sel_icon.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "usingComponents": {
+    "aca-nav-bar": "/third/acaui/nav/header-nav-bar",
+    "mescroll-uni": "/third/mescroll-uni/mescroll-uni",
+    "bht-layout-container": "/components/common/bht-layout-container"
+  },
+  "sitemapLocation": "sitemap.json"
+}

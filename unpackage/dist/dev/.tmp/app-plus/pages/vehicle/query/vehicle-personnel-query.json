@@ -1,0 +1,13 @@
+{
+  "navigationStyle": "custom",
+  "disableScroll": true,
+  "bounce": "none",
+  "usingComponents": {
+    "aca-nav-bar": "/third/acaui/nav/header-nav-bar",
+    "bht-layout-container": "/components/common/bht-layout-container",
+    "mescroll-uni": "/third/mescroll-uni/mescroll-uni",
+    "popup-modal-query-vehicle": "/components/modal/popup-modal-query-vehicle",
+    "bht-query-box": "/components/common/bht-query-box",
+    "bht-vehicle-list": "/components/vehicle/bht-vehicle-list"
+  }
+}

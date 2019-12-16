@@ -1,0 +1,1 @@
+<view class="bht-layout-container" style="{{'top:'+(navHeight+'px')+';'+('height:'+(height+'px')+';')+('background:'+(bgColor)+';')}}"><slot></slot></view>

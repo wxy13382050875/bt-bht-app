@@ -1,0 +1,279 @@
+{
+	"pages": [
+		// {
+		// 	"path": "pages/main",
+		// 	"style": {
+		// 		"navigationStyle": "custom",
+		// 		"app-plus": {
+		// 			"titleNView": false
+		// 		}
+		// 	}
+		// },
+		{
+			"path": "pages/staff/index",
+			"style": {
+				"navigationStyle": "custom",
+				"disableScroll": true,
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/staff/borderer-jc-statistics",
+			"style": {
+				"navigationStyle": "custom",
+				"disableScroll": true,
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/staff/goods-jc-statistics",
+			"style": {
+				"navigationStyle": "custom",
+				"disableScroll": true,
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/staff/statement-bill-charts",
+			"style": {
+				"navigationStyle": "custom",
+				"disableScroll": true,
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "uni-app",
+				"navigationStyle": "custom",
+				"disableScroll": true
+			}
+		},
+		//商品申报查询
+		{
+			"path": "pages/goods/query/goods-borderer-query",
+			"style": {
+				"navigationStyle": "custom",
+				"disableScroll": true,
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/vehicle/query/vehicle-borderer-query",
+			"style": {
+				"navigationStyle": "custom",
+				"disableScroll": true,
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		//工作人员商品申报查询
+		{
+			"path": "pages/goods/query/goods-personnel-query",
+			"style": {
+				"navigationStyle": "custom",
+				"disableScroll": true,
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		//工作人员车辆申报查询
+		{
+			"path": "pages/vehicle/query/vehicle-personnel-query",
+			"style": {
+				"navigationStyle": "custom",
+				"disableScroll": true,
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		//待检车辆查询
+		{
+			"path": "pages/vehicle/query/vehicle-personnel-check",
+			"style": {
+				"navigationStyle": "custom",
+				"disableScroll": true,
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		//USER
+		{
+			"path": "pages/user/center",
+			"style": {
+				"navigationStyle": "custom",
+				"disableScroll": true,
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		//编辑资料
+		{
+			"path": "pages/user/edit-profile",
+			"style": {
+				"navigationStyle": "custom",
+				"disableScroll": true,
+				"app-plus": {
+					"bounce": "none",
+					"softinputNavBar": "none",
+					"softinputMode": "adjustResize"
+				}
+			}
+		},
+		//显示用户信息
+		{
+			"path": "pages/user/profile",
+			"style": {
+				"navigationStyle": "custom",
+				"disableScroll": true,
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		//开票管理
+		{
+			"path": "pages/bill/bill-mangement",
+			"style": {
+				"navigationStyle": "custom",
+				"disableScroll": true,
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/common/login",
+			"style": {
+				"navigationStyle": "custom",
+				"disableScroll": true,
+				"app-plus": {
+					"bounce": "none",
+					"softinputNavBar": "none",
+					"softinputMode": "adjustResize"
+				}
+			}
+		},
+		{
+			"path": "pages/common/register",
+			"style": {
+				"navigationStyle": "custom",
+				"disableScroll": true,
+				"app-plus": {
+					"bounce": "none",
+					"softinputNavBar": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/common/forget",
+			"style": {
+				"navigationStyle": "custom",
+				"disableScroll": true,
+				"app-plus": {
+					"bounce": "none",
+					"softinputNavBar": "none"
+				}
+			}
+		},
+		//新闻列表
+		{
+			"path": "pages/news/news-list",
+			"style": {
+				"navigationStyle": "custom",
+				"disableScroll": true,
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/news/news-details",
+			"style": {
+				"navigationStyle": "custom",
+				"disableScroll": true,
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+
+		{
+			"path": "pages/staff/statistics-charts",
+			"style": {
+				"navigationStyle": "custom",
+				"disableScroll": true,
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		}
+	    ,{
+            "path" : "pages/shop/shop-home",
+            "style": {
+				"navigationStyle": "custom",
+				"disableScroll": true,
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+        }
+        ,{
+            "path" : "pages/shop/shopping-cart",
+            "style": {
+				"navigationStyle": "custom",
+				"disableScroll": true,
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+        }
+
+    ],
+	"tabBar": {
+		"color": "#7A7E83",
+		"selectedColor": "#E40011",
+		"borderStyle": "white",
+		"backgroundColor": "#f8f8f8",
+		"list": [{
+				"pagePath": "pages/shop/shop-home",
+				"iconPath": "static/tab/home_def_icon.png",
+				"selectedIconPath": "static/tab/home_sel_icon.png",
+				"text": "首页"
+			},
+			{
+				"pagePath": "pages/staff/statistics-charts",
+				"iconPath": "static/tab/tjbb_def_icon.png",
+				"selectedIconPath": "static/tab/tjbb_sel_icon.png",
+				"text": "统计报表"
+			},
+			{
+				"pagePath": "pages/shop/shopping-cart",
+				"iconPath": "static/tab/tjbb_def_icon.png",
+				"selectedIconPath": "static/tab/tjbb_sel_icon.png",
+				"text": "购物车"
+			},
+			{
+				"pagePath": "pages/shop/shopping-cart",
+				"iconPath": "static/tab/my_def_icon.png",
+				"selectedIconPath": "static/tab/my_sel_icon.png",
+				"text": "我的"
+			}
+		]
+	}
+}

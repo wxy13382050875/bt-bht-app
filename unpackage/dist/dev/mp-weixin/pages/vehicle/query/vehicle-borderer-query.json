@@ -1,0 +1,8 @@
+{
+  "navigationStyle": "custom",
+  "disableScroll": true,
+  "usingComponents": {
+    "vehicle-borderer-item": "/components/vehicle/vehicle-borderer-item",
+    "vehicle-borderer-item-h": "/components/vehicle/vehicle-borderer-item-h"
+  }
+}

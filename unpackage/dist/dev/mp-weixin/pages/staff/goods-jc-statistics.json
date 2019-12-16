@@ -1,0 +1,8 @@
+{
+  "navigationStyle": "custom",
+  "disableScroll": true,
+  "usingComponents": {
+    "stat-date-picker": "/components/staff/stat-date-picker",
+    "bht-num-count": "/components/common/bht-num-count"
+  }
+}

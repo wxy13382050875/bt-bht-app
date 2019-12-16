@@ -1,0 +1,37 @@
+.news-wrapper {
+  padding: 0 18rpx;
+}
+.news-wrapper .title {
+    position: relative;
+    height: 73rpx;
+    line-height: 73rpx;
+}
+.news-wrapper .title::after {
+      content: ' ';
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      height: 1px;
+      background: #a9a8a8;
+}
+.news-wrapper .title .txt {
+      position: relative;
+      padding-left: 10rpx;
+      font-size: 34rpx;
+      font-weight: bold;
+      color: #E40011;
+}
+.news-wrapper .title .txt::after {
+        content: ' ';
+        position: absolute;
+        top: 4px;
+        left: 0;
+        width: 2px;
+        height: 34rpx;
+        background-color: #fe5906;
+}
+.news-list {
+  padding: 0 18rpx;
+}
+
