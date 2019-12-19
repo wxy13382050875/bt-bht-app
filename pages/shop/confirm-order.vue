@@ -14,7 +14,13 @@
 					</view>
 					<navigator class="address-navigator" hover-class="none"><label class="iconfont aca-youjiantou"></label></navigator>
 				</view>
-				<view class="confirm-order-goods-list" v-for="item in 5"></view>
+				<view class="confirm-order-goods-list" v-for="item in 5">
+					<view class="shop-list">
+						<view class="header">
+							<image src="../../static/icon/icon-store.png"></image>
+						</view>
+					</view>
+				</view>
 			</view>
 		</bht-layout-container>
 		<view class="confirm-order-footer"></view>
