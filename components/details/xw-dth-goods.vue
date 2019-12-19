@@ -6,24 +6,7 @@
 				<router-link class="more" to="{name: 'goods-list'}">更多>>></router-link>
 			</view>
 			<goodsItems :dataSource = "dataSource.list" :count= "count"></goodsItems>
-			<!-- <view class="goods-list" >
-				<navigator :url="item.page" :class="{'item-three':count == 3,'item-two':count == 2}" v-for="(item,index) in dataSource.list" :key="index">
-					<view :style="{height: height +'px'}"><image :src="item.url"></image></view>
-					<view class="title" v-if="count == 2">
-						{{item.title}}
-					</view>
-					<view class="good-info">
-						<view>
-							<label class="goods-nprice">¥{{item.newPrice}}</label>
-							<label class="goods-oprice" v-if="count == 2">¥{{item.oldPrice}}</label>
-						</view>
-						<view>
-							<label class="goods-oprice" v-if="count == 3">¥{{item.oldPrice}}</label>
-							<label class="goods-number" v-if="count == 2">¥{{item.number}}</label>
-						</view>
-					</view>
-				</navigator>	
-			</view> -->
+
 			
 		</view>
 	</view>

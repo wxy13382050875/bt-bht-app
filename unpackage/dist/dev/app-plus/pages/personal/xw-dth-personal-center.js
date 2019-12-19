@@ -1,1 +1,2 @@
+setCssToHead(["@charset \x22UTF-8\x22;\n.",[1],"layout-container { position: relative; }\n.",[1],"layout-container .",[1],"header { position: absolute; z-index: 80; width: 100%; height: ",[0,444],"; }\n.",[1],"layout-container .",[1],"body { margin-top: ",[0,398],"; position: absolute; z-index: 100; width: 100%; }\n",],undefined,{path:"./pages/personal/xw-dth-personal-center.wxss"})();
 document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/personal/xw-dth-personal-center.wxml') } }));
