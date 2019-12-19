@@ -1,5 +1,5 @@
 <template>
-	<view class="tab-bar-wrapper">
+	<view class="tab-bar-wrapper" v-show="tabbar">
 		<view class="tab-bar-list">
 			<view class="items" :class="{ 'nav-item-active': select === item.flag }" v-for="(item, index) in list" :key="index" @click="tabChangeEvent(item.flag)">
 				<image class="icon" :src="select === item.flag ? item.selectedSrc : item.src"></image>
@@ -12,33 +12,42 @@
 import { mapActions } from 'vuex';
 //底部菜单组件
 export default {
+	props: {
+		tabbar: {
+			type: Boolean,
+			default: true
+		}
+	},
 	data() {
 		return {
 			select: 'index',
 			list: [
 				{
 					title: '首页',
-					src: '/static/tab/home_def_icon.png',
-					selectedSrc: '/static/tab/home_sel_icon.png',
+					src: require('@/static/tab/home_def_icon.png'),
+					selectedSrc: require('@/static/tab/home_sel_icon.png'),
 					flag: 'index'
 				},
 				{
 					title: '统计报表',
-					src: '/static/tab/tjbb_def_icon.png',
-					selectedSrc: '/static/tab/tjbb_sel_icon.png',
+					src: require('@/static/tab/tjbb_def_icon.png'),
+					selectedSrc: require('@/static/tab/tjbb_sel_icon.png'),
 					flag: 'stat'
 				},
+				// {
+				// 	title: '分类',
+				// 	flag: 'cat'
+				// },
 				{
 					title: '购物车',
-					src: '/static/tab/tjbb_def_icon.png',
-					selectedSrc: '/static/tab/tjbb_sel_icon.png',
-					flag: 'shop'
-
-			},
+					src: require('@/static/tab/cart_def_icon.png'),
+					selectedSrc: require('@/static/tab/cart_sel_icon.png'),
+					flag: 'cart'
+				},
 				{
 					title: '我的',
-					src: '/static/tab/my_def_icon.png',
-					selectedSrc: '/static/tab/my_sel_icon.png',
+					src: require('@/static/tab/my_def_icon.png'),
+					selectedSrc: require('@/static/tab/my_sel_icon.png'),
 					flag: 'my'
 				}
 			]
@@ -64,7 +73,6 @@ export default {
 	right: 0;
 	bottom: 0;
 	left: 0;
-
 	.tab-bar-list {
 		position: relative;
 		display: flex;
@@ -100,6 +108,19 @@ export default {
 		.nav-item-active {
 			.title {
 				color: #e40011;
+			}
+		}
+		@keyframes active-animation {
+			0% {
+				opacity: 0;
+			}
+
+			50% {
+				opacity: 0.8;
+			}
+
+			100% {
+				opacity: 1;
 			}
 		}
 	}

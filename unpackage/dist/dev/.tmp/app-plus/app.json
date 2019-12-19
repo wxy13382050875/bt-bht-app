@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/main",
     "pages/staff/index",
     "pages/staff/borderer-jc-statistics",
     "pages/staff/goods-jc-statistics",
@@ -19,7 +20,11 @@
     "pages/common/forget",
     "pages/news/news-list",
     "pages/news/news-details",
-    "pages/staff/statistics-charts"
+    "pages/staff/statistics-charts",
+    "pages/shop/shop-home",
+    "pages/shop/goods-details",
+    "pages/shop/confirm-order",
+    "pages/personal/xw-dth-personal-center"
   ],
   "tabBar": {
     "color": "#7A7E83",
@@ -28,7 +33,7 @@
     "backgroundColor": "#f8f8f8",
     "list": [
       {
-        "pagePath": "pages/staff/index",
+        "pagePath": "pages/shop/shop-home",
         "iconPath": "static/tab/home_def_icon.png",
         "selectedIconPath": "static/tab/home_sel_icon.png",
         "text": "首页"
@@ -40,7 +45,13 @@
         "text": "统计报表"
       },
       {
-        "pagePath": "pages/user/center",
+        "pagePath": "pages/shop/shopping-cart",
+        "iconPath": "static/tab/tjbb_def_icon.png",
+        "selectedIconPath": "static/tab/tjbb_sel_icon.png",
+        "text": "购物车"
+      },
+      {
+        "pagePath": "pages/personal/xw-dth-personal-center",
         "iconPath": "static/tab/my_def_icon.png",
         "selectedIconPath": "static/tab/my_sel_icon.png",
         "text": "我的"
@@ -57,7 +68,7 @@
     "autoclose": false
   },
   "appname": "边互通",
-  "compilerVersion": "2.4.2",
+  "compilerVersion": "2.4.6",
   "usingComponents": {
     "bht-layout-container": "/components/common/bht-layout-container",
     "aca-nav-bar": "/third/acaui/nav/header-nav-bar",

@@ -1,1 +1,1 @@
-<view class="bht-layout-container-wrapper" style="{{'top:'+(navHeight+'px')+';'+('height:'+(height+'px')+';')+('background:'+(bgColor)+';')}}"><slot></slot></view>
+<view class="bht-layout-container-wrapper" style="{{'top:'+(navHeight+statusHeight+'px')+';'+('height:'+(height+'px')+';')+('background:'+(bgColor)+';')}}"><slot></slot></view>

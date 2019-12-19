@@ -1,0 +1,58 @@
+@charset "UTF-8";
+/*统计标题样式*/
+/*box*/
+/*统计页面头部 chart-header-bg*/
+.swiper-banner.data-v-16e0c149 {
+  position: relative;
+}
+.swiper-banner .swiper.data-v-16e0c149 {
+    height: 100%;
+    width: 100%;
+}
+.swiper-banner .swiper .swiper-item.data-v-16e0c149 {
+      width: 100%;
+}
+.swiper-banner .swiper .navigator.data-v-16e0c149,
+    .swiper-banner .swiper .img.data-v-16e0c149 {
+      width: 100%;
+      height: 100% !important;
+}
+.swiper-banner .index-swiper-dots.data-v-16e0c149 {
+    position: absolute;
+    bottom: 16rpx;
+    right: 0;
+    left: 0;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+            align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+            justify-content: center;
+}
+.swiper-banner .index-swiper-dots .dots.data-v-16e0c149 {
+      margin: 0 8px;
+      height: 16rpx;
+      width: 16rpx;
+      border-radius: 50px;
+      background: #fff;
+}
+.swiper-banner .index-swiper-dots .dots-active.data-v-16e0c149 {
+      width: 32rpx;
+      background-color: #f4d10a;
+}
+.swiper-banner .details-swiper-dots.data-v-16e0c149 {
+    position: absolute;
+    bottom: 16rpx;
+    right: 20rpx;
+    width: 74rpx;
+    height: 34rpx;
+    font-size: 22rpx;
+    text-align: center;
+    color: #898989;
+    background-color: #fff;
+    border-radius: 20rpx;
+}
+

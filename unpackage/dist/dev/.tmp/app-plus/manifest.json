@@ -113,7 +113,7 @@
       }
     },
     "uni-app": {
-      "compilerVersion": "2.4.2",
+      "compilerVersion": "2.4.6",
       "control": "v8",
       "nvueCompiler": "uni-app",
       "renderer": "auto",
@@ -128,7 +128,7 @@
       "backgroundColor": "#f8f8f8",
       "list": [
         {
-          "pagePath": "pages/staff/index",
+          "pagePath": "pages/shop/shop-home",
           "iconPath": "static/tab/home_def_icon.png",
           "selectedIconPath": "static/tab/home_sel_icon.png",
           "text": "首页"
@@ -140,17 +140,19 @@
           "text": "统计报表"
         },
         {
-          "pagePath": "pages/user/center",
+          "pagePath": "pages/shop/shopping-cart",
+          "iconPath": "static/tab/tjbb_def_icon.png",
+          "selectedIconPath": "static/tab/tjbb_sel_icon.png",
+          "text": "购物车"
+        },
+        {
+          "pagePath": "pages/personal/xw-dth-personal-center",
           "iconPath": "static/tab/my_def_icon.png",
           "selectedIconPath": "static/tab/my_sel_icon.png",
           "text": "我的"
         }
       ],
-      "height": "50px",
-      "child": [
-        "lauchwebview"
-      ],
-      "selected": 0
+      "height": "50px"
     }
   }
 }

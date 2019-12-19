@@ -5,6 +5,7 @@
 const state = {
 	//导航栏高度
 	navHeight: 0,
+	statusHeight: 0,
 	//开票数据
 	invoiceData: [],
 	//tabBar激活的位置
@@ -37,6 +38,9 @@ const state = {
 const getters = {
 	navHeight: (state) => {
 		return state.navHeight
+	},
+	statusHeight: (state) => {
+		return state.statusHeight
 	},
 	invoiceData: (state) => {
 		return state.invoiceData

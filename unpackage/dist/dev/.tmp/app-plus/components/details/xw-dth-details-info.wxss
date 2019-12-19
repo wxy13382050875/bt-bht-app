@@ -1,0 +1,23 @@
+@charset "UTF-8";
+/*统计标题样式*/
+/*box*/
+/*统计页面头部 chart-header-bg*/
+.goods-info {
+  background: #FFFFFF;
+}
+.goods-info .item {
+    margin: 20rpx;
+}
+.goods-info .item .goods-nprice {
+      font-size: 32rpx;
+      color: #ff3333;
+}
+.goods-info .item .goods-title {
+      font-size: 30rpx;
+      color: #333333;
+}
+.goods-info .item label {
+      font-size: 22rpx;
+      color: #999999;
+}
+

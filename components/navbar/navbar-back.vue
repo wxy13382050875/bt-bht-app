@@ -20,29 +20,16 @@ export default {
 		title: String
 	},
 	data() {
-		return {
-			navHeight: 0,
-			statusHeight: 0
-		};
+		return {};
 	},
 	computed: {
 		...mapGetters({
-			curUrl: 'utp/curUrl'
+			curUrl: 'utp/curUrl',
+			statusHeight: 'utp/statusHeight',
+			navHeight: 'utp/navHeight'
 		})
 	},
-	created() {
-		/*动态计算*/
-		var sysinfo = uni.getSystemInfoSync(),
-			statusHeight = sysinfo.statusBarHeight,
-			isiOS = sysinfo.system.indexOf('iOS') > -1;
-		if (!isiOS) {
-			this.navHeight = 48;
-		} else {
-			this.navHeight = 44;
-		}
-		this.statusHeight = statusHeight;
-		this.setNavHeight(this.navHeight + this.statusHeight);
-	},
+	created() {},
 	methods: {
 		...mapActions('utp', ['setNavHeight']),
 		backToPrev() {
@@ -64,7 +51,7 @@ export default {
 	top: 0;
 	right: 0;
 	left: 0;
-	z-index: 1120;
+	z-index: 1993;
 	text-align: center;
 	background: $nav-bg-color;
 }

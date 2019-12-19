@@ -1,6 +1,6 @@
 <template>
 	<view class="goods-info">
-		<banner :dataSource="dataSource" :height="height"></banner>
+		<banner :dataSource="dataSource" :height="750" type="details"></banner>
 		<view class="item">
 			<view >
 				<label class="goods-nprice">¥369.9</label>

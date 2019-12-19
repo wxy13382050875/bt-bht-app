@@ -1,0 +1,1 @@
+<view><bht-layout-container vue-id="1" bind:__l="__l" vue-slots="{{['default']}}"><personal-header vue-id="{{('2')+','+('1')}}" bind:__l="__l"></personal-header></bht-layout-container></view>

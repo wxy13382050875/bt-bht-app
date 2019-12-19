@@ -1,31 +1,66 @@
 <template>
-	<view v-cloak>
-		<home-page></home-page>
+	<view class="xxx">
+		<!--首页组件-->
+		<tabbar-map-page></tabbar-map-page>
+		<!--统计组件-->
 		<stat-page></stat-page>
+		<!--购物车页面组件-->
+		<shopping-cart></shopping-cart>
+		<!--个人中心组件-->
 		<my-page></my-page>
-		<tab-bar></tab-bar>
+		<!--tabbar组件-->
+		<tab-bar :tabbar="tabbar"></tab-bar>
 	</view>
 </template>
 
 <script>
-//入口文件首页
+/**
+ * 入口页面
+ */
+//TAB BAR 组件
 import TabBar from '@/components/tabbar/TabBar.vue';
-import HomePage from '@/components/tabpage/HomePage.vue';
-import StatPage from '@/components/tabpage/StatPage.vue';
-import MyPage from '@/components/tabpage/MyPage.vue';
+//首页组件
+import TabbarMapPage from '@/components/tabbar-page/tabbar-main-page.vue';
+//统计组件
+import StatPage from '@/components/tabbar-page/stat-page.vue';
+//我的组件
+import MyPage from '@/components/tabbar-page/my-page.vue';
+//购物车组件
+import ShoppingCart from '@/components/tabbar-page/shopping-cart.vue';
 export default {
 	components: {
 		TabBar,
-		HomePage,
+		TabbarMapPage,
 		StatPage,
-		MyPage
+		MyPage,
+		ShoppingCart
 	},
 	data() {
 		return {
-			tabBarIndex: 0
+			tabBarIndex: 0,
+			tabbar: true,
+			windowHeight: 0
 		};
 	},
+	onLoad() {
+		uni.getSystemInfo({
+			success: res => {
+				this.windowHeight = res.windowHeight;
+			}
+		});
+		uni.onWindowResize(res => {
+			if (res.size.windowHeight < this.windowHeight) {
+				this.tabbar = false;
+				// uni.pageScrollTo({
+				// 	scrollTop: 200
+				// })
+			} else {
+				this.tabbar = true;
+			}
+		});
+	},
 	methods: {
+		//tabBar 改变事件
 		changeTabBar(index) {
 			this.tabBarIndex = index;
 		}

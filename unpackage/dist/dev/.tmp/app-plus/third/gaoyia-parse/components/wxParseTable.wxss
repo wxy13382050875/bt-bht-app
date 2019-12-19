@@ -13,8 +13,6 @@
  */
 .wxParse {
 	-webkit-user-select:none;
-	   -moz-user-select:none;
-	    -ms-user-select:none;
 	        user-select:none;
 	width: 100%;
 	font-family: Helvetica, "PingFangSC", 'Microsoft Yahei', '\5FAE\8F6F\96C5\9ED1', Arial, sans-serif;
@@ -175,7 +173,6 @@
   display: list-item;
   -webkit-box-align: baseline;
   -webkit-align-items: baseline;
-      -ms-flex-align: baseline;
           align-items: baseline;
   text-align: match-parent;
 }
@@ -183,7 +180,6 @@
   display: list-item;
   -webkit-box-align: baseline;
   -webkit-align-items: baseline;
-      -ms-flex-align: baseline;
           align-items: baseline;
   text-align: match-parent;
 }
@@ -207,38 +203,33 @@
 }
 .wxParse .table .table{
 	border-collapse:collapse;
-	-webkit-box-sizing: border-box;
-	        box-sizing: border-box;
+	box-sizing: border-box;
 	/* 内边框 */
 	border: 1px solid #dadada;
 	width: 100%;
 }
 .wxParse .tbody{
 	border-collapse:collapse;
-	-webkit-box-sizing: border-box;
-	        box-sizing: border-box;
+	box-sizing: border-box;
 	/* 内边框 */
 	border: 1px solid #dadada;
 }
 .wxParse .thead, .wxParse .tfoot, .wxParse .th{
 	border-collapse:collapse;
-	-webkit-box-sizing: border-box;
-	        box-sizing: border-box;
+	box-sizing: border-box;
 	background: #ececec;
 	font-weight: 40;
 }
 .wxParse .tr {
 	border-collapse:collapse;
-	-webkit-box-sizing: border-box;
-	        box-sizing: border-box;
+	box-sizing: border-box;
 	/* border: 2px solid #F0AD4E; */
 	overflow:auto;
 }
 .wxParse .th,
 .wxParse .td{
 	border-collapse:collapse;
-	-webkit-box-sizing: border-box;
-	        box-sizing: border-box;
+	box-sizing: border-box;
 	border: 2rpx solid #dadada;
 	overflow:auto;
 }

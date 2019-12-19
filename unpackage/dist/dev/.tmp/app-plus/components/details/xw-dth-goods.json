@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "router-link": "/third/uni-app-router/component/router-link",
+    "goods-items": "/components/details/xw-dth-goods-item"
+  }
+}

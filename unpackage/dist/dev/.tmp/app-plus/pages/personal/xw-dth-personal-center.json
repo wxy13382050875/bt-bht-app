@@ -1,0 +1,9 @@
+{
+  "navigationStyle": "custom",
+  "disableScroll": true,
+  "bounce": "none",
+  "usingComponents": {
+    "bht-layout-container": "/components/common/bht-layout-container",
+    "personal-header": "/components/personal/xw-dth-personal-header"
+  }
+}

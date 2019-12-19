@@ -19,11 +19,9 @@
     padding: 20rpx 0;
     display: -webkit-box;
     display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
     -webkit-box-align: center;
     -webkit-align-items: center;
-        -ms-flex-align: center;
             align-items: center;
     min-height: 116rpx;
     font-size: 32rpx;
@@ -42,15 +40,12 @@
 .news-content-w .sub-title {
     display: -webkit-box;
     display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
     -webkit-box-pack: center;
     -webkit-justify-content: center;
-        -ms-flex-pack: center;
             justify-content: center;
     -webkit-box-align: center;
     -webkit-align-items: center;
-        -ms-flex-align: center;
             align-items: center;
     font-size: 22px;
     color: #909090;
@@ -64,11 +59,9 @@
 .news-content-w .footer {
     display: -webkit-box;
     display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
     -webkit-box-pack: justify;
     -webkit-justify-content: space-between;
-        -ms-flex-pack: justify;
             justify-content: space-between;
     padding: 27rpx 0;
     height: 80rpx;
@@ -77,15 +70,12 @@
     .news-content-w .footer .share-btn {
       display: -webkit-box;
       display: -webkit-flex;
-      display: -ms-flexbox;
       display: flex;
       -webkit-box-align: center;
       -webkit-align-items: center;
-          -ms-flex-align: center;
               align-items: center;
       -webkit-box-pack: center;
       -webkit-justify-content: center;
-          -ms-flex-pack: center;
               justify-content: center;
       width: 49%;
       height: 80rpx;

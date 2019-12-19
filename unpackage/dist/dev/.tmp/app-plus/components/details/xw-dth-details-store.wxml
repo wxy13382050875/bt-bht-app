@@ -1,0 +1,1 @@
+<view class="goods-store"><view class="left-item"><image src="../../static/icon_favicon.ico"></image><view style="margin-left:20rpx;align-items:center;"><view class="title">高原农特产品</view><view class="describe">农特产品专卖</view></view></view><view class="right-item"><button class="baby">全部宝贝</button><button class="go-store">进店逛逛</button></view></view>

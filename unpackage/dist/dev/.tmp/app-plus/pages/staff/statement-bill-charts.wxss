@@ -13,26 +13,21 @@
     position: absolute;
     display: -webkit-box;
     display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
     -webkit-box-pack: center;
     -webkit-justify-content: center;
-        -ms-flex-pack: center;
             justify-content: center;
     width: 100%;
 }
 .statement-statistics-container .statement-statistics-header .header-opt .item {
       display: -webkit-box;
       display: -webkit-flex;
-      display: -ms-flexbox;
       display: flex;
       -webkit-box-align: center;
       -webkit-align-items: center;
-          -ms-flex-align: center;
               align-items: center;
       -webkit-box-pack: center;
       -webkit-justify-content: center;
-          -ms-flex-pack: center;
               justify-content: center;
       width: 200rpx;
       height: 80rpx;
@@ -40,8 +35,7 @@
       color: #ff3333;
       background: white;
       border: 1px solid #ff3333;
-      -webkit-box-shadow: 0 0 10rpx 0 rgba(247, 82, 75, 0.6);
-              box-shadow: 0 0 10rpx 0 rgba(247, 82, 75, 0.6);
+      box-shadow: 0 0 10rpx 0 rgba(247, 82, 75, 0.6);
 }
 .statement-statistics-container .statement-statistics-header .header-opt .item-year {
       border-radius: 6rpx 0 0 6rpx;
@@ -57,11 +51,9 @@
     top: 30rpx;
     display: -webkit-box;
     display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
     -webkit-box-pack: center;
     -webkit-justify-content: center;
-        -ms-flex-pack: center;
             justify-content: center;
 }
 .statement-statistics-container .statement-statistics-header .header-opt .date-box {
@@ -88,26 +80,21 @@
 .statement-statistics-container .statement-statistics-box-container .all-statistics-box {
     display: -webkit-box;
     display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
     -webkit-box-pack: center;
     -webkit-justify-content: center;
-        -ms-flex-pack: center;
             justify-content: center;
     -webkit-box-align: center;
     -webkit-align-items: center;
-        -ms-flex-align: center;
             align-items: center;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     -webkit-flex-direction: column;
-        -ms-flex-direction: column;
             flex-direction: column;
     height: 164rpx;
     background-color: #fff;
     background: white;
-    -webkit-box-shadow: 0 0 16rpx 0 rgba(134, 134, 134, 0.4);
-            box-shadow: 0 0 16rpx 0 rgba(134, 134, 134, 0.4);
+    box-shadow: 0 0 16rpx 0 rgba(134, 134, 134, 0.4);
     border-radius: 10rpx;
 }
 .statement-statistics-container .statement-statistics-box-container .all-statistics-box .title {
@@ -135,23 +122,19 @@
 }
 .statement-statistics-container .bht-echarts-box-container .bht-echarts-box {
     background: white;
-    -webkit-box-shadow: 0 0 16rpx 0 rgba(134, 134, 134, 0.4);
-            box-shadow: 0 0 16rpx 0 rgba(134, 134, 134, 0.4);
+    box-shadow: 0 0 16rpx 0 rgba(134, 134, 134, 0.4);
     border-radius: 10rpx;
 }
 .statement-statistics-container .bht-echarts-box-container .bht-echarts-box .header {
       position: relative;
       display: -webkit-box;
       display: -webkit-flex;
-      display: -ms-flexbox;
       display: flex;
       -webkit-box-align: center;
       -webkit-align-items: center;
-          -ms-flex-align: center;
               align-items: center;
       -webkit-box-pack: justify;
       -webkit-justify-content: space-between;
-          -ms-flex-pack: justify;
               justify-content: space-between;
       height: 102rpx;
 }
@@ -167,11 +150,9 @@
 .statement-statistics-container .bht-echarts-box-container .bht-echarts-box .header .title {
         display: -webkit-box;
         display: -webkit-flex;
-        display: -ms-flexbox;
         display: flex;
         -webkit-box-align: center;
         -webkit-align-items: center;
-            -ms-flex-align: center;
                 align-items: center;
         position: relative;
         padding-left: 25rpx;
@@ -190,14 +171,11 @@
 .statement-statistics-container .bht-echarts-box-container .bht-echarts-box .header .opt {
         display: -webkit-box;
         display: -webkit-flex;
-        display: -ms-flexbox;
         display: flex;
         -webkit-box-align: center;
         -webkit-align-items: center;
-            -ms-flex-align: center;
                 align-items: center;
         -webkit-justify-content: space-around;
-            -ms-flex-pack: distribute;
                 justify-content: space-around;
         margin-right: 20rpx;
         width: 311rpx;

@@ -3,8 +3,7 @@
 /*box*/
 /*统计页面头部 chart-header-bg*/
 .bht-layout-container-wrapper {
-  position: absolute;
-  right: 0;
-  left: 0;
+  position: relative;
+  width: 100%;
 }
 

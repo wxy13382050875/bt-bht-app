@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "goods-items": "/components/details/xw-dth-goods-item"
+  },
+  "component": true
+}

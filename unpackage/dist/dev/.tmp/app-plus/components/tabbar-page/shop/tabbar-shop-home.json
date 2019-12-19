@@ -1,0 +1,11 @@
+{
+  "component": true,
+  "usingComponents": {
+    "bht-layout-container": "/components/common/bht-layout-container",
+    "bt-banner": "/components/common/bht-banner",
+    "nav-bar-shopping-home": "/components/navbar/navbar-shopping-home",
+    "xw-dth-banner": "/components/details/xw-dth-banner",
+    "xw-dth-grid": "/components/details/xw-dth-grid",
+    "xw-dth-goods": "/components/details/xw-dth-goods"
+  }
+}

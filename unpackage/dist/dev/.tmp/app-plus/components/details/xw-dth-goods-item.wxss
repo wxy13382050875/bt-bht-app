@@ -1,0 +1,79 @@
+@charset "UTF-8";
+/*统计标题样式*/
+/*box*/
+/*统计页面头部 chart-header-bg*/
+.goods-list {
+  margin-top: 17rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+  -webkit-flex-wrap: wrap;
+          flex-wrap: wrap;
+  padding: 5 10rpx;
+}
+.goods-list .item-three {
+    width: calc((100% - 15rpx) / 3);
+}
+.goods-list .item-three image {
+      width: 100%;
+      height: 100%;
+}
+.goods-list .item-three .title {
+      font-size: 26rpx;
+      color: #333333;
+}
+.goods-list .item-three .good-info {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-pack: center;
+      -webkit-justify-content: center;
+              justify-content: center;
+}
+.goods-list .item-three .good-info .goods-nprice {
+        font-size: 32rpx;
+        color: #ff3333;
+}
+.goods-list .item-three .good-info .goods-oprice {
+        font-size: 22rpx;
+        color: #999999;
+}
+.goods-list .item-three .good-info .goods-number {
+        font-size: 22rpx;
+        color: #999999;
+}
+.goods-list .item-two {
+    width: calc((100% - 15rpx) / 2);
+}
+.goods-list .item-two image {
+      width: 100%;
+      height: 100%;
+}
+.goods-list .item-two .title {
+      font-size: 26rpx;
+      color: #333333;
+}
+.goods-list .item-two .good-info {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-pack: justify;
+      -webkit-justify-content: space-between;
+              justify-content: space-between;
+}
+.goods-list .item-two .good-info .goods-nprice {
+        font-size: 32rpx;
+        color: #ff3333;
+}
+.goods-list .item-two .good-info .goods-oprice {
+        font-size: 22rpx;
+        color: #999999;
+}
+.goods-list .item-two .good-info .goods-number {
+        font-size: 22rpx;
+        color: #999999;
+}
+

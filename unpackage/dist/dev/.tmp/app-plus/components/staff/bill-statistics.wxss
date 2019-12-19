@@ -26,30 +26,24 @@
 .bill-statistics-components .bill-statistics-list {
     display: -webkit-box;
     display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
     -webkit-flex-wrap: wrap;
-        -ms-flex-wrap: wrap;
             flex-wrap: wrap;
     -webkit-box-pack: justify;
     -webkit-justify-content: space-between;
-        -ms-flex-pack: justify;
             justify-content: space-between;
     width: 100%;
 }
 .bill-statistics-components .bill-statistics-list .item {
       display: -webkit-box;
       display: -webkit-flex;
-      display: -ms-flexbox;
       display: flex;
       -webkit-box-orient: vertical;
       -webkit-box-direction: normal;
       -webkit-flex-direction: column;
-          -ms-flex-direction: column;
               flex-direction: column;
       -webkit-box-pack: center;
       -webkit-justify-content: center;
-          -ms-flex-pack: center;
               justify-content: center;
       margin-top: 8px;
       width: calc(50% - 4px);

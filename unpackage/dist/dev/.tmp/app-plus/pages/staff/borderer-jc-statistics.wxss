@@ -13,26 +13,21 @@
     position: absolute;
     display: -webkit-box;
     display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
     -webkit-box-pack: center;
     -webkit-justify-content: center;
-        -ms-flex-pack: center;
             justify-content: center;
     width: 100%;
 }
 .borderer-statistics-header .header-opt .item {
       display: -webkit-box;
       display: -webkit-flex;
-      display: -ms-flexbox;
       display: flex;
       -webkit-box-align: center;
       -webkit-align-items: center;
-          -ms-flex-align: center;
               align-items: center;
       -webkit-box-pack: center;
       -webkit-justify-content: center;
-          -ms-flex-pack: center;
               justify-content: center;
       width: 200rpx;
       height: 80rpx;
@@ -40,8 +35,7 @@
       color: #ff3333;
       background: white;
       border: 1px solid #ff3333;
-      -webkit-box-shadow: 0 0 10rpx 0 rgba(247, 82, 75, 0.6);
-              box-shadow: 0 0 10rpx 0 rgba(247, 82, 75, 0.6);
+      box-shadow: 0 0 10rpx 0 rgba(247, 82, 75, 0.6);
 }
 .borderer-statistics-header .header-opt .item-year {
       border-radius: 6rpx 0 0 6rpx;
@@ -57,11 +51,9 @@
     bottom: 46rpx;
     display: -webkit-box;
     display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
     -webkit-box-pack: center;
     -webkit-justify-content: center;
-        -ms-flex-pack: center;
             justify-content: center;
 }
 .borderer-statistics-header .header-opt .date-box {
@@ -82,23 +74,19 @@
 .borderer-statistics-data .data-box {
     padding: 18rpx;
     background: white;
-    -webkit-box-shadow: 0 0 16rpx 0 rgba(134, 134, 134, 0.4);
-            box-shadow: 0 0 16rpx 0 rgba(134, 134, 134, 0.4);
+    box-shadow: 0 0 16rpx 0 rgba(134, 134, 134, 0.4);
     border-radius: 10rpx;
 }
 .borderer-statistics-data .data-box .data-tab {
       position: relative;
       display: -webkit-box;
       display: -webkit-flex;
-      display: -ms-flexbox;
       display: flex;
       -webkit-box-align: center;
       -webkit-align-items: center;
-          -ms-flex-align: center;
               align-items: center;
       -webkit-box-pack: justify;
       -webkit-justify-content: space-between;
-          -ms-flex-pack: justify;
               justify-content: space-between;
       height: 62rpx;
 }
@@ -114,19 +102,15 @@
 .borderer-statistics-data .data-box .data-tab .tab-item {
         -webkit-box-flex: 1;
         -webkit-flex: 1;
-            -ms-flex: 1;
                 flex: 1;
         display: -webkit-box;
         display: -webkit-flex;
-        display: -ms-flexbox;
         display: flex;
         -webkit-box-align: center;
         -webkit-align-items: center;
-            -ms-flex-align: center;
                 align-items: center;
         -webkit-box-pack: center;
         -webkit-justify-content: center;
-            -ms-flex-pack: center;
                 justify-content: center;
         height: 100%;
         text-align: center;
