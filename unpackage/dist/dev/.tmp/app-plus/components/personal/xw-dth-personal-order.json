@@ -1,7 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "router-link": "/third/uni-app-router/component/router-link",
-    "grid": "/components/details/xw-dth-grid"
-  }
-}

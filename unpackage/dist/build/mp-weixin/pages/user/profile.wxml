@@ -1,1 +1,0 @@
-<view class="app-content"><aca-nav-bar vue-id="1" level="{{2}}" title="个人信息" bind:__l="__l"></aca-nav-bar></view>

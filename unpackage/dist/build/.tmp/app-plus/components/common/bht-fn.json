@@ -1,6 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "router-link": "/third/uni-app-router/component/router-link"
-  }
-}

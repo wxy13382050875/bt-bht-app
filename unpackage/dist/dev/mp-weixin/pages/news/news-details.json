@@ -1,7 +1,0 @@
-{
-  "navigationStyle": "custom",
-  "disableScroll": true,
-  "usingComponents": {
-    "u-parse": "/third/gaoyia-parse/parse"
-  }
-}

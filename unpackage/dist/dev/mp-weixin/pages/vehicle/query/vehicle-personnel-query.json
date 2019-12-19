@@ -1,9 +1,0 @@
-{
-  "navigationStyle": "custom",
-  "disableScroll": true,
-  "usingComponents": {
-    "popup-modal-query-vehicle": "/components/modal/popup-modal-query-vehicle",
-    "bht-query-box": "/components/common/bht-query-box",
-    "bht-vehicle-list": "/components/vehicle/bht-vehicle-list"
-  }
-}

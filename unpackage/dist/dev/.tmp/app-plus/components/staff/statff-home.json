@@ -1,8 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "uni-echarts": "/components/mpvue-echarts/echarts",
-    "bill-statistics": "/components/staff/bill-statistics",
-    "day-of-statistics": "/components/staff/day-of-statistics"
-  }
-}

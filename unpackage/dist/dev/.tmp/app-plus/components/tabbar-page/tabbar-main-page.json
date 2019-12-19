@@ -1,7 +1,0 @@
-{
-  "usingComponents": {
-    "statff-home": "/components/staff/statff-home",
-    "tabbar-shop-home": "/components/tabbar-page/shop/tabbar-shop-home"
-  },
-  "component": true
-}
