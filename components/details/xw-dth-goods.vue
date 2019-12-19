@@ -3,7 +3,7 @@
 		<view class="bht-goods-content">
 			<view class="goods-title">
 				<label class="title">{{dataSource.title}}</label>
-				<router-link class="more" to="{name: 'goods-list'}">更多>>></router-link>
+				<router-link class="more" to="{name: 'goodslist'}">更多>>></router-link>
 			</view>
 			<goodsItems :dataSource = "dataSource.list" :count= "count"></goodsItems>
 

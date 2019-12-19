@@ -1,5 +1,6 @@
 <template>
 	<view>
+		<nav-bar-back title="个人中心"></nav-bar-back>
 		<bht-layout-container class="layout-container">
 			<view  class="header">
 				<personalHeader></personalHeader>
@@ -7,6 +8,9 @@
 			<view class="body">
 				<personalOrder :dataSource ="dataSource.order"></personalOrder>
 				<personalOrder :dataSource ="dataSource.tool"></personalOrder>
+				<view class="login-out" @click="loginout">
+					退出登陆
+				</view>
 			</view>
 			
 		</bht-layout-container>
@@ -60,7 +64,9 @@
 			}
 		},
 		methods: {
-			
+			loginout(){
+				
+			}
 		}
 	}
 </script>
@@ -72,13 +78,29 @@
 			position: absolute;
 			z-index: 80;
 			width: 100%;
-			height: 444rpx;
+			height: 380rpx;
 		}
 		.body{
-			margin-top: 398rpx;
+			margin-top: 334rpx;
 			position: absolute;
 			z-index: 100;
 			width: 100%;
+			.login-out{
+				color: #636464;
+				height: 94rpx;
+				width: 95%;
+				line-height: 94rpx;
+				background: #FFFFFF;
+				text-align: center;
+				position: fixed;
+				margin-left: 20rpx;
+				margin-right: 20rpx;
+				bottom: 168rpx;
+				border-radius: 8px 8px 8px 8px;
+				font-size:34rpx;
+				font-family:MicrosoftYaHei;
+				border: 1rpx solid #e5e5e5;
+			}
 		}
 	}
 </style>

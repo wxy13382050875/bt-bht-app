@@ -244,6 +244,16 @@ const routesList = [{
 			}
 		}
 	},
+	{
+		path: "/pages/goodslist/goodslist",
+		name: "goodslist",
+		meta: {
+			title: '商品列表',
+			auth: {
+				requiresAuth: false
+			}
+		}
+	},
 	
 ]
 //导出

@@ -1,8 +1,5 @@
 <template>
 	<view class="personal">
-		<view class="personal-header">
-			<label class="title">个人中心</label>
-		</view>
 		<view class="personal-body">
 			<view class="personal-info">
 				<view class="left-item">
@@ -46,20 +43,7 @@
 		height: 100%;
 		background: #E40011;
 		
-		.personal-header{
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			height: 80rpx;
-			width: 100%;
-			line-height: 80rpx;;
-			.title{
-				
-				height: 100%;
-				font-size: 30rpx;
-				color: #ffffff;
-			}
-		}
+		
 		.personal-body{
 			.personal-info{
 				height: 240rpx;

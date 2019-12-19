@@ -13,6 +13,9 @@ export default {
 <style lang="scss">
 @import url('./static/style/iconfont/iconfont.css');
 @import url('/third/gaoyia-parse/parse.css');
+@import url('/third/yb-filter/graceUI.css');
+@import url('/third/yb-filter/main.css');
+@import url('/third/yb-filter/icon.css');
 
 input {
 	caret-color: #e42231;
