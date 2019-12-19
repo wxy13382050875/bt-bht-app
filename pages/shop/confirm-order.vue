@@ -17,7 +17,43 @@
 				<view class="confirm-order-goods-list" v-for="item in 5">
 					<view class="shop-list">
 						<view class="header">
-							<image src="../../static/icon/icon-store.png"></image>
+							<image class="shop-img" src="/static/icon/icon-store.png"></image>
+							<label class="shop-name">高原农特产品</label>
+						</view>
+						<view class="goods-list">
+							<view class="items" v-for="item in 2">
+								<view class="goods-image"><image src="/static/small/1.jpg"></image></view>
+								<view class="goods-details">
+									<label class="goods-name">泰国正品白兰氏即食燕窝美容养颜滋补42ml*6瓶...</label>
+									<label class="shipping-address">发货地：云南河口县</label>
+								</view>
+								<view class="goods-pum">
+									<view class="price">
+										<label class="symbol">¥</label>
+										<label class="value">223.9</label>
+									</view>
+									<view class="num">
+										<label class="symbol">x</label>
+										<label class="value">2</label>
+									</view>
+								</view>
+							</view>
+						</view>
+						<view class="delivery">
+							<view class="left">
+								<label class="title">普通快递</label>
+								<label class="value">普通快递</label>
+							</view>
+							<view class="right">快递 免邮</view>
+						</view>
+						<view class="remarks">
+							<label class="title">订单备注</label>
+							<input type="text" placeholder="选填，请先和商家协商一致再备注！" />
+						</view>
+						<view class="goods-total">
+							<label class="count">共2件</label>
+							<label class="title">小计：</label>
+							<label class="price">¥447.8</label>
 						</view>
 					</view>
 				</view>
@@ -105,8 +141,138 @@ $text-color: #333333;
 	.confirm-order-goods-list {
 		margin-top: 32rpx;
 		padding: $padding-content;
-		height: 220px;
 		@include bht-box;
+
+		.shop-list {
+			.header {
+				display: flex;
+				align-items: center;
+				height: 62rpx;
+				.shop-img {
+					width: 34rpx;
+					height: 34rpx;
+				}
+				.shop-name {
+					margin-left: 8rpx;
+					font-size: 32rpx;
+					color: $text-color;
+				}
+			}
+			.goods-list {
+				position: relative;
+				.items {
+					display: flex;
+					margin-top: $padding-content;
+					.goods-image {
+						width: 180rpx;
+						height: 180rpx;
+						image {
+							width: 100%;
+							height: 100%;
+							border-radius: 9px;
+						}
+					}
+					.goods-details {
+						flex: 1;
+						display: flex;
+						flex-direction: column;
+						justify-content: space-between;
+						margin-left: $padding-content;
+						.goods-name {
+							font-size: 26rpx;
+							color: $text-color;
+						}
+						.shipping-address {
+							font-size: 22rpx;
+							color: #999;
+						}
+					}
+					.goods-pum {
+						margin-left: 40rpx;
+						text-align: right;
+						.price {
+							color: $text-color;
+							.value {
+								font-size: 26rpx;
+							}
+							.symbol {
+								font-size: 22rpx;
+							}
+						}
+						.num {
+							color: #999;
+							.value {
+								font-size: 26rpx;
+							}
+							.symbol {
+								font-size: 22rpx;
+							}
+						}
+					}
+				}
+
+				&::after {
+					content: '';
+					position: absolute;
+					width: 100%;
+					height: 1px;
+					background-color: #868686;
+					margin-top: 21rpx;
+				}
+			}
+			.delivery {
+				display: flex;
+				justify-content: space-between;
+				margin-top: 32rpx;
+				font-size: 26rpx;
+				.left {
+					.title {
+						margin-right: 18rpx;
+						color: $text-color;
+					}
+					.value {
+						color: #868686;
+					}
+				}
+				.right {
+					color: $text-color;
+				}
+			}
+			.remarks {
+				display: flex;
+				align-items: center;
+				margin-top: $padding-content;
+				height: 35px;
+				line-height: 35px;
+				font-size: 26rpx;
+				.title {
+					margin-right: 18rpx;
+					color: $text-color;
+				}
+				input {
+					flex: 1;
+					height: 35px;
+					line-height: 35px;
+					font-size: 26rpx;
+				}
+			}
+
+			.goods-total {
+				margin: 44rpx 0;
+				font-size: 26rpx;
+				text-align: right;
+				.count {
+					color: #868686;
+					margin-right: 5px;
+				}
+				.title {
+					color: $text-color;
+				}
+				.price {
+					color: #ff3333;
+				}
+			}
+		}
 	}
 }
 </style>
