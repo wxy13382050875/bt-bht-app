@@ -1,11 +1,11 @@
 <template>
-	<view class="bht-goods-w">
+	<view class="personal-tool">
 		<view class="bht-goods-content">
 			<view class="goods-title">
 				<label class="title">{{dataSource.title}}</label>
-				<router-link class="more" to="{name: 'goods-list'}">更多>>></router-link>
+				<router-link class="more" to="{name: 'goods-list'}">{{dataSource.moretitle}}></router-link>
 			</view>
-			<goodsItems :dataSource = "dataSource.list" :count= "count"></goodsItems>
+			<grid :dataSource ="dataSource.list"></grid>
 
 			
 		</view>
@@ -13,11 +13,11 @@
 </template>
 
 <script>
-	import goodsItems from '@/components/details/xw-dth-goods-item.vue'
+	import grid from '@/components/details/xw-dth-grid.vue'
 	export default{
 		props:{
 			dataSource:{
-				type:Object,
+				type:Array,
 				default () {
 					return {}
 				}
@@ -25,11 +25,12 @@
 			count:0
 		},
 		components:{
-			goodsItems
+			grid
 		},
 		data() {
 			return {
-				height:0
+				height:0,
+				
 			}
 		},
 		created() {
@@ -43,43 +44,42 @@
 		
 	}
 </script>
-<style lang="scss">
-.bht-goods-w {
+<style lang="scss" scoped>
+.personal-tool {
 	padding: 0 $padding-content;
-	margin-top: 10rpx;
 	.bht-goods-content {
-		padding: 21rpx 21rpx;
 		background-color: #fff;
 		box-shadow: 0px 0px 10px 0px rgba(134, 134, 134, 0.2);
 		border-radius: 8px;
-
+		margin-top: 20rpx;
 		.goods-title {
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
-
+			height: 76rpx;
+			line-height: 76rpx;
+			border-bottom: 1rpx solid #A7A7A7;
+			
 			label {
+				margin-left: 22rpx;
 				position: relative;
-				height: 34rpx;
+				height: 100%;
 				padding-left: 10rpx;
-				font-size: 34rpx;
-				color: rgba(254, 89, 6, 1);
-
-				&::before {
-					content: ' ';
-					position: absolute;
-					left: 0;
-					bottom: -3px;
-					width: 4rpx;
-					height: 34rpx;
-					background-color: rgba(254, 89, 6, 1);
-				}
+				font-size: 28rpx;
+				color: #868686;
+				font-family:Microsoft YaHei;
+				font-weight:bold;
+				
 			}
 
 			.more {
+				margin-right: 22rpx;
 				font-size: 24rpx;
-				color: rgba(99, 99, 99, 1);
+				color: #9A9A9A;
 			}
+		}
+		.bht-fun-wrapper{
+			border-radius: 0 0 8px 8px;
 		}
 		
 	}

@@ -45,7 +45,7 @@
 		.bht-fun {
 			margin-top: $margin-top;
 			display: flex;
-			justify-content: space-between;
+			// justify-content: space-between;
 			flex-wrap: wrap;
 
 			.items {
@@ -59,8 +59,8 @@
 
 				image {
 					margin-top: 20rpx;
-					width: 94rpx;
-					height: 94rpx;
+					width: 60rpx;
+					height: 60rpx;
 				}
 
 				.title {
