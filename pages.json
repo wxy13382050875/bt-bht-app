@@ -233,6 +233,16 @@
 				}
 			}
         }
+		,{
+		    "path" : "pages/shop/goods-details",
+		    "style": {
+				"navigationStyle": "custom",
+				"disableScroll": true,
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		}
         ,{
             "path" : "pages/shop/shopping-cart",
             "style": {
@@ -244,6 +254,15 @@
 			}
         }
 
+        ,{
+            "path" : "pages/personal/xw-dth-personal-center",
+            "style" : {
+				"navigationStyle": "custom",
+				"disableScroll": true,
+				"app-plus": {
+					"bounce": "none"
+				}}
+        }
     ],
 	"tabBar": {
 		"color": "#7A7E83",
@@ -269,7 +288,7 @@
 				"text": "购物车"
 			},
 			{
-				"pagePath": "pages/shop/shopping-cart",
+				"pagePath": "pages/personal/xw-dth-personal-center",
 				"iconPath": "static/tab/my_def_icon.png",
 				"selectedIconPath": "static/tab/my_sel_icon.png",
 				"text": "我的"

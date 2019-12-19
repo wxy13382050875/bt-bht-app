@@ -5,8 +5,9 @@
 				<label class="title">{{dataSource.title}}</label>
 				<router-link class="more" to="{name: 'goods-list'}">更多>>></router-link>
 			</view>
-			<view class="goods-list">
-				<view :class="{'item-three':count == 3,'item-two':count == 2}" v-for="(item,index) in dataSource.list" :key="index">
+			<goodsItems :dataSource = "dataSource.list" :count= "count"></goodsItems>
+			<!-- <view class="goods-list" >
+				<navigator :url="item.page" :class="{'item-three':count == 3,'item-two':count == 2}" v-for="(item,index) in dataSource.list" :key="index">
 					<view :style="{height: height +'px'}"><image :src="item.url"></image></view>
 					<view class="title" v-if="count == 2">
 						{{item.title}}
@@ -21,23 +22,27 @@
 							<label class="goods-number" v-if="count == 2">¥{{item.number}}</label>
 						</view>
 					</view>
-				</view>	
-			</view>
+				</navigator>	
+			</view> -->
 			
 		</view>
 	</view>
 </template>
 
 <script>
+	import goodsItems from '@/components/details/xw-dth-goods-item.vue'
 	export default{
 		props:{
 			dataSource:{
-				type:Array,
+				type:Object,
 				default () {
-					return []
+					return {}
 				}
 			},
 			count:0
+		},
+		components:{
+			goodsItems
 		},
 		data() {
 			return {
@@ -93,69 +98,7 @@
 				color: rgba(99, 99, 99, 1);
 			}
 		}
-		.goods-list {
-			margin-top: 17rpx;
-			display: flex;
-			justify-content: space-between;
-			flex-wrap: wrap;
-			padding: 5 10rpx;
-			.item-three {
-				width: calc((100% - 15rpx)/3);
-				image {
-					width: 100%;
-					height: 100%;
-					
-				}
-				.title {
-					font-size: 26rpx;
-					color: #333333;
-				}
-				.good-info {
-					display: flex;
-					justify-content: center;
-					.goods-nprice {
-						font-size: 32rpx;
-						color: #ff3333;
-					}
-					.goods-oprice {
-						font-size: 22rpx;
-						color: #999999;
-					}
-					.goods-number {
-						font-size: 22rpx;
-						color: #999999;
-					}
-				}
-			}
-			.item-two {
-				width: calc((100% - 15rpx)/2);
-				image {
-					width: 100%;
-					height: 100%;
-					
-				}
-				.title {
-					font-size: 26rpx;
-					color: #333333;
-				}
-				.good-info {
-					display: flex;
-					justify-content: space-between;
-					.goods-nprice {
-						font-size: 32rpx;
-						color: #ff3333;
-					}
-					.goods-oprice {
-						font-size: 22rpx;
-						color: #999999;
-					}
-					.goods-number {
-						font-size: 22rpx;
-						color: #999999;
-					}
-				}
-			}
-		}
+		
 	}
 }
 </style>

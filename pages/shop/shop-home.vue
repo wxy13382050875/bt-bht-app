@@ -15,9 +15,9 @@
 </template>
 
 <script>
-	import banner from '@/components/common/xw-dth-banner.vue';
-	import grid from '@/components/common/xw-dth-grid.vue'
-	import goods from '@/components/common/xw-dth-goods.vue'
+	import banner from '@/components/details/xw-dth-banner.vue';
+	import grid from '@/components/details/xw-dth-grid.vue'
+	import goods from '@/components/details/xw-dth-goods.vue'
 	export default {
 		components:{
 			banner,
@@ -46,15 +46,17 @@
 						list:[{'url':'/static/banner/1.png',
 								'newPrice':328,
 								'oldPrice':299,
-								
+								'page':'/pages/shop/goods-details'
 								},
 								{'url':'/static/banner/1.png',
 								'newPrice':328,
-								'oldPrice':299
+								'oldPrice':299,
+								'page':'/pages/shop/goods-details'
 								},
 								{'url':'/static/banner/1.png',
 								'newPrice':328,
-								'oldPrice':299
+								'oldPrice':299,
+								'page':'/pages/shop/goods-details'
 								}
 							]
 					},
@@ -64,38 +66,50 @@
 								'title':'泰国士国牌即食燕窝金丝燕浓缩瓶装6瓶75ML瓶装木糖醇味',
 								'newPrice':328,
 								'oldPrice':299,
-								'number':101},
+								'number':101,
+								'page':'/pages/shop/goods-details',
+								},
 								{'url':'/static/banner/1.png',
 								'title':'泰国士国牌即食燕窝金丝燕浓缩瓶装6瓶75ML瓶装木糖醇味',
 								'newPrice':328,
 								'oldPrice':299,
-								'number':101},
+								'number':101,
+								'page':'/pages/shop/goods-details',
+								},
 								{'url':'/static/banner/1.png',
 								'title':'泰国士国牌即食燕窝金丝燕浓缩瓶装6瓶75ML瓶装木糖醇味',
 								'newPrice':328,
 								'oldPrice':299,
-								'number':101},
+								'number':101,
+								'page':'/pages/shop/goods-details',
+								},
 								{'url':'/static/banner/1.png',
 								'title':'泰国士国牌即食燕窝金丝燕浓缩瓶装6瓶75ML瓶装木糖醇味',
 								'newPrice':328,
 								'oldPrice':299,
-								'number':101}
+								'number':101,
+								'page':'/pages/shop/goods-details',
+								}
 								],
 								goodsThreeList: [{'url':'/static/banner/1.png',
 								'title':'泰国士国牌即食燕窝金丝燕浓缩瓶装6瓶75ML瓶装木糖醇味',
 								'newPrice':328,
 								'oldPrice':299,
-								'number':101},
+								'number':101,
+								'page':'/pages/shop/goods-details',
+								},
 								{'url':'/static/banner/1.png',
 								'title':'泰国士国牌即食燕窝金丝燕浓缩瓶装6瓶75ML瓶装木糖醇味',
 								'newPrice':328,
 								'oldPrice':299,
-								'number':101},
+								'number':101,
+								'page':'/pages/shop/goods-details'},
 								{'url':'/static/banner/1.png',
 								'title':'泰国士国牌即食燕窝金丝燕浓缩瓶装6瓶75ML瓶装木糖醇味',
 								'newPrice':328,
 								'oldPrice':299,
-								'number':101}
+								'number':101,
+								'page':'/pages/shop/goods-details'}
 								]
 					},
 					nowproduct:{
@@ -103,15 +117,17 @@
 						list:[{'url':'/static/banner/1.png',
 								'newPrice':328,
 								'oldPrice':299,
-								
+								'page':'/pages/shop/goods-details'
 								},
 								{'url':'/static/banner/1.png',
 								'newPrice':328,
-								'oldPrice':299
+								'oldPrice':299,
+								'page':'/pages/shop/goods-details'
 								},
 								{'url':'/static/banner/1.png',
 								'newPrice':328,
-								'oldPrice':299
+								'oldPrice':299,
+								'page':'/pages/shop/goods-details'
 								}
 							]
 					},

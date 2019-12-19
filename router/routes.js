@@ -216,7 +216,7 @@ const routesList = [{
 		}
 	},{
 		path: "/pages/shop/shopping-cart",
-		name: "app",
+		name: "shopping-cart",
 		meta: {
 			title: '购物车',
 			auth: {
@@ -226,14 +226,25 @@ const routesList = [{
 	},
 	{
 		path: "/pages/shop/goods-details",
-		name: "login",
+		name: "goods-details",
 		meta: {
 			title: '商品详情',
 			auth: {
 				requiresAuth: false
 			}
 		}
-	}
+	},
+	{
+		path: "/pages/personal/xw-dth-personal-center",
+		name: "personal-center",
+		meta: {
+			title: '个人中心',
+			auth: {
+				requiresAuth: false
+			}
+		}
+	},
+	
 ]
 //导出
 export default routesList
