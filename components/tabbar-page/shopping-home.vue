@@ -1,13 +1,13 @@
 <template>
 	<view>
-		<nav-bar-location></nav-bar-location>
+		<nav-bar-shopping-home></nav-bar-shopping-home>
 		<bht-layout-container>
-			<view style="height: 100%;overflow-y: scroll;">
+			<view class="">
 				<banner :dataSource="dataSource.banner"></banner>
 				<grid :dataSource="dataSource.query"></grid>
-				<goods :dataSource="dataSource.selling" :count="3"></goods>
+				<!-- <goods :dataSource="dataSource.selling" :count="3"></goods>
 				<goods :dataSource="dataSource.recommended" :count="2"></goods>
-				<goods :dataSource="dataSource.nowproduct" :count="3"></goods>
+				<goods :dataSource="dataSource.nowproduct" :count="3"></goods> -->
 			</view>
 		</bht-layout-container>
 	</view>
@@ -15,13 +15,15 @@
 
 <script>
 /**
- * 电商首页组件
+ * 商城首页
  */
+import NavBarShoppingHome from '@/components/navbar/navbar-shopping-home.vue';
 import banner from '@/components/details/xw-dth-banner.vue';
 import grid from '@/components/details/xw-dth-grid.vue';
 import goods from '@/components/details/xw-dth-goods.vue';
 export default {
 	components: {
+		NavBarShoppingHome,
 		banner,
 		grid,
 		goods
@@ -118,8 +120,28 @@ export default {
 			}
 		};
 	},
-	methods: {}
+	created() {},
+	methods: {
+		change() {},
+		onClick() {}
+	}
 };
 </script>
 
-<style></style>
+<style lang="scss">
+.goods-list {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	padding: 0 10px;
+	.item {
+		background-color: blue;
+		// width: calc(50% - 5px);
+		// height: 325rpx;
+		image {
+			width: 100%;
+			height: 100%;
+		}
+	}
+}
+</style>

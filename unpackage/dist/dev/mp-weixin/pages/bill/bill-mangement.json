@@ -1,8 +1,0 @@
-{
-  "navigationStyle": "custom",
-  "disableScroll": true,
-  "usingComponents": {
-    "bill-items-none": "/components/bill/bill-items-none",
-    "bill-items-com": "/components/bill/bill-items-com"
-  }
-}

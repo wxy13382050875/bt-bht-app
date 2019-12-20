@@ -214,7 +214,7 @@ const routesList = [{
 				requiresAuth: false
 			}
 		}
-	},{
+	}, {
 		path: "/pages/shop/shopping-cart",
 		name: "shopping-cart",
 		meta: {
@@ -235,6 +235,17 @@ const routesList = [{
 		}
 	},
 	{
+
+		path: "/pages/shop/confirm-order",
+		name: "confirm-order",
+		meta: {
+			title: '确认订单',
+			auth: {
+				requiresAuth: false
+			}
+		}
+	},
+	{
 		path: "/pages/personal/xw-dth-personal-center",
 		name: "personal-center",
 		meta: {
@@ -244,17 +255,7 @@ const routesList = [{
 			}
 		}
 	},
-	{
-		path: "/pages/goodslist/goodslist",
-		name: "goodslist",
-		meta: {
-			title: '商品列表',
-			auth: {
-				requiresAuth: false
-			}
-		}
-	},
-	
+
 ]
 //导出
 export default routesList

@@ -1,7 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "mescroll-uni": "/third/mescroll-uni/mescroll-uni",
-    "bht-vehicle-list": "/components/vehicle/bht-vehicle-list"
-  }
-}

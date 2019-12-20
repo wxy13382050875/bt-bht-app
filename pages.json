@@ -1,14 +1,14 @@
 {
-	"pages": [
-		// {
-		// 	"path": "pages/main",
-		// 	"style": {
-		// 		"navigationStyle": "custom",
-		// 		"app-plus": {
-		// 			"titleNView": false
-		// 		}
-		// 	}
-		// },
+	"pages": [{
+			"path": "pages/main",
+			"style": {
+				"navigationStyle": "custom",
+				"app-plus": {
+					"titleNView": false,
+					"softinputMode": "adjustResize"
+				}
+			}
+		},
 		{
 			"path": "pages/staff/index",
 			"style": {
@@ -222,36 +222,25 @@
 					"bounce": "none"
 				}
 			}
-		}
-	    ,{
-            "path" : "pages/shop/shop-home",
-            "style": {
+		}, {
+			"path": "pages/shop/shop-home",
+			"style": {
 				"navigationStyle": "custom",
 				"disableScroll": true,
 				"app-plus": {
 					"bounce": "none"
 				}
 			}
-        }
-		,{
-		    "path" : "pages/shop/goods-details",
-		    "style": {
+		}, {
+			"path": "pages/shop/goods-details",
+			"style": {
 				"navigationStyle": "custom",
 				"disableScroll": true,
 				"app-plus": {
 					"bounce": "none"
 				}
 			}
-		}
-        ,{
-            "path" : "pages/shop/shopping-cart",
-            "style": {
-				"navigationStyle": "custom",
-				"disableScroll": true,
-				"app-plus": {
-					"bounce": "none"
-				}
-			}
+<<<<<<< HEAD
         }
 
         ,{
@@ -269,6 +258,29 @@
             "style" : {}
         }
     ],
+=======
+		}, {
+			"path": "pages/shop/confirm-order",
+			"style": {
+				"navigationStyle": "custom",
+				"disableScroll": true,
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/personal/xw-dth-personal-center",
+			"style": {
+				"navigationStyle": "custom",
+				"disableScroll": true,
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		}
+	],
+>>>>>>> abb32fb06f5f96c54010045097745c815f3fb3f5
 	"tabBar": {
 		"color": "#7A7E83",
 		"selectedColor": "#E40011",

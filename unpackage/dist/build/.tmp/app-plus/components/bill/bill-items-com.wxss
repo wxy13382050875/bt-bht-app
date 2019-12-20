@@ -1,8 +1,0 @@
-.bill-status {
-  position: absolute;
-  top: 69rpx;
-  left: 159rpx;
-  width: 93rpx;
-  height: 75rpx;
-}
-

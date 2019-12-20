@@ -1,7 +1,0 @@
-{
-  "navigationStyle": "custom",
-  "disableScroll": true,
-  "usingComponents": {
-    "center-nav-bar": "/third/acaui/nav/center-nav-bar"
-  }
-}

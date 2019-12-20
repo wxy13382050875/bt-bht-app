@@ -15,6 +15,10 @@
   content: "\e600";
 }
 
+.aca-leimupinleifenleileibie:before {
+  content: "\e7f9";
+}
+
 .aca-user:before {
   content: "\e607";
 }
@@ -41,6 +45,18 @@
 
 .aca-securityCode-b:before {
   content: "\e60d";
+}
+
+.aca-xiaoxi:before {
+  content: "\e618";
+}
+
+.aca-shop:before {
+  content: "\e619";
+}
+
+.aca-sousuo:before {
+  content: "\e6aa";
 }
 
 .aca-dianzan:before {

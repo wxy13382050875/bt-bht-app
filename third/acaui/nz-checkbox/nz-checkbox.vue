@@ -188,8 +188,8 @@
 
 	.is-checked {
 		.nz-checkbox--inner {
-			background-color: #409eff !important;
-			border-color: #409eff !important;
+			background-color: #FF3333 !important;
+			border-color: #FF3333 !important;
 		}
 
 		.nz-checkbox--inner::after {

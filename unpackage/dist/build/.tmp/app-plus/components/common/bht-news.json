@@ -1,7 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "router-link": "/third/uni-app-router/component/router-link",
-    "news-list-items": "/components/news/news-list-items"
-  }
-}

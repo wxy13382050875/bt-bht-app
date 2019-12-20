@@ -1,1 +1,0 @@
-<view class="nav" style="{{'height:'+(statusHeight+navHeight+'px')+';'}}"><view class="status" style="{{'height:'+(statusHeight+'px')+';'}}"></view><view class="navbar" style="{{'height:'+(navHeight+'px')+';'}}"><view class="nav-level-2"><view class="title">{{title}}</view></view></view></view>

@@ -36,17 +36,17 @@ export default {
 	},
 	created() {
 		/*动态计算*/
-		var sysinfo = uni.getSystemInfoSync(),
-			statusHeight = sysinfo.statusBarHeight,
-			isiOS = sysinfo.system.indexOf('iOS') > -1;
-		if (!isiOS) {
-			this.navHeight = 48;
-		} else {
-			this.navHeight = 44;
-		}
+		// var sysinfo = uni.getSystemInfoSync(),
+		// 	statusHeight = sysinfo.statusBarHeight,
+		// 	isiOS = sysinfo.system.indexOf('iOS') > -1;
+		// if (!isiOS) {
+		// 	this.navHeight = 48;
+		// } else {
+		// 	this.navHeight = 44;
+		// }
 
-		this.statusHeight = statusHeight;
-		this.setNavHeight(this.navHeight + this.statusHeight);
+		// this.statusHeight = statusHeight;
+		// this.setNavHeight(this.navHeight + this.statusHeight);
 	},
 	methods: {
 		...mapActions('utp', ['setNavHeight']),
@@ -69,7 +69,7 @@ export default {
 	top: 0;
 	right: 0;
 	left: 0;
-	z-index: 1120;
+	z-index: 1993;
 	text-align: center;
 	background: $nav-bg-color;
 }

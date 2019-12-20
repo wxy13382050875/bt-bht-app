@@ -1,7 +1,22 @@
 <script>
+/**
+ * 启动页入口
+ */
 import { Upgrade, InitInfo } from '@/utils/LunchApp.js';
+import store from './store';
 export default {
 	onLaunch: function() {
+		//程序运行时候 获取导航栏高度和状态栏高度
+		var sysinfo = uni.getSystemInfoSync(),
+			statusHeight = sysinfo.statusBarHeight,
+			isiOS = sysinfo.system.indexOf('iOS') > -1;
+
+		store.state.utp.statusHeight = statusHeight;
+		if (!isiOS) {
+			store.state.utp.navHeight = 48;
+		} else {
+			store.state.utp.navHeight = 44;
+		}
 		//初始化用户信息
 		InitInfo();
 	},
@@ -29,14 +44,18 @@ uni-page-body {
 
 //页面容器
 .bht-layout-container-wrapper {
-	
 	.bht-layout-content {
-		height: 100%;
-		overflow: scroll;
-		&::-webkit-scrollbar {
-			display: none;
-			width: 0;
-		}
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		overflow-y: scroll;
+		-webkit-overflow-scrolling: touch;
+		// &::-webkit-scrollbar {
+		// 	display: none;
+		// 	width: 0;
+		// }
 	}
 	.bht-layout-main {
 		padding: 0 $padding-content;
@@ -47,7 +66,10 @@ uni-page-body {
 		color: #383838;
 	}
 }
-
+/*覆盖button样式*/
+button:after {
+	border: 0;
+}
 /*每个页面公共css */
 body {
 	background: rgba(242, 242, 242, 1);

@@ -1,1 +1,0 @@
-<view class="bht-news-w"><view class="bht-news-content"><view class="news-title"><label class="title">最新信息推荐</label><router-link class="more" vue-id="1" to="{name: 'news-list'}" bind:__l="__l" vue-slots="{{['default']}}">更多>>></router-link></view><view class="news-list"><news-list-items vue-id="2" dataList="{{dataList}}" bind:__l="__l"></news-list-items></view></view></view>

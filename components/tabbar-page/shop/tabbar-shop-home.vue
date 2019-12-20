@@ -1,13 +1,13 @@
 <template>
 	<view>
-		<nav-bar-location></nav-bar-location>
+		<nav-bar-shopping-home></nav-bar-shopping-home>
 		<bht-layout-container>
-			<view style="height: 100%;overflow-y: scroll;">
-				<banner :dataSource="dataSource.banner"></banner>
-				<grid :dataSource="dataSource.query"></grid>
-				<goods :dataSource="dataSource.selling" :count="3"></goods>
-				<goods :dataSource="dataSource.recommended" :count="2"></goods>
-				<goods :dataSource="dataSource.nowproduct" :count="3"></goods>
+			<view class="bht-layout-content">
+				<xw-dth-banner :dataSource="dataSource.banner" :height="296"></xw-dth-banner>
+				<xw-dth-grid :dataSource="dataSource.query"></xw-dth-grid>
+				<xw-dth-goods :dataSource="dataSource.selling" :count="3"></xw-dth-goods>
+				<xw-dth-goods :dataSource="dataSource.recommended" :count="2"></xw-dth-goods>
+				<xw-dth-goods :dataSource="dataSource.nowproduct" :count="3"></xw-dth-goods>
 			</view>
 		</bht-layout-container>
 	</view>
@@ -15,21 +15,25 @@
 
 <script>
 /**
- * 电商首页组件
+ * 商城首页
  */
-import banner from '@/components/details/xw-dth-banner.vue';
-import grid from '@/components/details/xw-dth-grid.vue';
-import goods from '@/components/details/xw-dth-goods.vue';
+import NavBarShoppingHome from '@/components/navbar/navbar-shopping-home.vue';
+import BtBanner from '@/components/common/bht-banner.vue';
+import XwDthBanner from '@/components/details/xw-dth-banner.vue';
+import XwDthGrid from '@/components/details/xw-dth-grid.vue';
+import XwDthGoods from '@/components/details/xw-dth-goods.vue';
 export default {
 	components: {
-		banner,
-		grid,
-		goods
+		BtBanner,
+		NavBarShoppingHome,
+		XwDthBanner,
+		XwDthGrid,
+		XwDthGoods
 	},
 	data() {
 		return {
 			dataSource: {
-				banner: [{ img: '/static/banner/1.png' }, { img: '/static/banner/2.png' }, { img: '/static/banner/3.png' }],
+				banner: [{ img: '/static/banner/1.png', id: 1 }, { img: '/static/banner/2.png', id: 2 }, { img: '/static/banner/3.png', id: 3 }],
 				query: [
 					{ img: '/static/fn/goods_query_icon.png', title: '商品申报查询', page: 'goods-personnel-query' },
 					{ img: '/static/fn/vehicle_query_icon.png', title: '车辆申报查询', page: 'vehicle-personnel-query' },
@@ -118,8 +122,31 @@ export default {
 			}
 		};
 	},
-	methods: {}
+	created() {},
+	methods: {
+		change() {},
+		onClick() {}
+	}
 };
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+.goods-list {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	padding: 0 10px;
+	.item {
+		background-color: blue;
+		// width: calc(50% - 5px);
+		// height: 325rpx;
+		image {
+			width: 100%;
+			height: 100%;
+		}
+	}
+}
+.bht-layout-content{
+	padding-bottom: $padding-content;
+}
+</style>

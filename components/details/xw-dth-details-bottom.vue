@@ -17,7 +17,7 @@
 
 		<view class="right-btn">
 			<button class="add-cart">加入购物车</button>
-			<button class="buy-now">立即购买</button>
+			<button class="buy-now" @click="buyNow">立即购买</button>
 		</view>
 	</view>
 </template>
@@ -40,12 +40,20 @@ export default {
 				this.status = 1;
 				this.collectionUrl = '../../static/icon/icon-collection-select.png';
 			}
+		},
+		/**
+		 * 立即购买处理
+		 */
+		buyNow() {
+			uni.navigateTo({
+				url: '/pages/shop/confirm-order'
+			});
 		}
 	}
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .goods-bottom {
 	display: flex;
 	width: 100%;
@@ -54,6 +62,14 @@ export default {
 	opacity: 1;
 	position: fixed;
 	bottom: 0;
+	&::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		width: 100%;
+		height: 1px;
+		background-color: #aaaaaa;
+	}
 	.left-btn {
 		display: flex;
 		height: 100%;

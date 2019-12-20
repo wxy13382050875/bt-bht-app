@@ -1,1 +1,0 @@
-<view hidden="{{!(i===index)}}"><mescroll-uni vue-id="1" top="{{top}}" down="{{downOption}}" up="{{upOption}}" data-event-opts="{{[['^up',[['upCallback']]],['^emptyclick',[['emptyClick']]],['^init',[['mescrollInit']]]]}}" bind:up="__e" bind:emptyclick="__e" bind:init="__e" bind:__l="__l"></mescroll-uni></view>
