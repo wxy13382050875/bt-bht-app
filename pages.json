@@ -271,7 +271,11 @@
             }
         }
 		
-	],
+	    ,{
+            "path" : "pages/shop/pay-success",
+            "style" : {}
+        }
+    ],
 	"tabBar": {
 		"color": "#7A7E83",
 		"selectedColor": "#E40011",

@@ -59,7 +59,14 @@
 				</view>
 			</view>
 		</bht-layout-container>
-		<view class="confirm-order-footer"></view>
+		<view class="confirm-order-footer">
+			<view class="details">
+				<label class="count">共四件</label>
+				<label class="title">合计：</label>
+				<label class="amount">¥222.22</label>
+			</view>
+			<view class="sub-order-btn" @click="submitOrder">提交订单</view>
+		</view>
 	</view>
 </template>
 
@@ -72,6 +79,12 @@ export default {
 		return {
 			bottomHeight: uni.upx2px(114)
 		};
+	},
+	methods: {
+		//提交订单处理
+		submitOrder() {
+			
+		}
 	}
 };
 </script>
@@ -123,6 +136,9 @@ $text-color: #333333;
 	.confirm-order-footer {
 		position: absolute;
 		bottom: 0;
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
 		width: 100%;
 		height: 114rpx;
 		background-color: #ffffff;
@@ -132,6 +148,32 @@ $text-color: #333333;
 			top: 0;
 			width: 100%;
 			border-top: 1px solid #aaaaaa;
+		}
+		.details {
+			font-size: 30rpx;
+			.count {
+				color: #868686;
+			}
+			.title {
+				margin-left: 4px;
+				color: $text-color;
+			}
+			.amount {
+				margin-left: 4px;
+				color: #ff3333;
+			}
+		}
+		.sub-order-btn {
+			margin-left: 7px;
+			margin-right: $padding-content;
+			width: 200rpx;
+			height: 82rpx;
+			line-height: 82rpx;
+			background-color: #ff6f04;
+			border-radius: 50px;
+			text-align: center;
+			font-size: 30rpx;
+			color: #fff;
 		}
 	}
 	.bht-layout-content {
