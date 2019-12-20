@@ -206,25 +206,6 @@ const routesList = [{
 		}
 	},
 	{
-		path: "/pages/shop/shop-home",
-		name: "app",
-		meta: {
-			title: '首页',
-			auth: {
-				requiresAuth: false
-			}
-		}
-	}, {
-		path: "/pages/shop/shopping-cart",
-		name: "shopping-cart",
-		meta: {
-			title: '购物车',
-			auth: {
-				requiresAuth: false
-			}
-		}
-	},
-	{
 		path: "/pages/shop/goods-details",
 		name: "goods-details",
 		meta: {
@@ -245,16 +226,7 @@ const routesList = [{
 			}
 		}
 	},
-	{
-		path: "/pages/personal/xw-dth-personal-center",
-		name: "personal-center",
-		meta: {
-			title: '个人中心',
-			auth: {
-				requiresAuth: false
-			}
-		}
-	},
+	
 	{
 		path: "/pages/goodslist/goodslist",
 		name: "goodslist",

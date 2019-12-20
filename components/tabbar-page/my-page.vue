@@ -1,6 +1,6 @@
 <template>
 	<view v-show="pageFlag === tabBarFlag">
-		<nav-bar-back title="个人中心"></nav-bar-back>
+		<navbarPersonal></navbarPersonal>
 		<bht-layout-container class="layout-container">
 			<view  class="header">
 				<personalHeader></personalHeader>
@@ -20,11 +20,13 @@
 <script>
 	import personalHeader from '@/components/personal/xw-dth-personal-header.vue';
 	import personalOrder from '../../components/personal/xw-dth-personal-order.vue';
+	import navbarPersonal from '@/components/navbar/navbar-personal-home.vue';
 	import {mapGetters} from 'vuex'
 	export default {
 		components:{
 			personalHeader,
-			personalOrder
+			personalOrder,
+			navbarPersonal
 		},
 		data() {
 			return {
