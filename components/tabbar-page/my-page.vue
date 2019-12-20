@@ -38,16 +38,16 @@
 						list:[
 						{'img':'/static/icon/icon-payment.png',
 						'title':'待付款',
-						'page':'goods-personnel-query'},
+						'page':'/pages/personal/my-order-list?currentIndex=0'},
 						{'img':'/static/icon/icon-shipments.png',
 						'title':'待发货',
-						'page':'vehicle-personnel-query'},
+						'page':'/pages/personal/my-order-list?currentIndex=1'},
 						{'img':'/static/icon/icon-receiving.png',
 						'title':'待收货',
-						'page':'vehicle-personnel-query'},
+						'page':'/pages/personal/my-order-list?currentIndex=2'},
 						{'img':'/static/icon/icon-finish.png',
 						'title':'已完成',
-						'page':'vehicle-personnel-check'}]
+						'page':'/pages/personal/my-order-list?currentIndex=3'}]
 					},
 					tool:{
 						title:"常用工具",
@@ -61,7 +61,7 @@
 						'page':'vehicle-personnel-query'},
 						{'img':'/static/icon/icon-my-address.png',
 						'title':'我的地址',
-						'page':'vehicle-personnel-query'}]
+						'page':'/pages/personal/my-address-list'}]
 					}
 				}
 			}

@@ -237,6 +237,26 @@ const routesList = [{
 			}
 		}
 	},
+	{
+		path: "/pages/personal/my-order-list",
+		name: "orderlist",
+		meta: {
+			title: '我的订单',
+			auth: {
+				requiresAuth: false
+			}
+		}
+	},
+	{
+		path: "/pages/personal/my-address-list",
+		name: "addresslist",
+		meta: {
+			title: '我的地址',
+			auth: {
+				requiresAuth: false
+			}
+		}
+	}
 
 ]
 //导出

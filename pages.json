@@ -257,6 +257,14 @@
             "path" : "pages/shop/pay-success",
             "style" : {}
         }
+        ,{
+            "path" : "pages/personal/my-order-list",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/personal/my-address-list",
+            "style" : {}
+        }
     ],
 	"tabBar": {
 		"color": "#7A7E83",

@@ -3,9 +3,9 @@
 		<view class="bht-goods-content">
 			<view class="goods-title">
 				<label class="title">{{dataSource.title}}</label>
-				<router-link class="more" to="{name: 'goods-list'}">{{dataSource.moretitle}}></router-link>
+				<router-link class="more" to="{name: 'orderlist'}">{{dataSource.moretitle}}></router-link>
 			</view>
-			<grid :dataSource ="dataSource.list"></grid>
+			<grid :dataSource ="dataSource.list" ></grid>
 
 			
 		</view>
@@ -16,6 +16,7 @@
 	import grid from '@/components/details/xw-dth-grid.vue'
 	export default{
 		props:{
+			
 			dataSource:{
 				type:Object,
 				default () {
@@ -29,6 +30,7 @@
 		},
 		data() {
 			return {
+				
 				height:0,
 				
 			}
