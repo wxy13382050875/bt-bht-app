@@ -255,6 +255,16 @@ const routesList = [{
 			}
 		}
 	},
+	{
+		path: "/pages/goodslist/goodslist",
+		name: "goodslist",
+		meta: {
+			title: '个人中心',
+			auth: {
+				requiresAuth: false
+			}
+		}
+	},
 
 ]
 //导出

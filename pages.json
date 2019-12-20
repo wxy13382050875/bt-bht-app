@@ -240,25 +240,7 @@
 					"bounce": "none"
 				}
 			}
-<<<<<<< HEAD
-        }
 
-        ,{
-            "path" : "pages/personal/xw-dth-personal-center",
-            "style" : {
-				"navigationStyle": "custom",
-				"disableScroll": true,
-				"app-plus": {
-					"bounce": "none"
-				}}
-        }
-     
-        ,{
-            "path" : "pages/goodslist/goodslist",
-            "style" : {}
-        }
-    ],
-=======
 		}, {
 			"path": "pages/shop/confirm-order",
 			"style": {
@@ -268,8 +250,7 @@
 					"bounce": "none"
 				}
 			}
-		},
-		{
+		}, {
 			"path": "pages/personal/xw-dth-personal-center",
 			"style": {
 				"navigationStyle": "custom",
@@ -278,9 +259,19 @@
 					"bounce": "none"
 				}
 			}
-		}
+		},
+		{
+            "path" : "pages/goodslist/goodslist",
+            "style": {
+            	"navigationStyle": "custom",
+            	"disableScroll": true,
+            	"app-plus": {
+            		"bounce": "none"
+            	}
+            }
+        }
+		
 	],
->>>>>>> abb32fb06f5f96c54010045097745c815f3fb3f5
 	"tabBar": {
 		"color": "#7A7E83",
 		"selectedColor": "#E40011",
