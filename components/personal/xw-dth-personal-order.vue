@@ -17,7 +17,7 @@
 	export default{
 		props:{
 			dataSource:{
-				type:Array,
+				type:Object,
 				default () {
 					return {}
 				}

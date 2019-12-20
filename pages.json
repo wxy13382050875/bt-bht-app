@@ -223,15 +223,6 @@
 				}
 			}
 		}, {
-			"path": "pages/shop/shop-home",
-			"style": {
-				"navigationStyle": "custom",
-				"disableScroll": true,
-				"app-plus": {
-					"bounce": "none"
-				}
-			}
-		}, {
 			"path": "pages/shop/goods-details",
 			"style": {
 				"navigationStyle": "custom",
@@ -243,15 +234,6 @@
 
 		}, {
 			"path": "pages/shop/confirm-order",
-			"style": {
-				"navigationStyle": "custom",
-				"disableScroll": true,
-				"app-plus": {
-					"bounce": "none"
-				}
-			}
-		}, {
-			"path": "pages/personal/xw-dth-personal-center",
 			"style": {
 				"navigationStyle": "custom",
 				"disableScroll": true,
