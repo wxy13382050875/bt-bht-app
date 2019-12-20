@@ -3,7 +3,7 @@
 		<view class="personal-body">
 			<view class="personal-info">
 				<view class="left-item">
-					<image src="../../static/icon/icon-head-portrait.png" ></image>
+					<image src="/static/icon/icon-head-portrait.png" ></image>
 					<view style="margin-left: 20rpx; align-items: center;">
 						<view class="title">成国富</view>
 						<view class="describe">个性签名：越努力越幸运</view>
@@ -11,7 +11,7 @@
 				</view>
 				<view class="right-item">
 					<view class="btn-name">设置</view>
-					<image src="../../static/icon/icon_right_arrow.png" mode=""></image>
+					<image src="/static/icon/icon_right_arrow.png" mode=""></image>
 				</view>
 			</view>
 			<view class="personal-store">
