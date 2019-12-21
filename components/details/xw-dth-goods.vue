@@ -2,10 +2,10 @@
 	<view class="bht-goods-w">
 		<view class="bht-goods-content">
 			<view class="goods-title">
-				<label class="title">{{dataSource.title}}</label>
+				<label class="title">{{title}}</label>
 				<router-link class="more" to="{name: 'goodslist'}">更多>>></router-link>
 			</view>
-			<goodsItems :dataSource = "dataSource.list" :count= "count"></goodsItems>
+			<goodsItems :dataSource = "dataSource" :count= "count"></goodsItems>
 
 			
 		</view>
@@ -16,6 +16,7 @@
 	import goodsItems from '@/components/details/xw-dth-goods-item.vue'
 	export default{
 		props:{
+			title:"",
 			dataSource:{
 				type:Object,
 				default () {

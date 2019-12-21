@@ -24,9 +24,9 @@ import TabbarMapPage from '@/components/tabbar-page/tabbar-main-page.vue';
 //统计组件
 import StatPage from '@/components/tabbar-page/stat-page.vue';
 //我的组件
-import MyPage from '@/components/tabbar-page/my-page.vue';
+import MyPage from '@/components/tabbar-page/tabbar-my-page.vue';
 //购物车组件
-import ShoppingCart from '@/components/tabbar-page/shopping-cart.vue';
+import ShoppingCart from '@/components/tabbar-page/tabbar-shop-cart.vue';
 export default {
 	components: {
 		TabBar,

@@ -19,7 +19,7 @@
  */
 import { mapGetters } from 'vuex';
 import StatffHome from '@/components/staff/statff-home.vue';
-import TabbarShopHome from '@/components/tabbar-page/shop/tabbar-shop-home.vue';
+import TabbarShopHome from '@/components/tabbar-page/tabbar-shop-home.vue';
 export default {
 	components: {
 		StatffHome,
