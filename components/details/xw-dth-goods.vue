@@ -3,7 +3,10 @@
 		<view class="bht-goods-content">
 			<view class="goods-title">
 				<label class="title">{{title}}</label>
-				<router-link class="more" to="{name: 'goodslist'}">更多>>></router-link>
+				<!-- <router-link class="more" to="{name: 'goodslist'}">更多>>></router-link> -->
+				<navigator :url="'/pages/goodslist/goodslist?state='+state" hover-class="none" class="more">
+					更多>>>
+				</navigator>
 			</view>
 			<goodsItems :dataSource = "dataSource" :count= "count"></goodsItems>
 
@@ -23,7 +26,8 @@
 					return []
 				}
 			},
-			count:0
+			count:0,
+			state:''
 		},
 		components:{
 			goodsItems

@@ -5,9 +5,9 @@
 			<view class="bht-layout-content">
 				<xw-dth-banner :dataSource="dataSource.homeBannerList" :height="296"></xw-dth-banner>
 				<xw-dth-grid :dataSource="dataSource.functionList"></xw-dth-grid>
-				<xw-dth-goods :dataSource="dataSource.bestGoodsList" :count="3" title="商品热卖"></xw-dth-goods>
-				<xw-dth-goods :dataSource="dataSource.recommendGoodsList" :count="2" title="商品推荐"></xw-dth-goods>
-				<xw-dth-goods :dataSource="dataSource.newGoodsList" :count="3" title="新品上市"></xw-dth-goods>
+				<xw-dth-goods :dataSource="dataSource.bestGoodsList" :count="3" title="商品热卖" state="selling"></xw-dth-goods>
+				<xw-dth-goods :dataSource="dataSource.recommendGoodsList" :count="2" title="商品推荐" state="recommended"></xw-dth-goods>
+				<xw-dth-goods :dataSource="dataSource.newGoodsList" :count="3" title="新品上市" state="newProduct"></xw-dth-goods>
 			</view>
 		</bht-layout-container>
 	</view>
