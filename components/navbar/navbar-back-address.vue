@@ -6,7 +6,7 @@
 				<view class="nav-back" @click="backToPrev"><label class="icon iconfont aca-fanhui1"></label></view>
 				<view class="title">
 					<view>我的收货地址</view>
-					<view>添加新地址</view>
+					<navigator url="/pages/user/my-address-create" hover-class="none">添加新地址</navigator>
 				</view>
 			</view>
 		</view>

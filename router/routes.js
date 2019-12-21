@@ -256,8 +256,26 @@ const routesList = [{
 				requiresAuth: false
 			}
 		}
+	},
+	{
+		path: "/pages/shop/pay-success",
+		name: "pay-success",
+		meta: {
+			title: '支付成功',
+			auth: {
+				requiresAuth: false
+			}
+		}
+	},{
+		path: "/pages/user/my-address-create",
+		name: "my-address-create",
+		meta: {
+			title: '创建收货地址',
+			auth: {
+				requiresAuth: false
+			}
+		}
 	}
-
 ]
 //导出
 export default routesList

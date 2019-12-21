@@ -251,13 +251,32 @@
 					"bounce": "none"
 				}
 			}
-		}
-		, {
+		}, {
 			"path": "pages/shop/pay-success",
 			"style": {
 				"navigationStyle": "custom",
 				"disableScroll": true,
 				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		}, {
+			"path": "pages/personal/my-address-list",
+			"style": {
+				"navigationStyle": "custom",
+				"disableScroll": true,
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/user/my-address-create",
+			"style": {
+				"navigationStyle": "custom",
+				"disableScroll": true,
+				"app-plus": {
+					"titleNView": false,
 					"bounce": "none"
 				}
 			}
