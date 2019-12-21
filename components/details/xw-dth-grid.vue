@@ -3,7 +3,7 @@
 		<view class="bht-fun">
 			<navigator  hover-class="none" class="items" v-for="(item, index) in dataSource" :key="index" :url="item.page">
 				<image class="icon" :src="item.img"></image>
-				<view class="title">{{ item.title }}</view>
+				<view class="title">{{ item.name }}</view>
 			</navigator>
 		</view>
 	</view>
