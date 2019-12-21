@@ -52,17 +52,22 @@ export default {
 	padding: 5 10rpx;
 	.item-three {
 		width: calc((100% - 15rpx) / 3);
+		
 		image {
 			width: 100%;
 			height: 100%;
 		}
 		.title {
+			height: 80rpx;
+			line-height: 80rpx;
 			font-size: 26rpx;
 			color: #333333;
 		}
 		.good-info {
 			display: flex;
 			justify-content: center;
+			height: 80rpx;
+			line-height: 80rpx;
 			.goods-nprice {
 				font-size: 32rpx;
 				color: #ff3333;

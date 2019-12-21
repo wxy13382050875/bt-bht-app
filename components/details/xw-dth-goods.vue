@@ -64,7 +64,7 @@
 				height: 34rpx;
 				padding-left: 10rpx;
 				font-size: 34rpx;
-				color: rgba(254, 89, 6, 1);
+				color: #333333;
 
 				&::before {
 					content: ' ';
