@@ -29,6 +29,7 @@ export default {
 <style lang="scss" scoped>
 .bht-fun-wrapper {
 	background: #ffffff;
+	padding: $padding-content 0;
 	.bht-fun {
 		display: flex;
 		justify-content: space-between;

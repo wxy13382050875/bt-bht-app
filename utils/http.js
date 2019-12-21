@@ -10,7 +10,6 @@ bht_http.setConfig((config) => {
 })
 
 bht_http.validateStatus = (response) => {
-	console.log(response)
 	return response.statusCode === 200
 }
 

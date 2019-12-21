@@ -1,6 +1,6 @@
 <template>
 	<view class="confirm-order-container">
-		<nav-bar-back ></nav-bar-back>
+		<nav-bar-back title="确认订单"></nav-bar-back>
 		<bht-layout-container :bottom="bottomHeight">
 			<view class="bht-layout-content">
 				<view class="address-box">
@@ -148,6 +148,8 @@ $text-color: #333333;
 			content: '';
 			position: absolute;
 			top: 0;
+			right: 0;
+			left: 0;
 			width: 100%;
 			border-top: 1px solid #aaaaaa;
 		}
