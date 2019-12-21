@@ -18,9 +18,9 @@
 		props:{
 			title:"",
 			dataSource:{
-				type:Object,
+				type:Array,
 				default () {
-					return {}
+					return []
 				}
 			},
 			count:0
