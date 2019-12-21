@@ -126,9 +126,6 @@ export default {
 		// 获取参数 {id:xx}
 		console.log(option);
 	},
-	onPageScroll(e) {
-		console.log(e);
-	},
 	methods: {
 		showParamDialog(e) {
 			console.log('-----showParamDialog-----');

@@ -1,6 +1,6 @@
 <template>
 	<view class="pay-success-container">
-		<nav-bar-back title="支付成功"></nav-bar-back>
+		<nav-bar-back title=""></nav-bar-back>
 		<bht-layout-container :bottom="0">
 			<view class="pay-success-message">
 				<view class="message">
