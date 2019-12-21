@@ -226,7 +226,16 @@ const routesList = [{
 			}
 		}
 	},
-	
+	{
+		path: "/pages/shop/pay-success",
+		name: "pay-success",
+		meta: {
+			title: '支付成功',
+			auth: {
+				requiresAuth: false
+			}
+		}
+	},
 	{
 		path: "/pages/goodslist/goodslist",
 		name: "goodslist",

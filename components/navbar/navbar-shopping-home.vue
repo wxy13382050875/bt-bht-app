@@ -4,7 +4,7 @@
 		<view class="navbar-header" :style="{ height: navHeight + 'px' }">
 			<view class="navbar-header--logo"><image src="/static/app_logo_nav.png"></image></view>
 			<!--跳转到搜索页面-->
-			<navigator class="navbar-header--search" url="/pages/shopping/search" hover-class="none">
+			<navigator class="navbar-header--search" url="/pages/goodslist/goodslist" hover-class="none">
 				<view class="search-icon iconfont aca-sousuo"></view>
 				<text class="search-text">大家都在边互通2折起聚划算</text>
 			</navigator>

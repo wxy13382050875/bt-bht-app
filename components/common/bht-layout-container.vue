@@ -45,7 +45,7 @@ export default {
 
 <style lang="scss">
 .bht-layout-container-wrapper {
-	position: relative;
+	position: absolute;
 	// overflow: hidden;
 	width: 100%;
 }

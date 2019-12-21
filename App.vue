@@ -10,7 +10,6 @@ export default {
 		var sysinfo = uni.getSystemInfoSync(),
 			statusHeight = sysinfo.statusBarHeight,
 			isiOS = sysinfo.system.indexOf('iOS') > -1;
-
 		store.state.utp.statusHeight = statusHeight;
 		if (!isiOS) {
 			store.state.utp.navHeight = 48;

@@ -1,6 +1,6 @@
 <template>
 	<view class="confirm-order-container">
-		<nav-bar-back title="确认订单"></nav-bar-back>
+		<nav-bar-back ></nav-bar-back>
 		<bht-layout-container :bottom="bottomHeight">
 			<view class="bht-layout-content">
 				<view class="address-box">
@@ -83,7 +83,9 @@ export default {
 	methods: {
 		//提交订单处理
 		submitOrder() {
-			
+			uni.navigateTo({
+				url:'/pages/shop/pay-success'
+			})
 		}
 	}
 };
