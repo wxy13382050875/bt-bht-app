@@ -1,16 +1,16 @@
 <template>
 	<view class="goods-list">
-		<navigator :url="item.page" hover-class="none" :class="{ 'item-three': count == 3, 'item-two': count == 2 }" v-for="(item, index) in dataSource" :key="index">
-			<view :style="{ height: height + 'px' }"><image :src="item.url"></image></view>
+		<navigator :url="'/pages/shop/goods-details?goodsId='+item.goodsId+'&storeId='+ item.storeId" hover-class="none" :class="{ 'item-three': count == 3, 'item-two': count == 2 }" v-for="(item, index) in dataSource" :key="index">
+			<view :style="{ height: height + 'px' }"><image :src="item.goodsPicture"></image></view>
 			<view class="title" v-if="count == 2">{{ item.goodsName }}</view>
 			<view class="good-info">
 				<view>
-					<label class="goods-nprice">¥{{ item.goodsPrice }}</label>
-					<label class="goods-oprice" v-if="count == 2">¥{{ item.originalGoodsPrice }}</label>
+					<label class="goods-nprice">¥{{ item.price }}</label>
+					<label class="goods-oprice" v-if="count == 2">¥{{ item.originalPrice }}</label>
 				</view>
 				<view>
-					<label class="goods-oprice" v-if="count == 3">¥{{ item.originalGoodsPrice }}</label>
-					<label class="goods-number" v-if="count == 2">¥{{ item.number }}</label>
+					<label class="goods-oprice" v-if="count == 3">¥{{ item.originalPrice }}</label>
+					<label class="goods-number" v-if="count == 2">{{ item.goodsSales }}个付款</label>
 				</view>
 			</view>
 		</navigator>
@@ -34,6 +34,7 @@ export default {
 		};
 	},
 	created() {
+		console.log('-1111------' + this.dataSource);
 		var sysinfo = uni.getSystemInfoSync(),
 			windowWidth = sysinfo.windowWidth;
 		//减去底部导航高度
