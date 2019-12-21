@@ -11,7 +11,7 @@
 				</view>
 				<view class="right-item">
 					<view class="btn-name">设置</view>
-					<image src="/static/icon/icon_right_arrow.png" mode=""></image>
+					<image src="/static/icon/icon_right_arrow-write.png" mode=""></image>
 				</view>
 			</view>
 			<view class="personal-store">
@@ -52,6 +52,7 @@
 				justify-content: space-between;
 				margin-left: 30rpx;
 				margin-right: 30rpx;
+				align-items: center;
 				.left-item{
 					display: flex;
 					align-items: center;
@@ -81,6 +82,7 @@
 						width:12rpx ; 
 						height: 25rpx;
 						margin-right: 20rpx;
+						
 						opacity: 1;
 					}
 					.btn-name{

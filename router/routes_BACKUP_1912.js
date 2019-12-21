@@ -226,6 +226,28 @@ const routesList = [{
 			}
 		}
 	},
+<<<<<<< .merge_file_A5qmrw
+	{
+		path: "/pages/shop/pay-success",
+		name: "pay-success",
+		meta: {
+			title: '支付成功',
+			auth: {
+				requiresAuth: false
+			}
+		}
+	},
+	{
+		path: "/pages/goodslist/goodslist",
+		name: "goodslist",
+		meta: {
+			title: '个人中心',
+			auth: {
+				requiresAuth: false
+			}
+		}
+	},
+=======
 	
 	{
 		path: "/pages/goodslist/goodslist",
@@ -257,6 +279,7 @@ const routesList = [{
 			}
 		}
 	}
+>>>>>>> .merge_file_dl5lJB
 
 ]
 //导出

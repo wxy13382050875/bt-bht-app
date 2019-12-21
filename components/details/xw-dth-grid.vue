@@ -1,7 +1,7 @@
 <template>
 	<view class="bht-fun-wrapper">
 		<view class="bht-fun">
-			<navigator hover-class="none" class="items" v-for="(item, index) in dataSource" :key="index">
+			<navigator  hover-class="none" class="items" v-for="(item, index) in dataSource" :key="index" :url="item.page">
 				<image class="icon" :src="item.img"></image>
 				<view class="title">{{ item.title }}</view>
 			</navigator>
@@ -14,6 +14,7 @@ import { mapGetters, mapActions } from 'vuex';
 import { submitInvoice } from '@/api/bill';
 export default {
 	props: {
+		url:"",
 		dataSource: {
 			type: Array,
 			default: () => {
