@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<nav-bar-back title="我的地址"></nav-bar-back>
+		<navbaraddress ></navbaraddress>
 		<bht-layout-container >
 			<addresslist :dataSource="dataSource"></addresslist>
 		</bht-layout-container>
@@ -10,8 +10,10 @@
 
 <script>
 	import addresslist from '@/components/personal/xw-dth-my-address-cell.vue';
+	import navbaraddress from '@/components/navbar/navbar-back-address.vue';
 	export default {
 		components: {
+			navbaraddress,
 			addresslist
 		},
 		data() {
