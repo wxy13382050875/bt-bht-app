@@ -37,16 +37,16 @@
 						moretitle:"查看全部订单",
 						list:[
 						{'img':'/static/icon/icon-payment.png',
-						'title':'待付款',
+						'name':'待付款',
 						'page':'/pages/personal/my-order-list?currentIndex=0'},
 						{'img':'/static/icon/icon-shipments.png',
-						'title':'待发货',
+						'name':'待发货',
 						'page':'/pages/personal/my-order-list?currentIndex=1'},
 						{'img':'/static/icon/icon-receiving.png',
-						'title':'待收货',
+						'name':'待收货',
 						'page':'/pages/personal/my-order-list?currentIndex=2'},
 						{'img':'/static/icon/icon-finish.png',
-						'title':'已完成',
+						'name':'已完成',
 						'page':'/pages/personal/my-order-list?currentIndex=3'}]
 					},
 					tool:{
@@ -54,13 +54,13 @@
 						moretitle:"查看全部",
 						list:[
 						{'img':'/static/icon/icon-message.png',
-						'title':'消息通知',
+						'name':'消息通知',
 						'page':'goods-personnel-query'},
 						{'img':'/static/icon/icon-client-server.png',
-						'title':'客户服务',
+						'name':'客户服务',
 						'page':'vehicle-personnel-query'},
 						{'img':'/static/icon/icon-my-address.png',
-						'title':'我的地址',
+						'name':'我的地址',
 						'page':'/pages/personal/my-address-list'}]
 					}
 				}

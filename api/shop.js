@@ -8,19 +8,24 @@ export const getFindHomeGoods = () => {
 	return bht_http.get('/assets-service/home/findHomeGoods')
 }
 
-//分页获取推荐商品
-export const recommendGoods = (params) => {
-	return bht_http.get('/assets-service/goods/recommendGoods',{
+//分页获取最新商品
+export const getGoodsList = (url,params) => {
+	return bht_http.get(url,{
 		params: params
 	})
 };
-
-//分页获取热卖商品
-export const bestGoods = (params) => {
-	return bht_http.get('/assets-service/goods//bestGoods',{
-		params: params
-	})
-};
+// //分页获取推荐商品
+// export const getRecommendGoods = (params) => {
+// 	return bht_http.get('/assets-service/goods/recommendGoods',{
+// 		params: params
+// 	})
+// };
+// //分页获取热卖商品
+// export const getBestGoods = (params) => {
+// 	return bht_http.get('/assets-service/goods//bestGoods',{
+// 		params: params
+// 	})
+// };
 
 //通过商品id查询商品信息
 export const findGoodsAllInfoByGodosIdAndStoreId = (params) => {

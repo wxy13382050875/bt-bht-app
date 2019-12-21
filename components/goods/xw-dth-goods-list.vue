@@ -2,18 +2,18 @@
 	<view class="" >
 		<view class="goods-list"  v-for="(item,index) in dataSource" :key=index>
 			<view class="goods-image">
-				<image :src="item.url" mode=""></image>
+				<image :src="item.goodsPicture" mode=""></image>
 			</view>
 			<view class="goods-info">
-				<view class="title">{{item.title}}</view>
+				<view class="title">{{item.goodsName}}</view>
 				<view class="details">{{item.details}}</view>
 				<view class="goods-price">
 					<view>
-						<label class="nprice">¥{{item.newPrice}}</label>
-						<label class="oprice">¥{{item.oldPrice}}</label>
+						<label class="nprice">¥{{item.price}}</label>
+						<label class="oprice">¥{{item.originalPrice}}</label>
 					</view>
 					<view>
-						<label class="number" >{{item.number}}人付款</label>
+						<label class="number" >{{item.goodsSales}}人付款</label>
 					</view>
 				</view>
 			</view>
@@ -74,6 +74,7 @@
 			.goods-price{
 				display: flex;
 				justify-content: space-between;
+				margin-bottom: 44rpx;
 				.nprice {
 					font-size: 32rpx;
 					color: #ff3333;

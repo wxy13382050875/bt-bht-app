@@ -6,7 +6,12 @@
 				<!-- filters：过滤选项设置， sortChanged：排序更改的事件监听方法，showShape：是否显示右侧模板选择按钮，shapeValue：初始化的模板值，2：双列，1：单列，具体可自行控制，shapeChanged:右侧的模板选择按钮事件监听方法-->
 				<goodsFilter :filters="goodsFilters" @sortChanged="goodsFilterChanged" @shapeChanged="goodsTemplateChanged" :showShape="false" :shapeValue="2"></goodsFilter>
 			</view>
-			<view class="bht-layout-content"><goodsList :dataSource="dataSource"></goodsList></view>
+			<view class="bht-layout-content">
+				<mescroll-uni @init="initMescroll" :down="downOption" :up="upOption" @up="upCallback" @down="downCallback" :fixed="false">
+					<goodsList :dataSource="dataSource"></goodsList>
+				</mescroll-uni>
+			</view>
+			
 		</bht-layout-container>
 	</view>
 </template>
@@ -15,6 +20,10 @@
 import goodsList from '@/components/goods/xw-dth-goods-list.vue';
 import goodsFilter from '../../third/yb-filter/index.vue';
 import NavbarShoppingSearch from '@/components/navbar/navbar-shopping-search.vue';
+import {
+		getGoodsList
+		
+	} from '@/api/shop.js'
 export default {
 	components: {
 		goodsList,
@@ -23,115 +32,65 @@ export default {
 	},
 	data() {
 		return {
+			downOption: {
+				autoShowLoading: true,
+				textInOffset: '下拉即可刷新...',
+				textOutOffset: '松开即可刷新...',
+				textLoading: '努力加载中...'
+			},
+			upOption: {
+				auto: true,
+				noMoreSize: 5,
+				empty: {
+					tip: '没有查询到数据',
+					icon: '',
+				},
+				textNoMore: '没有更多数据了'
+			},
 			// 默认双列显示
 			goodsListTemplate: 2,
 			// 过滤参数
 			curCateFid: '',
 			cateList: [{ name: '卤菜', value: '100001' }, { name: '凉菜', value: '100002' }, { name: '酒水', value: '100003' }],
-			dataSource: [
-				{
-					url: '/static/banner/1.png',
-					title: '泰国士国牌即食燕窝金丝燕浓缩瓶装6瓶75ML瓶装木糖醇味',
-					details: '缅甸老茶坊有限公司生产特卖',
-					newPrice: 328,
-					oldPrice: 299,
-					number: 101,
-					page: '/pages/shop/goods-details'
-				},
-				{
-					url: '/static/banner/1.png',
-					title: '泰国士国牌即食燕窝金丝燕浓缩瓶装6瓶75ML瓶装木糖醇味',
-					newPrice: 328,
-					oldPrice: 299,
-					number: 101,
-					page: '/pages/shop/goods-details'
-				},
-				{
-					url: '/static/banner/1.png',
-					title: '泰国士国牌即食燕窝金丝燕浓缩瓶装6瓶75ML瓶装木糖醇味',
-					newPrice: 328,
-					oldPrice: 299,
-					number: 101,
-					page: '/pages/shop/goods-details'
-				},
-				{
-					url: '/static/banner/1.png',
-					title: '泰国士国牌即食燕窝金丝燕浓缩瓶装6瓶75ML瓶装木糖醇味',
-					newPrice: 328,
-					oldPrice: 299,
-					number: 101,
-					page: '/pages/shop/goods-details'
-				},
-				{
-					url: '/static/banner/1.png',
-					title: '泰国士国牌即食燕窝金丝燕浓缩瓶装6瓶75ML瓶装木糖醇味',
-					details: '缅甸老茶坊有限公司生产特卖',
-					newPrice: 328,
-					oldPrice: 299,
-					number: 101,
-					page: '/pages/shop/goods-details'
-				},
-				{
-					url: '/static/banner/1.png',
-					title: '泰国士国牌即食燕窝金丝燕浓缩瓶装6瓶75ML瓶装木糖醇味',
-					newPrice: 328,
-					oldPrice: 299,
-					number: 101,
-					page: '/pages/shop/goods-details'
-				},
-				{
-					url: '/static/banner/1.png',
-					title: '泰国士国牌即食燕窝金丝燕浓缩瓶装6瓶75ML瓶装木糖醇味',
-					newPrice: 328,
-					oldPrice: 299,
-					number: 101,
-					page: '/pages/shop/goods-details'
-				},
-				{
-					url: '/static/banner/1.png',
-					title: '泰国士国牌即食燕窝金丝燕浓缩瓶装6瓶75ML瓶装木糖醇味',
-					newPrice: 328,
-					oldPrice: 299,
-					number: 101,
-					page: '/pages/shop/goods-details'
-				},
-				{
-					url: '/static/banner/1.png',
-					title: '泰国士国牌即食燕窝金丝燕浓缩瓶装6瓶75ML瓶装木糖醇味',
-					details: '缅甸老茶坊有限公司生产特卖',
-					newPrice: 328,
-					oldPrice: 299,
-					number: 101,
-					page: '/pages/shop/goods-details'
-				},
-				{
-					url: '/static/banner/1.png',
-					title: '泰国士国牌即食燕窝金丝燕浓缩瓶装6瓶75ML瓶装木糖醇味',
-					newPrice: 328,
-					oldPrice: 299,
-					number: 101,
-					page: '/pages/shop/goods-details'
-				},
-				{
-					url: '/static/banner/1.png',
-					title: '泰国士国牌即食燕窝金丝燕浓缩瓶装6瓶75ML瓶装木糖醇味',
-					newPrice: 328,
-					oldPrice: 299,
-					number: 101,
-					page: '/pages/shop/goods-details'
-				},
-				{
-					url: '/static/banner/1.png',
-					title: '泰国士国牌即食燕窝金丝燕浓缩瓶装6瓶75ML瓶装木糖醇味',
-					newPrice: 328,
-					oldPrice: 299,
-					number: 101,
-					page: '/pages/shop/goods-details'
-				}
-			]
+			dataSource: [],
+			params: {},
+			strUrl:""
 		};
 	},
+	
 	methods: {
+		//获取mescroll对象
+		initMescroll(mescroll) {
+			this.mescroll = mescroll;
+		},
+		//下拉刷新
+		downCallback(mescroll) {
+			mescroll.resetUpScroll();
+		},
+		//上拉刷新
+		upCallback(mescroll) {
+			this.params.pageIndex = mescroll.num;
+			this.params.pageSize = mescroll.size;
+			
+			
+			
+			getGoodsList(this.strUrl,this.params).then(res => {
+				let {
+					pageInfo	,
+					list
+				} = res.data
+				
+				
+				if (mescroll.num == 1) this.dataSource = [];
+				this.dataSource = this.dataSource.concat(list);
+				console.log('1111---' +this.dataSource);
+				mescroll.endBySize(
+					list.length, pageInfo.rowCount);
+				this.$nextTick(() => {
+					mescroll.endSuccess(list.length)
+				})
+			})
+		},
 		// 排序，筛选更改
 		goodsFilterChanged(filter) {
 			console.log('filter:', filter);
@@ -154,6 +113,17 @@ export default {
 	},
 	onLoad: function(options) {
 		console.log('options', options);
+		if(options.state == 'selling'){
+			this.strUrl = '/assets-service/goods/bestGoods';
+		} else if(options.state == 'recommended'){
+			this.strUrl = '/assets-service/goods/recommendGoods';
+		} else if(options.state == 'newProduct'){
+			this.strUrl = '/assets-service/goods/newGoods';
+		} else{
+			this.strUrl = '/assets-service/goods/storeRecommendGoods';
+			
+		}
+		
 	},
 	computed: {
 		goodsListTemplateType: function() {
