@@ -62,6 +62,7 @@ export default {
 			line-height: 80rpx;
 			font-size: 26rpx;
 			color: #333333;
+			
 		}
 		.good-info {
 			display: flex;
@@ -89,10 +90,19 @@ export default {
 			height: 100%;
 		}
 		.title {
+			height: 80rpx;
+			line-height: 80rpx;
 			font-size: 26rpx;
 			color: #333333;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			display: -webkit-box;
+			-webkit-line-clamp: 2;
+			-webkit-box-orient: vertical;
 		}
 		.good-info {
+			height: 80rpx;
+			line-height: 80rpx;
 			display: flex;
 			justify-content: space-between;
 			.goods-nprice {
