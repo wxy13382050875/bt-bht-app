@@ -5,7 +5,7 @@
 			<view class="bht-layout-content">
 				<view class="header"><personalHeader></personalHeader></view>
 				<view class="body">
-					<personalOrder :dataSource="dataSource.order"></personalOrder>
+					<personalOrder :dataSource="dataSource.order" sta></personalOrder>
 					<personalOrder :dataSource="dataSource.tool"></personalOrder>
 				</view>
 				<view class="footer"><view class="login-out" @click="loginout">退出登陆</view></view>
@@ -33,10 +33,10 @@ export default {
 					title: '我的订单',
 					moretitle: '查看全部订单',
 					list: [
-						{ pictureUrl: '/static/icon/icon-payment.png', name: '待付款', page: '/pages/personal/my-order-list?currentIndex=0' },
-						{ pictureUrl: '/static/icon/icon-shipments.png', name: '待发货', page: '/pages/personal/my-order-list?currentIndex=1' },
-						{ pictureUrl: '/static/icon/icon-receiving.png', name: '待收货', page: '/pages/personal/my-order-list?currentIndex=2' },
-						{ pictureUrl: '/static/icon/icon-finish.png', name: '已完成', page: '/pages/personal/my-order-list?currentIndex=3' }
+						{ pictureUrl: '/static/icon/icon-payment.png', name: '待付款', page: '/pages/personal/my-order-list?currentIndex=1' },
+						{ pictureUrl: '/static/icon/icon-shipments.png', name: '待发货', page: '/pages/personal/my-order-list?currentIndex=2' },
+						{ pictureUrl: '/static/icon/icon-receiving.png', name: '待收货', page: '/pages/personal/my-order-list?currentIndex=3' },
+						{ pictureUrl: '/static/icon/icon-finish.png', name: '已完成', page: '/pages/personal/my-order-list?currentIndex=4' }
 					]
 				},
 				tool: {
