@@ -4,11 +4,8 @@
 			<view class="goods-title">
 				<label class="title">{{dataSource.title}}</label>
 				<navigator url='/pages/goodslist/goodslist?state=0' hover-class="none" class="more">
-					
-					<view class="">查看更多></view>
+					<view class="">{{dataSource.moretitle}}></view>
 				</navigator>
-				
-				<router-link class="more" to="{name: 'orderlist'}">{{dataSource.moretitle}}></router-link>
 			</view>
 			<grid :dataSource ="dataSource.list" :iconWdith="60" ></grid>
 		</view>
