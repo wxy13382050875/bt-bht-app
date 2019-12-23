@@ -243,6 +243,16 @@
 			}
 		},
 		{
+			"path": "pages/shop/order-details",
+			"style": {
+				"navigationStyle": "custom",
+				"disableScroll": true,
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
 			"path": "pages/goodslist/goodslist",
 			"style": {
 				"navigationStyle": "custom",

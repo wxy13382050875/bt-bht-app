@@ -216,7 +216,6 @@ const routesList = [{
 		}
 	},
 	{
-
 		path: "/pages/shop/confirm-order",
 		name: "confirm-order",
 		meta: {
@@ -226,7 +225,16 @@ const routesList = [{
 			}
 		}
 	},
-	
+	{
+		path: "/pages/shop/order-details",
+		name: "confirm-order",
+		meta: {
+			title: '订单详情',
+			auth: {
+				requiresAuth: false
+			}
+		}
+	},
 	{
 		path: "/pages/goodslist/goodslist",
 		name: "goodslist",
@@ -266,7 +274,7 @@ const routesList = [{
 				requiresAuth: false
 			}
 		}
-	},{
+	}, {
 		path: "/pages/user/my-address-create",
 		name: "my-address-create",
 		meta: {

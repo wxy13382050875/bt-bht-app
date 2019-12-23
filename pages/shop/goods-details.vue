@@ -5,16 +5,23 @@
 			<view class="bht-layout-content">
 				<!--商品详情-->
 				<xw-dth-details-info :dataSource="goodsInfo"></xw-dth-details-info>
-				<!--商品参数-->
+				<!--商品参数/是规格列表-->
 				<xw-dth-details-param @showParamDialog="showParamDialog" @showSpecifiDialog="showSpecifiDialog"></xw-dth-details-param>
-				<!-- <detailsStore></detailsStore>
-				<goods :dataSource="dataSource.selling" :count="3"></goods>
-				<detailsImage :dataSource="dataSource.banner"></detailsImage>
-				<detailsRecommend :dataSource="dataSource.recommended"></detailsRecommend> -->
+				<!--店铺信息-->
+				<xw-dth-details-store :storeInfo="goodsInfo.store"></xw-dth-details-store>
+				<!--店铺商品推荐-->
+				<xw-dth-goods title="店铺推荐" :dataSource="storeRecommendGoods" :count="3"></xw-dth-goods>
+				<!--商品详情（图片/富文本）-->
+				<xw-dth-details-image :goodsDetails="goodsInfo.goodsDetails"></xw-dth-details-image>
+				<!--看了又看-->
+				<xw-dth-detail-recommend :dataSource="seemLookGoods"></xw-dth-detail-recommend>
 			</view>
 		</bht-layout-container>
-		<paramDialog v-model="bShowParamDialog"></paramDialog>
-		<specifiDialog v-model="bShowSpecifiDialog" @tagChange="tagChange"></specifiDialog>
+
+		<!--商品参数dialog-->
+		<xw-dth-detaails-param-dialog :paramData="goodsInfo.param" v-model="bShowParamDialog"></xw-dth-detaails-param-dialog>
+		<!--套餐规格dialog-->
+		<xw-dth-details-specifi-dialog :skuData="goodsInfo.goodsAttrRels" v-model="bShowSpecifiDialog" @tagChange="tagChange"></xw-dth-details-specifi-dialog>
 		<xw-dth-details-bottom></xw-dth-details-bottom>
 	</view>
 </template>
@@ -22,42 +29,53 @@
 <script>
 import XwDthDetailsInfo from '@/components/details/xw-dth-details-info.vue';
 import XwDthDetailsParam from '@/components/details/xw-dth-details-param.vue';
-import detailsStore from '@/components/details/xw-dth-details-store.vue';
-import goods from '@/components/details/xw-dth-goods.vue';
+import XwDthDetailsStore from '@/components/details/xw-dth-details-store.vue';
+import XwDthGoods from '@/components/details/xw-dth-goods.vue';
 import XwDthDetailsBottom from '@/components/details/xw-dth-details-bottom.vue';
-import detailsImage from '@/components/details/xw-dth-details-image.vue';
-import detailsRecommend from '@/components/details/xw-dth-details-recommend.vue';
-import paramDialog from '@/components/details/xw-dth-details-param-dialog.vue';
-import specifiDialog from '@/components/details/xw-dth-details-specifi-dialog.vue';
+import XwDthDetailsImage from '@/components/details/xw-dth-details-image.vue';
+import XwDthDetailRecommend from '@/components/details/xw-dth-details-recommend.vue';
+import XwDthDetaailsParamDialog from '@/components/details/xw-dth-details-param-dialog.vue';
+import XwDthDetailsSpecifiDialog from '@/components/details/xw-dth-details-specifi-dialog.vue';
 import { findGoodsAllInfoByGodosIdAndStoreId } from '@/api/shop.js';
 export default {
 	components: {
 		XwDthDetailsInfo,
 		XwDthDetailsParam,
-		detailsStore,
-		goods,
-		detailsImage,
+		XwDthDetailsStore,
+		XwDthGoods,
+		XwDthDetailsImage,
 		XwDthDetailsBottom,
-		detailsRecommend,
-		paramDialog,
-		specifiDialog
+		XwDthDetailRecommend,
+		XwDthDetaailsParamDialog,
+		XwDthDetailsSpecifiDialog
 	},
 	data() {
 		return {
 			bShowParamDialog: false,
 			bShowSpecifiDialog: false,
 			layoutBottom: uni.upx2px(119),
+			//商品基本信息
 			goodsInfo: {
-				goods: {
-					goodsPictures: [],
-					goodsParamRels: []
-				}
+				goodsPictures: [],
+				param: [],
+				store: {},
+				goodsDetails: []
+			},
+			//商品规格
+			skuData: {},
+			//商品推荐
+			storeRecommendGoods: [],
+			//看了又看商品
+			seemLookGoods: {
+				list: []
 			}
 		};
 	},
 	onLoad(option) {
 		findGoodsAllInfoByGodosIdAndStoreId(option).then(res => {
 			this.goodsInfo = res.data.goods;
+			this.storeRecommendGoods = res.data.storeRecommendGoods;
+			this.seemLookGoods.list = res.data.seemLookGoods;
 		});
 	},
 	methods: {
@@ -65,14 +83,12 @@ export default {
 		 * 显示商品参数
 		 */
 		showParamDialog(e) {
-			console.log('-----showParamDialog-----');
 			this.bShowParamDialog = true;
 		},
 		/**
-		 *
+		 * 显示规格
 		 */
 		showSpecifiDialog(e) {
-			console.log('-----showSpecifiDialog-----');
 			this.bShowSpecifiDialog = true;
 		},
 		/**

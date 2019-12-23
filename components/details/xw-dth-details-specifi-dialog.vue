@@ -87,14 +87,13 @@ export default {
 				}
 			],
 			curTag: {},
-			curNumber:1,
+			curNumber: 1
 		};
 	},
 
 	watch: {
 		value(n) {
 			this.showPopup = n;
-			
 		}
 	},
 
@@ -108,8 +107,7 @@ export default {
 			this.$emit('input', e);
 		},
 		change(value) {
-			console.log('---xxx--' + value);
-			this.curNumber = value
+			this.curNumber = value;
 		},
 		bindClick(item) {
 			this.dataTag.forEach((item, index) => {

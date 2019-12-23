@@ -4,7 +4,6 @@
 		<bht-layout-container >
 			<addresslist :dataSource="dataSource"></addresslist>
 		</bht-layout-container>
-		
 	</view>
 </template>
 
