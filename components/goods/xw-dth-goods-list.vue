@@ -6,7 +6,7 @@
 			</view>
 			<view class="goods-info">
 				<view class="title">{{item.goodsName}}</view>
-				<view class="details">{{item.details}}</view>
+				<view class="details">{{item.storeName}}</view>
 				<view class="goods-price">
 					<view>
 						<label class="nprice">¥{{item.price}}</label>
@@ -46,10 +46,8 @@
 		border-bottom: 1rpx solid #a7a7a7;
 		display: flex;
 		background: #FFFFFF;
+		padding: 10rpx;
 		.goods-image{
-			margin-left: 20rpx;
-			margin-top: 20rpx;
-			margin-bottom: 20rpx;
 			image{
 				width: 240rpx;
 				height: 240rpx;
@@ -57,27 +55,30 @@
 		}
 		.goods-info{
 			margin-left: 28rpx;
-			display: block;
+			height: 240rpx;
+			align-items: center;
+			width: 100%;
 			margin-right: 20rpx;
-			margin-top: 20rpx;
-			margin-bottom: 20rpx;
 			.title{
 				
 				font-size:26rpx;
 				color: #333333;
 			}
 			.details{
+				height: 80rpx;
 				line-height: 80rpx;
 				font-size:22rpx;
 				color: #999999;
 			}
 			.goods-price{
+				height: 80rpx;
+				line-height: 80rpx;
 				display: flex;
 				justify-content: space-between;
-				margin-bottom: 44rpx;
 				.nprice {
 					font-size: 32rpx;
 					color: #ff3333;
+					margin-right: 20rpx;
 				}
 				.oprice {
 					font-size: 22rpx;
