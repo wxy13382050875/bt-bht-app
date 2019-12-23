@@ -1,8 +1,8 @@
 <template>
 	<view class="bht-fun-wrapper">
 		<view class="bht-fun">
-			<navigator  hover-class="none" class="items" v-for="(item, index) in dataSource" :key="index" :url="item.page">
-				<image class="icon" :src="item.img"></image>
+			<navigator hover-class="none" class="items" v-for="(item, index) in dataSource" :key="index" :url="item.page">
+				<image class="icon" :style="{ width: iconWdith + 'rpx', height: iconWdith + 'rpx' }" :src="item.img"></image>
 				<view class="title">{{ item.name }}</view>
 			</navigator>
 		</view>
@@ -14,12 +14,15 @@ import { mapGetters, mapActions } from 'vuex';
 import { submitInvoice } from '@/api/bill';
 export default {
 	props: {
-		url:"",
 		dataSource: {
 			type: Array,
 			default: () => {
 				return [];
 			}
+		},
+		iconWdith: {
+			type: Number,
+			default: 94
 		}
 	},
 	created() {}
@@ -32,7 +35,6 @@ export default {
 	padding: $padding-content 0;
 	.bht-fun {
 		display: flex;
-		justify-content: space-between;
 		flex-wrap: wrap;
 		.items {
 			display: flex;
@@ -41,6 +43,7 @@ export default {
 			align-items: center;
 			width: 25%;
 			height: 149rpx;
+			margin-top: 22rpx;
 			.icon {
 				width: 94rpx;
 				height: 94rpx;

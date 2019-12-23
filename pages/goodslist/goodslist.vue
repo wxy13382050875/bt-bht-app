@@ -6,19 +6,18 @@
 				<!-- filters：过滤选项设置， sortChanged：排序更改的事件监听方法，showShape：是否显示右侧模板选择按钮，shapeValue：初始化的模板值，2：双列，1：单列，具体可自行控制，shapeChanged:右侧的模板选择按钮事件监听方法-->
 				<goodsFilter :filters="goodsFilters" @sortChanged="goodsFilterChanged" @shapeChanged="goodsTemplateChanged" :showShape="false" :shapeValue="2"></goodsFilter>
 			</view>
-			<view class="bht-layout-content">
+			<view class="goods-list-content">
 				<mescroll-uni @init="initMescroll" :down="downOption" :up="upOption" @up="upCallback" @down="downCallback" :fixed="false">
-					<goodsList :dataSource="dataSource"></goodsList>
+					<xw-dth-goods-list :dataSource="dataSource"></xw-dth-goods-list>
 				</mescroll-uni>
 			</view>
-			
 		</bht-layout-container>
 	</view>
 </template>
 
 <script>
-import goodsList from '@/components/goods/xw-dth-goods-list.vue';
-import goodsFilter from '../../third/yb-filter/index.vue';
+import XwDthGoodsList from '@/components/goods/xw-dth-goods-list.vue';
+import goodsFilter from '@/third/yb-filter/index.vue';
 import NavbarShoppingSearch from '@/components/navbar/navbar-shopping-search.vue';
 import {
 		getGoodsList
@@ -26,7 +25,7 @@ import {
 	} from '@/api/shop.js'
 export default {
 	components: {
-		goodsList,
+		XwDthGoodsList,
 		goodsFilter,
 		NavbarShoppingSearch
 	},
@@ -150,4 +149,6 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+	
+</style>

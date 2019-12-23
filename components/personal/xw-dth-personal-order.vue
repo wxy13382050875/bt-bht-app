@@ -5,9 +5,7 @@
 				<label class="title">{{dataSource.title}}</label>
 				<router-link class="more" to="{name: 'orderlist'}">{{dataSource.moretitle}}></router-link>
 			</view>
-			<grid :dataSource ="dataSource.list" ></grid>
-
-			
+			<grid :dataSource ="dataSource.list" :iconWdith="60" ></grid>
 		</view>
 	</view>
 </template>
@@ -60,7 +58,7 @@
 			justify-content: space-between;
 			height: 76rpx;
 			line-height: 76rpx;
-			border-bottom: 1rpx solid #A7A7A7;
+			border-bottom: 1rpx solid #D5D5D5;
 			
 			label {
 				margin-left: 22rpx;
@@ -69,7 +67,6 @@
 				padding-left: 10rpx;
 				font-size: 28rpx;
 				color: #868686;
-				font-family:Microsoft YaHei;
 				font-weight:bold;
 				
 			}
