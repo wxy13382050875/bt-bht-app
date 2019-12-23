@@ -50,7 +50,7 @@ export default {
 			goodsListTemplate: 2,
 			// 过滤参数
 			curCateFid: '',
-			cateList: [{ name: '卤菜', value: '100001' }, { name: '凉菜', value: '100002' }, { name: '酒水', value: '100003' }],
+			cateList: [{ name: '按距离', value: '100001' }, { name: '按销量', value: '100002' }, { name: '按人气', value: '100003' }],
 			dataSource: [],
 			params: {},
 			strUrl:""
@@ -139,7 +139,8 @@ export default {
 			// filterType为0，普通方式，无排序，1：排序模式，2：下拉筛选模式，当前支持一级，多级可自行扩展
 			return [
 				// {title:'推荐',value:0,filterType:0,disableAscDesc:true},
-				{ title: '综合', value: 0, filterType: 1 },
+				{ title: '综合', value:0,filterType:2,
+				options:cateOptions},
 				// {title:'人气', value:3, filterType:1},
 				{ title: '销售', value: 1, filterType: 1 },
 				{ title: '价格', value: 2, filterType: 1, initAscState: true }
