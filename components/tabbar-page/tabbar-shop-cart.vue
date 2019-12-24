@@ -5,8 +5,8 @@
 			<view class="shopping-cart-bg"></view>
 			<view class="shopping-cart-container" :style="{ transform: translateY }" @click="handlerClickCon">
 				<scroll-view :scroll-y="scrollY" style="height: 100%;">
-					<view class="scroll-content">
-						<uni-swipe-action >
+					<view class="scroll-content" v-if="pageFlag === tabBarFlag">
+						<uni-swipe-action>
 							<view class="cart-list" v-for="(item, index) in fetchData.list">
 								<view class="cart-shop">
 									<nz-checkbox :circle="true" v-model="item.check" @select="shopchoose(item)"></nz-checkbox>

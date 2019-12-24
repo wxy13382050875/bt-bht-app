@@ -2,53 +2,44 @@
 	<view class="bht-goods-w">
 		<view class="bht-goods-content">
 			<view class="goods-title">
-				<label class="title">{{title}}</label>
+				<label class="title">{{ title }}</label>
 				<!-- <router-link class="more" to="{name: 'goodslist'}">更多>>></router-link> -->
-				<navigator :url="'/pages/goodslist/goodslist?state='+state" hover-class="none" class="more">
-					
-					<view class="">查看更多</view>
-					<image src="/static/icon/icon-rigth-arrow-bg.png" mode=""></image>
-				</navigator>
+				<navigator :url="'/pages/goodslist/goodslist?state=' + state" hover-class="none" class="more">更多>>></navigator>
 			</view>
-			<goodsItems :dataSource = "dataSource" :count= "count"></goodsItems>
-
-			
+			<goodsItems :dataSource="dataSource" :count="count"></goodsItems>
 		</view>
 	</view>
 </template>
 
 <script>
-	import goodsItems from '@/components/details/xw-dth-goods-item.vue'
-	export default{
-		props:{
-			title:"",
-			dataSource:{
-				type:Array,
-				default () {
-					return []
-				}
-			},
-			count:0,
-			state:''
-		},
-		components:{
-			goodsItems
-		},
-		data() {
-			return {
-				height:0
+import goodsItems from '@/components/details/xw-dth-goods-item.vue';
+export default {
+	props: {
+		title: '',
+		dataSource: {
+			type: Array,
+			default() {
+				return [];
 			}
 		},
-		created() {
-			var sysinfo = uni.getSystemInfoSync(),
+		count: 0,
+		state: ''
+	},
+	components: {
+		goodsItems
+	},
+	data() {
+		return {
+			height: 0
+		};
+	},
+	created() {
+		var sysinfo = uni.getSystemInfoSync(),
 			windowWidth = sysinfo.windowWidth;
-			//减去底部导航高度
-			this.height = (windowWidth - (this.count + 1)* 5)/this.count;
-			
-		}
-		
-		
+		//减去底部导航高度
+		this.height = (windowWidth - (this.count + 1) * 5) / this.count;
 	}
+};
 </script>
 <style lang="scss">
 .bht-goods-w {
@@ -86,15 +77,8 @@
 			.more {
 				font-size: 24rpx;
 				color: rgba(99, 99, 99, 1);
-				display: flex;
-				align-items: center;
-				image{
-					width: 82rpx;
-					height: 60rpx;
-				}
 			}
 		}
-		
 	}
 }
 </style>

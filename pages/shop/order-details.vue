@@ -1,28 +1,29 @@
 <template>
-	<view class="confirm-order-container">
-		<nav-bar-back title="确认订单"></nav-bar-back>
-		<bht-layout-container :bottom="bottomHeight">
+	<view class="order-details-container">
+		<nav-bar-back title="订单详情"></nav-bar-back>
+		<bht-layout-container :bottom="0">
 			<view class="bht-layout-content">
 				<view class="address-box">
-					
 					<view class="address-icon"><image src="/static/icon/address_loaction_icon.png"></image></view>
 					<view class="address-info">
 						<view class="address-info-user">
 							<label class="name">余春林</label>
 							<label class="phone">1833944725</label>
 						</view>
-						<view class="address-text">河南省郑州市中原区建设路街道，护国大厦B区20栋</view>
+						<view class="address-text">
+							<label class="flag">默认</label>
+							河南省郑州市中原区建设路街道，护国大厦B区20栋
+						</view>
 					</view>
-					<navigator url='/pages/personal/my-address-list' class="address-navigator" hover-class="none"><label class="iconfont aca-youjiantou"></label></navigator>
 				</view>
-				<view class="confirm-order-goods-list" v-for="item in 5">
+				<view class="order-goods-list">
 					<view class="shop-list">
 						<view class="header">
 							<image class="shop-img" src="/static/icon/icon-store.png"></image>
 							<label class="shop-name">高原农特产品</label>
 						</view>
 						<view class="goods-list">
-							<view class="items" v-for="item in 2">
+							<view class="items" v-for="item in 3">
 								<view class="goods-image"><image src="/static/small/1.jpg"></image></view>
 								<view class="goods-details">
 									<label class="goods-name">泰国正品白兰氏即食燕窝美容养颜滋补42ml*6瓶...</label>
@@ -40,67 +41,68 @@
 								</view>
 							</view>
 						</view>
-						<view class="delivery">
-							<view class="left">
-								<label class="title">普通快递</label>
-								<label class="value">普通快递</label>
+						<view class="desc">
+							<view class="items">
+								<label>商品价格</label>
+								<label>¥3422.80</label>
 							</view>
-							<view class="right">快递 免邮</view>
+							<view class="items">
+								<label>运费(快递)</label>
+								<label>¥0.00</label>
+							</view>
+							<view class="items total">
+								<label>订单总价</label>
+								<label>¥3422.00</label>
+							</view>
 						</view>
-						<view class="remarks">
-							<label class="title">订单备注</label>
-							<input type="text" placeholder="选填，请先和商家协商一致再备注！" />
+					</view>
+				</view>
+				<view class="order-details">
+					<view class="header"><label>订单信息</label></view>
+					<view class="details-list">
+						<view class="items">
+							<label>订单编号</label>
+							<label>772100355998363666</label>
 						</view>
-						<view class="goods-total">
-							<label class="count">共2件</label>
-							<label class="title">小计：</label>
-							<label class="price">¥447.8</label>
+						<view class="items">
+							<label>交易号</label>
+							<label>20191219220011822544858585485</label>
+						</view>
+						<view class="items">
+							<label>创建时间</label>
+							<label>2019-12-19 10:23:27</label>
+						</view>
+						<view class="items">
+							<label>付款时间</label>
+							<label>2019-12-19 10:25:26</label>
 						</view>
 					</view>
 				</view>
 			</view>
 		</bht-layout-container>
-		<view class="confirm-order-footer">
-			<view class="details">
-				<label class="count">共四件</label>
-				<label class="title">合计：</label>
-				<label class="amount">¥222.22</label>
-			</view>
-			<view class="sub-order-btn" @click="submitOrder">提交订单</view>
-		</view>
 	</view>
 </template>
 
 <script>
 /**
- * 提交订单/确认订单
+ * 订单详情
  */
 export default {
 	data() {
-		return {
-			bottomHeight: uni.upx2px(114)
-		};
-	},
-	methods: {
-		//提交订单处理
-		submitOrder() {
-			uni.navigateTo({
-				url:'/pages/shop/pay-success'
-			})
-		}
+		return {};
 	}
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 $text-color: #333333;
-.confirm-order-container {
+.order-details-container {
 	.address-box {
 		padding: 0 32rpx;
 		display: flex;
 		align-items: center;
 		height: 194rpx;
-		@include bht-box;
+		background-color: #fff;
 		.address-icon {
 			image {
 				width: 76rpx;
@@ -124,73 +126,17 @@ $text-color: #333333;
 				margin-top: 14rpx;
 				font-size: 26rpx;
 				color: $text-color;
-			}
-		}
-		.address-navigator {
-			display: flex;
-			align-items: center;
-			justify-content: flex-end;
-			width: 120rpx;
-			height: 100%;
-			label {
-				font-size: 32rpx;
-				color: #9a9a9a;
+				.flag {
+					margin-right: 24rpx;
+					color: #ff3333;
+				}
 			}
 		}
 	}
-	.confirm-order-footer {
-		position: absolute;
-		bottom: 0;
-		display: flex;
-		align-items: center;
-		justify-content: flex-end;
-		width: 100%;
-		height: 114rpx;
-		background-color: #ffffff;
-		&::before {
-			content: '';
-			position: absolute;
-			top: 0;
-			right: 0;
-			left: 0;
-			width: 100%;
-			border-top: 1px solid #aaaaaa;
-		}
-		.details {
-			font-size: 30rpx;
-			.count {
-				color: #868686;
-			}
-			.title {
-				margin-left: 4px;
-				color: $text-color;
-			}
-			.amount {
-				margin-left: 4px;
-				color: #ff3333;
-			}
-		}
-		.sub-order-btn {
-			margin-left: 7px;
-			margin-right: $padding-content;
-			width: 200rpx;
-			height: 82rpx;
-			line-height: 82rpx;
-			background-color: #ff6f04;
-			border-radius: 50px;
-			text-align: center;
-			font-size: 30rpx;
-			color: #fff;
-		}
-	}
-	.bht-layout-content {
+	.order-goods-list {
+		margin-top: 20rpx;
 		padding: $padding-content;
-	}
-
-	.confirm-order-goods-list {
-		margin-top: 32rpx;
-		padding: $padding-content;
-		@include bht-box;
+		background-color: #fff;
 
 		.shop-list {
 			.header {
@@ -269,57 +215,51 @@ $text-color: #333333;
 					margin-top: 21rpx;
 				}
 			}
-			.delivery {
+
+			.desc {
+				margin-top: 32rpx;
+				.items {
+					display: flex;
+					justify-content: space-between;
+					align-items: center;
+					height: 62rpx;
+					font-size: 26rpx;
+					color: #868686;
+				}
+				.total {
+					color: $text-color;
+				}
+			}
+		}
+	}
+	.order-details {
+		margin-top: 20rpx;
+		padding: 0 $padding-content;
+		background-color: #fff;
+		.header {
+			position: relative;
+			height: 81rpx;
+			line-height: 81rpx;
+			font-size: 32rpx;
+			color: $text-color;
+			&::after {
+				content: '';
+				position: absolute;
+				right: 0;
+				bottom: 0;
+				left: 0;
+				background-color: #868686;
+				height: 1px;
+			}
+		}
+		.details-list{
+			.items{
 				display: flex;
 				justify-content: space-between;
-				margin-top: 32rpx;
-				font-size: 26rpx;
-				.left {
-					.title {
-						margin-right: 18rpx;
-						color: $text-color;
-					}
-					.value {
-						color: #868686;
-					}
-				}
-				.right {
-					color: $text-color;
-				}
-			}
-			.remarks {
-				display: flex;
 				align-items: center;
-				margin-top: $padding-content;
-				height: 35px;
-				line-height: 35px;
+				height: 62rpx;
 				font-size: 26rpx;
-				.title {
-					margin-right: 18rpx;
-					color: $text-color;
-				}
-				input {
-					flex: 1;
-					height: 35px;
-					line-height: 35px;
-					font-size: 26rpx;
-				}
-			}
-
-			.goods-total {
-				margin: 44rpx 0;
-				font-size: 26rpx;
-				text-align: right;
-				.count {
-					color: #868686;
-					margin-right: 5px;
-				}
-				.title {
-					color: $text-color;
-				}
-				.price {
-					color: #ff3333;
-				}
+				color: #868686;
 			}
 		}
 	}
