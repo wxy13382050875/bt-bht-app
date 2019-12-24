@@ -3,7 +3,7 @@
 		<view class="bht-goods-content">
 			<view class="goods-title">
 				<label class="title">{{dataSource.title}}</label>
-				<navigator url='/pages/goodslist/goodslist?state=0' hover-class="none" class="more">
+				<navigator url='/pages/personal/my-order-list?currentIndex=0' hover-class="none" class="more">
 					
 					<view class="">查看更多></view>
 				</navigator>

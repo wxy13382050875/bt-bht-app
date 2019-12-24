@@ -9,7 +9,8 @@
 				</view>
 				<view class="btn-group">
 					<navigator class="btn" hover-class="none">返回首页</navigator>
-					<navigator class="btn" hover-class="none">查看订单</navigator>
+					<navigator url="/pages/personal/my-order-list?currentIndex=0" class="btn" hover-class="none">查看订单</navigator>
+					
 				</view>
 				<view class="welcome-txt">欢迎您的再次光临！</view>
 			</view>

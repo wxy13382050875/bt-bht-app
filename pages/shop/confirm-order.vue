@@ -4,6 +4,7 @@
 		<bht-layout-container :bottom="bottomHeight">
 			<view class="bht-layout-content">
 				<view class="address-box">
+					
 					<view class="address-icon"><image src="/static/icon/address_loaction_icon.png"></image></view>
 					<view class="address-info">
 						<view class="address-info-user">
@@ -12,7 +13,7 @@
 						</view>
 						<view class="address-text">河南省郑州市中原区建设路街道，护国大厦B区20栋</view>
 					</view>
-					<navigator class="address-navigator" hover-class="none"><label class="iconfont aca-youjiantou"></label></navigator>
+					<navigator url='/pages/personal/my-address-list' class="address-navigator" hover-class="none"><label class="iconfont aca-youjiantou"></label></navigator>
 				</view>
 				<view class="confirm-order-goods-list" v-for="item in 5">
 					<view class="shop-list">
