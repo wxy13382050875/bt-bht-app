@@ -4,6 +4,7 @@
 		<bht-layout-container :bottom="layoutBottom">
 			
 			<view class="bht-layout-content">
+				<scroll-view scroll-y="true" style="height: 100%;">
 				<!--商品详情-->
 				<xw-dth-details-info :dataSource="goodsInfo"></xw-dth-details-info>
 				<!--商品参数/是规格列表-->
@@ -16,6 +17,7 @@
 				<xw-dth-details-image :goodsDetails="goodsInfo.goodsPictures"></xw-dth-details-image>
 				<!--看了又看-->
 				<xw-dth-detail-recommend :dataSource="seemLookGoods"></xw-dth-detail-recommend>
+			</scroll-view>
 			</view>
 			
 		</bht-layout-container>
