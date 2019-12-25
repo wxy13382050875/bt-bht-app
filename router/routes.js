@@ -283,6 +283,17 @@ const routesList = [{
 				requiresAuth: false
 			}
 		}
+	},
+	{
+		path: "/pages/personal/xw-dth-message",
+		name: "xw-dth-message",
+		meta: {
+			title: '消息',
+			auth: {
+				requiresAuth: false
+			}
+		}
+		
 	}
 ]
 //导出

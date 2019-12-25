@@ -4,7 +4,7 @@ import store from '@/store'
 var http = new Request();
 http.setConfig((config) => { /* config 为默认全局配置*/
 	// config.baseUrl = 'http://192.168.3.8:7300/mock/5de86e53699d5016646605ff/api/stats'; /* 根域名 */
-	config.baseUrl = 'http://172.16.12.55:8080'; /* 根域名 */
+	config.baseUrl = 'http://173.16.10.133:7000'; /* 根域名 */
 	config.header = {
 		a: 1,
 		b: 2

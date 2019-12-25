@@ -2,9 +2,8 @@
 	<view class="confirm-order-container">
 		<nav-bar-back title="确认订单"></nav-bar-back>
 		<bht-layout-container :bottom="bottomHeight">
-			<view class="bht-layout-content">
+			<scroll-view scroll-y="true" style="height: 100%;">
 				<view class="address-box">
-					
 					<view class="address-icon"><image src="/static/icon/address_loaction_icon.png"></image></view>
 					<view class="address-info">
 						<view class="address-info-user">
@@ -13,29 +12,29 @@
 						</view>
 						<view class="address-text">河南省郑州市中原区建设路街道，护国大厦B区20栋</view>
 					</view>
-					<navigator url='/pages/personal/my-address-list' class="address-navigator" hover-class="none"><label class="iconfont aca-youjiantou"></label></navigator>
+					<navigator url="/pages/personal/my-address-list" class="address-navigator" hover-class="none"><label class="iconfont aca-youjiantou"></label></navigator>
 				</view>
-				<view class="confirm-order-goods-list" v-for="item in 5">
+				<view class="confirm-order-goods-list" v-for="(item, index) in dataSource" :key="index">
 					<view class="shop-list">
 						<view class="header">
-							<image class="shop-img" src="/static/icon/icon-store.png"></image>
-							<label class="shop-name">高原农特产品</label>
+							<image class="shop-img" :src="item.storePicture"></image>
+							<label class="shop-name">{{ item.storeName }}</label>
 						</view>
 						<view class="goods-list">
-							<view class="items" v-for="item in 2">
-								<view class="goods-image"><image src="/static/small/1.jpg"></image></view>
+							<view class="items" v-for="(pro, pindex) in item.goodsInst" :key="pindex">
+								<view class="goods-image"><image :src="pro.goodsPictures"></image></view>
 								<view class="goods-details">
-									<label class="goods-name">泰国正品白兰氏即食燕窝美容养颜滋补42ml*6瓶...</label>
-									<label class="shipping-address">发货地：云南河口县</label>
+									<label class="goods-name">{{ pro.goodsName }}</label>
+									<label class="shipping-address">发货地：{{ pro.producer }}</label>
 								</view>
 								<view class="goods-pum">
 									<view class="price">
 										<label class="symbol">¥</label>
-										<label class="value">223.9</label>
+										<label class="value">{{ pro.price }}</label>
 									</view>
 									<view class="num">
 										<label class="symbol">x</label>
-										<label class="value">2</label>
+										<label class="value">{{ pro.goodsNum }}</label>
 									</view>
 								</view>
 							</view>
@@ -52,19 +51,19 @@
 							<input type="text" placeholder="选填，请先和商家协商一致再备注！" />
 						</view>
 						<view class="goods-total">
-							<label class="count">共2件</label>
+							<label class="count">共{{ item.goodsTotalNum }}件</label>
 							<label class="title">小计：</label>
-							<label class="price">¥447.8</label>
+							<label class="price">¥{{ item.goodsTotalPrice }}</label>
 						</view>
 					</view>
 				</view>
-			</view>
+			</scroll-view>
 		</bht-layout-container>
 		<view class="confirm-order-footer">
 			<view class="details">
-				<label class="count">共四件</label>
+				<label class="count">共{{ totalNum }}件</label>
 				<label class="title">合计：</label>
-				<label class="amount">¥222.22</label>
+				<label class="amount">¥{{ totalPrice }}</label>
 			</view>
 			<view class="sub-order-btn" @click="submitOrder">提交订单</view>
 		</view>
@@ -72,22 +71,74 @@
 </template>
 
 <script>
+import { postCommitOrder } from '@/api/shop.js';
 /**
  * 提交订单/确认订单
  */
 export default {
 	data() {
 		return {
-			bottomHeight: uni.upx2px(114)
+			bottomHeight: uni.upx2px(114),
+			dataSource: [],
+			totalNum: 0,
+			totalPrice: 0,
+			commitType: 0
 		};
 	},
 	methods: {
 		//提交订单处理
 		submitOrder() {
-			uni.navigateTo({
-				url:'/pages/shop/pay-success'
-			})
+			let subItems = [];
+
+			this.dataSource.forEach((item, index) => {
+				item.goodsInst.forEach((pro, pindex) => {
+					let items = {
+						goodsId: pro.goodsId,
+						goodsNum: pro.goodsNum,
+						storeId: item.storeId,
+						goodsInstAttrs: [
+							{
+								attrId: 1,
+								attrValueId: 2
+							}
+						]
+					};
+					subItems.push(items);
+				});
+			});
+			let params = {
+				shopCarNbr: '1577155815747e4466f8cf9d1422dabe74d9a2c41753a',
+				goodsInsts: subItems,
+				commitType: this.commitType,
+				orderAddressId: ''
+			};
+			console.log('-----params-----');
+			console.log(params);
+			postCommitOrder(params).then(res => {
+				console.log(res.resultCode);
+				if(res.code == 200){
+					uni.navigateTo({
+						url: '/pages/shop/pay-success'
+					});
+				} else {
+					uni.showToast({
+						title:res.msg,
+						icon:'none'
+					})
+				}
+				
+			});
+			
 		}
+	},
+	onLoad: function(option) {
+		this.dataSource = JSON.parse(decodeURIComponent(option.item));
+		console.log('---wxy---' + option.commitType);
+		this.commitType = option.commitType;
+		this.dataSource.forEach((item, index) => {
+			this.totalNum += Number.parseInt(item.goodsTotalNum);
+			this.totalPrice += item.goodsTotalPrice;
+		});
 	}
 };
 </script>

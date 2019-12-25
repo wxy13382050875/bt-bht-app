@@ -26,14 +26,26 @@ export const getGoodsList = (url,params) => {
 // 		params: params
 // 	})
 // };
-
+//通过商品id查询商品信息
+export const addGoodsCart = (params) => {
+	return bht_http.post('/order-service/order/incrementCommit',params)
+}
 //通过商品id查询商品信息
 export const findGoodsAllInfoByGodosIdAndStoreId = (params) => {
 	return bht_http.get('/assets-service/goods/findGoodsAllInfoByGodosIdAndStoreId',{
 		params: params
 	})
 }
-
+//通过商品id查询商品信息
+export const getShopCartList = (params) => {
+	return bht_http.get('/order-service/order/showShopCar',{
+		params: params
+	})
+}
+//订单提交
+export const postCommitOrder = (params) => {
+	return bht_http.post('/order-service/order/commitOrder',params)
+}
 // //找回密码
 // export const forgetPassword = (params) => {
 // 	uni.showLoading({

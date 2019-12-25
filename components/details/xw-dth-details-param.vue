@@ -10,13 +10,13 @@
 		</view>
 
 		
-		<view class="params-item" @click="showSpecifiDialog">
+		<!-- <view class="params-item" @click="showSpecifiDialog">
 			<view class="leftlabel">选择规格</view>
 			<view class="rightlabel">
 				<view >选择颜色、尺码</view>
 				<image src="../../static/icon/icon_right_arrow.png" ></image>
 			</view>
-		</view>
+		</view> -->
 	</view>
 </template>
 

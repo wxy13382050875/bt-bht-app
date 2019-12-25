@@ -5,7 +5,7 @@
 			<label class="title">商品详情</label>
 			<label class="gray_line"></label>
 		</view>
-		<view><image v-for="(item, index) in goodsDetails" :src="item.detail" style="width: 100%;" mode="widthFix"></image></view>
+		<view><image v-for="(item, index) in goodsDetails" :src="item.pictureUrl" style="width: 100%;" mode="widthFix"></image></view>
 	</view>
 </template>
 
