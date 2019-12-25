@@ -109,15 +109,19 @@ export default {
 				});
 				let item = {
 					shopCarNbr: '1577155815747e4466f8cf9d1422dabe74d9a2c41753a',
-					storeId: this.goodsInfo.store.storeId,
-					goodsId: this.goodsInfo.goodsId,
-					goodsNum: number,
-					goodsInstAttrs: [
-						{
-							attrId: 1,
-							attrValueId: 2
-						}
-					]
+					goodsInst:{
+						storeId: this.goodsInfo.store.storeId,
+						goodsId: this.goodsInfo.goodsId,
+						goodsNum: number,
+						goodsInstAttrs: [
+							{
+								attrId: 1,
+								attrValueId: 2
+							}
+						]
+					}
+					
+					
 				};
 				addGoodsCart(item).then(res => {
 					// this.goodsInfo = res.data.goods;
