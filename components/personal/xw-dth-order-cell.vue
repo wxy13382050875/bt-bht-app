@@ -3,41 +3,42 @@
 		<view class="order-info-content">
 			<view class="store-info">
 				<view class="item-left">
-					<image class="store-logo" :src="dataSource.storelogo" mode=""></image>
+					<image class="store-logo" :src="dataSource.storePicture" mode=""></image>
 					<view class="store-name">{{dataSource.storeName}}</view>
 					<image class="right-icon" src="/static/icon/icon_right_arrow.png" mode=""></image>
 				</view>
-				<view class="item-right">
-					{{dataSource.state}}
-				</view>
+				<view class="item-right" v-if="dataSource.statusCd==10008">等待买家付款</view>
+				<view class="item-right" v-if="dataSource.statusCd==10016">买家以付款</view>
+				<view class="item-right" v-if="dataSource.statusCd==10020">卖家以发货</view>
+				<view class="item-right" v-if="dataSource.statusCd==10024">交易成功</view>
 			</view>
-			<view class="xw-order-list"  v-for="(item,index) in dataSource.list" :key=index>
+			<view class="xw-order-list"  v-for="(item,index) in dataSource.goodsInsts" :key=index>
 				<view class="o-image">
-					<image :src="item.url" mode=""></image>
+					<image :src="item.goodsPicture" mode=""></image>
 				</view>
 				<view class="o-info">
 					
-					<view class="title">{{item.title}}</view>
+					<view class="title">{{item.goodsName}}</view>
 					<view class="specifi">{{item.specifi}}</view>
-					<view class="delivery">{{item.delivery}}</view>
+					<view class="delivery">{{item.sendAddress}}</view>
 				</view>
 				<view class="o-price-num">
 					
 					<view class="price">¥{{item.price}}</view>
-					<view class="number">x{{item.number}}</view>
+					<view class="number">x{{item.goodsNum}}</view>
 				</view>
 				
 			</view>
 			<view class="o-delivery" >
 				<view class="o-item">
 					<view >配送方式</view>
-					<view class="distribution">{{dataSource.distribution}}</view>
+					<view class="distribution">{{dataSource.distributionType}}</view>
 				</view>
 				<view class="o-item">
 					<view >订单备注</view>
 					<view class="remark">{{dataSource.remark}}</view>
 				</view>
-				<view class="o-amount">共{{dataSource.list.count}}件 小计:¥{{dataSource.total}}</view>
+				<view class="o-amount">共{{dataSource.orderGoodsInstNum}}件 小计:¥{{dataSource.orderPrice}}</view>
 				
 				
 			</view>
@@ -123,6 +124,7 @@
 					}
 				}
 				.o-info{
+					width: 100%;
 					margin-left: 28rpx;
 					display: block;
 					margin-right: 20rpx;
@@ -148,6 +150,8 @@
 					display: block;
 					margin-right: 20rpx;
 					margin-top: 20rpx;
+					width: 80rpx;
+					text-align: right;
 					.price{
 						font-size: 22rpx;
 						color: #333333;
@@ -159,7 +163,7 @@
 				}
 			}
 			.o-delivery{
-				
+				border-bottom: 1rpx solid #a7a7a7;
 				.o-item{
 					height: 80rpx;
 					line-height: 80rpx;

@@ -1,6 +1,6 @@
 export default {
-	BASE_BHT_URL: 'http://172.16.10.199:9500',
-	// BASE_BHT_URL: 'http://172.16.12.55:8080',
+	// BASE_BHT_URL: 'http://172.16.10.199:9500',
+	BASE_BHT_URL: 'http://172.16.12.55:9500',
 	// BASE_BHT_URL: 'https://bht.bt.yndth.cn/api/', //原有边互通api地址
 	//BASE_BHT_URL: 'http://172.16.8.1Z1:1200/api/',  //边互通测试地址
 	BASE_MARKET_URL: 'http://market.bt.yndth.cn/api/v1.22/', //二级市场api地址

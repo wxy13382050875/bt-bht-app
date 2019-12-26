@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<nav-bar-back title="商品详情"></nav-bar-back>
+		<nav-bar-back title="商品详情" popType="0"></nav-bar-back>
 		<bht-layout-container :bottom="layoutBottom">
 			
 			<view class="bht-layout-content">

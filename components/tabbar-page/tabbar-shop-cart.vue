@@ -176,77 +176,54 @@ export default {
 		 * 结算处理
 		 */
 		billHandler() {
-			// console.log(this.dataSource);
-			let goodsItems = [];
-			// console.log(item);
-			this.dataSource.forEach((item, index) => {
-				let list = [];
-				let totelNum = 0;
-				let totePrice = 0;
-				item.goodsInsts.forEach((pro, pIndex) => {
-					if (pro.checked === true) {
-						// console.log(pro);
-						let Inst = {
-							goodsId: pro.goodsId,
-							goodsNum: pro.goodsNum,
-							goodsName: pro.goodsName,
-							price: pro.price,
-							producer: pro.producer,
-							goodsPictures: pro.goodsPicture,
-							goodsInstAttrs: [
-								{
-									attrId: 1,
-									attrValueId: 2
-								}
-							]
+			if(this.dataSource.length > 0){
+				let goodsItems = [];
+				this.dataSource.forEach((item, index) => {
+					let list = [];
+					let totelNum = 0;
+					let totePrice = 0;
+					item.goodsInsts.forEach((pro, pIndex) => {
+						if (pro.checked === true) {
+							// console.log(pro);
+							let Inst = {
+								goodsId: pro.goodsId,
+								goodsNum: pro.goodsNum,
+								goodsName: pro.goodsName,
+								price: pro.price,
+								producer: pro.producer,
+								goodsPictures: pro.goodsPicture,
+								goodsInstAttrs: [
+									{
+										attrId: 1,
+										attrValueId: 2
+									}
+								]
+							};
+							totelNum += Number.parseInt(pro.goodsNum);
+							totePrice += pro.goodsNum * pro.price;
+							list.push(Inst);
+							
+						}
+					});
+					if (list.length > 0) {
+						let items = {
+							// shopCarNbr: '1577155815747e4466f8cf9d1422dabe74d9a2c41753a',
+							storeId: item.storeId,
+							storeName: item.storeName,
+							storePicture: item.storePicture,
+							goodsTotalNum: totelNum,
+							goodsTotalPrice: totePrice,
+							goodsInst: list
 						};
-						totelNum += Number.parseInt(pro.goodsNum);
-						totePrice += pro.goodsNum * pro.price;
-						list.push(Inst);
-						// let item = {
-						// 	// shopCarNbr: '1577155815747e4466f8cf9d1422dabe74d9a2c41753a',
-						// 	storeId: pro.goodsId,
-						// 	storeName: pro.goodsName,
-						// 	storePicture: pro.goodsPicture,
-						// 	goodsTotalNum: pro.goodsNum,
-						// 	goodsTotalPrice: pro.goodsNum * pro.price,
-						// 	goodsInst: [
-						// {
-						// 	goodsId: pro.goodsId,
-						// 	goodsNum: number,
-						// 	goodsName: pro.goodsName,
-						// 	price: pro.price,
-						// 	producer: pro.producer,
-						// 	goodsPictures: pro.pictureUrl,
-						// 	goodsInstAttrs: [
-						// 		{
-						// 			attrId: tag.id,
-						// 			attrValueId: tag.id
-						// 		}
-						// 	]
-						// }
-						// 	]
-						// };
-						// goodsItems.push(item);
+						goodsItems.push(items);
 					}
 				});
-				if (list.length > 0) {
-					let items = {
-						// shopCarNbr: '1577155815747e4466f8cf9d1422dabe74d9a2c41753a',
-						storeId: item.storeId,
-						storeName: item.storeName,
-						storePicture: item.storePicture,
-						goodsTotalNum: totelNum,
-						goodsTotalPrice: totePrice,
-						goodsInst: list
-					};
-					goodsItems.push(items);
-				}
-			});
-			console.log(goodsItems);
-			uni.navigateTo({
-				url: '/pages/shop/confirm-order?commitType=1&item=' + encodeURIComponent(JSON.stringify(goodsItems))
-			});
+				console.log(goodsItems);
+				uni.navigateTo({
+					url: '/pages/shop/confirm-order?commitType=1&item=' + encodeURIComponent(JSON.stringify(goodsItems))
+				});
+			}
+			
 		},
 		swipeActionClick(pro) {
 			let { goodsId } = pro;

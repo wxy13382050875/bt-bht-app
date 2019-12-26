@@ -46,6 +46,23 @@ export const getShopCartList = (params) => {
 export const postCommitOrder = (params) => {
 	return bht_http.post('/order-service/order/commitOrder',params)
 }
+//根据点单状态查询订单
+export const getOrderList = (params) => {
+	return bht_http.get('/order-service/order/findOrderByOrderStatus',{
+		params: params
+	})
+}
+
+//通过用户id获取收货地址列表
+export const getUserAddressList = (params) => {
+	return bht_http.get('/assets-service/user/address',{
+		params: params
+	})
+}
+//保存用户收货地址
+export const saveUserAddress = (params) => {
+	return bht_http.post('/assets-service/user/saveAddress',params)
+}
 // //找回密码
 // export const forgetPassword = (params) => {
 // 	uni.showLoading({

@@ -13,6 +13,7 @@ import MescrollUni from '@/third/mescroll-uni/mescroll-uni.vue'
 import routerLink from '@/third/uni-app-router/component/router-link.vue'
 import uniCalendar from "@/third/uni-calendar/uni-calendar.vue"
 import UniEcharts from '@/components/mpvue-echarts/echarts.vue'
+import LbPicker from '@/third/lb-picker'
 Vue.component('bht-layout-container', BhtLayoutContainer)
 Vue.component('aca-nav-bar', AcaNavBar)
 Vue.component('nav-bar-location', NavBarLocation)
@@ -21,6 +22,7 @@ Vue.component('mescroll-uni', MescrollUni)
 Vue.component('router-link', routerLink)
 Vue.component('uni-calendar', uniCalendar)
 Vue.component('uni-echarts', UniEcharts)
+Vue.component("lb-picker", LbPicker)
 Vue.prototype.$store = store;
 
 App.mpType = 'app'

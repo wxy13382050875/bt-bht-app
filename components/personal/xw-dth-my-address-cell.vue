@@ -2,9 +2,9 @@
 	<view class="address-list">
 		<view class="a-info" v-for="(item,index) in dataSource" :key=index>
 			<view class="a-img">
-				<image src="../../static/icon/icon-locate-other.png" mode="" v-if="item.type!=='default'"></image>
-				<image src="../../static/icon/icon-locate-def.png" mode="" v-if="item.type==='default'"></image>
-				<view class="a-surname" v-if="item.type!=='default'">{{item.surname}}</view>
+				<image src="../../static/icon/icon-locate-other.png" mode="" v-if="item.defaultFlag!==1"></image>
+				<image src="../../static/icon/icon-locate-def.png" mode="" v-if="item.defaultFlag===1"></image>
+				<view class="a-surname" v-if="item.defaultFlag!==1">{{item.name.slice(0,1)}}</view>
 			</view>
 			<view class="a-address-info">
 				<view class="a-oneline">
@@ -12,10 +12,10 @@
 					<view class="a-phone">{{item.phone}}</view>
 				</view>
 				<view class="a-twoline">
-					<view class="a-address"><label class="a-default" v-if="item.type==='default'">默认</label>{{item.address}}</view>
-					<view class="a-edit">
+					<view class="a-address"><label class="a-default" v-if="item.defaultFlag===1">默认</label>{{item.address}}{{item.detail}}</view>
+					<navigator :url="'/pages/user/my-address-create?item=' + encodeURIComponent(JSON.stringify(item))" class="a-edit">
 						<view class="">编辑</view>
-					</view>
+					</navigator>
 				</view>
 			</view>
 			
@@ -76,6 +76,7 @@
 			.a-address-info{
 				margin-left: 22rpx;
 				margin-right: 20rpx;
+				width: 100%;
 				.a-oneline{
 					display: flex;
 					height: 80rpx;
@@ -91,7 +92,9 @@
 					}
 				}
 				.a-twoline{
+					
 					display: flex;
+					justify-content: space-between;
 					.a-default{
 						width: 60rpx;
 						color:#FF3333;

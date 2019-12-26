@@ -1,6 +1,6 @@
 <template>
 	<view v-show="pageFlag === tabBarFlag">
-		<aca-nav-bar></aca-nav-bar>
+		<navBarTitle title="统计分析"></navBarTitle>
 		<bht-layout-container bgColor="#fff">
 			<view class="bht-layout-content">
 				<view class="bht-layout-main bht-statistics-charts-main">
@@ -50,12 +50,13 @@
 import * as echarts from '@/components/mpvue-echarts/echarts.min.js';
 import DayOfStatistics from '@/components/staff/day-of-statistics.vue';
 import BillStatistics from '@/components/staff/bill-statistics.vue';
-
+import navBarTitle from '@/components/navbar/navbar-title-default.vue';
 import { mapGetters } from 'vuex';
 export default {
 	components: {
 		DayOfStatistics,
-		BillStatistics
+		BillStatistics,
+		navBarTitle
 	},
 	data() {
 		return {
