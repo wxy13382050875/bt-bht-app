@@ -74,6 +74,8 @@ export default {
 				color: #ff3333;
 			}
 			.goods-oprice {
+				margin-left: 20rpx;
+				text-decoration:line-through;
 				font-size: 22rpx;
 				color: #999999;
 			}
@@ -110,6 +112,8 @@ export default {
 				color: #ff3333;
 			}
 			.goods-oprice {
+				margin-left: 20rpx;
+				text-decoration:line-through;
 				font-size: 22rpx;
 				color: #999999;
 			}

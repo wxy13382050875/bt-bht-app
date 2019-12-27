@@ -4,7 +4,7 @@
 		<view class="item">
 			<view>
 				<label class="goods-nprice">¥{{ dataSource.price }}</label>
-				<label>¥{{ dataSource.originalPrice }}</label>
+				<label class="goods-oprice">¥{{ dataSource.originalPrice }}</label>
 				<label style="margin-left: 80rpx;">{{ dataSource.goodsSales }}人付款</label>
 			</view>
 			<view>
@@ -49,7 +49,12 @@ export default {
 			font-size: 32rpx;
 			color: #ff3333;
 		}
-
+		.goods-oprice{
+			margin-left: 20rpx;
+			text-decoration:line-through;
+			font-size: 26rpx;
+			color: #999999;
+		}
 		.goods-title {
 			font-size: 30rpx;
 			color: #333333;

@@ -41,11 +41,11 @@ export default {
 				},
 				tool: {
 					title: '常用工具',
-					moretitle: '查看全部',
+					moretitle: '',
 					list: [
-						{ pictureUrl: '/static/icon/icon-message.png', name: '消息通知', page: 'goods-personnel-query' },
-						{ pictureUrl: '/static/icon/icon-client-server.png', name: '客户服务', page: 'vehicle-personnel-query' },
-						{ pictureUrl: '/static/icon/icon-my-address.png', name: '我的地址', page: '/pages/personal/my-address-list' }
+						// { pictureUrl: '/static/icon/icon-message.png', name: '消息通知', page: 'goods-personnel-query' },
+						// { pictureUrl: '/static/icon/icon-client-server.png', name: '客户服务', page: 'vehicle-personnel-query' },
+						{ pictureUrl: '/static/icon/icon-my-address.png', name: '我的地址', page: '/pages/personal/my-address-list?type=0' }
 					]
 				}
 			}
@@ -57,7 +57,12 @@ export default {
 		})
 	},
 	methods: {
-		loginout() {}
+		loginout() {
+			uni.setStorageSync('isLogin', false);
+			uni.redirectTo({
+				url: '/pages/common/login'
+			});
+		}
 	}
 };
 </script>

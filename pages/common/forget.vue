@@ -1,7 +1,7 @@
 <template>
 	<view class="app-content">
-		<aca-nav-bar :level="2" title="找回密码"></aca-nav-bar>
-		<bht-layout-container bg-color="#fff">
+		<nav-bar-back title="找回密码" popType="0"></nav-bar-back>
+		<bht-layout-container bg-color="#fff" style="height: 100%;">
 			<view class="app-register">
 				<view class="aca-form-input">
 					<view class="aca-input-icon">

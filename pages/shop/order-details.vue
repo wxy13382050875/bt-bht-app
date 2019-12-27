@@ -1,6 +1,6 @@
 <template>
 	<view class="order-details-container">
-		<nav-bar-back title="订单详情"></nav-bar-back>
+		<nav-bar-back title="订单详情" popType="1"></nav-bar-back>
 		<bht-layout-container :bottom="0">
 			<view class="bht-layout-content">
 				<view class="address-box">

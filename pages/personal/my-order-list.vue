@@ -3,7 +3,7 @@
 		<nav-bar-back title="我的订单" popType="0"></nav-bar-back>
 		<bht-layout-container :bottom="0">
 			<!-- <scroll-view class="nav-area" scroll-x :scroll-left="navScrollLeft"> -->
-			<view class="nav-area"> 
+			<view class="nav-area">
 				<view class="scroller" :style="{ width: navItemWidth * navList.length + 'px' }">
 					<view class="scroller-wrapper">
 						<view
@@ -14,7 +14,7 @@
 							:class="{ active: index === changeIndex }"
 							@tap="tapNav(index)"
 						>
-							{{ item }}
+							{{ item.name }}
 						</view>
 					</view>
 					<view class="scroller-bar">
@@ -25,15 +25,14 @@
 			<!-- </scroll-view> -->
 			<view class="swiper-area">
 				<!-- <pulldown-refresher ref="pulldownRefresher" @pulldownRefresh="refresh"> -->
-
-				<swiper :current="switchIndex" :duration="567" @transition="transition" @change="change" @animationfinish="animationfinish">
-					<swiper-item v-for="(item, index) in navList" :key="index">
-						<mescroll-uni @init="initMescroll" :down="downOption" :up="upOption" @up="upCallback" @down="downCallback" :fixed="false">
-							<view v-for="(item, index) in dataSource" :key="index"><ordercell :dataSource="item"></ordercell></view>
-						</mescroll-uni>
-					</swiper-item>
-				</swiper>
-
+				<mescroll-uni class="mescroll" @init="initMescroll" :down="downOption" :up="upOption" @up="upCallback" @down="downCallback" :fixed="false">
+					<!-- <swiper :current="switchIndex" style="height: 100%;" :duration="567" @transition="transition" @change="change" @animationfinish="animationfinish">
+						<swiper-item v-for="(item, pIndex) in navList" :key="pIndex" style="height: 100%;">
+							<view v-for="(item, eIndex) in dataSource" style="height: 100%;" :key="eIndex"><ordercell :dataSource="item"></ordercell></view>
+						</swiper-item>
+					</swiper> -->
+					<view v-for="(item, eIndex) in dataSource" :key="eIndex"><ordercell :dataSource="item"></ordercell></view>
+				</mescroll-uni>
 				<!-- </pulldown-refresher> -->
 			</view>
 		</bht-layout-container>
@@ -82,10 +81,15 @@ export default {
 				},
 				textNoMore: '没有更多数据了'
 			},
-
-			navList: ['全部', '待付款', '待发货', '待收货', '已完成'],
+			navList: [
+				{ name: '全部', value: '0' },
+				{ name: '待付款', value: '10008' },
+				{ name: '待发货', value: '10016' },
+				{ name: '待收货', value: '10020' },
+				{ name: '已完成', value: '10024' }
+			],
 			params: {},
-			statusCd:0
+			statusCd: 0
 		};
 	},
 	created() {
@@ -103,6 +107,7 @@ export default {
 	},
 	methods: {
 		transition({ detail: { dx } }) {
+			console.log('transition');
 			// swiper 运动时触发
 			this.activeBarLeft = this.navItemWidth * this.finishedIndex + this.navItemWidth * (dx / this.screenWidth);
 			if (this.activeBarLeft > (this.screenWidth - this.navItemWidth) / 2) {
@@ -111,16 +116,21 @@ export default {
 		},
 		change({ detail: { current } }) {
 			// swiper index 变化时触发
+			console.log('change');
 			this.changeIndex = current;
 		},
 		animationfinish({ detail: { current } }) {
+			console.log('animationfinish');
 			// swiper 运动结束时触发
 			this.switchIndex = this.finishedIndex = current;
-			
 		},
 		tapNav(index) {
+			console.log('tapNav');
 			// 点击 bavbar 切换
 			this.switchIndex = index;
+			this.changeIndex = index;
+			this.statusCd = this.navList[index].value;
+			this.mescroll.triggerUpScroll();
 		},
 		$offset(selector) {
 			// 获取组件内元素的 offset 信息
@@ -140,20 +150,21 @@ export default {
 		},
 		//下拉刷新
 		downCallback(mescroll) {
+			console.log('downCallback');
 			mescroll.resetUpScroll();
 		},
 		//上拉刷新
 		upCallback(mescroll) {
-			
+			console.log('upCallback');
 			this.params.pageIndex = mescroll.num;
 			this.params.pageSize = mescroll.size;
 			this.params.statusCd = this.statusCd;
 			this.params.shopCarNbr = '1577155815747e4466f8cf9d1422dabe74d9a2c41753a';
-			
+
 			console.log(this.params);
 			getOrderList(this.params).then(res => {
 				let { pageInfo, stores } = res.data;
-			
+
 				if (mescroll.num == 1) this.dataSource = [];
 				this.dataSource = this.dataSource.concat(stores);
 				mescroll.endBySize(stores.length, pageInfo.rowCount);
@@ -164,24 +175,7 @@ export default {
 		}
 	},
 	onLoad: function(option) {
-		//option为object类型，会序列化上个页面传递的参数
-		console.log(option.currentIndex); //打印出上个页面传递的参数
-		setTimeout(() => {
-			this.switchIndex = option.currentIndex;
-			if(option.currentIndex == 0){
-				this.statusCd == 0;
-			} else if(option.currentIndex == 1){
-				this.statusCd == 10008;
-			} else if(option.currentIndex == 2){
-				this.statusCd == 10016;
-			} else if(option.currentIndex == 3){
-				this.statusCd == 10020;
-			} else if(option.currentIndex == 4){
-				this.statusCd == 10024;
-			}
-		}, 300);
-
-		// console.log(option.name); //打印出上个页面传递的参数。
+		this.statusCd = this.navList[option.currentIndex].value;
 	}
 };
 </script>
@@ -248,6 +242,7 @@ export default {
 		flex: 1;
 		width: 100%;
 		height: 100%;
+
 		swiper {
 			height: 100%;
 			background: #f8f8f8;

@@ -8,8 +8,8 @@
 			</view>
 		</view>
 		<view class="right-item">
-			<button class="baby">全部宝贝</button>
-			<button class="go-store">进店逛逛</button>
+			<!-- <button class="baby">全部宝贝</button>
+			<button class="go-store">进店逛逛</button> -->
 		</view>
 	</view>
 </template>

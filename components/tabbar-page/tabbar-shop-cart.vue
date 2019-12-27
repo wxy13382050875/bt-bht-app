@@ -37,11 +37,12 @@
 												<view class="number">
 													<uni-number-box
 														:min="1"
-														:max="pro.sum"
+														:max="9"
 														:value="pro.goodsNum"
 														:index="gIndex"
 														v-model="pro.goodsNum"
 														:data-index="gIndex"
+														:disabled="true"
 													></uni-number-box>
 												</view>
 											</view>
@@ -105,7 +106,7 @@ export default {
 			//移动位置
 			translateY: 'translateY(0)',
 			scrollY: true,
-			dataSource: [],
+			dataSource: null,
 			options: [
 				{
 					text: '删除',
@@ -218,10 +219,18 @@ export default {
 						goodsItems.push(items);
 					}
 				});
-				console.log(goodsItems);
-				uni.navigateTo({
-					url: '/pages/shop/confirm-order?commitType=1&item=' + encodeURIComponent(JSON.stringify(goodsItems))
-				});
+				console.log('-----'+goodsItems.length);
+				if(goodsItems.length > 0){
+					uni.navigateTo({
+						url: '/pages/shop/confirm-order?commitType=1&item=' + encodeURIComponent(JSON.stringify(goodsItems))
+					});
+				} else {
+					uni.showToast({
+						title:"请添加商品",
+						icon:'none'
+					})
+				}
+				
 			}
 			
 		},
@@ -433,7 +442,7 @@ export default {
 						.numberbox {
 							display: flex;
 							width: 120rpx;
-							height: 45rpx;
+							height: 46rpx; 
 							border: 1px solid rgba(0, 0, 0, 0.33);
 							border-radius: 4px;
 						}

@@ -145,7 +145,7 @@ export default {
 	display: inline-flex;
 	justify-content: flex-start;
 	align-items: center;
-	height: 50upx;
+	/* height: 50upx; */
 	position: relative;
 	border: 1px solid #c0c0c0;
 	border-radius: 8upx;

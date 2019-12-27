@@ -1,7 +1,7 @@
 <template>
-	<view class="app-content">
-		<aca-nav-bar :level="2" title="注册"></aca-nav-bar>
-		<bht-layout-container bg-color="#fff">
+	<view class="app-content" style="background: #FFFFFF;">
+		<nav-bar-back title="注册" popType="0"></nav-bar-back>
+		<bht-layout-container bg-color="#ffffff" style="height: 100%;">
 			<view class="app-register">
 				<picker @change="pickerPaperTypeChange" :value="paperTypeIndex" :range="roleArr">
 					<view class="aca-form-input">
@@ -18,7 +18,7 @@
 					<view class="aca-input-icon">
 						<view class="iconfont aca-shouji"></view>
 					</view>
-					<input class="aca-input" type="number" v-model="regData.mobile" placeholder="请输入手机号" />
+					<input class="aca-input" type="number" v-model="regData.phone" placeholder="请输入手机号" />
 				</view>
 				<view class="aca-form-input">
 					<view class="aca-input-icon">
@@ -45,15 +45,14 @@
 	} from 'vuex'
 	import formValidate from '@/utils/validate'
 	import {
-		register,
-		sendMobileCode
-	} from '@/api/user'
+		saveUser
+	} from '@/api/shop.js'
 	export default {
 		data() {
 			return {
 				regData: {
-					type: '',
-					mobile: '',
+					roleId: '',
+					phone: '',
 					password: '',
 					code: '',
 				},
@@ -61,11 +60,11 @@
 				paperTypeIndex: 0,
 				vcodeBtnName: '获取验证码',
 				rule: [{
-						name: "type",
+						name: "roleId",
 						checkType: "notnull",
 						errorMsg: "请选择角色"
 					}, {
-						name: "mobile",
+						name: "phone",
 						checkType: "phoneno",
 						errorMsg: "请填写正确的手机号"
 					},
@@ -90,38 +89,68 @@
 		methods: {
 			//注册处理
 			handleReg() {
+				console.log('-----注册------');
+				console.log(this.regData);
 				let valid = formValidate.check({ ...this.regData
 				}, this.rule);
 				if (valid) {
-					if (this.validateCode()) {
-						register(this.regData).then(res => {
-							let {
-								code,
-								msg
-							} = res.data;
-							//注册成功
-							if (code === 200) {
-								uni.showToast({
-									title: '注册成功'
-								});
-								setTimeout(() => {
-									uni.removeStorageSync("mobileCode");
-									this.$Router.replace({
-										name: 'login'
-									})
-								}, 2000);
-							}
-							//手机号已存在
-							if (code === 500) {
-								uni.showToast({
-									title: msg,
-									icon: "none"
-								});
-							}
-						}).catch(erro => {
+					saveUser(this.regData).then(res => {
+						let {
+							code,
+							msg
+						} = res;
+						//注册成功
+						console.log(code);
+						if (code === "200") {
+							console.log("------");
+							uni.showToast({
+								title: '注册成功'
+							});
+							setTimeout(() => {
+								uni.removeStorageSync("mobileCode");
+								
+								this.$Router.back();
+							}, 2000);
+						}
+						//手机号已存在
+						if (code === 500) {
+							uni.showToast({
+								title: msg,
+								icon: "none"
+							});
+						}
+					}).catch(erro => {
+					
+					})
+					// if (this.validateCode()) {
+					// 	saveUser(this.regData).then(res => {
+					// 		let {
+					// 			code,
+					// 			msg
+					// 		} = res.data;
+					// 		//注册成功
+					// 		if (code === 200) {
+					// 			uni.showToast({
+					// 				title: '注册成功'
+					// 			});
+					// 			setTimeout(() => {
+					// 				uni.removeStorageSync("mobileCode");
+					// 				this.$Router.replace({
+					// 					name: 'login'
+					// 				})
+					// 			}, 2000);
+					// 		}
+					// 		//手机号已存在
+					// 		if (code === 500) {
+					// 			uni.showToast({
+					// 				title: msg,
+					// 				icon: "none"
+					// 			});
+					// 		}
+					// 	}).catch(erro => {
 
-						})
-					}
+					// 	})
+					// }
 				} else {
 					uni.showToast({
 						title: formValidate.error,
@@ -133,7 +162,7 @@
 				target
 			}) {
 				let role = this.roleData[target.value];
-				this.regData.type = role.code;
+				this.regData.roleId = role.code;
 				this.roleText = role.value;
 			},
 			//获取验证码
@@ -178,6 +207,7 @@
 			},
 			//短信验证
 			validateCode() {
+				return true;
 				//表单校验通过后 校验验证码是否正确
 				let mobileCode = uni.getStorageSync("mobileCode");
 				if (mobileCode !== undefined && mobileCode !== "") {
@@ -214,6 +244,7 @@
 </script>
 
 <style scoped lang="scss">
+	
 	.app-register {
 		padding: 60rpx 60rpx 0;
 

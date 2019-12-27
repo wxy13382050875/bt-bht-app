@@ -34,13 +34,13 @@
 <script>
 import UniPopup from '@/third/uni-popup/uni-popup.vue';
 import uniTag from '@/third/uni-tag/uni-tag.vue';
-import uniNumberBox from '@/third/uni-number-box/uni-number-box.vue';
+import UniNumberBox from '@/components/cart/uni-number-box.vue';
 export default {
 	name: 'specifi-dialog',
 	components: {
 		UniPopup,
 		uniTag,
-		uniNumberBox
+		UniNumberBox
 	},
 	props: {
 		value: {}
@@ -100,20 +100,18 @@ export default {
 	methods: {
 		//确认事件
 		confirm() {
-			if(this.curTag != null){
+			if (this.curTag != null) {
 				this.showPopup = false;
 				this.$emit('tagChange', this.curTag, this.curNumber);
-			} else{
-				console.log("请选择规格");
+			} else {
+				console.log('请选择规格');
 				uni.showToast({
 					icon: 'none',
 					title: '请选择规格'
 				});
 			}
-			
-			
 		},
-		closePopup(){
+		closePopup() {
 			this.showPopup = false;
 		},
 		uniPopupChange(e) {

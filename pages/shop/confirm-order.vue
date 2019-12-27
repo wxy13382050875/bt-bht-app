@@ -1,18 +1,24 @@
 <template>
 	<view class="confirm-order-container">
-		<nav-bar-back title="确认订单"></nav-bar-back>
+		<nav-bar-back title="确认订单" popType="0"></nav-bar-back>
 		<bht-layout-container :bottom="bottomHeight">
 			<scroll-view scroll-y="true" style="height: 100%;">
 				<view class="address-box">
-					<view class="address-icon"><image src="/static/icon/address_loaction_icon.png"></image></view>
-					<view class="address-info">
-						<view class="address-info-user">
-							<label class="name">余春林</label>
-							<label class="phone">1833944725</label>
+					<navigator url="/pages/personal/my-address-list?type=1" class="address-navigator" hover-class="none">
+						<view class="no-address" v-if="JSON.stringify(address) == '{}'">请添加收货地址</view>
+
+						<view class="address" v-else>
+							<view class="address-icon"><image src="/static/icon/address_loaction_icon.png"></image></view>
+							<view class="address-info">
+								<view class="address-info-user">
+									<label class="name">{{ address.name }}</label>
+									<label class="phone">{{ address.phone }}</label>
+								</view>
+								<view class="address-text">{{ address.location }}{{ address.detail }}</view>
+							</view>
+							<label class="iconfont aca-youjiantou"></label>
 						</view>
-						<view class="address-text">河南省郑州市中原区建设路街道，护国大厦B区20栋</view>
-					</view>
-					<navigator url="/pages/personal/my-address-list" class="address-navigator" hover-class="none"><label class="iconfont aca-youjiantou"></label></navigator>
+					</navigator>
 				</view>
 				<view class="confirm-order-goods-list" v-for="(item, index) in dataSource" :key="index">
 					<view class="shop-list">
@@ -57,6 +63,20 @@
 						</view>
 					</view>
 				</view>
+
+				<view class="order-pay-list">
+					<radio-group style="width: 100%;" @change="radioChange">
+						<label
+							style="display: flex;justify-content: space-between;height: 80rpx;line-height: 80rpx;border-bottom: 1rpx solid #a7a7a7;"
+							class="uni-list-cell uni-list-cell-pd"
+							v-for="(item, index) in items"
+							:key="item.value"
+						>
+							<view>{{ item.name }}</view>
+							<view><radio :value="item.value" :checked="index === current" /></view>
+						</label>
+					</radio-group>
+				</view>
 			</scroll-view>
 		</bht-layout-container>
 		<view class="confirm-order-footer">
@@ -72,20 +92,112 @@
 
 <script>
 import { postCommitOrder } from '@/api/shop.js';
+import NzCheckbox from '@/third/acaui/nz-checkbox/nz-checkbox.vue';
 /**
  * 提交订单/确认订单
  */
 export default {
+	components: {
+		NzCheckbox
+	},
 	data() {
 		return {
 			bottomHeight: uni.upx2px(114),
 			dataSource: [],
 			totalNum: 0,
 			totalPrice: 0,
-			commitType: 0
+			commitType: 0,
+			address: {},
+			items: [
+				{
+					value: '0',
+					name: '支付宝',
+					checked: true
+				},
+				{
+					value: '1',
+					name: '微信',
+					checked: false
+				}
+			],
+			payType: 0,
+			current: 0
 		};
 	},
+	onShow() {},
 	methods: {
+		radioChange: function(evt) {
+			for (let i = 0; i < this.items.length; i++) {
+				if (this.items[i].value === evt.target.value) {
+					this.current = i;
+					break;
+				}
+			}
+		},
+
+		payhandle() {
+			uni.req;
+			var that = this;
+			if (this.current == 0) {
+				console.log('支付宝');
+				uni.requestPayment({
+					provider: 'alipay',
+					orderInfo: '', // 订单数据
+					success: function(res) {
+						if (res.resultCode == 6001) {
+							uni.showToast({
+								title: '支付取消',
+								icon: 'none',
+								duration: 1500
+							});
+						} else {
+							uni.showToast({
+								title: '支付宝支付成功',
+								icon: 'success',
+								duration: 1500
+							});
+						}
+					},
+					fail: function(err) {
+						// 支付失败的回调中 用户未付款
+						uni.showToast({
+							title: '支付取消',
+							duration: 1500,
+							icon: 'none'
+						});
+					}
+				});
+			} else {
+				uni.requestPayment({
+					provider: 'wxpay',
+					orderInfo: '', // 订单数据
+					timeStamp: '', // 时间戳从1970年1月1日至今的秒数，即当前的时间
+					nonceStr: '', // 随机字符串，长度为32个字符以下
+					package: '', // 统一下单接口返回的 prepay_id 参数值，提交格式如：prepay_id=xx
+					signType: '', //签名算法，暂支持 MD5
+					paySign: '', // 签名
+					success: function(res) {
+						// 支付成功的回调中 创建绘本馆成功
+						uni.showToast({
+							title: '微信支付成功',
+							icon: 'success',
+							duration: 1500
+						});
+					},
+					fail: function(err) {
+						// 支付失败的回调中 用户未付款
+						uni.showToast({
+							title: '支付取消',
+							duration: 1500,
+							image: '/static/png/error_icon.png'
+						});
+					}
+				});
+			}
+			uni.navigateTo({
+				url: '/pages/shop/pay-success'
+			});
+		},
 		//提交订单处理
 		submitOrder() {
 			let subItems = [];
@@ -110,25 +222,21 @@ export default {
 				shopCarNbr: '1577155815747e4466f8cf9d1422dabe74d9a2c41753a',
 				goodsInsts: subItems,
 				commitType: this.commitType,
-				orderAddressId: ''
+				orderAddressId: this.address.addressId,
 			};
 			console.log('-----params-----');
 			console.log(params);
 			postCommitOrder(params).then(res => {
 				console.log(res.resultCode);
-				if(res.code == 200){
-					uni.navigateTo({
-						url: '/pages/shop/pay-success'
-					});
+				if (res.code == 200) {
+					payhandle();
 				} else {
 					uni.showToast({
-						title:res.msg,
-						icon:'none'
-					})
+						title: res.msg,
+						icon: 'none'
+					});
 				}
-				
 			});
-			
 		}
 	},
 	onLoad: function(option) {
@@ -139,6 +247,10 @@ export default {
 			this.totalNum += Number.parseInt(item.goodsTotalNum);
 			this.totalPrice += item.goodsTotalPrice;
 		});
+		let userInfo = uni.getStorageSync("userInfo");
+	// params.userId = userInfo.userId;
+		this.address = userInfo.defaultAddress;
+		console.log(this.address);
 	}
 };
 </script>
@@ -150,42 +262,57 @@ $text-color: #333333;
 		padding: 0 32rpx;
 		display: flex;
 		align-items: center;
+		justify-content: space-between;
 		height: 194rpx;
 		@include bht-box;
-		.address-icon {
-			image {
-				width: 76rpx;
-				height: 89rpx;
-			}
-		}
-		.address-info {
-			margin: 0 32rpx 0 28rpx;
-			.address-info-user {
-				.name {
-					font-size: 32rpx;
-					color: $text-color;
-				}
-				.phone {
-					margin-left: 14rpx;
-					font-size: 26rpx;
-					color: #999999;
-				}
-			}
-			.address-text {
-				margin-top: 14rpx;
-				font-size: 26rpx;
-				color: $text-color;
-			}
-		}
+
 		.address-navigator {
 			display: flex;
 			align-items: center;
-			justify-content: flex-end;
-			width: 120rpx;
+			width: 100%;
 			height: 100%;
-			label {
+			.no-address {
+				width: 100%;
 				font-size: 32rpx;
 				color: #9a9a9a;
+				text-align: center;
+			}
+			.address {
+				width: 100%;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				.address-icon {
+					image {
+						width: 76rpx;
+						height: 89rpx;
+					}
+				}
+				label {
+					font-size: 32rpx;
+					color: #9a9a9a;
+					width: 50rpx;
+				}
+				.address-info {
+					width: 100%;
+					margin: 0 32rpx 0 28rpx;
+					.address-info-user {
+						.name {
+							font-size: 32rpx;
+							color: $text-color;
+						}
+						.phone {
+							margin-left: 14rpx;
+							font-size: 26rpx;
+							color: #999999;
+						}
+					}
+					.address-text {
+						margin-top: 14rpx;
+						font-size: 26rpx;
+						color: $text-color;
+					}
+				}
 			}
 		}
 	}
@@ -372,6 +499,19 @@ $text-color: #333333;
 					color: #ff3333;
 				}
 			}
+		}
+	}
+	.order-pay-list {
+		background: #ffffff;
+		margin-top: 20rpx;
+		.pay-cell {
+			margin-left: 20rpx;
+			margin-right: 20rpx;
+			height: 80rpx;
+			line-height: 80rpx;
+			display: flex;
+			justify-content: space-between;
+			border-bottom: 1rpx solid #a7a7a7;
 		}
 	}
 }

@@ -1,7 +1,7 @@
 <template>
 	<view>
-		<aca-nav-bar :level="2" title="登录"></aca-nav-bar>
-		<bht-layout-container bgColor="#fff">
+		<navBarTitle title="登陆"></navBarTitle>
+		<bht-layout-container bgColor="#fff" style="height: 100%;">
 			<view class="login-wrapper" :style="{bottom: bottom+ 'rpx'}">
 				<view class="login-top">
 					<view class="logo-box">
@@ -14,7 +14,7 @@
 						<view class="aca-input-icon">
 							<view class="iconfont aca-shouji"></view>
 						</view>
-						<input class="aca-input" type="number" name="input" v-model="loginData.account" placeholder="请输入手机号" />
+						<input class="aca-input" type="number" name="input" v-model="loginData.phone" placeholder="请输入手机号" />
 					</view>
 					<view class="aca-form-input">
 						<view class="aca-input-icon">
@@ -25,8 +25,8 @@
 					</view>
 					<button class="app-btn" hover-class="" @click="handleLogin">登录</button>
 					<view class="login-footer">
-						<router-link class="item" to="{name: 'forget'}">忘记密码？</router-link>
-						<router-link class="item" to="{name: 'reg'}">注册</router-link>
+						<navigator class="item" url="/pages/common/forget" hover-class="none">忘记密码</navigator>
+						<navigator class="item" url="/pages/common/register" hover-class="none">注册</navigator>
 					</view>
 				</view>
 			</view>
@@ -36,22 +36,26 @@
 
 <script>
 	import formValidate from '@/utils/validate'
+	import navBarTitle from '@/components/navbar/navbar-title-default.vue';
 	import {
 		login
-	} from '@/api/user'
+	} from '@/api/shop.js'
 	import {
 		mapActions,
-		mapGetters
+		mapGetters,
 	} from 'vuex';
 	export default {
+		components:{
+			navBarTitle
+		},
 		data() {
 			return {
 				loginData: {
-					account: '',
+					phone: '',
 					password: ''
 				},
 				rule: [{
-						name: 'account',
+						name: 'phone',
 						checkType: 'phoneno',
 						errorMsg: '请填写正确的手机号'
 					},
@@ -72,35 +76,37 @@
 		},
 		created() {
 			//赋值手机号
-			this.loginData.account = this.mobile
+			this.loginData.phone = this.mobile
 		},
 		methods: {
 			...mapActions('user', ['setLoginStatus', 'setUserInfo', 'setMobile']),
 			//登录处理
 			handleLogin() {
+				
+				
 				let valid = formValidate.check({ ...this.loginData
 				}, this.rule);
 				if (valid) {
 					login(this.loginData).then(res => {
-						if (res.code === 500) {
-							uni.showToast({
-								icon: 'none',
-								title: '手机号或密码错误'
-							});
-						}
-						if (res.code === 200) {
+						
+						if (res.code === "200") {
 							//获取菜单列表
 							//设置登录状态
 							this.setLoginStatus(true);
 							//保存用户信息到vuex
-							this.setUserInfo(res.data);
-							this.setMobile(res.data.mobile)
+							// this.setUserInfo(res.data);
+							// this.setMobile(res.data.mobile)
 							//缓存用户信息
+							uni.setStorageSync('isLogin', true);
 							uni.setStorageSync('userInfo', res.data);
-							//跳转首页
-							this.$Router.pushTab({
-								name: 'index'
-							})
+							uni.redirectTo({
+								url: '/pages/main'
+							});
+						} else {
+							uni.showToast({
+								icon: 'none',
+								title: res.msg 
+							});
 						}
 					}).catch(erro => {
 						console.log(erro)
@@ -132,6 +138,7 @@
 <style lang="scss">
 	.login-wrapper {
 		position: relative;
+		background: #FFFFFF;
 	}
 
 	.login-top {

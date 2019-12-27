@@ -27,6 +27,7 @@ export default {
 
 <style lang="scss">
 .goods-image {
+	margin-top: 20rpx;
 	.item {
 		display: flex;
 		justify-content: center;

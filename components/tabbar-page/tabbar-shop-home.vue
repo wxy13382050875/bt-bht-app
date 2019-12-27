@@ -142,7 +142,9 @@ export default {
 		};
 	},
 	created() {
-		getFindHomeGoods().then(res => {
+
+		let params={};
+		getFindHomeGoods(params).then(res => {
 			
 			
 			let {
@@ -150,7 +152,6 @@ export default {
 				code
 			} = res
 			if (code === '200') {
-				console.log('测试----' + res.data);
 				this.dataSource = data;
 			}
 			
@@ -172,6 +173,9 @@ export default {
 			
 			
 		// }
+	},
+	onShow() {
+		console.log("-----userInfo");
 	}
 };
 </script>

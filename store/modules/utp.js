@@ -16,23 +16,28 @@ const state = {
 	curUrl: '',
 	//角色数据
 	roleData: [{
+
+			code: 1,
+            value: "游客",
+            roleDesc: "未登录时的默认角色"
+		},
+		{
 			value: '边民',
-			code: '001'
+			code: 2,
+			roleDesc: "完成备案的边民"
 		},
 		{
-			value: '承运人',
-			code: '002'
+			value: '场所工作人员',
+			code: 3,
+			roleDesc: "场所的工作人员"
 		},
 		{
-			value: '工作人员',
-			code: '003'
-		},
-		{
-			value: '店铺',
-			code: '004'
+			value: '商铺管理',
+			code: 4,
+			roleDesc: "商铺管理"
 		}
 	],
-	roleArr: ['边民', '承运人', '工作人员', '店铺'],
+	roleArr: ['游客','边民', '场所工作人员', '商铺管理'],
 }
 
 const getters = {

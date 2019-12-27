@@ -20,7 +20,7 @@
 							class="input"
 							placeholder="所在地区"
 							placeholder-class="place-style"
-							v-model="dataSource.address"
+							v-model="dataSource.location"
 							@tap="handleTap('picker3')"
 						/>
 
@@ -66,7 +66,7 @@ import { saveUserAddress } from '@/api/shop.js';
 export default {
 	data() {
 		return {
-			dataSource: [],
+			dataSource: {},
 			isDefault: false,
 			value: [],
 			list: areaData,
@@ -100,20 +100,23 @@ export default {
 		saveEvent(e) {
 			console.log('保存');
 
-			this.dataSource.defaultFlag = this.isDefault;
+			this.dataSource.defaultFlag = this.isDefault?0:1;
 			this.dataSource.userId = 2;
 			console.log(this.dataSource);
 			// let params = {
 			// 	userId:2
 			// }
 			saveUserAddress(this.dataSource).then(res => {
+				
 				let { data, msg, code } = res;
+				console.log(res);
 				uni.showToast({
 					title: msg,
 					icon: 'none'
 				});
 				if (code === '200') {
 					this.$Router.back();
+					
 				}
 			});
 		},
@@ -125,7 +128,7 @@ export default {
 		},
 		handleConfirm(item) {
 			console.log('confirm::', item);
-			this.dataSource.address = '';
+			this.dataSource.location = '';
 
 			item.item.forEach((tmItem, index) => {
 				console.log('confirm::', tmItem.label);
@@ -140,7 +143,7 @@ export default {
 				// 	this.dataSource.district = tmItem.label;
 				// }
 
-				this.dataSource.address += tmItem.label;
+				this.dataSource.location += tmItem.label;
 			});
 		},
 		handleCancle(item) {
@@ -155,10 +158,11 @@ export default {
 	.address-info {
 		background-color: #fff;
 		.cell {
+			height: 80rpx;
+			line-height: 80rpx;
 			position: relative;
 			display: flex;
 			align-items: center;
-			height: 71rpx;
 			padding: 0 $padding-content;
 			.place-style {
 				font-size: 26rpx;

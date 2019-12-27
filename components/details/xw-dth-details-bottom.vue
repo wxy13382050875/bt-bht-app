@@ -1,7 +1,7 @@
 <template>
 	<view class="goods-bottom">
 		<view class="left-btn">
-			<view class="items">
+			<!-- <view class="items">
 				<image src="../../static/icon/icon-store.png"></image>
 				<view class="title">店铺</view>
 			</view>
@@ -12,7 +12,7 @@
 			<view :class="status == 1 ? 'selected' : 'default'" @click="changeCollection(status)">
 				<image :src="collectionUrl"></image>
 				<view class="title">收藏</view>
-			</view>
+			</view> -->
 		</view>
 
 		<view class="right-btn">
@@ -75,6 +75,7 @@ export default {
 	.left-btn {
 		display: flex;
 		height: 100%;
+		width: 100%;
 		.items {
 			display: flex;
 			flex-direction: column;
@@ -125,6 +126,7 @@ export default {
 			flex-direction: column;
 			justify-content: center;
 			align-items: center;
+			
 			width: 119rpx;
 			height: 100%;
 			margin-bottom: $margin-bottom;
@@ -143,11 +145,14 @@ export default {
 	}
 	.right-btn {
 		margin-top: 20rpx;
+		margin-right: 20rpx;
 		height: 80rpx;
 		display: flex;
 		align-items: center;
+		// width: 400rpx;
 		.add-cart {
 			height: 100%;
+			width: 200rpx;
 			background: rgba(255, 111, 4, 1);
 			opacity: 1;
 			border-radius: 41px 0px 0px 41px;
@@ -156,7 +161,7 @@ export default {
 		}
 		.buy-now {
 			height: 100%;
-
+			width: 200rpx;
 			background: #ff3333;
 			opacity: 1;
 			border-radius: 0px 41px 41px 0px;

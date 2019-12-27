@@ -38,6 +38,7 @@
 
 <style lang="scss">
 	.goods-recommend{
+		padding: 0 $padding-content;
 		.item{
 			display: flex;
 			justify-content: center;

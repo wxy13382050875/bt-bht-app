@@ -1,6 +1,6 @@
 <template>
 	<view class="address-list">
-		<view class="a-info" v-for="(item,index) in dataSource" :key=index>
+		<view class="a-info" v-for="(item,index) in dataSource" :key=index @click="didSelectCell(item)">
 			<view class="a-img">
 				<image src="../../static/icon/icon-locate-other.png" mode="" v-if="item.defaultFlag!==1"></image>
 				<image src="../../static/icon/icon-locate-def.png" mode="" v-if="item.defaultFlag===1"></image>
@@ -12,7 +12,7 @@
 					<view class="a-phone">{{item.phone}}</view>
 				</view>
 				<view class="a-twoline">
-					<view class="a-address"><label class="a-default" v-if="item.defaultFlag===1">默认</label>{{item.address}}{{item.detail}}</view>
+					<view class="a-address"><label class="a-default" v-if="item.defaultFlag===1">默认</label>{{item.location}}{{item.detail}}</view>
 					<navigator :url="'/pages/user/my-address-create?item=' + encodeURIComponent(JSON.stringify(item))" class="a-edit">
 						<view class="">编辑</view>
 					</navigator>
@@ -35,8 +35,10 @@
 			}
 		},
 		methods: {
-			
-		}
+			didSelectCell(e){
+				this.$emit('didSelectCell', e);
+			},
+		},
 	}
 </script>
 

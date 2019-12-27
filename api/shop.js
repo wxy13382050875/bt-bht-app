@@ -3,10 +3,15 @@ import {
 } from '@/utils/http'
 
 
+
 //获取首页数据
-export const getFindHomeGoods = () => {
-	return bht_http.get('/assets-service/home/findHomeGoods')
-}
+export const getFindHomeGoods = (params) => {
+	let userInfo = uni.getStorageSync("userInfo");
+	params.userId = userInfo.userId;
+	return bht_http.get('/assets-service/home/findHomeGoods',{
+		params: params
+	})
+};
 
 //分页获取最新商品
 export const getGoodsList = (url,params) => {
@@ -14,18 +19,7 @@ export const getGoodsList = (url,params) => {
 		params: params
 	})
 };
-// //分页获取推荐商品
-// export const getRecommendGoods = (params) => {
-// 	return bht_http.get('/assets-service/goods/recommendGoods',{
-// 		params: params
-// 	})
-// };
-// //分页获取热卖商品
-// export const getBestGoods = (params) => {
-// 	return bht_http.get('/assets-service/goods//bestGoods',{
-// 		params: params
-// 	})
-// };
+
 //通过商品id查询商品信息
 export const addGoodsCart = (params) => {
 	return bht_http.post('/order-service/order/incrementCommit',params)
@@ -44,10 +38,14 @@ export const getShopCartList = (params) => {
 }
 //订单提交
 export const postCommitOrder = (params) => {
+	let userInfo = uni.getStorageSync("userInfo");
+	params.userId = userInfo.userId;
 	return bht_http.post('/order-service/order/commitOrder',params)
 }
 //根据点单状态查询订单
 export const getOrderList = (params) => {
+	let userInfo = uni.getStorageSync("userInfo");
+	params.userId = userInfo.userId;
 	return bht_http.get('/order-service/order/findOrderByOrderStatus',{
 		params: params
 	})
@@ -55,31 +53,24 @@ export const getOrderList = (params) => {
 
 //通过用户id获取收货地址列表
 export const getUserAddressList = (params) => {
+	let userInfo = uni.getStorageSync("userInfo");
+	params.userId = userInfo.userId;
 	return bht_http.get('/assets-service/user/address',{
 		params: params
 	})
 }
 //保存用户收货地址
 export const saveUserAddress = (params) => {
+	let userInfo = uni.getStorageSync("userInfo");
+	params.userId = userInfo.userId;
 	return bht_http.post('/assets-service/user/saveAddress',params)
 }
-// //找回密码
-// export const forgetPassword = (params) => {
-// 	uni.showLoading({
-// 		title: '正在努力提交...',
-// 		mask: true
-// 	});
-// 	return new Promise((resolve, reject) => {
-// 		bht_http.post("user/resetPassword", params, {
-// 			header: {
-// 				'content-type': 'application/x-www-form-urlencoded'
-// 			}
-// 		}).then(res => {
-// 			uni.hideLoading();
-// 			resolve(res);
-// 		}).catch(error => {
-// 			uni.hideLoading();
-// 			reject(error);
-// 		})
-// 	})
-// }
+//用户登录
+export const login = (params) => {
+	return bht_http.post('/assets-service/user/login',params)
+};
+//注册用户/保存用户信息
+export const saveUser = (params) => {
+	return bht_http.post('/assets-service/user/saveUser',params)
+};
+

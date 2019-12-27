@@ -10,15 +10,10 @@ const router = new Router({
 });
 
 router.beforeEach((to, from, next) => {
-	store.state.utp.curUrl = to.path
-	let {
-		isLogin,
-		userInfo
-	} = store.state.user
 	let {
 		requiresAuth
-	} = to.meta.auth
-	
+	} = to.meta.auth;
+	let isLogin = uni.getStorageSync("isLogin");
 	if (requiresAuth) {
 		//判断是否登录
 		if (!isLogin) {
@@ -29,18 +24,13 @@ router.beforeEach((to, from, next) => {
 				},
 				NAVTYPE: 'push'
 			})
-		}else{
-			//判断用户是否填写资料 跳转到填写资料界面
-			if(userInfo.name === null || userInfo.name===''){
-				
-			}else{
-				next()
-			}
+		} else{
+			next();
 		}
 	} else {
 		next()
 	}
-	
+
 })
 
 router.afterEach((to, from) => {

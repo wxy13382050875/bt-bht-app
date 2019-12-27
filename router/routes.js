@@ -5,7 +5,7 @@ const routesList = [{
 		meta: {
 			title: '首页',
 			auth: {
-				requiresAuth: false
+				requiresAuth: true
 			}
 		}
 	},

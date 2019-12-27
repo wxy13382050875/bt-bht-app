@@ -15,7 +15,7 @@
 				</view>
 			</view>
 			<view class="personal-store">
-				<view class="item">
+				<!-- <view class="item">
 					<view class="">42</view>
 					<view class="">商品收藏</view>
 				</view>
@@ -26,7 +26,7 @@
 				<view class="item">
 					<view class="">42</view>
 					<view class="">我的足迹</view>
-				</view>
+				</view> -->
 			</view>
 		</view>
 	</view>
