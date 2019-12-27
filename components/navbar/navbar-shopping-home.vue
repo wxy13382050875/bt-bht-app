@@ -8,10 +8,10 @@
 				<view class="search-icon iconfont aca-sousuo"></view>
 				<text class="search-text">大家都在边互通2折起聚划算</text>
 			</navigator>
-			<view class="navbar-header--message">
+			<navigator url='/pages/personal/xw-dth-message' hover-class="none" class="navbar-header--message">
 				<view class="message-icon iconfont aca-xiaoxi"></view>
 				<label class="message-box">32</label>
-			</view>
+			</navigator>
 		</view>
 	</view>
 </template>

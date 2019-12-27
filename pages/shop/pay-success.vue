@@ -1,6 +1,6 @@
 <template>
 	<view class="pay-success-container">
-		<nav-bar-back ></nav-bar-back>
+		<nav-bar-back popType="1"></nav-bar-back>
 		<bht-layout-container :bottom="0">
 			<view class="pay-success-message">
 				<view class="message">
@@ -8,7 +8,7 @@
 					<label class="txt">支付成功</label>
 				</view>
 				<view class="btn-group">
-					<navigator class="btn" hover-class="none">返回首页</navigator>
+					<navigator url="/pages/main" class="btn" hover-class="none">返回首页</navigator>
 					<navigator url="/pages/shop/order-details" class="btn" hover-class="none">查看订单</navigator>
 				</view>
 				<view class="welcome-txt">欢迎您的再次光临！</view>

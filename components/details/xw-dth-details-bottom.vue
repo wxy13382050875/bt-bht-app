@@ -16,7 +16,7 @@
 		</view>
 
 		<view class="right-btn">
-			<button class="add-cart">加入购物车</button>
+			<button class="add-cart" @click="addCart">加入购物车</button>
 			<button class="buy-now" @click="buyNow">立即购买</button>
 		</view>
 	</view>
@@ -27,7 +27,8 @@ export default {
 	data() {
 		return {
 			status: 0,
-			collectionUrl: '../../static/icon/icon-collection.png'
+			collectionUrl: '../../static/icon/icon-collection.png',
+			
 		};
 	},
 	methods: {
@@ -45,9 +46,10 @@ export default {
 		 * 立即购买处理
 		 */
 		buyNow() {
-			uni.navigateTo({
-				url: '/pages/shop/confirm-order'
-			});
+			this.$emit('showSpecifiDialog', false)
+		},
+		addCart(){
+			this.$emit('showSpecifiDialog', true)
 		}
 	}
 };

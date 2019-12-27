@@ -10,7 +10,7 @@
 						<view class="selectType">选择套餐类型</view>
 					</view>
 				</view>
-				<view class="close" @click="uniPopupChange"><image src="../../static/icon/icon_close.png" mode=""></image></view>
+				<view class="close" @click="closePopup"><image src="../../static/icon/icon_close.png" mode=""></image></view>
 			</view>
 			<view class="dialog-content">
 				<view class="package-type">
@@ -92,7 +92,7 @@ export default {
 					type: 'default'
 				}
 			],
-			curTag: {},
+			curTag: null,
 			curNumber: 1
 		};
 	},
@@ -106,10 +106,24 @@ export default {
 	methods: {
 		//确认事件
 		confirm() {
+			if(this.curTag != null){
+				this.showPopup = false;
+				this.$emit('tagChange', this.curTag, this.curNumber);
+			} else{
+				console.log("请选择规格");
+				uni.showToast({
+					icon: 'none',
+					title: '请选择规格'
+				});
+			}
+			
+			
+		},
+		closePopup(){
 			this.showPopup = false;
-			this.$emit('tagChange', this.curTag, this.curNumber);
 		},
 		uniPopupChange(e) {
+			// console.log('---' +e);
 			this.$emit('input', e);
 		},
 		change(value) {
@@ -124,7 +138,7 @@ export default {
 				this.curTag = item;
 			} else {
 				item.type = 'default';
-				this.curTag = {};
+				this.curTag = null;
 			}
 		}
 	}

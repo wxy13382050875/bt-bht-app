@@ -281,7 +281,28 @@
 			}
 		},
 		{
+			"path": "pages/personal/my-order-list",
+			"style": {
+				"navigationStyle": "custom",
+				"disableScroll": true,
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
 			"path": "pages/user/my-address-create",
+			"style": {
+				"navigationStyle": "custom",
+				"disableScroll": true,
+				"app-plus": {
+					"titleNView": false,
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/personal/xw-dth-message",
 			"style": {
 				"navigationStyle": "custom",
 				"disableScroll": true,

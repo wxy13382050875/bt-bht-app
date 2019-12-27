@@ -10,6 +10,10 @@
 <script>
 	import addresslist from '@/components/personal/xw-dth-my-address-cell.vue';
 	import navbaraddress from '@/components/navbar/navbar-back-address.vue';
+	import {
+			getUserAddressList
+			
+		} from '@/api/shop.js'
 	export default {
 		components: {
 			navbaraddress,
@@ -17,43 +21,32 @@
 		},
 		data() {
 			return {
-				dataSource: [{
-					type:"default",
-					surname:"武",
-					name:"神仙小武子",
-					phone:"13382050875",
-					address:"河南省郑州市中原区建设路街道，护国大厦B区20栋"
-					
-				},{
-					type:"default1",
-					surname:"武",
-					name:"神仙小武子",
-					phone:"13382050875",
-					address:"河南省郑州市中原区建设路街道，护国大厦B区20栋"
-					
-				},
-				{
-					type:"default1",
-					surname:"武",
-					name:"神仙小武子",
-					phone:"13382050875",
-					address:"河南省郑州市中原区建设路街道，护国大厦B区20栋"
-					
-				},
-				{
-					type:"default1",
-					surname:"武",
-					name:"神仙小武子",
-					phone:"13382050875",
-					address:"河南省郑州市中原区建设路街道，护国大厦B区20栋"
-					
-				}]
+				dataSource: []
 			};
 		},
 		methods: {
 			
+		},
+		onLoad() {
+			let params = {
+				userId:2
+			}
+			getUserAddressList(params).then(res => {
+				
+				
+				let {
+					data,
+					code
+				} = res
+				if (code === '200') {
+					console.log( data.addressList);
+					this.dataSource = data.addressList;
+				}
+				
+			})
 		}
 	}
+	
 </script>
 
 <style>

@@ -17,7 +17,8 @@ import { mapActions, mapGetters } from 'vuex';
 export default {
 	name: 'navbar-back',
 	props: {
-		title: String
+		title: String,
+		popType:0
 	},
 	data() {
 		return {};
@@ -38,7 +39,15 @@ export default {
 					url: '/pages/index/index'
 				});
 			} else {
-				this.$Router.back();
+				if(this.popType == 0){
+					this.$Router.back();
+				} else {
+					console.log("返回首页")
+					uni.navigateTo({
+						url:"/pages/main"
+					})
+				}
+				
 			}
 		}
 	}

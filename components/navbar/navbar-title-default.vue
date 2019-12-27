@@ -2,7 +2,7 @@
 	<view class="navbar-personal-wrapper" :style="{ height: statusHeight + navHeight + 'px' }">
 		<view class="status" :style="{ height: statusHeight + 'px' }"></view>
 		<view class="navbar-personal-header" :style="{ height: navHeight + 'px' }">
-			<view class="title">个人中心</view>
+			<view class="title">{{ title }}</view>
 			
 		</view>
 	</view>
@@ -10,6 +10,9 @@
 <script>
 import { mapGetters } from 'vuex';
 export default {
+	props: {
+		title: String,
+	},
 	computed: {
 		...mapGetters({
 			statusHeight: 'utp/statusHeight',

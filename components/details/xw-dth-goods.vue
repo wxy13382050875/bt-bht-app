@@ -4,7 +4,10 @@
 			<view class="goods-title">
 				<label class="title">{{ title }}</label>
 				<!-- <router-link class="more" to="{name: 'goodslist'}">更多>>></router-link> -->
-				<navigator :url="'/pages/goodslist/goodslist?state=' + state" hover-class="none" class="more">更多>>></navigator>
+				<navigator :url="'/pages/goodslist/goodslist?state=' + state" hover-class="none" class="more">
+					<view class="">查看更多</view>
+					<image src="/static/icon/icon-rigth-arrow-bg.png" mode=""></image>
+				</navigator>
 			</view>
 			<goodsItems :dataSource="dataSource" :count="count"></goodsItems>
 		</view>
@@ -77,6 +80,12 @@ export default {
 			.more {
 				font-size: 24rpx;
 				color: rgba(99, 99, 99, 1);
+				display: flex;
+				align-items: center;
+				image {
+					width: 82rpx;
+					height: 60rpx;
+				}
 			}
 		}
 	}
