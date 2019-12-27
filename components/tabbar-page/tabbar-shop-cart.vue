@@ -20,8 +20,9 @@
 									v-for="(pro, gIndex) in item.products"
 									:key="pro.pro_id"
 									:options="pro.options"
-									@click="swipeActionClick"
+									@click="swipeActionClick(pro)"
 									@change="swipeActionChange"
+									:data-pro="JSON.stringify(pro)"
 								>
 									<view class="cart-item">
 										<nz-checkbox :circle="true" v-model="pro.checked" @select="choose(item, pro)"></nz-checkbox>
@@ -295,8 +296,8 @@ export default {
 			console.log('okkk');
 		},
 		swipeActionClick(e) {
-			let { id } = e.content;
-
+			console.log(e);
+			return;
 			//删除商品
 			this.fetchData.list.forEach((item, index) => {
 				item.products.find((value, pindex, arr) => {
