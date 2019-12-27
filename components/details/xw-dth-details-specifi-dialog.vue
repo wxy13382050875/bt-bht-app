@@ -43,7 +43,13 @@ export default {
 		UniNumberBox
 	},
 	props: {
-		value: {}
+		value: {},
+		skuData: {
+			type: Object,
+			default: () => {
+				return {};
+			}
+		}
 	},
 	data() {
 		return {
