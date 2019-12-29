@@ -26,12 +26,12 @@
 			<view class="swiper-area">
 				<!-- <pulldown-refresher ref="pulldownRefresher" @pulldownRefresh="refresh"> -->
 				<mescroll-uni class="mescroll" @init="initMescroll" :down="downOption" :up="upOption" @up="upCallback" @down="downCallback" :fixed="false">
-					<!-- <swiper :current="switchIndex" style="height: 100%;" :duration="567" @transition="transition" @change="change" @animationfinish="animationfinish">
+					<swiper :current="switchIndex" style="height: 100%;" :duration="567" @transition="transition" @change="change" @animationfinish="animationfinish">
 						<swiper-item v-for="(item, pIndex) in navList" :key="pIndex" style="height: 100%;">
 							<view v-for="(item, eIndex) in dataSource" style="height: 100%;" :key="eIndex"><ordercell :dataSource="item"></ordercell></view>
 						</swiper-item>
-					</swiper> -->
-					<view v-for="(item, eIndex) in dataSource" :key="eIndex"><ordercell :dataSource="item"></ordercell></view>
+					</swiper>
+					<!-- <view v-for="(item, eIndex) in dataSource" :key="eIndex"><ordercell :dataSource="item"></ordercell></view> -->
 				</mescroll-uni>
 				<!-- </pulldown-refresher> -->
 			</view>

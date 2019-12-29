@@ -10,7 +10,9 @@
 					</view>
 				</view>
 				<view class="right-item">
-					<view class="btn-name">设置</view>
+					<navigator url='/pages/user/edit-profile' hover-class="none" class="btn-name">
+						设置
+					</navigator>
 					<image src="/static/icon/icon_right_arrow-write.png" mode=""></image>
 				</view>
 			</view>

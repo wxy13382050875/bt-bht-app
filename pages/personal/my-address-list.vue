@@ -23,11 +23,12 @@ export default {
 	methods: {
 		didSelectCell(e) {
 			if (this.type == 1) {
-				var pages = getCurrentPages();
-				var prevPage = pages[pages.length - 2]; //上一个页面
-				prevPage.address = e;
-				console.log("prevPage.address");
-				console.log(prevPage.address);
+				// var pages = getCurrentPages();
+				// var prevPage = pages[pages.length - 2]; //上一个页面
+				// prevPage.address = e;
+				// console.log("prevPage.address");
+				// console.log(prevPage.address);
+				uni.setStorageSync('defaultAddress', e);
 				uni.navigateBack();
 			}
 		}

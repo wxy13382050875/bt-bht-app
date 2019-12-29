@@ -64,7 +64,7 @@
 					</view>
 				</view>
 
-				<view class="order-pay-list">
+				<view class="order-pay-list" style="padding-left: 20rpx;padding-right:20rpx;height:160rpx;">
 					<radio-group style="width: 100%;" @change="radioChange">
 						<label
 							style="display: flex;justify-content: space-between;height: 80rpx;line-height: 80rpx;border-bottom: 1rpx solid #a7a7a7;"
@@ -240,6 +240,12 @@ export default {
 		}
 	},
 	onLoad: function(option) {
+		
+	// params.userId = userInfo.userId;
+		// this.address = userInfo.defaultAddress;
+		
+	},
+	onShow() {
 		this.dataSource = JSON.parse(decodeURIComponent(option.item));
 		console.log('---wxy---' + option.commitType);
 		this.commitType = option.commitType;
@@ -247,9 +253,7 @@ export default {
 			this.totalNum += Number.parseInt(item.goodsTotalNum);
 			this.totalPrice += item.goodsTotalPrice;
 		});
-		let userInfo = uni.getStorageSync("userInfo");
-	// params.userId = userInfo.userId;
-		this.address = userInfo.defaultAddress;
+		this.address = uni.getStorageSync("defaultAddress");
 		console.log(this.address);
 	}
 };
@@ -504,6 +508,7 @@ $text-color: #333333;
 	.order-pay-list {
 		background: #ffffff;
 		margin-top: 20rpx;
+		
 		.pay-cell {
 			margin-left: 20rpx;
 			margin-right: 20rpx;

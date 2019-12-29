@@ -1,6 +1,7 @@
 <template>
 	<view class="app-content">
-		<aca-nav-bar :level="2" title="编辑资料"></aca-nav-bar>
+		<!-- <aca-nav-bar :level="2" title="编辑资料"></aca-nav-bar> -->
+		<nav-bar-back title="编辑资料" popType="0"></nav-bar-back>
 		<bht-layout-container bg-color="#fff">
 			<view class="profile-content">
 				<view class="aca-cell">

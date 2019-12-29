@@ -99,6 +99,7 @@
 							//缓存用户信息
 							uni.setStorageSync('isLogin', true);
 							uni.setStorageSync('userInfo', res.data);
+							uni.setStorageSync('defaultAddress', res.data.defaultAddress);
 							uni.redirectTo({
 								url: '/pages/main'
 							});
