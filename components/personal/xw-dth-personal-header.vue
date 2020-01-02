@@ -5,8 +5,8 @@
 				<view class="left-item">
 					<image src="/static/icon/icon-head-portrait.png"></image>
 					<view style="margin-left: 20rpx; align-items: center;">
-						<view class="title">成国富</view>
-						<view class="describe">个性签名：越努力越幸运</view>
+						<view class="title">{{dataSource.userId}}</view>
+						<view class="describe">{{dataSource.userTicket}}</view>
 					</view>
 				</view>
 				<view class="right-item">
@@ -34,7 +34,21 @@
 	</view>
 </template>
 
-<script></script>
+<script>
+	export default {
+		props:{
+			dataSource:{
+				type:Object,
+				default () {
+					return {}
+				}
+			}
+		},
+		methods: {
+			
+		}
+	}
+</script>
 
 <style lang="scss">
 .personal {

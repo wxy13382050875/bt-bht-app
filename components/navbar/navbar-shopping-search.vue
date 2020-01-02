@@ -7,7 +7,7 @@
 				<image src="/static/icon/search.png"></image>
 				<input type="text" />
 			</view>
-			<view class="list-type"><image src="/static/icon/list_type_icon.png"></image></view>
+			<view class="list-type"><!-- <image src="/static/icon/list_type_icon.png"></image> --></view>
 		</view>
 	</view>
 </template>

@@ -40,7 +40,8 @@ export const getShopCartList = (params) => {
 export const postCommitOrder = (params) => {
 	let userInfo = uni.getStorageSync("userInfo");
 	params.userId = userInfo.userId;
-	return bht_http.post('/order-service/order/commitOrder',params)
+	// return bht_http.post('/order-service/order/commitOrder',params)
+	return bht_http.get('/order-service/order/getKey')
 }
 //根据点单状态查询订单
 export const getOrderList = (params) => {

@@ -3,7 +3,7 @@
 		<navBarTitle title="个人中心"></navBarTitle>
 		<bht-layout-container>
 			<view class="bht-layout-content">
-				<view class="header"><personalHeader></personalHeader></view>
+				<view class="header"><personalHeader :dataSource="userInfo"></personalHeader></view>
 				<view class="body">
 					<personalOrder :dataSource="dataSource.order" sta></personalOrder>
 					<personalOrder :dataSource="dataSource.tool"></personalOrder>
@@ -27,7 +27,9 @@ export default {
 	},
 	data() {
 		return {
+			downOption: {				autoShowLoading: true,				textInOffset: '下拉即可刷新...',				textOutOffset: '松开即可刷新...',				textLoading: '努力加载中...'			},			upOption: {				use: false,				auto: false,				noMoreSize: 5,				empty: {					tip: '没有查询到数据',					icon: ''				},				textNoMore: '没有更多数据了'			},
 			pageFlag: 'my',
+			userInfo:{},
 			dataSource: {
 				order: {
 					title: '我的订单',
@@ -63,7 +65,16 @@ export default {
 				url: '/pages/common/login'
 			});
 		}
-	}
+	},
+	watch:{
+		tabBarFlag(n, v) {
+			if (n === this.pageFlag) {
+				this.userInfo = uni.getStorageSync("userInfo");
+				console.log(this.userInfo );
+			}
+		}
+	},
+	
 };
 </script>
 

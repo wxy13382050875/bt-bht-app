@@ -2,29 +2,27 @@
 	<view>
 		<nav-bar-back title="商品详情" popType="0"></nav-bar-back>
 		<bht-layout-container :bottom="layoutBottom">
-			
 			<view class="bht-layout-content">
 				<scroll-view scroll-y="true" style="height: 100%;">
-				<!--商品详情-->
-				<xw-dth-details-info :dataSource="goodsInfo"></xw-dth-details-info>
-				<!--商品参数/是规格列表-->
-				<xw-dth-details-param @showParamDialog="showParamDialog" @showSpecifiDialog="showSpecifiDialog"></xw-dth-details-param>
-				<!--店铺信息-->
-				<xw-dth-details-store :storeInfo="goodsInfo.store"></xw-dth-details-store>
-				<!--店铺商品推荐-->
-				<xw-dth-goods v-if="storeRecommendGoods.length > 0" title="店铺推荐" :dataSource="storeRecommendGoods" :count="3"></xw-dth-goods>
-				<!--商品详情（图片/富文本）-->
-				<xw-dth-details-image :goodsDetails="goodsInfo.goodsPictures"></xw-dth-details-image>
-				<!--看了又看-->
-				<xw-dth-detail-recommend :dataSource="seemLookGoods"></xw-dth-detail-recommend>
-			</scroll-view>
+					<!--商品详情-->
+					<xw-dth-details-info :dataSource="goodsInfo"></xw-dth-details-info>
+					<!--商品参数/是规格列表-->
+					<xw-dth-details-param @showParamDialog="showParamDialog" @showSpecifiDialog="showSpecifiDialog"></xw-dth-details-param>
+					<!--店铺信息-->
+					<xw-dth-details-store :storeInfo="goodsInfo.store"></xw-dth-details-store>
+					<!--店铺商品推荐-->
+					<xw-dth-goods v-if="storeRecommendGoods.length > 0" title="店铺推荐" :dataSource="storeRecommendGoods" :count="3"></xw-dth-goods>
+					<!--商品详情（图片/富文本）-->
+					<xw-dth-details-image :goodsDetails="goodsInfo.goodsPictures"></xw-dth-details-image>
+					<!--看了又看-->
+					<xw-dth-detail-recommend :dataSource="seemLookGoods"></xw-dth-detail-recommend>
+				</scroll-view>
 			</view>
-			
 		</bht-layout-container>
 		<!--商品参数dialog-->
 		<xw-dth-detaails-param-dialog :paramData="goodsInfo.param" v-model="bShowParamDialog"></xw-dth-detaails-param-dialog>
 		<!--套餐规格dialog-->
-		<xw-dth-details-specifi-dialog :skuData="goodsInfo.goodsAttrRels" v-model="bShowSpecifiDialog" @tagChange="tagChange"></xw-dth-details-specifi-dialog>
+		<xw-dth-details-specifi-dialog :skuData="skuData" v-model="bShowSpecifiDialog" @tagChange="tagChange"></xw-dth-details-specifi-dialog>
 		<xw-dth-details-bottom @showSpecifiDialog="showSpecifiDialog"></xw-dth-details-bottom>
 	</view>
 </template>
@@ -65,7 +63,7 @@ export default {
 				goodsDetails: []
 			},
 			//商品规格
-			skuData: {},
+			skuData: [],
 			//商品推荐
 			storeRecommendGoods: [],
 			//看了又看商品
@@ -78,9 +76,28 @@ export default {
 	},
 	onLoad(option) {
 		findGoodsAllInfoByGodosIdAndStoreId(option).then(res => {
-			this.goodsInfo = res.data.goods;
-			this.storeRecommendGoods = res.data.storeRecommendGoods;
-			this.seemLookGoods.list = res.data.seemLookGoods;
+			let { data, code, msg } = res;
+			if (code === '200') {
+				this.goodsInfo = data.goods;
+				this.storeRecommendGoods = data.storeRecommendGoods;
+				this.seemLookGoods.list = data.seemLookGoods;
+
+				this.goodsInfo.goodsAttrRels[0].attrs.forEach((item, index) => {
+					item.attrValues.forEach((pro, pIndex) => {
+						pro.type = 'default';
+					});
+
+					this.skuData.push(item);
+				});
+			} else {
+				uni.showToast({
+					icon: 'none',
+					title: msg
+				});
+			}
+
+			// console.log('this.skuData');
+			// console.log(this.skuData);
 		});
 	},
 	methods: {
@@ -107,9 +124,10 @@ export default {
 				uni.showLoading({
 					title: ''
 				});
+				let userInfo = uni.getStorageSync('userInfo');
 				let item = {
-					shopCarNbr: '1577155815747e4466f8cf9d1422dabe74d9a2c41753a',
-					goodsInst:{
+					shopCarNbr: userInfo.shopCarNbr,
+					goodsInst: {
 						storeId: this.goodsInfo.store.storeId,
 						goodsId: this.goodsInfo.goodsId,
 						goodsNum: number,
@@ -120,8 +138,6 @@ export default {
 							}
 						]
 					}
-					
-					
 				};
 				addGoodsCart(item).then(res => {
 					// this.goodsInfo = res.data.goods;
@@ -130,16 +146,15 @@ export default {
 
 					// uni.hideLoading();
 					uni.showToast({
-						title:res.msg,
-						icon:'none'
-					})
-					
+						title: res.msg,
+						icon: 'none'
+					});
 				});
 			} else {
 				console.log('立即购买');
-
+				let userInfo = uni.getStorageSync('userInfo');
 				let item = {
-					shopCarNbr: '1577155815747e4466f8cf9d1422dabe74d9a2c41753a',
+					shopCarNbr: userInfo.shopCarNbr,
 					storeId: this.goodsInfo.store.storeId,
 					storeName: this.goodsInfo.store.storeName,
 					storePicture: this.goodsInfo.store.storePicture,

@@ -1,6 +1,7 @@
 <template>
 	<view>
-		<navbar-shopping-search></navbar-shopping-search>
+		<!-- <navbar-shopping-search></navbar-shopping-search> -->
+		<nav-bar-back title="商品列表" popType="0"></nav-bar-back>
 		<bht-layout-container :bottom="0">
 			<view class="index-header">
 				<!-- filters：过滤选项设置， sortChanged：排序更改的事件监听方法，showShape：是否显示右侧模板选择按钮，shapeValue：初始化的模板值，2：双列，1：单列，具体可自行控制，shapeChanged:右侧的模板选择按钮事件监听方法-->
@@ -20,7 +21,8 @@ import XwDthGoodsList from '@/components/goods/xw-dth-goods-list.vue';
 import goodsFilter from '@/third/yb-filter/index.vue';
 import NavbarShoppingSearch from '@/components/navbar/navbar-shopping-search.vue';
 import {
-		getGoodsList
+		getGoodsList,
+		
 		
 	} from '@/api/shop.js'
 export default {

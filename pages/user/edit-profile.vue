@@ -104,8 +104,8 @@
 		},
 		onLoad() {
 			//解构赋值
-			this.formData = { ...this.userInfo
-			}
+			this.userInfo = uni.getStorageSync("userInfo");
+			this.formData = this.userInfo;
 			this.init();
 		},
 		computed: {

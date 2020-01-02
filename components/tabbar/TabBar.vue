@@ -21,7 +21,24 @@ export default {
 	data() {
 		return {
 			select: 'index',
-			list: [
+			list: []
+		};
+	},
+	methods: {
+		...mapActions({
+			setTabBarIndex: 'utp/setTabBarIndex'
+		}),
+		tabChangeEvent(flag) {
+			if (this.select !== flag) {
+				this.select = flag;
+				this.setTabBarIndex(flag);
+			}
+		}
+	},
+	created() {
+		let userInfo = uni.getStorageSync("userInfo");
+		if(1){
+			this.list = [
 				{
 					title: '首页',
 					src: require('@/static/tab/home_def_icon.png'),
@@ -34,10 +51,6 @@ export default {
 					selectedSrc: require('@/static/tab/tjbb_sel_icon.png'),
 					flag: 'stat'
 				},
-				// {
-				// 	title: '分类',
-				// 	flag: 'cat'
-				// },
 				{
 					title: '购物车',
 					src: require('@/static/tab/cart_def_icon.png'),
@@ -50,18 +63,28 @@ export default {
 					selectedSrc: require('@/static/tab/my_sel_icon.png'),
 					flag: 'my'
 				}
-			]
-		};
-	},
-	methods: {
-		...mapActions({
-			setTabBarIndex: 'utp/setTabBarIndex'
-		}),
-		tabChangeEvent(flag) {
-			if (this.select !== flag) {
-				this.select = flag;
-				this.setTabBarIndex(flag);
-			}
+			];
+		} else {
+			this.list = [
+				{
+					title: '首页',
+					src: require('@/static/tab/home_def_icon.png'),
+					selectedSrc: require('@/static/tab/home_sel_icon.png'),
+					flag: 'index'
+				},
+				{
+					title: '购物车',
+					src: require('@/static/tab/cart_def_icon.png'),
+					selectedSrc: require('@/static/tab/cart_sel_icon.png'),
+					flag: 'cart'
+				},
+				{
+					title: '我的',
+					src: require('@/static/tab/my_def_icon.png'),
+					selectedSrc: require('@/static/tab/my_sel_icon.png'),
+					flag: 'my'
+				}
+			];
 		}
 	}
 };

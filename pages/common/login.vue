@@ -84,11 +84,17 @@
 			handleLogin() {
 				
 				
+				
 				let valid = formValidate.check({ ...this.loginData
 				}, this.rule);
 				if (valid) {
+					uni.showLoading({
+						title: '正在登陆...',		
+						mask: true	,
+						});
 					login(this.loginData).then(res => {
 						
+						uni.hideLoading();
 						if (res.code === "200") {
 							//获取菜单列表
 							//设置登录状态
@@ -111,6 +117,7 @@
 						}
 					}).catch(erro => {
 						console.log(erro)
+						uni.hideLoading();
 					})
 				} else {
 					uni.showToast({

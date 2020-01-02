@@ -11,14 +11,11 @@
 							v-for="(item, index) in navList"
 							:key="index"
 							:style="{ width: navItemWidth + 'px' }"
-							:class="{ active: index === changeIndex }"
+							:class="{ active: index == changeIndex }"
 							@tap="tapNav(index)"
 						>
 							{{ item.name }}
 						</view>
-					</view>
-					<view class="scroller-bar">
-						<view class="active-bar" :style="{ width: navItemWidth + 'px', left: activeBarLeft + 'px' }"><view></view></view>
 					</view>
 				</view>
 			</view>
@@ -26,12 +23,12 @@
 			<view class="swiper-area">
 				<!-- <pulldown-refresher ref="pulldownRefresher" @pulldownRefresh="refresh"> -->
 				<mescroll-uni class="mescroll" @init="initMescroll" :down="downOption" :up="upOption" @up="upCallback" @down="downCallback" :fixed="false">
-					<swiper :current="switchIndex" style="height: 100%;" :duration="567" @transition="transition" @change="change" @animationfinish="animationfinish">
+					<!-- <swiper :current="switchIndex" style="height: 100%;" :duration="567" @transition="transition" @change="change" @animationfinish="animationfinish">
 						<swiper-item v-for="(item, pIndex) in navList" :key="pIndex" style="height: 100%;">
 							<view v-for="(item, eIndex) in dataSource" style="height: 100%;" :key="eIndex"><ordercell :dataSource="item"></ordercell></view>
 						</swiper-item>
-					</swiper>
-					<!-- <view v-for="(item, eIndex) in dataSource" :key="eIndex"><ordercell :dataSource="item"></ordercell></view> -->
+					</swiper> -->
+					<view v-for="(item, eIndex) in dataSource" :key="eIndex"><ordercell :dataSource="item"></ordercell></view>
 				</mescroll-uni>
 				<!-- </pulldown-refresher> -->
 			</view>
@@ -92,6 +89,10 @@ export default {
 			statusCd: 0
 		};
 	},
+	onLoad: function(option) {
+		this.statusCd = this.navList[option.currentIndex].value;
+		this.changeIndex = option.currentIndex;
+	},
 	created() {
 		// 乱序
 		// this.navList.forEach(() => this.datsSource.push(JSON.parse(JSON.stringify(this.datsSource.sort(() => Math.random() - 0.5)))))
@@ -106,30 +107,13 @@ export default {
 		// },100)
 	},
 	methods: {
-		transition({ detail: { dx } }) {
-			console.log('transition');
-			// swiper 运动时触发
-			this.activeBarLeft = this.navItemWidth * this.finishedIndex + this.navItemWidth * (dx / this.screenWidth);
-			if (this.activeBarLeft > (this.screenWidth - this.navItemWidth) / 2) {
-				this.navScrollLeft = this.activeBarLeft - (this.screenWidth - this.navItemWidth) / 2;
-			}
-		},
-		change({ detail: { current } }) {
-			// swiper index 变化时触发
-			console.log('change');
-			this.changeIndex = current;
-		},
-		animationfinish({ detail: { current } }) {
-			console.log('animationfinish');
-			// swiper 运动结束时触发
-			this.switchIndex = this.finishedIndex = current;
-		},
 		tapNav(index) {
 			console.log('tapNav');
 			// 点击 bavbar 切换
 			this.switchIndex = index;
 			this.changeIndex = index;
 			this.statusCd = this.navList[index].value;
+			this.dataSource = [];
 			this.mescroll.triggerUpScroll();
 		},
 		$offset(selector) {
@@ -156,10 +140,13 @@ export default {
 		//上拉刷新
 		upCallback(mescroll) {
 			console.log('upCallback');
+			
 			this.params.pageIndex = mescroll.num;
 			this.params.pageSize = mescroll.size;
 			this.params.statusCd = this.statusCd;
-			this.params.shopCarNbr = '1577155815747e4466f8cf9d1422dabe74d9a2c41753a';
+			let userInfo = uni.getStorageSync('userInfo');
+
+			this.params.shopCarNbr = userInfo.shopCarNbr;
 
 			console.log(this.params);
 			getOrderList(this.params).then(res => {
@@ -173,9 +160,6 @@ export default {
 				});
 			});
 		}
-	},
-	onLoad: function(option) {
-		this.statusCd = this.navList[option.currentIndex].value;
 	}
 };
 </script>
@@ -209,29 +193,22 @@ export default {
 			height: 100%;
 			background: #ffffff;
 			.scroller-wrapper {
-				height: 90rpx;
-
+				height: 100%;
 				.scroller-item {
 					@include flex();
 					float: left;
 					height: 100%;
 					&.active {
+						position: relative;
 						color: #ff3333;
 					}
-				}
-			}
-			.scroller-bar {
-				height: 10rpx;
-				position: relative;
-				.active-bar {
-					@include flex();
-					top: 0;
-					left: 0;
-					height: 100%;
-					position: absolute;
-					view {
-						width: 30%;
-						height: 100%;
+					&.active::after {
+						content: '';
+						position: absolute;
+						right: 0;
+						bottom: 0;
+						left: 0;
+						height: 2px;
 						background: #ff3333;
 					}
 				}

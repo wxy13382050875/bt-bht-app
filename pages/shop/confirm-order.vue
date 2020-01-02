@@ -63,7 +63,13 @@
 						</view>
 					</view>
 				</view>
-
+				<view class="uni-btn-v uni-common-mt">
+					<!-- #ifdef APP-PLUS -->
+					<template v-if="providerList.length > 0">
+						<button v-for="(item, index) in providerList" :key="index" @click="requestPayment(item, index)" :loading="item.loading">{{ item.name }}支付</button>
+					</template>
+					<!-- #endif -->
+				</view>
 				<view class="order-pay-list" style="padding-left: 20rpx;padding-right:20rpx;height:160rpx;">
 					<radio-group style="width: 100%;" @change="radioChange">
 						<label
@@ -108,24 +114,76 @@ export default {
 			totalPrice: 0,
 			commitType: 0,
 			address: {},
-			items: [
-				{
-					value: '0',
-					name: '支付宝',
-					checked: true
-				},
-				{
-					value: '1',
-					name: '微信',
-					checked: false
-				}
-			],
+			title: 'request-payment',
+			loading: false,
+			price: 1,
+			providerList: [],
 			payType: 0,
-			current: 0
+			current: 0,
+			payInfo: {}
 		};
 	},
-	onShow() {},
+	onShow() {
+		// #ifdef APP-PLUS
+		// #endif
+	},
 	methods: {
+		getOrderInfo(e) {
+			let appid = '';
+			// #ifdef APP-PLUS
+			appid = plus.runtime.appid;
+			// #endif
+			console.log('appid-----');
+			console.log(appid);
+			let url = 'http://172.16.12.55:9500/order-service/order/getKey';
+			return new Promise(res => {
+				uni.request({
+					url: url,
+					success: result => {
+						res(result);
+					},
+					fail: e => {
+						res(e);
+					}
+				});
+			});
+		},
+		async requestPayment(e, index) {
+			this.providerList[index].loading = true;
+			let orderInfo = await this.getOrderInfo(e.id);
+			console.log('得到订单信息', orderInfo);
+			if (orderInfo.statusCode !== 200) {
+				console.log('获得订单信息失败', orderInfo);
+				uni.showModal({
+					content: '获得订单信息失败',
+					showCancel: false
+				});
+				return;
+			}
+			console.log('------');
+			console.log(orderInfo.data.data);
+			uni.requestPayment({
+				provider: e.id,
+				orderInfo: orderInfo.data.data,
+				success: e => {
+					console.log('success', e);
+					uni.showToast({
+						title: '感谢您的赞助!'
+					});
+				},
+				fail: e => {
+					console.log('fail', e);
+					uni.showModal({
+						content: '支付失败,原因为: ' + e.errMsg,
+						showCancel: false
+					});
+				},
+				complete: () => {
+					this.providerList[index].loading = false;
+				}
+			});
+		},
+
 		radioChange: function(evt) {
 			for (let i = 0; i < this.items.length; i++) {
 				if (this.items[i].value === evt.target.value) {
@@ -136,7 +194,6 @@ export default {
 		},
 
 		payhandle() {
-			uni.req;
 			var that = this;
 			if (this.current == 0) {
 				console.log('支付宝');
@@ -168,35 +225,126 @@ export default {
 					}
 				});
 			} else {
+				console.log(this.payInfo);
+				// 				{
+				// 	"appid": "wx521281b492ffd8c1",
+				// 	"noncestr": "uPooyB6B1TWQunLf",
+				// 	"package": "Sign=WXPay",
+				// 	"partnerid": "1485884942",
+				// 	"prepayid": "wx31123406113589471eac51731034968400",
+				// 	"sign": "B4CFB462271B1FF778E3D7964E2EB5CE",
+				// 	"timestamp": "1577766846"
+				// }
+				// "data": {
+				// 		"appid": "wx0411fa6a39d61297",
+				// 		"noncestr": "yNYY28xy6wU5CWAm",
+				// 		"package": "Sign=WXPay",
+				// 		"partnerid": "1230636401",
+				// 		"prepayid": "wx31125607130283300e0df3281605240100",
+				// 		"timestamp": 1577768167,
+				// 		"sign": "1F1A8488339D98E6B9E83405EF422DB7"
+				// 	},
+				let obj = {
+					appid: this.payInfo.appid,
+					noncestr: this.payInfo.noncestr,
+					package: this.payInfo.package, // 固定值，以微信支付文档为主
+					partnerid: this.payInfo.partnerid,
+					prepayid: this.payInfo.prepayid,
+					timestamp: this.payInfo.timestamp,
+					sign: this.payInfo.sign // 根据签名算法生成签名
+				};
+				console.log('--------');
+
+				console.log(obj);
+				// let obj = {
+				// 	appid: 'wx521281b492ffd8c1',
+				// 	noncestr: '42997F9CA2584ADCB478E254F0ECE4EE',
+				// 	package: 'Sign=WXPay', // 固定值，以微信支付文档为主
+				// 	partnerid: '1485884942',
+				// 	prepayid: 'wx3020333469072448edc8f5d01613623700',
+				// 	timestamp: '1577709216',
+				// 	sign: '2A9B3ED1DC52CD91A82AC6BF6760E689' // 根据签名算法生成签名
+				// }
+				// // 第一种写法，传对象
+				// let orderInfo = JSON.stringify(this.payInfo);
+				// console.log(obj);
+				// uni.showToast({
+				// 			// title: '支付成功',
+				// 			title: 'res:'+ JSON.stringify(this.payInfo),
+				// 			icon: 'success',
+				// 			duration: 4500
+				// 		});
+
 				uni.requestPayment({
 					provider: 'wxpay',
-					orderInfo: '', // 订单数据
-					timeStamp: '', // 时间戳从1970年1月1日至今的秒数，即当前的时间
-					nonceStr: '', // 随机字符串，长度为32个字符以下
-					package: '', // 统一下单接口返回的 prepay_id 参数值，提交格式如：prepay_id=xx
-					signType: '', //签名算法，暂支持 MD5
-					paySign: '', // 签名
-					success: function(res) {
-						// 支付成功的回调中 创建绘本馆成功
+					timeStamp: this.payInfo.timestamp,
+					nonceStr: this.payInfo.noncestr,
+					package: this.payInfo.package,
+					signType: 'MD5',
+					paySign: this.payInfo.sign,
+					success: res => {
 						uni.showToast({
-							title: '微信支付成功',
-							icon: 'success',
-							duration: 1500
+							title: '感谢您的赞助!'
 						});
 					},
-					fail: function(err) {
-						// 支付失败的回调中 用户未付款
-						uni.showToast({
-							title: '支付取消',
-							duration: 1500,
-							image: '/static/png/error_icon.png'
+					fail: res => {
+						uni.showModal({
+							content: '支付失败,原因为: ' + res.errMsg,
+							showCancel: false
 						});
+					},
+					complete: () => {
+						this.loading = false;
 					}
 				});
+				// uni.requestPayment({
+				// 	provider: 'wxpay',
+				// 	orderInfo: obj,
+				// 	success: e => {
+				// 		console.log('success', e);
+				// 		uni.showToast({
+				// 			title: '感谢您的赞助!'
+				// 		});
+				// 	},
+				// 	fail: e => {
+				// 		console.log('fail', e);
+				// 		uni.showModal({
+				// 			content: '支付失败,原因为: ' + e.errMsg,
+				// 			showCancel: false
+				// 		});
+				// 	},
+				// 	complete: () => {
+				// 		// this.providerList[index].loading = false;
+				// 	}
+				// });
+				// uni.requestPayment({
+				// 	provider: 'wxpay',
+				// 	orderInfo: orderInfo,
+				// 	success: function(res) {
+				// 		// 支付成功的回调中 创建绘本馆成功
+				// 		console.log(res);
+				// 		uni.showToast({
+				// 			// title: '支付成功',
+				// 			title: 'res:'+ JSON.stringify(res),
+				// 			icon: 'success',
+				// 			duration: 4500
+				// 		});
+				// 	},
+				// 	fail: function(err) {
+				// 		console.log(err);
+				// 		// 支付失败的回调中 用户未付款
+				// 		uni.showToast({
+				// 			// title: '支付取消',
+				// 			title:'err:'+ JSON.stringify(err),
+				// 			duration: 4500,
+				// 			image: '/static/png/error_icon.png'
+				// 		});
+				// 	}
+				// });
 			}
-			uni.navigateTo({
-				url: '/pages/shop/pay-success'
-			});
+			// uni.navigateTo({
+			// 	url: '/pages/shop/pay-success'
+			// });
 		},
 		//提交订单处理
 		submitOrder() {
@@ -218,18 +366,23 @@ export default {
 					subItems.push(items);
 				});
 			});
+			let userInfo = uni.getStorageSync('userInfo');
+
 			let params = {
-				shopCarNbr: '1577155815747e4466f8cf9d1422dabe74d9a2c41753a',
+				shopCarNbr: userInfo.shopCarNbr,
 				goodsInsts: subItems,
 				commitType: this.commitType,
-				orderAddressId: this.address.addressId,
+				orderAddressId: this.address.addressId
 			};
 			console.log('-----params-----');
 			console.log(params);
 			postCommitOrder(params).then(res => {
-				console.log(res.resultCode);
+				console.log(res);
 				if (res.code == 200) {
-					payhandle();
+					this.current = 1;
+					this.payInfo = res.data;
+
+					this.payhandle();
 				} else {
 					uni.showToast({
 						title: res.msg,
@@ -240,12 +393,8 @@ export default {
 		}
 	},
 	onLoad: function(option) {
-		
-	// params.userId = userInfo.userId;
+		// params.userId = userInfo.userId;
 		// this.address = userInfo.defaultAddress;
-		
-	},
-	onShow() {
 		this.dataSource = JSON.parse(decodeURIComponent(option.item));
 		console.log('---wxy---' + option.commitType);
 		this.commitType = option.commitType;
@@ -253,8 +402,43 @@ export default {
 			this.totalNum += Number.parseInt(item.goodsTotalNum);
 			this.totalPrice += item.goodsTotalPrice;
 		});
-		this.address = uni.getStorageSync("defaultAddress");
+		this.address = uni.getStorageSync('defaultAddress');
 		console.log(this.address);
+
+		uni.getProvider({
+			service: 'payment',
+			success: e => {
+				console.log('payment success:' + JSON.stringify(e));
+				let providerList = [];
+				e.provider.map(value => {
+					switch (value) {
+						case 'alipay':
+							providerList.push({
+								name: '支付宝',
+								id: value,
+								loading: false
+							});
+							break;
+						case 'wxpay':
+							providerList.push({
+								name: '微信',
+								id: value,
+								loading: false
+							});
+							break;
+						default:
+							break;
+					}
+				});
+				this.providerList = providerList;
+			},
+			fail: e => {
+				console.log('获取支付通道失败：', e);
+			}
+		});
+	},
+	onShow() {
+		this.address = uni.getStorageSync('defaultAddress');
 	}
 };
 </script>
@@ -508,7 +692,7 @@ $text-color: #333333;
 	.order-pay-list {
 		background: #ffffff;
 		margin-top: 20rpx;
-		
+
 		.pay-cell {
 			margin-left: 20rpx;
 			margin-right: 20rpx;

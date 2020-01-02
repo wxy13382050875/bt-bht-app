@@ -34,7 +34,7 @@ export default {
 		};
 	},
 	created() {
-		console.log('-1111------' + this.dataSource);
+		// console.log('-1111------' + this.dataSource);
 		var sysinfo = uni.getSystemInfoSync(),
 			windowWidth = sysinfo.windowWidth;
 		//减去底部导航高度

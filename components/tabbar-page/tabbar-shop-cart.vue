@@ -138,8 +138,9 @@ export default {
 		},
 		tabBarFlag(n, v) {
 			if (n === this.pageFlag) {
+				let userInfo = uni.getStorageSync("userInfo");
 				let param = {
-					shopCarNbr: '1577155815747e4466f8cf9d1422dabe74d9a2c41753a'
+					shopCarNbr: userInfo.shopCarNbr
 				};
 				getShopCartList(param).then(res => {
 					// console.log(res);

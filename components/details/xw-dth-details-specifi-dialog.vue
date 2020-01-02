@@ -13,17 +13,26 @@
 				<view class="close" @click="closePopup"><image src="../../static/icon/icon_close.png" mode=""></image></view>
 			</view>
 			<view class="dialog-content">
-				<view class="package-type">
-					<view class="name">套餐类型</view>
+				<view class="package-type" v-for="(item, index) in skuData" :key="index">
+					<view class="name">{{ item.attrName }}</view>
 					<view class="tag-list">
-						<view class="tag" v-for="(item, index) in dataTag" :key="index">
-							<uniTag :type="item.type" :text="item.text" @click="bindClick(item)" inverted="false" :circle="true"></uniTag>
+						<view class="tag" v-for="(pro, pIndex) in item.attrValues" :key="pIndex">
+							<uniTag  :type="pro.type" :text="pro.attrValue" @click="bindClick(item, pro)" inverted="false" :circle="true"></uniTag>
 						</view>
 					</view>
 				</view>
 				<view class="buy-number">
 					<view class="name">购买数量</view>
-					<view class="number-controls"><uniNumberBox :min="0" :max="9" @change="change"></uniNumberBox></view>
+					<uni-number-box
+						:min="1"
+						:max="9"
+						:value="1"
+						v-model="curNumber"
+						:disabled="true"
+						@change='change()'
+					></uni-number-box>
+																		
+					<!-- <view class="number-controls"><uniNumberBox :min="1" :step="1" :max="9" :value="1" :disabled='false' @change="change"></uniNumberBox></view> -->
 				</view>
 			</view>
 			<view class="dialog-finish"><button class="finish-btn" @click="confirm">完成</button></view>
@@ -35,6 +44,7 @@
 import UniPopup from '@/third/uni-popup/uni-popup.vue';
 import uniTag from '@/third/uni-tag/uni-tag.vue';
 import UniNumberBox from '@/components/cart/uni-number-box.vue';
+import Vue from 'vue'
 export default {
 	name: 'specifi-dialog',
 	components: {
@@ -45,53 +55,16 @@ export default {
 	props: {
 		value: {},
 		skuData: {
-			type: Object,
+			type: Array,
 			default: () => {
-				return {};
+				return [];
 			}
 		}
 	},
 	data() {
 		return {
 			showPopup: false,
-			type: 'default',
-			dataTag: [
-				{
-					id: 1,
-					text: 'taoCAN1',
-					type: 'default'
-				},
-				{
-					id: 2,
-					text: 'taoCAN1',
-					type: 'default'
-				},
-				{
-					id: 3,
-					text: 'taoCAN1',
-					type: 'default'
-				},
-				{
-					id: 4,
-					text: 'taoCAN1',
-					type: 'default'
-				},
-				{
-					id: 5,
-					text: 'taoCAN1',
-					type: 'default'
-				},
-				{
-					id: 6,
-					text: 'taoCAN1',
-					type: 'default'
-				},
-				{
-					id: 7,
-					text: 'taoCAN1',
-					type: 'default'
-				}
-			],
+			specData: this.skuData,
 			curTag: null,
 			curNumber: 1
 		};
@@ -125,19 +98,24 @@ export default {
 			this.$emit('input', e);
 		},
 		change(value) {
+			console.log(value);
 			this.curNumber = value;
 		},
-		bindClick(item) {
-			this.dataTag.forEach((item, index) => {
-				item.type = 'default';
+		bindClick(item, pro) {
+			item.attrValues.forEach((tmItem, index) => {
+				tmItem.type = 'default';
+				Vue.set(tmItem,'type','default')
 			});
-			if (item.type == 'default') {
-				item.type = 'success';
-				this.curTag = item;
+			if (pro.type == 'default') {
+				pro.type = 'success';
+				// Vue.set(pro,'type','success');
+				this.curTag = pro;
 			} else {
-				item.type = 'default';
+				pro.type = 'default';
+				// Vue.set(pro,'type','default');
 				this.curTag = null;
 			}
+			console.log(this.skuData);
 		}
 	}
 };
