@@ -17,21 +17,14 @@
 					<view class="name">{{ item.attrName }}</view>
 					<view class="tag-list">
 						<view class="tag" v-for="(pro, pIndex) in item.attrValues" :key="pIndex">
-							<uniTag  :type="pro.type" :text="pro.attrValue" @click="bindClick(item, pro)" inverted="false" :circle="true" v-model="curTag"></uniTag>
+							<view class="tags" v-model="pro.type" :class="{ 'active-tags': pro.type == 'success' }" @click="bindClick(item, pro)">{{ pro.attrValue }}</view>
 						</view>
 					</view>
 				</view>
 				<view class="buy-number">
 					<view class="name">购买数量</view>
-					<uni-number-box
-						:min="1"
-						:max="9"
-						:value="1"
-						v-model="curNumber"
-						:disabled="true"
-						
-					></uni-number-box>
-																		
+					<uni-number-box :min="1" :max="9" :value="1" v-model="curNumber" :disabled="true" @change="change()"></uni-number-box>
+
 					<!-- <view class="number-controls"><uniNumberBox :min="1" :step="1" :max="9" :value="1" :disabled='false' @change="change"></uniNumberBox></view> -->
 				</view>
 			</view>
@@ -42,14 +35,11 @@
 
 <script>
 import UniPopup from '@/third/uni-popup/uni-popup.vue';
-import uniTag from '@/third/uni-tag/uni-tag.vue';
 import UniNumberBox from '@/components/cart/uni-number-box.vue';
-import Vue from 'vue'
 export default {
 	name: 'specifi-dialog',
 	components: {
 		UniPopup,
-		uniTag,
 		UniNumberBox
 	},
 	props: {
@@ -63,19 +53,17 @@ export default {
 	},
 	data() {
 		return {
-			showPopup: false,
+			showPopup: this.value,
 			specData: this.skuData,
 			curTag: null,
 			curNumber: 1
 		};
 	},
-
 	watch: {
 		value(n) {
 			this.showPopup = n;
 		}
 	},
-
 	methods: {
 		//确认事件
 		confirm() {
@@ -94,7 +82,6 @@ export default {
 			this.showPopup = false;
 		},
 		uniPopupChange(e) {
-			// console.log('---' +e);
 			this.$emit('input', e);
 		},
 		change(value) {
@@ -104,18 +91,15 @@ export default {
 		bindClick(item, pro) {
 			item.attrValues.forEach((tmItem, index) => {
 				tmItem.type = 'default';
-				Vue.set(tmItem,'type','default')
 			});
 			if (pro.type == 'default') {
 				pro.type = 'success';
-				// Vue.set(pro,'type','success');
 				this.curTag = pro;
 			} else {
 				pro.type = 'default';
-				// Vue.set(pro,'type','default');
-				this.curTag = null;
+				this.curTag = {};
 			}
-			console.log(this.skuData);
+			this.$forceUpdate();
 		}
 	}
 };
@@ -186,6 +170,26 @@ export default {
 				.tag {
 					padding: 0 10rpx;
 					margin-bottom: 10rpx;
+
+					.tags {
+						display: -webkit-box;
+						display: flex;
+						padding: 0px 16px;
+						height: 30px;
+						line-height: 30px;
+						justify-content: center;
+						color: #333;
+						border-radius: 2px;
+						background-color: #f8f8f8;
+						border-width: 1px;
+						border-style: solid;
+						border-color: #f8f8f8;
+						border-radius: 15px;
+					}
+					.active-tags {
+						background-color: #ff3333;
+						color: #fff;
+					}
 				}
 			}
 		}
