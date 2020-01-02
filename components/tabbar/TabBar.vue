@@ -1,15 +1,15 @@
 <template>
 	<view class="tab-bar-wrapper" v-show="tabbar">
 		<view class="tab-bar-list">
-			<view class="items" :class="{ 'nav-item-active': select === item.flag }" v-for="(item, index) in list" :key="index" @click="tabChangeEvent(item.flag)">
-				<image class="icon" :src="select === item.flag ? item.selectedSrc : item.src"></image>
+			<view class="items" :class="{ 'nav-item-active': curTabBarIndex === item.flag }" v-for="(item, index) in list" :key="index" @click="tabChangeEvent(item.flag)">
+				<image class="icon" :src="curTabBarIndex === item.flag ? item.selectedSrc : item.src"></image>
 				<label class="title">{{ item.title }}</label>
 			</view>
 		</view>
 	</view>
 </template>
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 //底部菜单组件
 export default {
 	props: {
@@ -20,24 +20,29 @@ export default {
 	},
 	data() {
 		return {
-			select: 'index',
+		
 			list: []
 		};
+	},
+	computed: {
+		...mapGetters({
+			curTabBarIndex: 'utp/getTabBarIndex'
+		})
 	},
 	methods: {
 		...mapActions({
 			setTabBarIndex: 'utp/setTabBarIndex'
 		}),
 		tabChangeEvent(flag) {
-			if (this.select !== flag) {
-				this.select = flag;
+			if (this.curTabBarIndex !== flag) {
+				
 				this.setTabBarIndex(flag);
 			}
 		}
 	},
 	created() {
-		let userInfo = uni.getStorageSync("userInfo");
-		if(1){
+		let userInfo = uni.getStorageSync('userInfo');
+		if (1) {
 			this.list = [
 				{
 					title: '首页',

@@ -18,7 +18,7 @@
 import personalHeader from '@/components/personal/xw-dth-personal-header.vue';
 import personalOrder from '../../components/personal/xw-dth-personal-order.vue';
 import navBarTitle from '@/components/navbar/navbar-title-default.vue';
-import { mapGetters } from 'vuex';
+import { mapGetters ,mapActions} from 'vuex';
 export default {
 	components: {
 		personalHeader,
@@ -59,7 +59,11 @@ export default {
 		})
 	},
 	methods: {
+		...mapActions({
+			setTabBarIndex: 'utp/setTabBarIndex'
+		}),
 		loginout() {
+			this.setTabBarIndex('index');
 			uni.setStorageSync('isLogin', false);
 			uni.redirectTo({
 				url: '/pages/common/login'
