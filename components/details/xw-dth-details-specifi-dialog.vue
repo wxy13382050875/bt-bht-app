@@ -17,7 +17,7 @@
 					<view class="name">{{ item.attrName }}</view>
 					<view class="tag-list">
 						<view class="tag" v-for="(pro, pIndex) in item.attrValues" :key="pIndex">
-							<uniTag  :type="pro.type" :text="pro.attrValue" @click="bindClick(item, pro)" inverted="false" :circle="true"></uniTag>
+							<uniTag  :type="pro.type" :text="pro.attrValue" @click="bindClick(item, pro)" inverted="false" :circle="true" v-model="curTag"></uniTag>
 						</view>
 					</view>
 				</view>
@@ -29,7 +29,7 @@
 						:value="1"
 						v-model="curNumber"
 						:disabled="true"
-						@change='change()'
+						
 					></uni-number-box>
 																		
 					<!-- <view class="number-controls"><uniNumberBox :min="1" :step="1" :max="9" :value="1" :disabled='false' @change="change"></uniNumberBox></view> -->
