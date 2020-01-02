@@ -5,7 +5,7 @@
 			<view class="pay-success-message">
 				<view class="message">
 					<image class="icon" src="/static/icon/pay_success_icon.png"></image>
-					<label class="txt">支付成功</label>
+					<label class="txt">{{title}}</label>
 				</view>
 				<view class="btn-group">
 					<navigator url="/pages/main" class="btn" hover-class="none">返回首页</navigator>
@@ -20,9 +20,21 @@
 <script>
 export default {
 	data() {
-		return {};
+		return {
+			title:""
+		};
 	},
-	methods: {}
+	methods: {},
+	onLoad: function(options) {
+		console.log('options', options.type);
+		if(options.type == 'success'){
+			this.title = '支付成功';
+		} else {
+			this.title = '支付失败';
+		}
+		
+		
+	},
 };
 </script>
 

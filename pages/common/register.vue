@@ -1,7 +1,7 @@
 <template>
 	<view class="app-content" style="background: #FFFFFF;">
 		<nav-bar-back title="注册" popType="0"></nav-bar-back>
-		<bht-layout-container bg-color="#ffffff" style="height: 100%;">
+		<bht-layout-container bg-color="#ffffff" :bottom="0">
 			<view class="app-register">
 				<picker @change="pickerPaperTypeChange" :value="paperTypeIndex" :range="roleArr">
 					<view class="aca-form-input">

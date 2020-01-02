@@ -118,11 +118,11 @@ export default {
 			items: [
 				{
 					name: '支付宝',
-					value: 'alipay'
+					value: 0
 				},
 				{
 					name: '微信',
-					value: 'wxpay'
+					value: 1
 				}
 			]
 		};
@@ -177,26 +177,30 @@ export default {
 
 				uni.requestPayment({
 					provider: 'wxpay',
-					orderInfo: self.payInfo,
+					orderInfo: this.payInfo,
 					success: res => {
-						uni.showToast({
-							title: '感谢您的赞助!'
-						});
+						// uni.showToast({
+						// 	title: '感谢您的赞助!'
+						// });
+						uni.navigateTo({
+										url: '/pages/shop/pay-success?type=success'
+									});
 					},
 					fail: res => {
 						uni.showModal({
 							content: '支付失败,原因为: ' + res.errMsg,
 							showCancel: false
 						});
+						uni.navigateTo({
+										url: '/pages/shop/pay-success?type=fail'
+									});
 					},
 					complete: () => {
 						this.loading = false;
 					}
 				});
 			}
-			uni.navigateTo({
-				url: '/pages/shop/pay-success'
-			});
+			
 		},
 		//提交订单处理
 		submitOrder() {

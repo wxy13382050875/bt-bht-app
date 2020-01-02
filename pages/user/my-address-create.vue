@@ -106,8 +106,13 @@ export default {
 			// let params = {
 			// 	userId:2
 			// }
+			uni.showLoading({
+				title: '提交...',		
+				mask: true	,
+				});
 			saveUserAddress(this.dataSource).then(res => {
 				
+				uni.hideLoading();
 				let { data, msg, code } = res;
 				console.log(res);
 				uni.showToast({

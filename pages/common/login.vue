@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<navBarTitle title="登陆"></navBarTitle>
-		<bht-layout-container bgColor="#fff" style="height: 100%;">
+		<bht-layout-container bgColor="#fff" :bottom="0">
 			<view class="login-wrapper" :style="{bottom: bottom+ 'rpx'}">
 				<view class="login-top">
 					<view class="logo-box">
