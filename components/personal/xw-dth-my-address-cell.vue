@@ -1,123 +1,206 @@
 <template>
 	<view class="address-list">
-		<view class="a-info" v-for="(item,index) in dataSource" :key=index @click="didSelectCell(item)">
-			<view class="a-img">
-				<image src="../../static/icon/icon-locate-other.png" mode="" v-if="item.defaultFlag!==1"></image>
-				<image src="../../static/icon/icon-locate-def.png" mode="" v-if="item.defaultFlag===1"></image>
-				<view class="a-surname" v-if="item.defaultFlag!==1">{{item.name.slice(0,1)}}</view>
-			</view>
-			<view class="a-address-info">
-				<view class="a-oneline">
-					<view class="a-name">{{item.name}}</view>
-					<view class="a-phone">{{item.phone}}</view>
+		<uni-swipe-action class="swipe-action">
+			<uni-swipe-action-item
+				class="swipe-action-itme"
+				v-for="(item, index) in dataSource"
+				:show="isOpened"
+				:options="options"
+				:key="item.addressId"
+				@change="swipeChange"
+				@click="swipeClick($event, item.addressId)"
+			>
+				<view class="a-img">
+					<image src="../../static/icon/icon-locate-other.png" mode="" v-if="item.defaultFlag !== 1"></image>
+					<image src="../../static/icon/icon-locate-def.png" mode="" v-if="item.defaultFlag === 1"></image>
+					<view class="a-surname" v-if="item.defaultFlag !== 1">{{ item.name.slice(0, 1) }}</view>
 				</view>
-				<view class="a-twoline">
-					<view class="a-address"><label class="a-default" v-if="item.defaultFlag===1">默认</label>{{item.location}}{{item.detail}}</view>
-					<navigator :url="'/pages/user/my-address-create?item=' + encodeURIComponent(JSON.stringify(item))" class="a-edit">
-						<view class="">编辑</view>
-					</navigator>
+				<view class="a-address-info">
+					<view class="a-oneline">
+						<view class="a-name">{{ item.name }}</view>
+						<view class="a-phone">{{ item.phone }}</view>
+					</view>
+					<view class="a-twoline">
+						<view class="a-address">
+							<label class="a-default" v-if="item.defaultFlag === 1">默认</label>
+							{{ item.location }}{{ item.detail }}
+						</view>
+						<navigator :url="'/pages/user/my-address-create?item=' + encodeURIComponent(JSON.stringify(item))" class="a-edit"><view class="">编辑</view></navigator>
+					</view>
 				</view>
-			</view>
-			
-			
-		</view>
+			</uni-swipe-action-item>
+		</uni-swipe-action>
 	</view>
 </template>
 
 <script>
-	export default {
-		props:{
-			dataSource:{
-				type:Array,
-				default () {
-					return {}
+import UniSwipeAction from '@/third/uni-swipe-action/uni-swipe-action/uni-swipe-action.vue';
+import UniSwipeActionItem from '@/third/uni-swipe-action/uni-swipe-action-item/uni-swipe-action-item.vue';
+import { deleteAddress } from '@/api/shop.js';
+export default {
+	components: {
+		UniSwipeActionItem,
+		UniSwipeAction
+	},
+	data() {
+		return {
+			isOpened: false,
+			options: [
+				{
+					text: '删除',
+					style: {
+						backgroundColor: '#dd524d'
+					}
 				}
+			]
+		};
+	},
+	props: {
+		dataSource: {
+			type: Array,
+			default() {
+				return {};
 			}
+		}
+	},
+	onReady() {
+		this.$nextTick(() => {
+			this.isOpened = true;
+		});
+	},
+	methods: {
+		didSelectCell(e) {
+			this.$emit('didSelectCell', e);
 		},
-		methods: {
-			didSelectCell(e){
-				this.$emit('didSelectCell', e);
-			},
+		bindClick(e) {
+			uni.showToast({
+				title: `点击了${e.content.text}按钮`,
+				icon: 'none'
+			});
 		},
+		setOpened() {
+			this.isOpened = !this.isOpened;
+		},
+		change(e) {
+			this.isOpened = e;
+			console.log('...返回：', e);
+		},
+		swipeChange(e) {
+			console.log('...返回：', e);
+		},
+		swipeClick(e, addressId) {
+			let { content } = e;
+			console.log(addressId);
+			if (content.text === '删除') {
+				// console.log(content.text, index);
+				uni.showModal({
+					title: '提示',
+					content: '是否删除',
+					success: res => {
+						if (res.confirm) {
+							// this.swipeList.splice(index, 1);
+							let param = {
+								addressId: addressId
+							};
+							deleteAddress(param).then(res => {
+								// console.log(res);
+								let { data, code ,msg} = res;
+								uni.showToast({
+									title:msg,
+									icon:"none"
+								});
+								if (code === '200') {
+									this.$emit('refreshData',data);
+								}
+							});
+						} else if (res.cancel) {
+							console.log('用户点击取消');
+						}
+					}
+				});
+			}
+		}
 	}
+};
 </script>
 
 <style lang="scss">
-	.address-list{
-		
-		.a-info{
+.address-list {
+	.swipe-action {
+		.swipe-action-itme {
 			margin-top: 10rpx;
-			background: #FFFFFF;
-			height: 193rpx;
+			background: #ffffff;
+			height: 100%;
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
-			.a-img{
+			.a-img {
 				width: 79rpx;
-				height: 90rpx;
-				margin-left: 30rpx;
-				margin-right: 20rpx;
-				image{
-					width: 79rpx;
-					height: 90rpx;
+				height: 79rpx;
+				margin: 0 auto; /*水平居中*/
+				position: relative;
+				margin-left: 20rpx;
+				top: 50%; /*偏移*/
+				transform: translateY(-50%);
+				image {
+					width: 100%;
+					height: 100%;
 					position: absolute;
 					z-index: 80;
 				}
-				.a-surname{
-					width: 79rpx;
-					height: 90rpx;
-					line-height: 90rpx;
+				.a-surname {
+					width: 100%;
+					height: 100%;
+					line-height: 100%;
 					position: absolute;
 					z-index: 100;
-					color: #FFFFFF;
-					font-family:Microsoft YaHei;
-					font-size:32rpx;
+					color: #ffffff;
+					font-size: 32rpx;
 					text-align: center;
+					vertical-align:middle;
+					// top: 50%;
 				}
 			}
-			.a-address-info{
+			.a-address-info {
 				margin-left: 22rpx;
 				margin-right: 20rpx;
 				width: 100%;
-				.a-oneline{
+				.a-oneline {
 					display: flex;
 					height: 80rpx;
 					line-height: 80rpx;
-					.a-name{
+					.a-name {
 						color: #333333;
 						font-size: 32rpx;
 					}
-					.a-phone{
-						color:#999999;
+					.a-phone {
+						color: #999999;
 						font-size: 26rpx;
 						margin-left: 13rpx;
 					}
 				}
-				.a-twoline{
-					
+				.a-twoline {
 					display: flex;
 					justify-content: space-between;
-					.a-default{
+					.a-default {
 						width: 60rpx;
-						color:#FF3333;
+						color: #ff3333;
 						font-size: 26rpx;
 						margin-right: 20rpx;
 					}
-					.a-address{
-						
-						color:#333333;
+					.a-address {
+						color: #333333;
 						font-size: 26rpx;
 					}
-					.a-edit{
+					.a-edit {
 						width: 127rpx;
 						text-align: center;
-						border-left: 1rpx solid #B2B4B3;
+						border-left: 1rpx solid #b2b4b3;
 						margin-bottom: 10rpx;
 					}
 				}
 			}
-			
-			
 		}
 	}
+}
 </style>

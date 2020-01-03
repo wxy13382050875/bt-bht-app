@@ -2,12 +2,12 @@
 	<view class="app-content">
 		<!-- <aca-nav-bar :level="2" title="编辑资料"></aca-nav-bar> -->
 		<nav-bar-back title="编辑资料" popType="0"></nav-bar-back>
-		<bht-layout-container bg-color="#fff">
+		<bht-layout-container bg-color="#fff" :bottom="0">
 			<view class="profile-content">
 				<view class="aca-cell">
 					<view class="label">姓名</view>
 					<view class="content">
-						<input type="text" class="input" v-model="formData.name" placeholder="请输入姓名" />
+						<input type="text" class="input" v-model="formData.realName" placeholder="请输入姓名" />
 					</view>
 				</view>
 				<view class="aca-cell">
@@ -15,11 +15,11 @@
 					<view class="content">
 						<radio-group @change="flagRadioChange">
 							<label class="radio">
-								<radio value="I" :checked="formData.sex==='男'" color="#ff3333" style="transform:scale(0.7)" />
+								<radio value="I" :checked="formData.gender==='男'" color="#ff3333" style="transform:scale(0.7)" />
 								男
 							</label>
 							<label class="radio">
-								<radio value="E" :checked="formData.sex==='女'" color="#ff3333" style="transform:scale(0.7)" />
+								<radio value="E" :checked="formData.gender==='女'" color="#ff3333" style="transform:scale(0.7)" />
 								女
 							</label>
 						</radio-group>
@@ -29,7 +29,7 @@
 					<view class="label">国籍</view>
 					<picker @change="pickerNationalityChange" :value="nationIndex" :range="nationArr">
 						<view class="content" @click="hideKeyBoard">
-							<input type="text" class="input" :value="formData.nationality" disabled="" display placeholder="请选择国籍" />
+							<input type="text" class="input" :value="formData.nation" disabled="" display placeholder="请选择国籍" />
 							<view class="arrow-right">
 								<view class="iconfont aca-youjiantou"></view>
 							</view>
@@ -80,8 +80,8 @@
 		mapGetters
 	} from 'vuex'
 	import {
-		updateUserInfo
-	} from '@/api/user'
+		saveUser
+	} from '@/api/shop.js'
 	import formValidate from '@/utils/validate'
 	export default {
 		components: {
@@ -120,17 +120,17 @@
 			handleUpdate() {
 				//验证规则
 				let rule = [{
-						name: 'name',
+						name: 'realName',
 						checkType: 'notnull',
 						errorMsg: '请填写姓名'
 					},
 					{
-						name: 'sex',
+						name: 'gender',
 						checkType: 'notnull',
 						errorMsg: '请选择性别'
 					},
 					{
-						name: 'nationality',
+						name: 'nation',
 						checkType: 'notnull',
 						errorMsg: '请选择国籍'
 					},
@@ -151,7 +151,7 @@
 						errorMsg: '证件号不合法'
 					},
 					{
-						name: 'customs',
+						name: 'lshg',
 						checkType: 'notnull',
 						errorMsg: '请选择隶属海关'
 					},
@@ -159,8 +159,9 @@
 
 				var valid = formValidate.check({ ...this.formData
 				}, rule);
+				console.log(this.formData);
 				if (valid) {
-					updateUserInfo(this.formData).then(res => {
+					saveUser(this.formData).then(res => {
 						let {
 							code,
 							msg,
@@ -179,7 +180,7 @@
 								success: () => {
 									uni.setStorageSync('userInfo', data);
 									this.setUserInfo(data)
-									this.$Router.pushTab("/pages/user/center")
+									this.$Router.back();
 								}
 							});
 						}
@@ -196,12 +197,13 @@
 			flagRadioChange({
 				detail
 			}) {
-				this.formData.sex = detail.value;
+				this.formData.gender = detail.value;
 			},
 			//国籍选择
 			pickerNationalityChange(e) {
+				console.log(e)
 				this.nationIndex = e.target.value;
-				this.formData.nationality = this.nationArr[this.nationIndex];
+				this.formData.nation = this.nationArr[this.nationIndex];
 			},
 			//证件类型选择
 			pickerIdTypeChange(e) {
@@ -210,7 +212,7 @@
 			},
 			//关区选择
 			regionConfirm(e) {
-				this.formData.customs = e.value[0];
+				this.formData.lshg = e.value[0];
 				this.formData.region = e.value[1];
 				this.regionText = e.label;
 			},
@@ -226,15 +228,15 @@
 			//初始化默认选项值
 			init() {
 				let {
-					customs,
+					lshg,
 					region,
 				} = this.userInfo;
 				let regionText = ''
 				//隶属关区
-				if (customs != '' && customs != null) {
+				if (lshg != '' && lshg != null) {
 					let regionDef = [];
 					regionData.forEach((item, index, arr) => {
-						if (customs === item.value) {
+						if (lshg === item.value) {
 							regionDef.push(index);
 							regionText = item.label;
 							item.children.forEach((cItem, cIndex, cArr) => {

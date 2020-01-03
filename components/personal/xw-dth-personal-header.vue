@@ -3,10 +3,10 @@
 		<view class="personal-body">
 			<view class="personal-info">
 				<view class="left-item">
-					<image src="/static/icon/icon-head-portrait.png"></image>
+					<image :src="dataSource.userPicture"></image>
 					<view style="margin-left: 20rpx; align-items: center;">
-						<view class="title">{{dataSource.userId}}</view>
-						<view class="describe">{{dataSource.userTicket}}</view>
+						<view class="title">{{dataSource.realName}}</view>
+						<view class="describe">{{dataSource.signature}}</view>
 					</view>
 				</view>
 				<view class="right-item">

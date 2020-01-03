@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<navbaraddress></navbaraddress>
-		<bht-layout-container><addresslist :dataSource="dataSource" @didSelectCell="didSelectCell"></addresslist></bht-layout-container>
+		<bht-layout-container><addresslist :dataSource="dataSource" @didSelectCell="didSelectCell" @refreshData="refreshData"></addresslist></bht-layout-container>
 	</view>
 </template>
 
@@ -31,6 +31,19 @@ export default {
 				uni.setStorageSync('defaultAddress', e);
 				uni.navigateBack();
 			}
+		},
+		refreshData(e){
+			console.log('刷新数据');
+			let params = {
+				userId: 2
+			};
+			getUserAddressList(params).then(res => {
+				let { data, code } = res;
+				if (code === '200') {
+					console.log(data.addressList);
+					this.dataSource = data.addressList;
+				}
+			});
 		}
 	},
 	onShow(option) {
@@ -45,6 +58,7 @@ export default {
 			}
 		});
 	},
+	
 	onLoad: function(option) {
 		//option为object类型，会序列化上个页面传递的参数
 		// console.log(option.type); //打印出上个页面传递的参数

@@ -74,4 +74,11 @@ export const login = (params) => {
 export const saveUser = (params) => {
 	return bht_http.post('/assets-service/user/saveUser',params)
 };
+//注册用户/保存用户信息
+export const deleteAddress = (params) => {
+	return bht_http.post('/assets-service/user/deleteAddress',params)
+};
+
+
+
 
