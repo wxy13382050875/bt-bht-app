@@ -109,6 +109,7 @@ const actions = {
 	setStatItemWidth: ({
 		commit
 	}, width) => {
+		
 		commit('setStatItemWidth', width)
 	}
 }
