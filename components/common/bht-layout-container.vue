@@ -33,8 +33,6 @@ export default {
 		var sysinfo = uni.getSystemInfoSync(),
 			windowHeight = sysinfo.windowHeight;
 		this.height = windowHeight - (this.bottom + this.navHeight + this.statusHeight);
-		console.log('this.height');
-		console.log(this.height);
 	},
 	computed: {
 		...mapGetters({
