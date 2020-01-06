@@ -18,7 +18,7 @@
 import personalHeader from '@/components/personal/xw-dth-personal-header.vue';
 import personalOrder from '../../components/personal/xw-dth-personal-order.vue';
 import navBarTitle from '@/components/navbar/navbar-title-default.vue';
-import { mapGetters ,mapActions} from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 export default {
 	components: {
 		personalHeader,
@@ -27,9 +27,7 @@ export default {
 	},
 	data() {
 		return {
-			downOption: {				autoShowLoading: true,				textInOffset: '下拉即可刷新...',				textOutOffset: '松开即可刷新...',				textLoading: '努力加载中...'			},			upOption: {				use: false,				auto: false,				noMoreSize: 5,				empty: {					tip: '没有查询到数据',					icon: ''				},				textNoMore: '没有更多数据了'			},
 			pageFlag: 'my',
-			userInfo:{},
 			dataSource: {
 				order: {
 					title: '我的订单',
@@ -55,7 +53,8 @@ export default {
 	},
 	computed: {
 		...mapGetters({
-			tabBarFlag: 'utp/getTabBarIndex'
+			tabBarFlag: 'utp/getTabBarIndex',
+			userInfo: 'user/userInfo'
 		})
 	},
 	methods: {
@@ -70,15 +69,14 @@ export default {
 			});
 		}
 	},
-	watch:{
+	watch: {
 		tabBarFlag(n, v) {
 			if (n === this.pageFlag) {
-				this.userInfo = uni.getStorageSync("userInfo");
-				console.log(this.userInfo );
+				// this.userInfo = uni.getStorageSync('userInfo');
+				console.log(this.userInfo);
 			}
 		}
-	},
-	
+	}
 };
 </script>
 

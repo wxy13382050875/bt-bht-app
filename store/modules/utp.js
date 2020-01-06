@@ -18,8 +18,8 @@ const state = {
 	roleData: [{
 
 			code: 1,
-            value: "游客",
-            roleDesc: "未登录时的默认角色"
+			value: "游客",
+			roleDesc: "未登录时的默认角色"
 		},
 		{
 			value: '边民',
@@ -37,7 +37,7 @@ const state = {
 			roleDesc: "商铺管理"
 		}
 	],
-	roleArr: ['游客','边民', '场所工作人员', '商铺管理'],
+	roleArr: ['游客', '边民', '场所工作人员', '商铺管理'],
 }
 
 const getters = {
@@ -109,7 +109,7 @@ const actions = {
 	setStatItemWidth: ({
 		commit
 	}, width) => {
-		
+
 		commit('setStatItemWidth', width)
 	}
 }
