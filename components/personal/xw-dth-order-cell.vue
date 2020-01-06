@@ -43,9 +43,21 @@
 				
 			</view>
 			<view class="o-buttom">
-				<view class="o-btttom-btn">
-					<button class="cancel">取消订单</button>
-					<button class="payment">付款</button>
+				<view class="o-btttom-btn" v-if="dataSource.statusCd==10008">
+					<button class="border-gray">联系卖家</button>
+					<button class="border-gray">取消订单</button>
+					<button class="border-red">付款</button>
+				</view>
+				<view class="o-btttom-btn" v-if="dataSource.statusCd==10016">
+					<button class="border-red">修改地址</button>
+				</view>
+				<view class="o-btttom-btn" v-if="dataSource.statusCd==10020">
+					<button class="border-gray">查看物流</button>
+					<button class="border-red">确认收货</button>
+				</view>
+				<view class="o-btttom-btn" v-if="dataSource.statusCd==10024">
+					<button class="border-gray">删除订单</button>
+					<button class="border-red">评价</button>
 				</view>
 			</view>
 	
@@ -194,21 +206,22 @@
 					
 					display: flex;
 					align-items: center;
-					width: 360rpx;
+					// width: 360rpx;
 					height: 100%;
 					float: right;
-					.cancel{
-						width: 180rpx;
-						color: #FF3333;
+					.border-gray{
+						// width: 180rpx;
+						color: rgba(187,187,187,1);
 						font-size: 24rpx;
 						border: 1rpx solid rgba(187,187,187,1);
 						background: #FFFFFF;
 						border-radius: 26rpx;;
 						opacity: 1;
+						margin-right: 20rpx;
 						
 					}
-					.payment{
-						width: 160rpx;
+					.border-red{
+						// width: 160rpx;
 						color: rgba(255,255,255,1);
 						font-size: 24rpx;
 						border: 1rpx solid rgba(187,187,187,1);
