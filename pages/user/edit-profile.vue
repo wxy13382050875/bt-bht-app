@@ -12,11 +12,11 @@
 					<view class="content">
 						<radio-group @change="flagRadioChange">
 							<label class="radio">
-								<radio value="I" :checked="formData.gender === '男'" color="#ff3333" style="transform:scale(0.7)" />
+								<radio value="男" :checked="formData.gender === '男'" color="#ff3333" style="transform:scale(0.7)" />
 								男
 							</label>
 							<label class="radio">
-								<radio value="E" :checked="formData.gender === '女'" color="#ff3333" style="transform:scale(0.7)" />
+								<radio value="女" :checked="formData.gender === '女'" color="#ff3333" style="transform:scale(0.7)" />
 								女
 							</label>
 						</radio-group>
@@ -94,6 +94,7 @@ export default {
 		//解构赋值
 		this.formData = this.userInfo;
 		this.init();
+		console.log(this.userInfo)
 	},
 	computed: {
 		...mapGetters({

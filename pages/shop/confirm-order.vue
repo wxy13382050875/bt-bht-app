@@ -183,8 +183,8 @@ export default {
 						// 	title: '感谢您的赞助!'
 						// });
 						uni.navigateTo({
-										url: '/pages/shop/pay-success?type=success'
-									});
+							url: '/pages/shop/pay-success?type=success'
+						});
 					},
 					fail: res => {
 						uni.showModal({
@@ -192,20 +192,18 @@ export default {
 							showCancel: false
 						});
 						uni.navigateTo({
-										url: '/pages/shop/pay-success?type=fail'
-									});
+							url: '/pages/shop/pay-success?type=fail'
+						});
 					},
 					complete: () => {
 						this.loading = false;
 					}
 				});
 			}
-			
 		},
 		//提交订单处理
 		submitOrder() {
 			let subItems = [];
-
 			this.dataSource.forEach((item, index) => {
 				item.goodsInst.forEach((pro, pindex) => {
 					let items = {
@@ -242,8 +240,10 @@ export default {
 				if (res.code == 200) {
 					this.current = 1;
 					this.payInfo = res.data.payInfo;
-
+					//调用支付
 					this.payhandle();
+					//通知更新新购物信息
+					uni.$emit('updateCart', { msg: '页面更新' });
 				} else {
 					uni.showToast({
 						title: res.msg,

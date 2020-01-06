@@ -22,7 +22,6 @@ const actions = {
 	setUserInfo: ({
 		commit
 	}, userInfo) => {
-		console.log("ok")
 		commit('setUserInfo', userInfo)
 	}
 }

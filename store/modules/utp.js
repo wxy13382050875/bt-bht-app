@@ -9,7 +9,7 @@ const state = {
 	//开票数据
 	invoiceData: [],
 	//tabBar激活的位置
-	tabBarIndex: 'index',
+	tabBarIndex: '',
 	//统计模块 小块宽度
 	statItemWidth: 0,
 	//当前页面地址
@@ -60,7 +60,7 @@ const getters = {
 		return state.roleArr
 	},
 	getTabBarIndex: (state) => {
-		return state.tabBarIndex
+		return state.tabBarIndex || uni.getStorageSync('tabBarIndex');
 	},
 	getStatItemWidth: (state) => {
 		return state.statItemWidth
@@ -78,6 +78,8 @@ const mutations = {
 		state.curUrl = url
 	},
 	setTabBarIndex: (state, index) => {
+		
+		uni.setStorageSync('tabBarIndex', index)
 		state.tabBarIndex = index
 	},
 	setStatItemWidth: (state, width) => {

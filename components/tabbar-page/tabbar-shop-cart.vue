@@ -91,10 +91,10 @@ export default {
 	},
 	computed: {
 		...mapGetters({
-			tabBarFlag: 'utp/getTabBarIndex'
+			tabBarFlag: 'utp/getTabBarIndex',
+			userInfo: 'user/userInfo'
 		})
 	},
-
 	data() {
 		return {
 			pageFlag: 'cart',
@@ -138,21 +138,7 @@ export default {
 		},
 		tabBarFlag(n, v) {
 			if (n === this.pageFlag) {
-				let userInfo = uni.getStorageSync("userInfo");
-				let param = {
-					shopCarNbr: userInfo.shopCarNbr
-				};
-				getShopCartList(param).then(res => {
-					// console.log(res);
-					let { data, code } = res;
-					this.dataSource = data.stores;
-					this.dataSource.forEach((item, index) => {
-						(item.check = false), (item.choose = 0);
-						item.goodsInsts.forEach((pro, pIndex) => {
-							pro.checked = false;
-						});
-					});
-				});
+				this.getCarts();
 			}
 		}
 	},
@@ -172,13 +158,19 @@ export default {
 				}
 			}
 		});
+
+		//监听页面级通知
+		uni.$on('updateCart', function(data) {
+			//更新购物车信息
+			this.getCarts();
+		});
 	},
 	methods: {
 		/**
 		 * 结算处理
 		 */
 		billHandler() {
-			if(this.dataSource.length > 0){
+			if (this.dataSource.length > 0) {
 				let goodsItems = [];
 				this.dataSource.forEach((item, index) => {
 					let list = [];
@@ -204,7 +196,6 @@ export default {
 							totelNum += Number.parseInt(pro.goodsNum);
 							totePrice += pro.goodsNum * pro.price;
 							list.push(Inst);
-							
 						}
 					});
 					if (list.length > 0) {
@@ -220,21 +211,20 @@ export default {
 						goodsItems.push(items);
 					}
 				});
-				console.log('-----'+goodsItems.length);
-				if(goodsItems.length > 0){
+				console.log('-----' + goodsItems.length);
+				if (goodsItems.length > 0) {
 					uni.navigateTo({
 						url: '/pages/shop/confirm-order?commitType=1&item=' + encodeURIComponent(JSON.stringify(goodsItems))
 					});
 				} else {
 					uni.showToast({
-						title:"请添加商品",
-						icon:'none'
-					})
+						title: '请添加商品',
+						icon: 'none'
+					});
 				}
-				
 			}
-			
 		},
+		//左滑动删除商品
 		swipeActionClick(pro) {
 			let { goodsId } = pro;
 
@@ -324,6 +314,29 @@ export default {
 		//获取点击的位置
 		handlerClickCon({ detail }) {
 			this.curY = detail.y;
+		},
+		//获取购物车
+		getCarts() {
+			//初始化总数
+			this.fetchData.status = false;
+			this.fetchData.allchoose = 0;
+			this.fetchData.allnum = 0;
+			
+			let { shopCarNbr } = this.userInfo;
+			let param = {
+				shopCarNbr: shopCarNbr
+			};
+			getShopCartList(param).then(res => {
+				// console.log(res);
+				let { data, code } = res;
+				this.dataSource = data.stores;
+				this.dataSource.forEach((item, index) => {
+					(item.check = false), (item.choose = 0);
+					item.goodsInsts.forEach((pro, pIndex) => {
+						pro.checked = false;
+					});
+				});
+			});
 		}
 	}
 };
@@ -443,7 +456,7 @@ export default {
 						.numberbox {
 							display: flex;
 							width: 120rpx;
-							height: 46rpx; 
+							height: 46rpx;
 							border: 1px solid rgba(0, 0, 0, 0.33);
 							border-radius: 4px;
 						}
