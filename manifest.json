@@ -85,6 +85,18 @@
                         "spotlight@3x" : "unpackage/res/icons/120x120.png"
                     }
                 }
+            },
+            "splashscreen" : {
+                "android" : {
+                    "hdpi" : "unpackage/splash/640x960.png",
+                    "xhdpi" : "unpackage/splash/750x1334.png",
+                    "xxhdpi" : "unpackage/splash/1125x2436.png"
+                },
+                "ios" : {
+                    "iphone" : {
+                        "retina55" : "/Users/yuchunlin/Downloads/1125x2436.png"
+                    }
+                }
             }
         }
     },
@@ -130,3 +142,5 @@
         }
     }
 }
+/* 模块配置 */
+
