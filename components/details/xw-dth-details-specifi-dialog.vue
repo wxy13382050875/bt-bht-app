@@ -230,8 +230,8 @@ export default {
 				[[]]
 			);
 			// console.timeEnd('计算有多小种可选路径需要的时间是');
-			console.log('result');
-			console.log(result);
+			// console.log('result');
+			// console.log(result);
 		},
 		changeNum(val) {
 			this.selectNum = parseInt(val);

@@ -1,12 +1,15 @@
 <template>
 	<view class="personal">
 		<view class="personal-body">
-			<view class="personal-info">
+			<view class="personal-info">				
+
 				<view class="left-item">
-					<image :src="dataSource.userPicture"></image>
-					<view style="margin-left: 20rpx; align-items: center;">
-						<view class="title">{{dataSource.realName}}</view>
-						<view class="describe">{{dataSource.signature}}</view>
+					<image :src="JSON.stringify(dataSource.userPicture)!='null'&&JSON.stringify(dataSource.userPicture)!='' ?dataSource.userPicture :'/static/icon/icon-head-portrait.png'"></image>
+					<view style="margin-left: 20rpx; align-items: center;" >
+						<view class="title" v-if="JSON.stringify(dataSource.realName)!='null'&&JSON.stringify(dataSource.realName)!=''">{{dataSource.realName}}</view>
+						<view class="title" v-else>请完善用户信息</view>
+						<view class="describe" v-if="JSON.stringify(dataSource.signature)!='null'&&JSON.stringify(dataSource.signature)!=''">{{dataSource.signature}}</view>
+						<view class="title" v-else>用户什么也没留下</view>
 					</view>
 				</view>
 				<view class="right-item">

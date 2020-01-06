@@ -151,7 +151,7 @@
 						errorMsg: '证件号不合法'
 					},
 					{
-						name: 'lshg',
+						name: 'customs',
 						checkType: 'notnull',
 						errorMsg: '请选择隶属海关'
 					},
@@ -167,19 +167,19 @@
 							msg,
 							data
 						} = res;
-						if (code === 500) {
+						if (code === '500') {
 							uni.showToast({
 								title: msg,
 								icon: 'none'
 							})
 						}
 
-						if (code === 200) {
+						if (code === '200') {
 							uni.showToast({
 								title: '更新成功',
 								success: () => {
-									uni.setStorageSync('userInfo', data);
-									this.setUserInfo(data)
+									// this.setUserInfo(data)
+									uni.setStorageSync('userInfo', this.formData);
 									this.$Router.back();
 								}
 							});
@@ -201,18 +201,19 @@
 			},
 			//国籍选择
 			pickerNationalityChange(e) {
-				console.log(e)
 				this.nationIndex = e.target.value;
 				this.formData.nation = this.nationArr[this.nationIndex];
+				this.$forceUpdate();
 			},
 			//证件类型选择
 			pickerIdTypeChange(e) {
 				this.idTypeIndex = e.target.value;
 				this.formData.idType = this.idTypeArr[this.idTypeIndex];
+				this.$forceUpdate();
 			},
 			//关区选择
 			regionConfirm(e) {
-				this.formData.lshg = e.value[0];
+				this.formData.customs = e.value[0];
 				this.formData.region = e.value[1];
 				this.regionText = e.label;
 			},
@@ -228,15 +229,15 @@
 			//初始化默认选项值
 			init() {
 				let {
-					lshg,
+					customs,
 					region,
 				} = this.userInfo;
 				let regionText = ''
 				//隶属关区
-				if (lshg != '' && lshg != null) {
+				if (customs != '' && customs != null) {
 					let regionDef = [];
 					regionData.forEach((item, index, arr) => {
-						if (lshg === item.value) {
+						if (customs === item.value) {
 							regionDef.push(index);
 							regionText = item.label;
 							item.children.forEach((cItem, cIndex, cArr) => {

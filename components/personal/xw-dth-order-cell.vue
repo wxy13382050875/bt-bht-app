@@ -198,7 +198,7 @@
 					height: 100%;
 					float: right;
 					.cancel{
-						width: 160rpx;
+						width: 180rpx;
 						color: #FF3333;
 						font-size: 24rpx;
 						border: 1rpx solid rgba(187,187,187,1);
