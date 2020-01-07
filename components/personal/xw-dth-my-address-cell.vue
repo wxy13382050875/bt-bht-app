@@ -14,7 +14,7 @@
 					<view class="a-img">
 						<image src="../../static/icon/icon-locate-other.png" mode="" v-if="item.defaultFlag !== 1"></image>
 						<image src="../../static/icon/icon-locate-def.png" mode="" v-if="item.defaultFlag === 1"></image>
-						<!-- <view class="a-surname" v-if="item.defaultFlag !== 1">{{ item.name.slice(0, 1) }}</view> -->
+						<view class="a-surname" v-if="item.defaultFlag !== 1">{{ item.name.slice(0, 1) }}</view>
 					</view>
 					<view class="a-address-info">
 						<view class="a-oneline">
@@ -134,29 +134,32 @@ export default {
 			.address-cell {
 				width: 100%;
 				margin-top: 10rpx;
+				margin-bottom: 10rpx;
 				background: #ffffff;
 				height: 100%;
 				display: flex;
 				justify-content: space-between;
 				align-items: center;
 				.a-img {
-					width: 79rpx;
-					height: 79rpx;
-					margin: 0 auto; /*水平居中*/
-					position: relative;
 					margin-left: 20rpx;
-					top: 50%; /*偏移*/
-					transform: translateY(-50%);
+					width: 65rpx;
+					height: 69rpx;
+					// margin: 0 auto; /*水平居中*/
+					// position: relative;
+					// margin-left: 20rpx;
+					// top: 50%; /*偏移*/
+					// transform: translateY(-50%);
 					image {
-						width: 100%;
-						height: 100%;
+						margin: 0 auto; /*水平居中*/
+						width: 65rpx;
+						height: 79rpx;
 						position: absolute;
 						z-index: 80;
 					}
 					.a-surname {
-						width: 100%;
-						height: 100%;
-						line-height: 100%;
+						width: 65rpx;
+						height: 79rpx;
+						line-height: 79rpx;
 						position: absolute;
 						z-index: 100;
 						color: #ffffff;
@@ -167,7 +170,7 @@ export default {
 					}
 				}
 				.a-address-info {
-					margin-left: 22rpx;
+					margin-left: 30rpx;
 					margin-right: 20rpx;
 					width: 100%;
 					.a-oneline {
