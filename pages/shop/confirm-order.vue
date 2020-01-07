@@ -5,7 +5,7 @@
 			<scroll-view scroll-y="true" style="height: 100%;">
 				<view class="address-box">
 					<navigator url="/pages/personal/my-address-list?type=1" class="address-navigator" hover-class="none">
-						<view class="no-address" v-if="JSON.stringify(address) == '{}'">请添加收货地址</view>
+						<view class="no-address" v-if="address.addressId == ''">请添加收货地址</view>
 
 						<view class="address" v-else>
 							<view class="address-icon"><image src="/static/icon/address_loaction_icon.png"></image></view>

@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<navBarTitle title="登陆"></navBarTitle>
+		<navBarTitle title="登录"></navBarTitle>
 		<bht-layout-container bgColor="#fff" :bottom="0">
 			<view class="login-wrapper" :style="{ bottom: bottom + 'rpx' }">
 				<view class="login-top">
@@ -63,7 +63,11 @@ export default {
 		this.loginData.phone = this.mobile;
 	},
 	methods: {
-		...mapActions('user', ['setLoginStatus', 'setUserInfo', 'setMobile']),
+		...mapActions({
+			setLoginStatus: 'user/setLoginStatus',
+			setUserInfo: 'user/setUserInfo',
+			setRoleMenu: 'utp/setRoleMenu'
+		}),
 		//登录处理
 		handleLogin() {
 			let valid = formValidate.check({ ...this.loginData }, this.rule);
@@ -83,6 +87,7 @@ export default {
 							uni.setStorageSync('isLogin', true);
 							uni.setStorageSync('userInfo', res.data);
 							uni.setStorageSync('defaultAddress', res.data.defaultAddress);
+							this.setRoleMenu(res.data.roleId);
 							uni.redirectTo({
 								url: '/pages/main'
 							});

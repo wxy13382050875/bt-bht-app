@@ -11,9 +11,12 @@
 						<view class="title" v-else>用户什么也没留下</view>
 					</view>
 				</view>
-				<view class="right-item">
-					<navigator url="/pages/user/edit-profile" hover-class="none" class="btn-name">设置</navigator>
-					<image src="/static/icon/icon_right_arrow-write.png" mode=""></image>
+				<view class="personal-set">
+					<view class="qr-code" @click="showQR"><image src="/static/icon/icon-erweima.png" mode="" ></image></view>
+					<view class="right-item">
+						<navigator url="/pages/user/edit-profile" hover-class="none" class="btn-name">设置</navigator>
+						<image src="/static/icon/icon_right_arrow-write.png" mode=""></image>
+					</view>
 				</view>
 			</view>
 			<view class="personal-store">
@@ -31,11 +34,16 @@
 				</view> -->
 			</view>
 		</view>
+		
 	</view>
 </template>
 
 <script>
+	import UniPopup from '@/third/uni-popup/uni-popup.vue';
 export default {
+	components: {
+		UniPopup,
+	},
 	props: {
 		dataSource: {
 			type: Object,
@@ -44,7 +52,11 @@ export default {
 			}
 		}
 	},
-	methods: {}
+	methods: {
+		showQR(e) {
+			this.$emit('togglePopup', e);
+		}
+	}
 };
 </script>
 
@@ -76,26 +88,38 @@ export default {
 					font-size: 20rpx;
 				}
 			}
-			.right-item {
-				height: 50rpx;
-				line-height: 50rpx;
-				width: 159rpx;
+			.personal-set {
 				display: flex;
-				align-items: center;
-
-				border-radius: 25rpx;
-				background: #ff727c;
-				image {
-					width: 12rpx;
-					height: 25rpx;
+				justify-content: space-between;
+				width: 220rpx;
+				.qr-code {
 					margin-right: 20rpx;
-
-					opacity: 1;
+					image {
+						width: 50rpx;
+						height: 50rpx;
+					}
 				}
-				.btn-name {
-					width: 100%;
-					text-align: center;
-					color: #ffffff;
+				.right-item {
+					height: 50rpx;
+					line-height: 50rpx;
+					width: 130rpx;
+					display: flex;
+					align-items: center;
+
+					border-radius: 25rpx;
+					background: #ff727c;
+					image {
+						width: 12rpx;
+						height: 25rpx;
+						margin-right: 20rpx;
+
+						opacity: 1;
+					}
+					.btn-name {
+						width: 100%;
+						text-align: center;
+						color: #ffffff;
+					}
 				}
 			}
 		}

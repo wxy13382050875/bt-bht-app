@@ -1,7 +1,7 @@
 <template>
 	<view class="tab-bar-wrapper" v-show="tabbar">
 		<view class="tab-bar-list">
-			<view class="items" :class="{ 'nav-item-active': curTabBarIndex === item.flag }" v-for="(item, index) in list" :key="index" @click="tabChangeEvent(item.flag)">
+			<view class="items" :class="{ 'nav-item-active': curTabBarIndex === item.flag }" v-for="(item, index) in roleMenu" :key="index" @click="tabChangeEvent(item.flag)">
 				<image class="icon" :src="curTabBarIndex === item.flag ? item.selectedSrc : item.src"></image>
 				<label class="title">{{ item.title }}</label>
 			</view>
@@ -18,16 +18,15 @@ export default {
 			default: true
 		}
 	},
-	data() {
-		return {
-		
-			list: []
-		};
-	},
 	computed: {
 		...mapGetters({
-			curTabBarIndex: 'utp/getTabBarIndex'
+			curTabBarIndex: 'utp/getTabBarIndex',
+			roleMenu: 'utp/roleMenu'
 		})
+	},
+	created() {
+		console.log(this.roleMenu)
+		console.log(uni.getStorageSync('menuData'))
 	},
 	methods: {
 		...mapActions({
@@ -35,61 +34,8 @@ export default {
 		}),
 		tabChangeEvent(flag) {
 			if (this.curTabBarIndex !== flag) {
-				
 				this.setTabBarIndex(flag);
 			}
-		}
-	},
-	created() {
-		let userInfo = uni.getStorageSync('userInfo');
-		if (1) {
-			this.list = [
-				{
-					title: '首页',
-					src: require('@/static/tab/home_def_icon.png'),
-					selectedSrc: require('@/static/tab/home_sel_icon.png'),
-					flag: 'index'
-				},
-				{
-					title: '统计报表',
-					src: require('@/static/tab/tjbb_def_icon.png'),
-					selectedSrc: require('@/static/tab/tjbb_sel_icon.png'),
-					flag: 'stat'
-				},
-				{
-					title: '购物车',
-					src: require('@/static/tab/cart_def_icon.png'),
-					selectedSrc: require('@/static/tab/cart_sel_icon.png'),
-					flag: 'cart'
-				},
-				{
-					title: '我的',
-					src: require('@/static/tab/my_def_icon.png'),
-					selectedSrc: require('@/static/tab/my_sel_icon.png'),
-					flag: 'my'
-				}
-			];
-		} else {
-			this.list = [
-				{
-					title: '首页',
-					src: require('@/static/tab/home_def_icon.png'),
-					selectedSrc: require('@/static/tab/home_sel_icon.png'),
-					flag: 'index'
-				},
-				{
-					title: '购物车',
-					src: require('@/static/tab/cart_def_icon.png'),
-					selectedSrc: require('@/static/tab/cart_sel_icon.png'),
-					flag: 'cart'
-				},
-				{
-					title: '我的',
-					src: require('@/static/tab/my_def_icon.png'),
-					selectedSrc: require('@/static/tab/my_sel_icon.png'),
-					flag: 'my'
-				}
-			];
 		}
 	}
 };
