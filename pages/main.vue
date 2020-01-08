@@ -5,7 +5,7 @@
 		<!--统计组件-->
 		<stat-page></stat-page>
 		<!--二级市场组件-->
-		<sem-page></sem-page>
+		<tabbar-sem-page></tabbar-sem-page>
 		<!--购物车页面组件-->
 		<shopping-cart></shopping-cart>
 		<!--个人中心组件-->
@@ -30,7 +30,7 @@ import MyPage from '@/components/tabbar-page/tabbar-my-page.vue';
 //购物车组件
 import ShoppingCart from '@/components/tabbar-page/tabbar-shop-cart.vue';
 //二级市场组件
-import SemPage from '@/components/tabbar-page/tabbar-sem-page.vue';
+import TabbarSemPage from '@/components/tabbar-page/tabbar-sem-page.vue';
 export default {
 	components: {
 		TabBar,
@@ -38,7 +38,7 @@ export default {
 		StatPage,
 		MyPage,
 		ShoppingCart,
-		SemPage
+		TabbarSemPage
 	},
 	data() {
 		return {

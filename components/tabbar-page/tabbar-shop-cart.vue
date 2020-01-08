@@ -1,5 +1,5 @@
 <template>
-	<view v-show="pageFlag === tabBarFlag" v-cloak>
+	<view v-show="pageFlag === tabBarFlag">
 		<navbar-shopping-cart></navbar-shopping-cart>
 		<bht-layout-container bgColor="#F2F2F2">
 			<view class="shopping-cart-bg"></view>

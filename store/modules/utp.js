@@ -61,13 +61,13 @@ const getters = {
 		return state.roleArr
 	},
 	getTabBarIndex: (state) => {
-		return state.tabBarIndex || uni.getStorageSync('tabBarIndex');
+		return state.tabBarIndex || uni.getStorageSync('tabBarIndex') || 'index';
 	},
 	getStatItemWidth: (state) => {
 		return state.statItemWidth
 	},
 	roleMenu: (state) => {
-		return state.roleMenu.length > 0 ? state.roleMenu : uni.getStorageSync('menuData')
+		return state.roleMenu.length > 0 ? state.roleMenu : uni.getStorageSync('menuData');
 	}
 }
 
