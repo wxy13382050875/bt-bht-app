@@ -48,7 +48,7 @@ export default {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		height: 50px;
+		height: 120rpx;
 		background-color: #f7f3f0;
 		&::before {
 			content: '';
