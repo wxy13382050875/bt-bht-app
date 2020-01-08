@@ -24,10 +24,6 @@ export default {
 			roleMenu: 'utp/roleMenu'
 		})
 	},
-	created() {
-		console.log(this.roleMenu)
-		console.log(uni.getStorageSync('menuData'))
-	},
 	methods: {
 		...mapActions({
 			setTabBarIndex: 'utp/setTabBarIndex'

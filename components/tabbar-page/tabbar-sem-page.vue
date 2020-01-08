@@ -9,7 +9,7 @@
 				</view>
 			</view>
 			<view class="scan-list-container">
-				<view class="list-items" v-for="item in 4">
+				<!-- <view class="list-items" v-for="item in 4">
 					<view class="check"><nz-checkbox :circle="true"></nz-checkbox></view>
 					<view class="info">
 						<view class="info__header">
@@ -40,9 +40,17 @@
 							<text class="value">3333</text>
 						</view>
 					</view>
-				</view>
+				</view> -->
+				<view class="tips">请"扫一扫"添加商品！</view>
 			</view>
-			<view class="scan-footer"></view>
+			<view class="scan-footer">
+				<nz-checkbox :circle="true" label="全选"></nz-checkbox>
+				<view class="total">
+					<label>合计：</label>
+					<text class="price">¥323200</text>
+				</view>
+				<view class="sub-btn">提交订单(22)</view>
+			</view>
 		</bht-layout-container>
 	</view>
 </template>
@@ -75,6 +83,12 @@ export default {
 				success: function(res) {
 					console.log('条码类型：' + res.scanType);
 					console.log('条码内容：' + res.result);
+				},
+				fail: function() {
+					uni.showToast({
+						icon: 'none',
+						title: '二维码识别失败'
+					});
 				}
 			});
 		}
@@ -161,21 +175,49 @@ export default {
 					height: 54rpx;
 					font: 26rpx;
 					color: #898989;
-					border-bottom: 1px solid #E5E5E5;
-					
-					&:last-child{
+					border-bottom: 1px solid #e5e5e5;
+
+					&:last-child {
 						border-bottom: 0;
 					}
 				}
 			}
 		}
+		.tips {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			height: 100%;
+			font-size: 34rpx;
+			color: #e40011;
+		}
 	}
 	.scan-footer {
 		position: absolute;
 		bottom: 0;
+		padding: 0 $padding-content;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
 		width: 100%;
 		height: 114rpx;
+		font-size: 30rpx;
 		background-color: #fff;
+		.total {
+			color: #333333;
+			.price {
+				color: #ff3333;
+			}
+		}
+		.sub-btn {
+			width: 238rpx;
+			height: 82rpx;
+			line-height: 82rpx;
+			text-align: center;
+			background-color: #ff6f04;
+			border-radius: 41px;
+			color: #ffffff;
+		}
 	}
 }
 </style>
