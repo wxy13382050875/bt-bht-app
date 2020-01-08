@@ -109,7 +109,7 @@ export default {
 		getUserAddressList(params).then(res => {
 			let { data, code } = res;
 			if (code === '200') {
-				console.log(data.addressList);
+				// console.log(data.addressList);
 				this.dataSource = data.addressList;
 			}
 		});
