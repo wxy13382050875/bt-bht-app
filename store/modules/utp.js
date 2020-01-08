@@ -36,9 +36,14 @@ const state = {
 			value: '商铺管理',
 			code: 4,
 			roleDesc: "商铺管理"
+		},
+		{
+			value: '收购企业',
+			code: 5,
+			roleDesc: "收购企业"
 		}
 	],
-	roleArr: ['游客', '边民', '场所工作人员', '商铺管理'],
+	roleArr: ['游客', '边民', '场所工作人员', '商铺管理','收购企业'],
 }
 
 const getters = {
