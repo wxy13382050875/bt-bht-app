@@ -160,7 +160,7 @@ export default {
 						uni.showToast({
 							title: '更新成功',
 							success: () => {
-								this.setUserInfo(this.formData)
+								this.setUserInfo(data)
 								this.$Router.back();
 							}
 						});

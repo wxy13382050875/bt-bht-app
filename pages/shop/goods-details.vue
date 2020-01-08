@@ -112,8 +112,16 @@ export default {
 		 */
 		showSpecifiDialog(e) {
 			console.log(e);
-			this.isAddCart = e;
-			this.bShowSpecifiDialog = true;
+			let userInfo = uni.getStorageSync("userInfo");
+			if(userInfo.isCompleteInfo == 1){
+				this.isAddCart = e;
+				this.bShowSpecifiDialog = true;
+			} else {
+				uni.navigateTo({
+					url:"/pages/user/edit-profile"
+				})
+			}
+			
 		},
 		/**
 		 * 套餐选择
