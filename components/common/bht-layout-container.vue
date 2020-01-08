@@ -21,7 +21,7 @@ export default {
 		},
 		bottom: {
 			type: Number,
-			default: 50
+			default: uni.upx2px(120)
 		}
 	},
 	data() {

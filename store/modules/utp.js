@@ -60,7 +60,7 @@ const getters = {
 		return state.roleArr
 	},
 	getTabBarIndex: (state) => {
-		return state.tabBarIndex || uni.getStorageSync('tabBarIndex');
+		return state.tabBarIndex || uni.getStorageSync('tabBarIndex') || 'index';
 	},
 	getStatItemWidth: (state) => {
 		return state.statItemWidth
@@ -78,7 +78,7 @@ const mutations = {
 		state.curUrl = url
 	},
 	setTabBarIndex: (state, index) => {
-		
+
 		uni.setStorageSync('tabBarIndex', index)
 		state.tabBarIndex = index
 	},

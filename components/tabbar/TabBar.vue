@@ -9,8 +9,10 @@
 	</view>
 </template>
 <script>
+/**
+ * 底部菜单组件
+ */
 import { mapActions, mapGetters } from 'vuex';
-//底部菜单组件
 export default {
 	props: {
 		tabbar: {
@@ -20,7 +22,6 @@ export default {
 	},
 	data() {
 		return {
-		
 			list: []
 		};
 	},
@@ -35,7 +36,6 @@ export default {
 		}),
 		tabChangeEvent(flag) {
 			if (this.curTabBarIndex !== flag) {
-				
 				this.setTabBarIndex(flag);
 			}
 		}
@@ -55,6 +55,12 @@ export default {
 					src: require('@/static/tab/tjbb_def_icon.png'),
 					selectedSrc: require('@/static/tab/tjbb_sel_icon.png'),
 					flag: 'stat'
+				},
+				{
+					title: '二级市场',
+					src: require('@/static/tab/sem_def_icon.png'),
+					selectedSrc: require('@/static/tab/sem_sel_icon.png'),
+					flag: 'sem'
 				},
 				{
 					title: '购物车',
@@ -106,7 +112,7 @@ export default {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		height: 50px;
+		height: 120rpx;
 		background-color: #f7f3f0;
 		&::before {
 			content: '';
@@ -124,8 +130,8 @@ export default {
 			justify-content: center;
 			height: 100%;
 			.icon {
-				width: 24px;
-				height: 24px;
+				width: 50rpx;
+				height: 50rpx;
 			}
 			.title {
 				margin-top: 2px;
