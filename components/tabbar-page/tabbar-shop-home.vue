@@ -72,7 +72,7 @@ export default {
 				},
 				//下拉刷新
 				downCallback(mescroll) {
-					console.log('downCallback')
+					// console.log('downCallback')
 					let params={};
 					getFindHomeGoods(params).then(res => {
 						

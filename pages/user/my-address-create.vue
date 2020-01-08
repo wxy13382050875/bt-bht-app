@@ -63,13 +63,14 @@
 import NavbarBackAddressEdit from '@/components/navbar/navbar-back-address-edit.vue';
 import areaData from '@/third/lb-picker/area-data-min.js';
 import { saveUserAddress } from '@/api/shop.js';
+import formValidate from '@/utils/validate';
 export default {
 	data() {
 		return {
 			dataSource: {},
 			isDefault: false,
 			value: [],
-			list: areaData,
+			list: areaData
 		};
 	},
 	components: {
@@ -98,35 +99,63 @@ export default {
 			this.isDefault = e.target.value;
 		},
 		saveEvent(e) {
-			console.log('保存');
+			// console.log('保存');
 
-			this.dataSource.defaultFlag = this.isDefault?0:1;
-			this.dataSource.userId = 2;
-			console.log(this.dataSource);
-			// let params = {
-			// 	userId:2
-			// }
-			uni.showLoading({
-				title: '提交...',		
-				mask: true	,
+			//验证规则
+			let rule = [
+				{
+					name: 'name',
+					checkType: 'notnull',
+					errorMsg: '请填写收货人姓名'
+				},
+				{
+					name: 'phone',
+					checkType: 'phoneno',
+					errorMsg: '请填写正确的手机号'
+				},
+				{
+					name: 'location',
+					checkType: 'notnull',
+					errorMsg: '选择省市区'
+				},
+				{
+					name: 'detail',
+					checkType: 'notnull',
+					errorMsg: '请填写详细地址'
+				}
+			];
+			var valid = formValidate.check({ ...this.dataSource }, rule);
+
+			if (valid) {
+				this.dataSource.defaultFlag = this.isDefault ? 0 : 1;
+				this.dataSource.userId = 2;
+				console.log(this.dataSource);
+				uni.showLoading({
+					title: '提交...',
+					mask: true
 				});
-			saveUserAddress(this.dataSource).then(res => {
-				
-				uni.hideLoading();
-				let { data, msg, code } = res;
-				console.log(res);
+				saveUserAddress(this.dataSource).then(res => {
+					uni.hideLoading();
+					let { data, msg, code } = res;
+					// console.log(res);
+					uni.showToast({
+						title: msg,
+						icon: 'none'
+					});
+					if (code === '200') {
+						this.$Router.back();
+					}
+				});
+			} else {
 				uni.showToast({
-					title: msg,
+					title: formValidate.error,
 					icon: 'none'
 				});
-				if (code === '200') {
-					this.$Router.back();
-					
-				}
-			});
+			}
 		},
 		handleTap(picker) {
 			this.$refs[picker].show();
+			
 		},
 		handleChange(item) {
 			console.log('change::', item);
@@ -136,7 +165,7 @@ export default {
 			this.dataSource.location = '';
 
 			item.item.forEach((tmItem, index) => {
-				console.log('confirm::', tmItem.label);
+				// console.log('confirm::', tmItem.label);
 				// if (index == 0) {
 				// 	this.dataSource.provinceId = tmItem.value;
 				// 	this.dataSource.province = tmItem.label;
@@ -150,6 +179,7 @@ export default {
 
 				this.dataSource.location += tmItem.label;
 			});
+			this.$forceUpdate();
 		},
 		handleCancle(item) {
 			console.log('cancle::', item);

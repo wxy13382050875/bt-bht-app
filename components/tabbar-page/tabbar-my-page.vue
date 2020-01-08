@@ -19,7 +19,6 @@
 			</view>
 		</uni-popup>
 	</view>
-	
 </template>
 
 <script>
@@ -79,9 +78,16 @@ export default {
 			});
 		},
 		togglePopup() {
-			this.$nextTick(() => {
-				this.$refs['showimage'].open();
-			});
+			if (this.userInfo.idCodeQr != '' && this.userInfo.idCodeQr != null) {
+				this.$nextTick(() => {
+					this.$refs['showimage'].open();
+				});
+			} else {
+				uni.showToast({
+					title: '请完善用户信息',
+					icon: 'none'
+				});
+			}
 		},
 		cancel(type) {
 			this.$refs['showimage'].close();

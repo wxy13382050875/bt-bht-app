@@ -25,8 +25,8 @@ export default {
 		})
 	},
 	created() {
-		console.log(this.roleMenu)
-		console.log(uni.getStorageSync('menuData'))
+		// console.log(this.roleMenu)
+		// console.log(uni.getStorageSync('menuData'))
 	},
 	methods: {
 		...mapActions({
