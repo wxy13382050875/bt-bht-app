@@ -3,27 +3,37 @@
 		<navBarTitle title="个人中心"></navBarTitle>
 		<bht-layout-container>
 			<view class="bht-layout-content">
-				<view class="header"><personalHeader :dataSource="userInfo"></personalHeader></view>
+				<view class="header"><personalHeader :dataSource="userInfo" @togglePopup="togglePopup"></personalHeader></view>
 				<view class="body">
 					<personalOrder :dataSource="dataSource.order" sta></personalOrder>
 					<personalOrder :dataSource="dataSource.tool"></personalOrder>
 				</view>
-				<view class="footer"><view class="login-out" @click="loginout">退出登陆</view></view>
+				<view class="footer"><view class="login-out" @click="loginout">退出登录</view></view>
 			</view>
 		</bht-layout-container>
+		<!-- 插屏弹窗 -->
+		<uni-popup ref="showimage" :mask-click="true" @change="change">
+			<view class="uni-image">
+				<image class="image" style="width: 320rpx;height: 320rpx;" :src="userInfo.idCodeQr" mode="scaleToFill" />
+				<view class="uni-image-close" @click="cancel('image')"></view>
+			</view>
+		</uni-popup>
 	</view>
+	
 </template>
 
 <script>
 import personalHeader from '@/components/personal/xw-dth-personal-header.vue';
 import personalOrder from '../../components/personal/xw-dth-personal-order.vue';
 import navBarTitle from '@/components/navbar/navbar-title-default.vue';
+import UniPopup from '@/third/uni-popup/uni-popup.vue';
 import { mapGetters, mapActions } from 'vuex';
 export default {
 	components: {
 		personalHeader,
 		personalOrder,
-		navBarTitle
+		navBarTitle,
+		UniPopup
 	},
 	data() {
 		return {
@@ -67,6 +77,20 @@ export default {
 			uni.redirectTo({
 				url: '/pages/common/login'
 			});
+		},
+		togglePopup() {
+			this.$nextTick(() => {
+				this.$refs['showimage'].open();
+			});
+		},
+		cancel(type) {
+			this.$refs['showimage'].close();
+		},
+		change(e) {
+			console.log('是否打开:' + e.show);
+		},
+		onBackPress() {
+			this.$refs['showimage'].close();
 		}
 	},
 	watch: {

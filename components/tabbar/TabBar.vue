@@ -1,7 +1,7 @@
 <template>
 	<view class="tab-bar-wrapper" v-show="tabbar">
 		<view class="tab-bar-list">
-			<view class="items" :class="{ 'nav-item-active': curTabBarIndex === item.flag }" v-for="(item, index) in list" :key="index" @click="tabChangeEvent(item.flag)">
+			<view class="items" :class="{ 'nav-item-active': curTabBarIndex === item.flag }" v-for="(item, index) in roleMenu" :key="index" @click="tabChangeEvent(item.flag)">
 				<image class="icon" :src="curTabBarIndex === item.flag ? item.selectedSrc : item.src"></image>
 				<label class="title">{{ item.title }}</label>
 			</view>
@@ -9,10 +9,8 @@
 	</view>
 </template>
 <script>
-/**
- * 底部菜单组件
- */
 import { mapActions, mapGetters } from 'vuex';
+//底部菜单组件
 export default {
 	props: {
 		tabbar: {
@@ -20,15 +18,15 @@ export default {
 			default: true
 		}
 	},
-	data() {
-		return {
-			list: []
-		};
-	},
 	computed: {
 		...mapGetters({
-			curTabBarIndex: 'utp/getTabBarIndex'
+			curTabBarIndex: 'utp/getTabBarIndex',
+			roleMenu: 'utp/roleMenu'
 		})
+	},
+	created() {
+		console.log(this.roleMenu)
+		console.log(uni.getStorageSync('menuData'))
 	},
 	methods: {
 		...mapActions({
@@ -38,64 +36,6 @@ export default {
 			if (this.curTabBarIndex !== flag) {
 				this.setTabBarIndex(flag);
 			}
-		}
-	},
-	created() {
-		let userInfo = uni.getStorageSync('userInfo');
-		if (1) {
-			this.list = [
-				{
-					title: '首页',
-					src: require('@/static/tab/home_def_icon.png'),
-					selectedSrc: require('@/static/tab/home_sel_icon.png'),
-					flag: 'index'
-				},
-				{
-					title: '统计报表',
-					src: require('@/static/tab/tjbb_def_icon.png'),
-					selectedSrc: require('@/static/tab/tjbb_sel_icon.png'),
-					flag: 'stat'
-				},
-				{
-					title: '二级市场',
-					src: require('@/static/tab/sem_def_icon.png'),
-					selectedSrc: require('@/static/tab/sem_sel_icon.png'),
-					flag: 'sem'
-				},
-				{
-					title: '购物车',
-					src: require('@/static/tab/cart_def_icon.png'),
-					selectedSrc: require('@/static/tab/cart_sel_icon.png'),
-					flag: 'cart'
-				},
-				{
-					title: '我的',
-					src: require('@/static/tab/my_def_icon.png'),
-					selectedSrc: require('@/static/tab/my_sel_icon.png'),
-					flag: 'my'
-				}
-			];
-		} else {
-			this.list = [
-				{
-					title: '首页',
-					src: require('@/static/tab/home_def_icon.png'),
-					selectedSrc: require('@/static/tab/home_sel_icon.png'),
-					flag: 'index'
-				},
-				{
-					title: '购物车',
-					src: require('@/static/tab/cart_def_icon.png'),
-					selectedSrc: require('@/static/tab/cart_sel_icon.png'),
-					flag: 'cart'
-				},
-				{
-					title: '我的',
-					src: require('@/static/tab/my_def_icon.png'),
-					selectedSrc: require('@/static/tab/my_sel_icon.png'),
-					flag: 'my'
-				}
-			];
 		}
 	}
 };
@@ -112,7 +52,7 @@ export default {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		height: 120rpx;
+		height: 50px;
 		background-color: #f7f3f0;
 		&::before {
 			content: '';
@@ -130,8 +70,8 @@ export default {
 			justify-content: center;
 			height: 100%;
 			.icon {
-				width: 50rpx;
-				height: 50rpx;
+				width: 24px;
+				height: 24px;
 			}
 			.title {
 				margin-top: 2px;

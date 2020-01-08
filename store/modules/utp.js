@@ -1,7 +1,7 @@
+import menuData from '@/data/menu.js'
 /**
  * 保存全局常量信息
  */
-
 const state = {
 	//导航栏高度
 	navHeight: 0,
@@ -14,6 +14,7 @@ const state = {
 	statItemWidth: 0,
 	//当前页面地址
 	curUrl: '',
+	roleMenu: [],
 	//角色数据
 	roleData: [{
 
@@ -60,10 +61,13 @@ const getters = {
 		return state.roleArr
 	},
 	getTabBarIndex: (state) => {
-		return state.tabBarIndex || uni.getStorageSync('tabBarIndex') || 'index';
+		return state.tabBarIndex || uni.getStorageSync('tabBarIndex');
 	},
 	getStatItemWidth: (state) => {
 		return state.statItemWidth
+	},
+	roleMenu: (state) => {
+		return state.roleMenu.length > 0 ? state.roleMenu : uni.getStorageSync('menuData')
 	}
 }
 
@@ -78,12 +82,15 @@ const mutations = {
 		state.curUrl = url
 	},
 	setTabBarIndex: (state, index) => {
-
 		uni.setStorageSync('tabBarIndex', index)
 		state.tabBarIndex = index
 	},
 	setStatItemWidth: (state, width) => {
 		state.statItemWidth = width
+	},
+	setRoleMenu: (state, menu) => {
+		uni.setStorageSync('menuData', menu);
+		state.roleMenu = menu
 	}
 }
 
@@ -111,8 +118,12 @@ const actions = {
 	setStatItemWidth: ({
 		commit
 	}, width) => {
-
 		commit('setStatItemWidth', width)
+	},
+	setRoleMenu: ({
+		commit
+	}, roleId) => {
+		commit('setRoleMenu', menuData[roleId])
 	}
 }
 

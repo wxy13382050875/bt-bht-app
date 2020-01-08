@@ -94,6 +94,7 @@ export default {
 		//解构赋值
 		this.formData = this.userInfo;
 		this.init();
+		console.log('this.userInfo')
 		console.log(this.userInfo)
 	},
 	computed: {
