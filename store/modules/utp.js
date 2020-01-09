@@ -43,7 +43,7 @@ const state = {
 			roleDesc: "收购企业"
 		}
 	],
-	roleArr: ['游客', '边民', '场所工作人员', '商铺管理','收购企业'],
+	roleArr: ['游客', '边民', '场所工作人员', '商铺管理', '收购企业'],
 }
 
 const getters = {
@@ -66,13 +66,13 @@ const getters = {
 		return state.roleArr
 	},
 	getTabBarIndex: (state) => {
-		return state.tabBarIndex || uni.getStorageSync('tabBarIndex') || 'index';
+		return state.tabBarIndex || uni.getStorageSync('tabBarIndex');
 	},
 	getStatItemWidth: (state) => {
 		return state.statItemWidth
 	},
 	roleMenu: (state) => {
-		return state.roleMenu.length > 0 ? state.roleMenu : uni.getStorageSync('menuData');
+		return state.roleMenu.length > 0 ? state.roleMenu : uni.getStorageSync('menuData')
 	}
 }
 
@@ -128,7 +128,12 @@ const actions = {
 	setRoleMenu: ({
 		commit
 	}, roleId) => {
-		commit('setRoleMenu', menuData[roleId])
+		if (roleId == null || roleId == '') {
+			commit('setRoleMenu', menuData['1']);
+		} else {
+			commit('setRoleMenu', menuData[roleId]);
+		}
+
 	}
 }
 

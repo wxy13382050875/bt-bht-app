@@ -94,8 +94,8 @@ export default {
 		//解构赋值
 		this.formData = this.userInfo;
 		this.init();
-		console.log('this.userInfo')
-		console.log(this.userInfo)
+		// console.log('this.userInfo')
+		// console.log(this.userInfo)
 	},
 	computed: {
 		...mapGetters({
@@ -211,10 +211,13 @@ export default {
 			//隶属关区
 			if (customs != '' && customs != null) {
 				let regionDef = [];
+				
 				regionData.forEach((item, index, arr) => {
+					console.log(customs,item.value);
 					if (customs === item.value) {
 						regionDef.push(index);
 						regionText = item.label;
+						
 						item.children.forEach((cItem, cIndex, cArr) => {
 							if (cItem.value === region) {
 								regionDef.push(cIndex);
@@ -225,6 +228,7 @@ export default {
 				});
 				this.regionText = regionText;
 				this.regionDef = regionDef;
+				
 			}
 		}
 	}
