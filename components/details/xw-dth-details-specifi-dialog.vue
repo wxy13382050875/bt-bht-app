@@ -95,12 +95,6 @@ export default {
 		}
 	},
 	created() {
-		console.log(specList);
-		console.log(skuList);
-		// this.specifications.map(item => {
-		// 	this.selectArr.push('');
-		// 	this.subIndex.push(-1);
-		// });
 		this.checkItem(); //计算sku里面规格形成路径
 		this.checkInpath(-1); //传-1是为了不跳过循环
 		// this.getData(1);
@@ -141,24 +135,7 @@ export default {
 		uniPopupChange(e) {
 			this.$emit('input', e);
 		},
-		// change(value) {
-		// 	console.log(value);
-		// 	this.curNumber = value;
-		// },
-		// bindClick(item, pro) {
-		// 	console.log("bindClick");
-		// 	item.attrValues.forEach((tmItem, index) => {
-		// 		tmItem.type = 'default';
-		// 	});
-		// 	if (pro.type == 'default') {
-		// 		pro.type = 'success';
-		// 		this.curTag = pro;
-		// 	} else {
-		// 		pro.type = 'default';
-		// 		this.curTag = {};
-		// 	}
-		// 	this.$forceUpdate();
-		// },
+		
 		
 		skuClick(value, index1, event, index2) {
 			console.log(value.ishow);

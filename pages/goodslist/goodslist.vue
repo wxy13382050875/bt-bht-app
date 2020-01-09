@@ -72,7 +72,7 @@ export default {
 
 				if (mescroll.num == 1) this.dataSource = [];
 				this.dataSource = this.dataSource.concat(list);
-				console.log('1111---' + this.dataSource);
+				
 				mescroll.endBySize(list.length, pageInfo.rowCount);
 				this.$nextTick(() => {
 					mescroll.endSuccess(list.length);

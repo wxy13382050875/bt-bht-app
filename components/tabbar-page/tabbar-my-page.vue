@@ -102,8 +102,6 @@ export default {
 	watch: {
 		tabBarFlag(n, v) {
 			if (n === this.pageFlag) {
-				// this.userInfo = uni.getStorageSync('userInfo');
-				console.log(this.userInfo);
 			}
 		}
 	}

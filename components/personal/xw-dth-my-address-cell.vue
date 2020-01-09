@@ -8,7 +8,7 @@
 				:options="options"
 				:key="item.addressId"
 				@change="swipeChange"
-				@click="swipeClick($event, item.addressId)"
+				@click="swipeClick($event, item)"
 			>
 				<view class="address-cell" @click="didSelectCell(item)">
 					<view class="a-img">
@@ -26,7 +26,8 @@
 								<label class="a-default" v-if="item.defaultFlag === 1">默认</label>
 								{{ item.location }}{{ item.detail }}
 							</view>
-							<navigator :url="'/pages/user/my-address-create?item=' + encodeURIComponent(JSON.stringify(item))" class="a-edit"><view class="">编辑</view></navigator>
+							<view class="a-edit" @click.stop="skipEdit(item)"><view class="">编辑</view></view>
+							
 						</view>
 					</view>
 				</view>
@@ -39,6 +40,7 @@
 import UniSwipeAction from '@/third/uni-swipe-action/uni-swipe-action/uni-swipe-action.vue';
 import UniSwipeActionItem from '@/third/uni-swipe-action/uni-swipe-action-item/uni-swipe-action-item.vue';
 import { deleteAddress } from '@/api/shop.js';
+import { mapGetters, mapActions } from 'vuex';
 export default {
 	components: {
 		UniSwipeActionItem,
@@ -65,14 +67,26 @@ export default {
 			}
 		}
 	},
+	computed: {
+		...mapGetters({
+			defaultAddress: 'utp/address'
+		})
+	},
 	onReady() {
 		this.$nextTick(() => {
 			this.isOpened = true;
 		});
 	},
 	methods: {
+		...mapActions({
+			setAddress: 'utp/setAddress'
+		}),
 		didSelectCell(e) {
 			this.$emit('didSelectCell', e);
+		},
+		skipEdit(e){
+			
+			this.$emit('skipEdit', e);
 		},
 		bindClick(e) {
 			uni.showToast({
@@ -90,31 +104,35 @@ export default {
 		swipeChange(e) {
 			console.log('...返回：', e);
 		},
-		swipeClick(e, addressId) {
-			console.log('234567890');
+		swipeClick(e, item) {
 			let { content } = e;
-			console.log(addressId);
 			if (content.text === '删除') {
-				// console.log(content.text, index);
 				uni.showModal({
 					title: '提示',
 					content: '是否删除',
 					success: res => {
 						if (res.confirm) {
-							// this.swipeList.splice(index, 1);
 							let param = {
-								addressId: addressId
+								addressId: item.addressId
 							};
 							deleteAddress(param).then(res => {
 								// console.log(res);
 								let { data, code, msg } = res;
+								let toastMsg = '';
+								if (code == '200') {
+									toastMsg = '删除地址成功';
+									console.log('del ok');
+									if (item.addressId == this.defaultAddress.addressId) {
+										this.setAddress({});
+									}
+									this.$emit('refreshData', data);
+								} else {
+									toastMsg = msg;
+								}
 								uni.showToast({
-									title: msg,
+									title: toastMsg,
 									icon: 'none'
 								});
-								if (code === '200') {
-									this.$emit('refreshData', data);
-								}
 							});
 						} else if (res.cancel) {
 							console.log('用户点击取消');

@@ -42,7 +42,6 @@ export default {
 				if(this.popType == 0){
 					this.$Router.back();
 				} else {
-					console.log("返回首页")
 					uni.navigateTo({
 						url:"/pages/main"
 					})

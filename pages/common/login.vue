@@ -66,7 +66,8 @@ export default {
 		...mapActions({
 			setLoginStatus: 'user/setLoginStatus',
 			setUserInfo: 'user/setUserInfo',
-			setRoleMenu: 'utp/setRoleMenu'
+			setRoleMenu: 'utp/setRoleMenu',
+			setAddress: 'utp/setAddress'
 		}),
 		//登录处理
 		handleLogin() {
@@ -86,8 +87,8 @@ export default {
 							//缓存用户信息
 							uni.setStorageSync('isLogin', true);
 							uni.setStorageSync('userInfo', res.data);
-							uni.setStorageSync('defaultAddress', res.data.defaultAddress);
 							this.setRoleMenu(res.data.roleId);
+							this.setAddress(res.data.defaultAddress, null);
 							uni.redirectTo({
 								url: '/pages/main'
 							});

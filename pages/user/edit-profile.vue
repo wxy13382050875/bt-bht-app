@@ -94,8 +94,6 @@ export default {
 		//解构赋值
 		this.formData = this.userInfo;
 		this.init();
-		// console.log('this.userInfo')
-		// console.log(this.userInfo)
 	},
 	computed: {
 		...mapGetters({
@@ -213,7 +211,6 @@ export default {
 				let regionDef = [];
 				
 				regionData.forEach((item, index, arr) => {
-					console.log(customs,item.value);
 					if (customs === item.value) {
 						regionDef.push(index);
 						regionText = item.label;

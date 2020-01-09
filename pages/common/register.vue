@@ -77,8 +77,6 @@ export default {
 	methods: {
 		//注册处理
 		handleReg() {
-			console.log('-----注册------');
-			console.log(this.regData);
 			let valid = formValidate.check({ ...this.regData }, this.rule);
 			if (valid) {
 				uni.showLoading({
@@ -90,9 +88,7 @@ export default {
 						uni.hideLoading();
 						let { code, msg } = res;
 						//注册成功
-						console.log(code);
 						if (code === '200') {
-							console.log('------');
 							uni.showToast({
 								title: '注册成功'
 							});

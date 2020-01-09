@@ -91,7 +91,6 @@ export default {
 				mescroll.size,
 				curPageData => {
 					//联网成功的回调,隐藏下拉刷新和上拉加载的状态;
-					console.log('i=' + this.i + ', mescroll.num=' + mescroll.num + ', mescroll.size=' + mescroll.size + ', curPageData.length=' + curPageData.length);
 					mescroll.endSuccess(curPageData.length);
 					//设置列表数据
 					if (mescroll.num == 1) this.dataSource = []; //如果是第一页需手动制空列表
@@ -117,7 +116,6 @@ export default {
 			实际项目以您服务器接口返回的数据为准,无需本地处理分页.
 			* */
 		getListDataFromNet(pageNum, pageSize, successCallback, errorCallback) {
-			console.log('upCallback');
 			let userInfo = uni.getStorageSync('userInfo');
 			this.params.pageIndex = pageNum;
 			this.params.pageSize = pageSize;
@@ -135,7 +133,6 @@ export default {
 
 			this.params.shopCarNbr = userInfo.shopCarNbr;
 
-			console.log(this.params);
 			getOrderList(this.params).then(res => {
 				let { pageInfo, stores } = res.data;
 				

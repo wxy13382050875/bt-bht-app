@@ -89,7 +89,6 @@
 		methods: {
 			preview(src, e) {
 				// do something
-				console.log(src)
 			},
 			navigate(href, e) {
 				// do something

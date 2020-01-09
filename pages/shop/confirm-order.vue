@@ -5,16 +5,16 @@
 			<scroll-view scroll-y="true" style="height: 100%;">
 				<view class="address-box">
 					<navigator url="/pages/personal/my-address-list?type=1" class="address-navigator" hover-class="none">
-						<view class="no-address" v-if="address.addressId == ''||address.addressId == null">请添加收货地址</view>
+						<view class="no-address" v-if="defaultAddress.addressId == null">请添加收货地址</view>
 
 						<view class="address" v-else>
 							<view class="address-icon"><image src="/static/icon/address_loaction_icon.png"></image></view>
 							<view class="address-info">
 								<view class="address-info-user">
-									<label class="name">{{ address.name }}</label>
-									<label class="phone">{{ address.phone }}</label>
+									<label class="name">{{ defaultAddress.name }}</label>
+									<label class="phone">{{ defaultAddress.phone }}</label>
 								</view>
-								<view class="address-text">{{ address.location }}{{ address.detail }}</view>
+								<view class="address-text">{{ defaultAddress.location }}{{ defaultAddress.detail }}</view>
 							</view>
 							<label class="iconfont aca-youjiantou"></label>
 						</view>
@@ -91,11 +91,12 @@
 </template>
 
 <script>
-import { postCommitOrder } from '@/api/shop.js';
-import NzCheckbox from '@/third/acaui/nz-checkbox/nz-checkbox.vue';
 /**
  * 提交订单/确认订单
  */
+import { postCommitOrder } from '@/api/shop.js';
+import NzCheckbox from '@/third/acaui/nz-checkbox/nz-checkbox.vue';
+import { mapGetters } from 'vuex';
 export default {
 	components: {
 		NzCheckbox
@@ -127,9 +128,18 @@ export default {
 			]
 		};
 	},
-	onShow() {
-		// #ifdef APP-PLUS
-		// #endif
+	computed: {
+		...mapGetters({
+			defaultAddress: 'utp/address'
+		})
+	},
+	onLoad: function(option) {
+		this.dataSource = JSON.parse(decodeURIComponent(option.item));
+		this.commitType = option.commitType;
+		this.dataSource.forEach((item, index) => {
+			this.totalNum += Number.parseInt(item.goodsTotalNum);
+			this.totalPrice += item.goodsTotalPrice;
+		});
 	},
 	methods: {
 		radioChange: function(evt) {
@@ -173,7 +183,6 @@ export default {
 					}
 				});
 			} else {
-				console.log(this.payInfo);
 
 				uni.requestPayment({
 					provider: 'wxpay',
@@ -228,14 +237,11 @@ export default {
 				commitType: this.commitType,
 				orderAddressId: this.address.addressId
 			};
-			console.log('-----params-----');
-			console.log(params);
 			uni.showLoading({
 				title: '正在提交...',
 				mask: true
 			});
 			postCommitOrder(params).then(res => {
-				console.log(res);
 				uni.hideLoading();
 				if (res.code == 200) {
 					this.current = 1;
@@ -252,20 +258,6 @@ export default {
 				}
 			});
 		}
-	},
-	onLoad: function(option) {
-		this.dataSource = JSON.parse(decodeURIComponent(option.item));
-		console.log('---wxy---' + option.commitType);
-		this.commitType = option.commitType;
-		this.dataSource.forEach((item, index) => {
-			this.totalNum += Number.parseInt(item.goodsTotalNum);
-			this.totalPrice += item.goodsTotalPrice;
-		});
-		this.address = uni.getStorageSync('defaultAddress');
-		console.log(this.address);
-	},
-	onShow() {
-		this.address = uni.getStorageSync('defaultAddress');
 	}
 };
 </script>

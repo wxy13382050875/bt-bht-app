@@ -14,7 +14,10 @@ const state = {
 	statItemWidth: 0,
 	//当前页面地址
 	curUrl: '',
+	//权限菜单
 	roleMenu: [],
+	//默认收货地址
+	address: {},
 	//角色数据
 	roleData: [{
 
@@ -73,6 +76,9 @@ const getters = {
 	},
 	roleMenu: (state) => {
 		return state.roleMenu.length > 0 ? state.roleMenu : uni.getStorageSync('menuData')
+	},
+	address: (state) => {
+		return state.address;
 	}
 }
 
@@ -96,6 +102,9 @@ const mutations = {
 	setRoleMenu: (state, menu) => {
 		uni.setStorageSync('menuData', menu);
 		state.roleMenu = menu
+	},
+	setAddress: (state, address) => {
+		state.address = address;
 	}
 }
 
@@ -133,7 +142,11 @@ const actions = {
 		} else {
 			commit('setRoleMenu', menuData[roleId]);
 		}
-
+	},
+	setAddress: ({
+		commit
+	}, address) => {
+		commit('setAddress', address)
 	}
 }
 

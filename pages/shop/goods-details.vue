@@ -95,9 +95,6 @@ export default {
 					title: msg
 				});
 			}
-
-			// console.log('this.skuData');
-			// console.log(this.skuData);
 		});
 	},
 	methods: {
@@ -111,24 +108,29 @@ export default {
 		 * 显示规格
 		 */
 		showSpecifiDialog(e) {
-			console.log(e);
-			let userInfo = uni.getStorageSync("userInfo");
-			if(userInfo.isCompleteInfo == 1){
+			let userInfo = uni.getStorageSync('userInfo');
+			if (userInfo.isCompleteInfo == 1) {
 				this.isAddCart = e;
 				this.bShowSpecifiDialog = true;
 			} else {
-				uni.navigateTo({
-					url:"/pages/user/edit-profile"
-				})
+				uni.showModal({
+					title: '提示',
+					content: '请完善用户信息',
+					showCancel: false,
+					success(res) {
+						uni.navigateTo({
+							url: '/pages/user/edit-profile'
+						});
+					}
+				});
 			}
-			
 		},
 		/**
 		 * 套餐选择
 		 */
 		tagChange(tag, number) {
 			if (this.isAddCart) {
-				// console.log('加入购物车');
+				console.log('加入购物车');
 				uni.showLoading({
 					title: ''
 				});
@@ -153,8 +155,14 @@ export default {
 					// this.seemLookGoods.list = res.data.seemLookGoods;
 
 					// uni.hideLoading();
+					let toastMsg = '';
+					if (res.code == '200') {
+						toastMsg = '加入购物车成功';
+					} else {
+						toastMsg = res.msg;
+					}
 					uni.showToast({
-						title: res.msg,
+						title: toastMsg,
 						icon: 'none'
 					});
 				});

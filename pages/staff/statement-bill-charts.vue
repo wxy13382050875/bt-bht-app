@@ -74,7 +74,6 @@ export default {
 			this.queryDateType = type === 'M' ? 'month' : 'year';
 			//调用请求数据
 			this.reqChartData();
-			console.log("请求数据")
 			//动态更新数据
 			let option = this.optionsConfig();
 			echartsInstans.setOption(option);

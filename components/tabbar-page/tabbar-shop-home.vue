@@ -72,7 +72,6 @@ export default {
 				},
 				//下拉刷新
 				downCallback(mescroll) {
-					// console.log('downCallback')
 					let params={};
 					getFindHomeGoods(params).then(res => {
 						
@@ -93,32 +92,14 @@ export default {
 				},
 				//上拉刷新
 				upCallback(mescroll) {
-					console.log('upCallback')
 					this.params.pageIndex = mescroll.num;
 					this.params.pageSize = mescroll.size;
 					
 					
 					
-					// getGoodsList(this.strUrl,this.params).then(res => {
-					// 	let {
-					// 		pageInfo	,
-					// 		list
-					// 	} = res.data
-						
-						
-					// 	if (mescroll.num == 1) this.dataSource = [];
-					// 	this.dataSource = this.dataSource.concat(list);
-					// 	console.log('1111---' +this.dataSource);
-					// 	mescroll.endBySize(
-					// 		list.length, pageInfo.rowCount);
-					// 	this.$nextTick(() => {
-					// 		mescroll.endSuccess(list.length)
-					// 	})
-					// })
 				},
 	},
 	onShow() {
-		console.log("-----userInfo");
 	}
 };
 </script>

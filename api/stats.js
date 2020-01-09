@@ -41,7 +41,6 @@ http.interceptor.response((response) => {
 
 //错误信息处理
 function handlerError(statusCode) {
-	console.log(statusCode)
 	switch (statusCode) {
 		case 404:
 			uni.showToast({

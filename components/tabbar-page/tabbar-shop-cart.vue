@@ -211,7 +211,7 @@ export default {
 						goodsItems.push(items);
 					}
 				});
-				console.log('-----' + goodsItems.length);
+				
 				if (goodsItems.length > 0) {
 					uni.navigateTo({
 						url: '/pages/shop/confirm-order?commitType=1&item=' + encodeURIComponent(JSON.stringify(goodsItems))
@@ -327,7 +327,6 @@ export default {
 				shopCarNbr: shopCarNbr
 			};
 			getShopCartList(param).then(res => {
-				// console.log(res);
 				let { data, code } = res;
 				this.dataSource = data.stores;
 				this.dataSource.forEach((item, index) => {

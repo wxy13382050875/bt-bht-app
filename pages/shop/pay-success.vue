@@ -26,7 +26,6 @@ export default {
 	},
 	methods: {},
 	onLoad: function(options) {
-		console.log('options', options.type);
 		if(options.type == 'success'){
 			this.title = '支付成功';
 		} else {

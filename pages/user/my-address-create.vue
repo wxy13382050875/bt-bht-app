@@ -77,7 +77,6 @@ export default {
 		NavbarBackAddressEdit
 	},
 	onLoad: function(option) {
-		console.log(option);
 		if (JSON.stringify(option) == '{}') {
 			console.log('新增收货地址');
 		} else {
@@ -99,8 +98,7 @@ export default {
 			this.isDefault = e.target.value;
 		},
 		saveEvent(e) {
-			// console.log('保存');
-
+			
 			//验证规则
 			let rule = [
 				{
@@ -129,7 +127,6 @@ export default {
 			if (valid) {
 				this.dataSource.defaultFlag = this.isDefault ? 0 : 1;
 				this.dataSource.userId = 2;
-				console.log(this.dataSource);
 				uni.showLoading({
 					title: '提交...',
 					mask: true
@@ -137,7 +134,6 @@ export default {
 				saveUserAddress(this.dataSource).then(res => {
 					uni.hideLoading();
 					let { data, msg, code } = res;
-					// console.log(res);
 					uni.showToast({
 						title: msg,
 						icon: 'none'
@@ -165,18 +161,7 @@ export default {
 			this.dataSource.location = '';
 
 			item.item.forEach((tmItem, index) => {
-				// console.log('confirm::', tmItem.label);
-				// if (index == 0) {
-				// 	this.dataSource.provinceId = tmItem.value;
-				// 	this.dataSource.province = tmItem.label;
-				// } else if (index == 1) {
-				// 	this.dataSource.cityId = tmItem.value;
-				// 	this.dataSource.city = tmItem.label;
-				// } else {
-				// 	this.dataSource.districtId = tmItem.value;
-				// 	this.dataSource.district = tmItem.label;
-				// }
-
+				
 				this.dataSource.location += tmItem.label;
 			});
 			this.$forceUpdate();
