@@ -97,14 +97,13 @@ export default {
 
 								this.$Router.back();
 							}, 2000);
-						}
-						//手机号已存在
-						if (code === 500) {
+						} else {
 							uni.showToast({
 								title: msg,
 								icon: 'none'
 							});
 						}
+						
 					})
 					.catch(erro => {
 						uni.hideLoading();
