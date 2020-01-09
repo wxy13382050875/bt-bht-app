@@ -320,6 +320,7 @@ export default {
 							flex-flow: wrap;
 	
 							.item-content {
+								
 								display: inline-block;
 								padding: 15rpx 35rpx;
 								border-radius: 10rpx;

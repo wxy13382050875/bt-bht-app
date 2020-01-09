@@ -83,7 +83,6 @@ export default {
 						if (res.code === '200') {
 							//保存用户信息到store
 							this.setUserInfo(res.data);
-							// this.setMobile(res.data.mobile)
 							//缓存用户信息
 							uni.setStorageSync('isLogin', true);
 							uni.setStorageSync('userInfo', res.data);
@@ -100,7 +99,6 @@ export default {
 						}
 					})
 					.catch(erro => {
-						console.log(erro);
 						uni.hideLoading();
 					});
 			} else {

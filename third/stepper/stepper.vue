@@ -88,11 +88,12 @@ export default {
 	flex-flow: wrap;
 
 	&.small {
+		border: 1rpx solid #f4f4f4;
 		.reduce,
 		.num-wrapper,
 		.add {
 			width: 68rpx;
-			height: 40rpx;
+			height: 60rpx;
 		}
 
 		.reduce {
@@ -114,9 +115,10 @@ export default {
 			.num-content {
 				width: 100%;
 				height: 100%;
-				background-color: #f4f4f4;
-				min-height: 40rpx; //修改input默认样式
-				line-height: 40rpx;
+				// background-color: #f4f4f4;
+				border: 1rpx solid #f4f4f4;
+				min-height: 60rpx; //修改input默认样式
+				line-height: 60rpx;
 				font-size: 28rpx;
 				text-align: center;
 			}
@@ -159,7 +161,8 @@ export default {
 		.num-content {
 			width: 100%;
 			height: 100%;
-			background-color: #f4f4f4;
+			// background-color: #f4f4f4;
+			border: 1rpx solid #f4f4f4;
 			min-height: 56rpx; //修改input默认样式
 			line-height: 56rpx;
 			font-size: 30rpx;
