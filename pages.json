@@ -311,38 +311,18 @@
 					"bounce": "none"
 				}
 			}
+		},
+		{
+			"path": "pages/sem/sem-scan",
+			"style": {
+				"navigationStyle": "custom",
+				"disableScroll": true,
+				"app-plus": {
+					"titleNView": false,
+					"bounce": "none"
+				}
+			}
 		}
-	],
-	"tabBar": {
-		"color": "#7A7E83",
-		"selectedColor": "#E40011",
-		"borderStyle": "white",
-		"backgroundColor": "#f8f8f8",
-		"list": [
-			// {
-			// 	"pagePath": "pages/shop/shop-home",
-			// 	"iconPath": "static/tab/home_def_icon.png",
-			// 	"selectedIconPath": "static/tab/home_sel_icon.png",
-			// 	"text": "首页"
-			// },
-			// {
-			// 	"pagePath": "pages/staff/statistics-charts",
-			// 	"iconPath": "static/tab/tjbb_def_icon.png",
-			// 	"selectedIconPath": "static/tab/tjbb_sel_icon.png",
-			// 	"text": "统计报表"
-			// },
-			// {
-			// 	"pagePath": "pages/shop/shopping-cart",
-			// 	"iconPath": "static/tab/tjbb_def_icon.png",
-			// 	"selectedIconPath": "static/tab/tjbb_sel_icon.png",
-			// 	"text": "购物车"
-			// },
-			// {
-			// 	"pagePath": "pages/personal/xw-dth-personal-center",
-			// 	"iconPath": "static/tab/my_def_icon.png",
-			// 	"selectedIconPath": "static/tab/my_sel_icon.png",
-			// 	"text": "我的"
-			// }
-		]
-	}
+	]
+	
 }

@@ -293,7 +293,16 @@ const routesList = [{
 				requiresAuth: false
 			}
 		}
-		
+	},
+	{
+		path: "/pages/sem/sem-scan",
+		name: "sem-scan",
+		meta: {
+			title: '扫一扫收购',
+			auth: {
+				requiresAuth: true
+			}
+		}
 	}
 ]
 //导出
