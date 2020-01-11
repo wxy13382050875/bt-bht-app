@@ -295,7 +295,7 @@ const routesList = [{
 		}
 	},
 	{
-		path: "/pages/sem/sem-scan",
+		path: "/pages/sem/sem-scan-buy",
 		name: "sem-scan",
 		meta: {
 			title: '扫一扫收购',

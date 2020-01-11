@@ -313,7 +313,7 @@
 			}
 		},
 		{
-			"path": "pages/sem/sem-scan",
+			"path": "pages/sem/sem-scan-buy",
 			"style": {
 				"navigationStyle": "custom",
 				"disableScroll": true,
