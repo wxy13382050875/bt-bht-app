@@ -42,9 +42,10 @@ export default {
 				if(this.popType == 0){
 					this.$Router.back();
 				} else {
-					uni.navigateTo({
-						url:"/pages/main"
-					})
+					// uni.navigateTo({
+					// 	url:"/pages/main"
+					// })
+					uni.navigateBack()
 				}
 				
 			}
