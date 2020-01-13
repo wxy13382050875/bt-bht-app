@@ -303,6 +303,16 @@ const routesList = [{
 				requiresAuth: true
 			}
 		}
+	},
+	{
+		path: "/pages/sem/xw-dth-sem-order",
+		name: "sem-order",
+		meta: {
+			title: '订单中心',
+			auth: {
+				requiresAuth: true
+			}
+		}
 	}
 ]
 //导出

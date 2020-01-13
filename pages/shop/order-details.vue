@@ -16,27 +16,27 @@
 						</view>
 					</view>
 				</view>
-				<view class="order-goods-list">
+				<view class="order-goods-list" v-for="(item ,index) in dataSource.orderList" :key="index">
 					<view class="shop-list">
 						<view class="header">
-							<image class="shop-img" src="/static/icon/icon-store.png"></image>
-							<label class="shop-name">高原农特产品</label>
+							<image class="shop-img" :src="item.storePicture"></image>
+							<label class="shop-name">{{item.storeName}}</label>
 						</view>
 						<view class="goods-list">
-							<view class="items" v-for="item in 3">
-								<view class="goods-image"><image src="/static/small/1.jpg"></image></view>
+							<view class="items" v-for="(pro,pIndex) in item.goods" :key="pIndex">
+								<view class="goods-image"><image :src="pro.goodsPicture"></image></view>
 								<view class="goods-details">
-									<label class="goods-name">泰国正品白兰氏即食燕窝美容养颜滋补42ml*6瓶...</label>
-									<label class="shipping-address">发货地：云南河口县</label>
+									<label class="goods-name">{{pro.goodsName}}</label>
+									<label class="shipping-address">{{pro.attrName}}:{{pro.attrValue}}</label>
 								</view>
 								<view class="goods-pum">
 									<view class="price">
 										<label class="symbol">¥</label>
-										<label class="value">223.9</label>
+										<label class="value">{{pro.price}}</label>
 									</view>
 									<view class="num">
 										<label class="symbol">x</label>
-										<label class="value">2</label>
+										<label class="value">{{pro.goodsNum}}</label>
 									</view>
 								</view>
 							</view>
@@ -44,15 +44,15 @@
 						<view class="desc">
 							<view class="items">
 								<label>商品价格</label>
-								<label>¥3422.80</label>
+								<label>¥{{item.orderPrice}}</label>
 							</view>
 							<view class="items">
 								<label>运费(快递)</label>
-								<label>¥0.00</label>
+								<label>¥{{item.expressPrice}}</label>
 							</view>
 							<view class="items total">
 								<label>订单总价</label>
-								<label>¥3422.00</label>
+								<label>¥{{item.goodsAllPrice}}</label>
 							</view>
 						</view>
 					</view>
@@ -62,20 +62,21 @@
 					<view class="details-list">
 						<view class="items">
 							<label>订单编号</label>
-							<label>772100355998363666</label>
+							<label>{{dataSource.orderInfo.mainOrderId}}</label>
 						</view>
 						<view class="items">
 							<label>交易号</label>
-							<label>20191219220011822544858585485</label>
+							<label>{{dataSource.orderInfo.payNo}}</label>
 						</view>
 						<view class="items">
 							<label>创建时间</label>
-							<label>2019-12-19 10:23:27</label>
+							<label>{{dataSource.orderInfo.createTime}}</label>
 						</view>
 						<view class="items">
 							<label>付款时间</label>
-							<label>2019-12-19 10:25:26</label>
+							<label>{{dataSource.orderInfo.payTime}}</label>
 						</view>
+						
 					</view>
 				</view>
 			</view>
@@ -87,9 +88,34 @@
 /**
  * 订单详情
  */
+import { getOrderDetails } from '@/api/shop.js';
 export default {
 	data() {
-		return {};
+		return {
+			mainOrderId:String,
+			dataSource:{},
+		};
+	},
+	onLoad: function(option) {
+		this.mainOrderId = option.mainOrderId;
+		this.mainOrderId = '2020010714375499692143';
+		
+		
+		let param = {};
+		param.mainOrderId= this.mainOrderId;
+		console.log(param);
+		getOrderDetails(param).then(res => {
+			let { data, code, msg } = res;
+			if (code === '200') {
+				console.log(data);
+				this.dataSource = data;
+			} else {
+				uni.showToast({
+					icon: 'none',
+					title: msg
+				});
+			}
+		});
 	}
 };
 </script>

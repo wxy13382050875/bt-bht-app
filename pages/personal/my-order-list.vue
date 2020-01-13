@@ -25,28 +25,7 @@
 
 			<!-- 图书 -->
 			<orderlist :i="4" :index="curIndex"></orderlist>
-			<!-- <view class="nav-area">
-				<view class="scroller" :style="{ width: navItemWidth * navList.length + 'px' }">
-					<view class="scroller-wrapper">
-						<view
-							class="scroller-item"
-							v-for="(item, index) in navList"
-							:key="index"
-							:style="{ width: navItemWidth + 'px' }"
-							:class="{ active: index == changeIndex }"
-							@tap="tapNav(index)"
-						>
-							{{ item.name }}
-						</view>
-					</view>
-				</view>
-			</view>
-			<view class="swiper-area">
-				<mescroll-uni class="mescroll" @init="initMescroll" :down="downOption" :up="upOption" @up="upCallback" @down="downCallback" :fixed="false">
-
-					<view v-for="(item, eIndex) in dataSource" :key="eIndex"><ordercell :dataSource="item"></ordercell></view>
-				</mescroll-uni>
-			</view> -->
+			
 		</bht-layout-container>
 	</view>
 </template>

@@ -9,7 +9,7 @@
 				</view>
 				<view class="btn-group">
 					<navigator url="/pages/main" class="btn" hover-class="none">返回首页</navigator>
-					<navigator url="/pages/personal/my-order-list?currentIndex=0" class="btn" hover-class="none">查看订单</navigator>
+					<navigator :url="'/pages/shop/order-details?mainOrderId=' + mainOrderId" class="btn" hover-class="none">查看订单</navigator>
 				</view>
 				<view class="welcome-txt">欢迎您的再次光临！</view>
 			</view>
@@ -21,11 +21,13 @@
 export default {
 	data() {
 		return {
-			title:""
+			title:"",
+			mainOrderId:""
 		};
 	},
 	methods: {},
 	onLoad: function(options) {
+		this.mainOrderId = options.mainOrderId;
 		if(options.type == 'success'){
 			this.title = '支付成功';
 		} else {

@@ -5,7 +5,7 @@
 		<mescroll-uni  top="160" :down="downOption" @down="downCallback" :up="upOption" @up="upCallback" @emptyclick="emptyClick" @init="mescrollInit">
 			<!-- 数据列表 -->
 			<!-- <ordercell :dataSource="dataSource"></ordercell> -->
-			<view v-for="(item, eIndex) in dataSource" :key="eIndex"><ordercell :dataSource="item"></ordercell></view>
+			<view v-for="(item, eIndex) in dataSource" :key="eIndex" @click="skipOrderDetail(item)"><ordercell :dataSource="item"></ordercell></view>
 		</mescroll-uni>
 	</view>
 </template>
@@ -146,6 +146,11 @@ export default {
 				
 			});
 			
+		},
+		skipOrderDetail(item){
+			uni.navigateTo({
+				url:'/pages/shop/order-details?mainOrderId=' + item.mainOrderId
+			})
 		}
 
 		

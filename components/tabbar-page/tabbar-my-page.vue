@@ -53,8 +53,9 @@ export default {
 					moretitle: '',
 					list: [
 						// { pictureUrl: '/static/icon/icon-message.png', name: '消息通知', page: 'goods-personnel-query' },
-						// { pictureUrl: '/static/icon/icon-client-server.png', name: '客户服务', page: 'vehicle-personnel-query' },
-						{ pictureUrl: '/static/icon/icon-my-address.png', name: '我的地址', page: '/pages/personal/my-address-list?type=0' }
+						
+						{ pictureUrl: '/static/icon/icon-my-address.png', name: '我的地址', page: '/pages/personal/my-address-list?type=0' },
+						{ pictureUrl: '/static/icon/icon-client-server.png', name: '订单中心', page: '/pages/sem/xw-dth-sem-order' },
 					]
 				}
 			}

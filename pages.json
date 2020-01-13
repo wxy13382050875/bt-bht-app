@@ -323,6 +323,17 @@
 				}
 			}
 		}
-	]
+	    ,{
+            "path" : "pages/sem/xw-dth-sem-order",
+            "style": {
+            	"navigationStyle": "custom",
+            	"disableScroll": true,
+            	"app-plus": {
+            		"titleNView": false,
+            		"bounce": "none"
+            	}
+            }
+        }
+    ]
 	
 }

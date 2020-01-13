@@ -78,7 +78,13 @@ export const saveUser = (params) => {
 export const deleteAddress = (params) => {
 	return bht_http.post('/assets-service/user/deleteAddress',params)
 };
-
+export const getOrderDetails = (params) => {
+	let userInfo = uni.getStorageSync("userInfo");
+	params.userId = userInfo.userId;
+	return bht_http.get('/order-service/order/getDetails',{
+		params: params
+	})
+}
 
 
 

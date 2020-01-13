@@ -116,6 +116,7 @@ export default {
 			payType: 0,
 			current: 0,
 			payInfo: {},
+			mainOrderId:'',
 			items: [
 				{
 					name: '支付宝',
@@ -192,7 +193,7 @@ export default {
 						// 	title: '感谢您的赞助!'
 						// });
 						uni.navigateTo({
-							url: '/pages/shop/pay-success?type=success'
+							url: '/pages/shop/pay-success?type=success&mainOrderId='+this.mainOrderId
 						});
 					},
 					fail: res => {
@@ -201,7 +202,7 @@ export default {
 							showCancel: false
 						});
 						uni.navigateTo({
-							url: '/pages/shop/pay-success?type=fail'
+							url: '/pages/shop/pay-success?type=fail&mainOrderId='+this.mainOrderId
 						});
 					},
 					complete: () => {
@@ -235,8 +236,9 @@ export default {
 				shopCarNbr: userInfo.shopCarNbr,
 				goodsInsts: subItems,
 				commitType: this.commitType,
-				orderAddressId: this.address.addressId
+				orderAddressId: this.defaultAddress.addressId
 			};
+			console.log(this.defaultAddress.addressId);
 			uni.showLoading({
 				title: '正在提交...',
 				mask: true
@@ -246,6 +248,8 @@ export default {
 				if (res.code == 200) {
 					this.current = 1;
 					this.payInfo = res.data.payInfo;
+					console.log(this.payInfo);
+					this.mainOrderId = res.data.mainOrderId;
 					//调用支付
 					this.payhandle();
 					//通知更新新购物信息
