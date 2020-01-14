@@ -6,17 +6,16 @@ import store from '@/store'
 import BasUrl from '@/utils/config'
 
 var http = new Request();
+
 http.setConfig((config) => {
 	config.baseUrl = BasUrl.BASE_BHT_URL
 	config.header = {
-
+		...config.header
 	}
 	return config
 })
+
 http.interceptor.request((config, cancel) => {
-	config.header = {
-		...config.header,
-	}
 	if (http.config.loading) {
 		uni.showLoading({
 			title: http.config.text || '请求中...'
@@ -26,16 +25,19 @@ http.interceptor.request((config, cancel) => {
 })
 
 http.interceptor.response((response) => {
+
 	let {
 		data
 	} = response
-	if (data.code !== 200) {
-		return Promise.reject(response)
-	}
+
 	if (http.config.loading) {
 		uni.hideLoading();
 	}
-	return data.data
+
+	if (data.code != 200) {
+		return Promise.reject(response)
+	}
+	return data
 }, (response) => {
 	handlerError(response.statusCode);
 	return response

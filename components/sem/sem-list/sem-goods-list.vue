@@ -1,34 +1,26 @@
 <template>
 	<view>
-		<view class="goods-list-items" v-for="item in 4">
-			<view class="check"><nz-checkbox :circle="true"></nz-checkbox></view>
+		<view class="goods-list-items" v-for="item in goodsData.list" :key="item.id">
+			<view class="check"><nz-checkbox v-model="item.checked" @select="chooseItem(item)" :circle="true"></nz-checkbox></view>
 			<view class="info">
 				<view class="info-header">
-					<view class="goods-name">木炭,鲜水果、活螃蟹...</view>
+					<view class="goods-name">{{ item.goodsName }}</view>
 					<view class="price">
 						<label class="symbol">¥</label>
-						<text class="value">8000</text>
+						<text class="value">{{ item.amount }}</text>
 					</view>
 				</view>
 				<view class="info-items">
 					<label class="title">边民姓名</label>
-					<text class="value">王国富</text>
+					<text class="value">{{ item.name }}</text>
 				</view>
 				<view class="info-items">
 					<label class="title">车牌号</label>
-					<text class="value">云A.22222</text>
-				</view>
-				<view class="info-items">
-					<label class="title">重量</label>
-					<text class="value">200kg</text>
-				</view>
-				<view class="info-items">
-					<label class="title">单价</label>
-					<text class="value">¥22</text>
+					<text class="value">{{ item.plateNumber }}</text>
 				</view>
 				<view class="info-items">
 					<label class="title">数量</label>
-					<text class="value">3333</text>
+					<text class="value">{{ item.quantity }}</text>
 				</view>
 			</view>
 		</view>
@@ -37,9 +29,28 @@
 
 <script>
 import NzCheckbox from '@/third/acaui/nz-checkbox/nz-checkbox.vue';
+import { mapGetters } from 'vuex';
 export default {
 	components: {
 		NzCheckbox
+	},
+	computed: {
+		...mapGetters({
+			goodsData: 'sem/goodsData'
+		})
+	},
+	methods: {
+		chooseItem(item) {
+			item.checked ? this.chooseTrue(item) : this.chooseFalse(item);
+		},
+		chooseTrue(item) {
+			++this.goodsData.checkTotalCount;
+			this.goodsData.checkTotalCount == this.goodsData.list.length ? (this.goodsData.checkStatus = true) : (this.goodsData.checkStatus = false);
+		},
+		chooseFalse(item) {
+			--this.goodsData.checkTotalCount;
+			this.goodsData.checkStatus = false;
+		}
 	}
 };
 </script>

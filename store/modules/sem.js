@@ -2,27 +2,38 @@
  * 二级市场store
  */
 const state = {
-	//保存商品列表
-	goodsList: []
+	/**
+	 * 保存商品列表
+	 */
+	goodsData: {
+		list: [],
+		totalAmount: 0,
+		checkTotalCount: 0,
+		checkStatus: false
+	}
 }
 
 const getters = {
-	goodsList: (state) => {
-		return state.goodsList
+	goodsData: (state) => {
+		return state.goodsData;
 	}
 }
 
 const mutations = {
-	addGoodsList(state, goodsList) {
-		state.goodsList = list
+	addGoodsData(state, goodsList) {
+		state.goodsData.list = goodsList
 	}
 }
 
 const actions = {
-	addGoodsList({
+	addGoodsData({
 		commit
 	}, goodsList) {
-		commit('addGoodsList', goodsList)
+		goodsList.forEach((item, index) => {
+			//新增属性 提供勾选操作
+			item.checked = false;
+		})
+		commit('addGoodsData', goodsList)
 	}
 }
 
