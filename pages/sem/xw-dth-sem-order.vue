@@ -1,6 +1,6 @@
 <template>
 	<view class="sem-index-container">
-		<universalNavBar   :navType='1' rightTitle="筛选" rightImageName="/static/icon/icon-flitter.png" @leftToPrev="leftToPrev" @rightToPrev="rightToPrev">
+		<universalNavBar :navType="1" rightTitle="筛选" rightImageName="/static/icon/icon-flitter.png" @leftToPrev="leftToPrev" @rightToPrev="rightToPrev">
 			<template name="nav">
 				<label class="navTitle">边民互市二级交易市场</label>
 			</template>
@@ -42,66 +42,52 @@
 		</bht-layout-container>
 		<view class="right-drawer">
 			<uni-drawer :visible="showRight" mode="right" @close="closeDrawer('right')">
-				<view class="dialog-title">
-					筛选
-				</view>
+				<view class="dialog-title">筛选</view>
 				<view class="flitter-item">
 					<view class="item-attr">
-						<view class="item-name">
-							车牌号
-						</view>
+						<view class="item-name">车牌号</view>
 						<view class="item-form-input">
-							<input class="item-input"   placeholder="请输入车牌号" />
+							<input class="item-input" v-model="formData.plateNumber" placeholder="请输入车牌号" />
 							<view class="arrow-right"></view>
 						</view>
 					</view>
 					<view class="item-attr">
-						<view class="item-name">
-							商品名称
-						</view>
+						<view class="item-name">商品名称</view>
 						<view class="item-form-input">
-							<input class="item-input"   placeholder="请输入商品名称" />
+							<input class="item-input" v-model="formData.goodsName" placeholder="请输入商品名称" />
 							<view class="arrow-right"></view>
 						</view>
 					</view>
 					<view class="item-attr">
-						<view class="item-name">
-							边民姓名
-						</view>
+						<view class="item-name">边民姓名</view>
 						<view class="item-form-input">
-							<input class="item-input"  placeholder="请输入边民姓名" />
+							<input class="item-input" v-model="formData.peopleName" placeholder="请输入边民姓名" />
 							<view class="arrow-right"></view>
 						</view>
 					</view>
 					<view class="item-attr">
-						<view class="item-name">
-							支付状态
-						</view>
-						<picker @change="pickerPaperTypeChange" :value="payIndex" :range="payArr">
+						<view class="item-name">支付状态</view>
+						<picker @change="pickerPayChange" :value="payIndex" :range="payArr">
 							<view class="item-form-input">
-								<input class="item-input" disabled="true" :value="roleText" placeholder="选择支付状态" />
+								<input class="item-input" disabled="true" :value="formData.payState" placeholder="选择支付状态" />
 								<view class="arrow-right"><view class="iconfont aca-xiala"></view></view>
 							</view>
 						</picker>
 					</view>
 					<view class="item-attr">
-						<view class="item-name">
-							发票状态
-						</view>
-						<picker @change="pickerPaperTypeChange" :value="paperTypeIndex" :range="roleArr">
+						<view class="item-name">发票状态</view>
+						<picker @change="pickerBillChange" :value="billIndex" :range="billArr">
 							<view class="item-form-input">
-								<input class="item-input" disabled="true" :value="roleText" placeholder="选择发票状态" />
+								<input class="item-input" disabled="true" :value="formData.billState" placeholder="选择发票状态" />
 								<view class="arrow-right"><view class="iconfont aca-xiala"></view></view>
 							</view>
 						</picker>
 					</view>
 					<view class="item-attr">
-						<view class="item-name">
-							下单时间
-						</view>
-						<picker @change="pickerPaperTypeChange" :value="paperTypeIndex" :range="roleArr">
+						<view class="item-name">下单时间</view>
+						<picker mode="date" @change="pickerOrderTimeChange" :value="formData.orderTime">
 							<view class="item-form-input">
-								<input class="item-input" disabled="true" :value="roleText" placeholder="选择下单日期" />
+								<input class="item-input" disabled="true" :value="formData.orderTime" placeholder="选择下单日期" />
 								<view class="arrow-right"><view class="iconfont aca-xiala"></view></view>
 							</view>
 						</picker>
@@ -109,32 +95,42 @@
 				</view>
 				<view class="dialog-bottom">
 					<view class="dialog-finish">
-						<button class="finish-btn" @click="confirm">查询</button>
-						<button class="reset-btn" @click="confirm">重置</button>
+						<button class="finish-btn" @click="queryClick">查询</button>
+						<button class="reset-btn" @click="resetClick">重置</button>
 					</view>
 				</view>
-				
 			</uni-drawer>
 		</view>
-		
-		<!-- <flitterDialog v-model="bShowFlitterDialog"></flitterDialog> -->
 	</view>
 </template>
 
 <script>
 import universalNavBar from '@/components/navbar/xw-dth-navbar-universal.vue';
-// import flitterDialog from '@/components/sem/xw-dth-flitter-dialog.vue';
-import uniDrawer from '@/third/uni-drawer/uni-drawer.vue'
+import uniDrawer from '@/third/uni-drawer/uni-drawer.vue';
 export default {
 	components: {
 		universalNavBar,
 		uniDrawer
 	},
 	data() {
+		const currentDate = this.getDate({
+			format: true
+		});
 		return {
 			showRight: false,
 			payArr: ['未支付', '已支付'],
 			payIndex: 0,
+			billArr: ['未开票', '已开票'],
+			billIndex: 0,
+			date: currentDate,
+			formData: {
+				plateNumber: '', //车牌号
+				goodsName: '', //商品名称
+				peopleName: '', //边名姓名
+				payState: '', //支付状态
+				billState: '', //开票状态
+				orderTime: currentDate //下单时间
+			}
 		};
 	},
 	methods: {
@@ -148,15 +144,60 @@ export default {
 		closeDrawer(e) {
 			this.showRight = false;
 		},
+		//支付状态选择
+		pickerPayChange(e) {
+			this.payIndex = e.target.value;
+			this.formData.payState = this.payArr[this.payIndex];
+			this.$forceUpdate();
+		},
+		//发票状态选择
+		pickerBillChange(e) {
+			this.billIndex = e.target.value;
+			this.formData.billState = this.billArr[this.billIndex];
+			this.$forceUpdate();
+		},
+		//时间选择
+		pickerOrderTimeChange(e) {
+			this.formData.orderTime = e.target.value
+			this.$forceUpdate();
+		},
+		queryClick(){
+			console.log('查询');
+			console.log(this.formData);
+			this.showRight = false;
+		},
+		resetClick(){
+			console.log('重置');
+			this.formData.plateNumber=''; //车牌号
+			this.formData.goodsName= ''; //商品名称
+			this.formData.peopleName= ''; //边名姓名
+			this.formData.payState= ''; //支付状态
+			this.formData.billState= ''; //开票状态
+			this.formData.orderTime= this.currentDate; //下单时间
+		},
+		getDate(type) {
+			const date = new Date();
+			let year = date.getFullYear();
+			let month = date.getMonth() + 1;
+			let day = date.getDate();
+
+			if (type === 'start') {
+				year = year - 60;
+			} else if (type === 'end') {
+				year = year + 2;
+			}
+			month = month > 9 ? month : '0' + month;
+			day = day > 9 ? day : '0' + day;
+			return `${year}-${month}-${day}`;
+		}
 	}
 };
 </script>
 
 <style lang="scss">
 .sem-index-container {
-	.navTitle{
+	.navTitle {
 		color: #fff;
-		
 	}
 	.header {
 		display: flex;
@@ -278,9 +319,9 @@ export default {
 			color: #ffffff;
 		}
 	}
-	.right-drawer{
-		.dialog-title{
-			background: #F3F3F3;
+	.right-drawer {
+		.dialog-title {
+			background: #f3f3f3;
 			width: 100%;
 			height: 44px;
 			line-height: 44px;
@@ -288,20 +329,20 @@ export default {
 			color: #898989;
 			font-size: 30rpx;
 		}
-		.flitter-item{
-			.item-attr{
+		.flitter-item {
+			.item-attr {
 				display: flex;
 				justify-content: space-between;
 				align-items: center;
 				height: 120rpx;
 				line-height: 120rpx;
-				.item-name{
+				.item-name {
 					width: 160rpx;
 					font-size: 30rpx;
-					color: #6B6B6B;
+					color: #6b6b6b;
 					text-align: right;
 				}
-				.item-form-input{
+				.item-form-input {
 					display: flex;
 					height: 80rpx;
 					line-height: 80rpx;
@@ -309,17 +350,16 @@ export default {
 					margin-left: 10rpx;
 					border-radius: 10rpx;
 					border: 1rpx solid #898989;
-					.item-input{
+					.item-input {
 						margin-left: 10rpx;
 						height: 100%;
-						
 					}
-						
-					input::-ms-input-placeholder{
+
+					input::-ms-input-placeholder {
 						font-size: 28rpx;
 						color: #898989;
 					}
-					.arrow-right{
+					.arrow-right {
 						// margin-right: 13rpx;
 						width: 60rpx;
 						height: 60rpx;
@@ -327,7 +367,7 @@ export default {
 				}
 			}
 		}
-		.dialog-bottom{
+		.dialog-bottom {
 			display: flex;
 			width: 100%;
 			height: 119rpx;
@@ -337,7 +377,7 @@ export default {
 			justify-content: center;
 			.dialog-finish {
 				display: flex;
-				justify-content:space-between;
+				justify-content: space-between;
 				width: 325rpx;
 				.finish-btn {
 					height: 58rpx;
@@ -345,15 +385,15 @@ export default {
 					width: 156rpx;
 					color: #ffffff;
 					font-size: 30rpx;
-					background: #FF3300;
+					background: #ff3300;
 				}
 				.reset-btn {
 					height: 58rpx;
 					line-height: 58rpx;
 					width: 156rpx;
-					color: #FF3300;
+					color: #ff3300;
 					font-size: 30rpx;
-					border: 1rpx solid #FF3300;
+					border: 1rpx solid #ff3300;
 				}
 			}
 		}
