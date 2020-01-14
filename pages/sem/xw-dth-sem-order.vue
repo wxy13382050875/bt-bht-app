@@ -42,7 +42,6 @@
 		</bht-layout-container>
 		<view class="right-drawer">
 			<uni-drawer :visible="showRight" mode="right" @close="closeDrawer('right')">
-				<!-- #ifndef MP-BAIDU || MP-ALIPAY || MP-TOUTIAO -->
 				<view class="dialog-title">
 					筛选
 				</view>

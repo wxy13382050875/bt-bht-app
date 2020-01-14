@@ -31,13 +31,6 @@ export default {
 		SemGoodsList,
 		SemGoodsFooter
 	},
-	data() {
-		return {
-			totalAmount: 0,
-			checkTotalCount: 0,
-			checkAll: false
-		};
-	},
 	computed: {
 		...mapGetters({
 			goodsData: 'sem/goodsData'
@@ -57,6 +50,7 @@ export default {
 				console.log(error);
 			});
 		// #endif
+		this.addGoodsData([]);
 	},
 	methods: {
 		...mapActions({

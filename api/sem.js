@@ -28,5 +28,14 @@ export const submitOrder = (params) => {
 		organization: '860301',
 		ids: params
 	}
-	return http.post('/assets-service/btMark/appOrder',  JSON.stringify(appOrderResqVo));
+	return http.post('/assets-service/btMark/appOrder', JSON.stringify(appOrderResqVo));
+}
+
+export const searchGoodsList = (params) => {
+	http.config.loading = true;
+	http.config.text = '正在查询...';
+	params.organization = '860301';
+	return http.get('/assets-service/btMark/goodsSearch', {
+		params: params
+	});
 }

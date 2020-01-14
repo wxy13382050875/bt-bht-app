@@ -1,6 +1,6 @@
 <template>
 	<view class="sem-goods-footer">
-		<nz-checkbox :circle="true" v-model="goodsData.checkStatus" @select="chooseAll()" label="全选"></nz-checkbox>
+		<nz-checkbox :circle="true" v-model="goodsData.checkStatus" :disabled="isDisabled" @select="chooseAll()" label="全选"></nz-checkbox>
 		<view class="total">
 			<label>合计：</label>
 			<text class="price">¥{{ goodsData.totalAmount }}</text>
@@ -23,7 +23,15 @@ export default {
 	computed: {
 		...mapGetters({
 			goodsData: 'sem/goodsData'
-		})
+		}),
+		isDisabled() {
+			let { list } = this.goodsData;
+			if (list.length > 0) {
+				return false;
+			} else {
+				return true;
+			}
+		}
 	},
 	watch: {
 		goodsData: {

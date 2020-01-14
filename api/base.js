@@ -25,7 +25,6 @@ http.interceptor.request((config, cancel) => {
 })
 
 http.interceptor.response((response) => {
-
 	let {
 		data
 	} = response
