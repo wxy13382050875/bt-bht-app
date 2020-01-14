@@ -296,9 +296,19 @@ const routesList = [{
 	},
 	{
 		path: "/pages/sem/sem-scan-buy",
-		name: "sem-scan",
+		name: "sem-scan-buy",
 		meta: {
 			title: '扫一扫收购',
+			auth: {
+				requiresAuth: true
+			}
+		}
+	},
+	{
+		path: "/pages/sem/sem-search-buy",
+		name: "sem-search-buy",
+		meta: {
+			title: '搜索收购',
 			auth: {
 				requiresAuth: true
 			}

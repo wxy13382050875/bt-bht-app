@@ -62,17 +62,22 @@ export default {
 			});
 			submitOrder(params)
 				.then(res => {
-					if(res.code == 200){
-						uni.showToast({
-							icon:'success',
-							title:'下单成功'
-						});
-						//通知父组件 下单成功
-						this.$emit('submitOrderSuccess', true);
-					}
-					
+					uni.showToast({
+						icon: 'success',
+						title: '下单成功'
+					});
+					//清空被下单的商品
+					this.goodsData.list = this.goodsData.list.filter(function(item) {
+						return params.indexOf(item.id) == -1;
+					});
+					//通知父组件 下单成功
+					this.$emit('submitOrderSuccess', true);
 				})
 				.catch(error => {
+					uni.showToast({
+						icon: 'none',
+						title: '下单失败'
+					});
 					//通知父组件 下单失败
 					this.$emit('submitOrderSuccess', false);
 				});

@@ -34,7 +34,7 @@ http.interceptor.response((response) => {
 		uni.hideLoading();
 	}
 
-	if (data.code != 200) {
+	if (data.code != "200") {
 		return Promise.reject(response)
 	}
 	return data

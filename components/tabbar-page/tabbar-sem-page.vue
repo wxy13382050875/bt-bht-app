@@ -4,6 +4,7 @@
 		<bht-layout-container>
 			<view class="header"><image class="bg" :src="semHeaderBg"></image></view>
 			<navigator url="/pages/sem/sem-scan-buy">扫一扫</navigator>
+			<navigator url="/pages/sem/sem-search-buy">商品收购</navigator>
 		</bht-layout-container>
 	</view>
 </template>

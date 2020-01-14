@@ -51,7 +51,7 @@ export default {
 				res.data.forEach((item, index) => {
 					item.checked = false;
 				});
-				this.addGoodsData(res.data);
+				this.addGoodsData([{ id: '123', name: 'o', goodsName: 'H5端模拟数据', amount: 20 }, { id: '444', name: 'a', goodsName: '模拟数据', amount: 100 }]);
 			})
 			.catch(error => {
 				console.log(error);
@@ -65,8 +65,10 @@ export default {
 		/**
 		 * 处理订单成功回调
 		 */
-		submitOrderSuccessHandler(result){
-			
+		submitOrderSuccessHandler(result) {
+			if (result) {
+				//TODO 处理其它业务
+			}
 		},
 		/**
 		 * 扫描处理
