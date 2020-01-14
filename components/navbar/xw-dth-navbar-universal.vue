@@ -30,7 +30,7 @@ export default {
 		rightTitle: '', //导航右侧侧按钮
 		rightImageName: '',
 		title: String,
-		navType: 0 //二级页面返回，为 1时，返回上一级页面
+		navType: 0 //二级页面返回，为 1时，不能有左侧按钮 返回上一级页面 
 	},
 	data() {
 		return {};
@@ -78,7 +78,7 @@ export default {
 	top: 0;
 	right: 0;
 	left: 0;
-	z-index: 1993;
+	z-index: 993;
 	text-align: center;
 	background: $nav-bg-color;
 }

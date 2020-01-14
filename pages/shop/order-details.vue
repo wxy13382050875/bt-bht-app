@@ -1,42 +1,39 @@
 <template>
 	<view class="order-details-container">
 		<nav-bar-back title="订单详情" popType="1"></nav-bar-back>
-		<bht-layout-container :bottom="0">
+		<bht-layout-container :bottom="40">
 			<view class="bht-layout-content">
 				<view class="address-box">
 					<view class="address-icon"><image src="/static/icon/address_loaction_icon.png"></image></view>
 					<view class="address-info">
 						<view class="address-info-user">
-							<label class="name">余春林</label>
-							<label class="phone">1833944725</label>
+							<label class="name">{{ dataSource.orderAddress.name }}</label>
+							<label class="phone">{{ dataSource.orderAddress.phone }}</label>
 						</view>
-						<view class="address-text">
-							<label class="flag">默认</label>
-							河南省郑州市中原区建设路街道，护国大厦B区20栋
-						</view>
+						<view class="address-text">{{ dataSource.orderAddress.location }}{{ dataSource.orderAddress.detail }}</view>
 					</view>
 				</view>
-				<view class="order-goods-list" v-for="(item ,index) in dataSource.orderList" :key="index">
+				<view class="order-goods-list" v-for="(item, index) in dataSource.orderList" :key="index">
 					<view class="shop-list">
 						<view class="header">
 							<image class="shop-img" :src="item.storePicture"></image>
-							<label class="shop-name">{{item.storeName}}</label>
+							<label class="shop-name">{{ item.storeName }}</label>
 						</view>
 						<view class="goods-list">
-							<view class="items" v-for="(pro,pIndex) in item.goods" :key="pIndex">
+							<view class="items" v-for="(pro, pIndex) in item.goods" :key="pIndex">
 								<view class="goods-image"><image :src="pro.goodsPicture"></image></view>
 								<view class="goods-details">
-									<label class="goods-name">{{pro.goodsName}}</label>
-									<label class="shipping-address">{{pro.attrName}}:{{pro.attrValue}}</label>
+									<label class="goods-name">{{ pro.goodsName }}</label>
+									<label class="shipping-address">{{ pro.attrName }}:{{ pro.attrValue }}</label>
 								</view>
 								<view class="goods-pum">
 									<view class="price">
 										<label class="symbol">¥</label>
-										<label class="value">{{pro.price}}</label>
+										<label class="value">{{ pro.price }}</label>
 									</view>
 									<view class="num">
 										<label class="symbol">x</label>
-										<label class="value">{{pro.goodsNum}}</label>
+										<label class="value">{{ pro.goodsNum }}</label>
 									</view>
 								</view>
 							</view>
@@ -44,15 +41,15 @@
 						<view class="desc">
 							<view class="items">
 								<label>商品价格</label>
-								<label>¥{{item.orderPrice}}</label>
+								<label>¥{{ item.orderPrice }}</label>
 							</view>
 							<view class="items">
 								<label>运费(快递)</label>
-								<label>¥{{item.expressPrice}}</label>
+								<label>¥{{ item.expressPrice }}</label>
 							</view>
 							<view class="items total">
 								<label>订单总价</label>
-								<label>¥{{item.goodsAllPrice}}</label>
+								<label>¥{{ item.goodsAllPrice }}</label>
 							</view>
 						</view>
 					</view>
@@ -62,25 +59,43 @@
 					<view class="details-list">
 						<view class="items">
 							<label>订单编号</label>
-							<label>{{dataSource.orderInfo.mainOrderId}}</label>
+							<label>{{ dataSource.orderInfo.mainOrderId }}</label>
 						</view>
 						<view class="items">
 							<label>交易号</label>
-							<label>{{dataSource.orderInfo.payNo}}</label>
+							<label>{{ dataSource.orderInfo.payNo }}</label>
 						</view>
 						<view class="items">
 							<label>创建时间</label>
-							<label>{{dataSource.orderInfo.createTime}}</label>
+							<label>{{ dataSource.orderInfo.createTime }}</label>
 						</view>
 						<view class="items">
 							<label>付款时间</label>
-							<label>{{dataSource.orderInfo.payTime}}</label>
+							<label>{{ dataSource.orderInfo.payTime }}</label>
 						</view>
-						
 					</view>
 				</view>
 			</view>
 		</bht-layout-container>
+		<view class="o-buttom">
+			<view class="o-btttom-btn" v-if="dataSource.orderInfo.statusCd == '10008'">
+				<button class="border-gray">联系卖家</button>
+				<button class="border-gray">取消订单</button>
+				<button class="border-red">付款</button>
+			</view>
+			<view class="o-btttom-btn" v-if="dataSource.orderInfo.statusCd == '10016'"><button class="border-red">修改地址</button></view>
+			<view class="o-btttom-btn" v-if="dataSource.orderInfo.statusCd == '10020'">
+				<button class="border-gray">查看物流</button>
+				<button class="border-red">确认收货</button>
+			</view>
+			<view class="o-btttom-btn" v-if="dataSource.orderInfo.statusCd == '10024'">
+				<button class="border-gray">删除订单</button>
+				<button class="border-red">评价</button>
+			</view>
+			<view class="o-btttom-btn" v-else>
+				<!-- <button class="border-red">评价</button> -->
+			</view>
+		</view>
 	</view>
 </template>
 
@@ -92,17 +107,16 @@ import { getOrderDetails } from '@/api/shop.js';
 export default {
 	data() {
 		return {
-			mainOrderId:String,
-			dataSource:{},
+			mainOrderId: String,
+			dataSource: {}
 		};
 	},
 	onLoad: function(option) {
 		this.mainOrderId = option.mainOrderId;
-		this.mainOrderId = '2020010714375499692143';
-		
-		
+		// this.mainOrderId = '2020010714375499692143';
+
 		let param = {};
-		param.mainOrderId= this.mainOrderId;
+		param.mainOrderId = this.mainOrderId;
 		console.log(param);
 		getOrderDetails(param).then(res => {
 			let { data, code, msg } = res;
@@ -278,8 +292,8 @@ $text-color: #333333;
 				height: 1px;
 			}
 		}
-		.details-list{
-			.items{
+		.details-list {
+			.items {
 				display: flex;
 				justify-content: space-between;
 				align-items: center;
@@ -289,5 +303,40 @@ $text-color: #333333;
 			}
 		}
 	}
+	.o-buttom {
+		background: #ffffff;
+		width: 100%;
+		height: 120rpx;
+		position: fixed;
+		bottom: 0;
+		padding: 40rpx;
+		.o-btttom-btn {
+			display: flex;
+			align-items: center;
+			// width: 360rpx;
+			height: 100%;
+			float: right;
+			.border-gray {
+				// width: 180rpx;
+				color: rgba(187, 187, 187, 1);
+				font-size: 24rpx;
+				border: 1rpx solid rgba(187, 187, 187, 1);
+				background: #ffffff;
+				border-radius: 26rpx;
+				opacity: 1;
+				margin-right: 20rpx;
+			}
+			.border-red {
+				// width: 160rpx;
+				color: rgba(255, 255, 255, 1);
+				font-size: 24rpx;
+				border: 1rpx solid rgba(187, 187, 187, 1);
+				background: linear-gradient(103deg, rgba(228, 35, 50, 1) 0%, rgba(228, 0, 17, 1) 48%, rgba(226, 0, 17, 1) 51%, rgba(177, 6, 19, 1) 100%);
+				border-radius: 26rpx;
+				opacity: 1;
+			}
+		}
+	}
+	
 }
 </style>

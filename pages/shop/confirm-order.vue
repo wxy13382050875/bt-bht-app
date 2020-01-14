@@ -236,9 +236,9 @@ export default {
 				shopCarNbr: userInfo.shopCarNbr,
 				goodsInsts: subItems,
 				commitType: this.commitType,
-				orderAddressId: this.defaultAddress.addressId
+				addressId: this.defaultAddress.addressId
 			};
-			console.log(this.defaultAddress.addressId);
+			console.log(JSON.stringify(params));
 			uni.showLoading({
 				title: '正在提交...',
 				mask: true

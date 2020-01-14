@@ -1,6 +1,6 @@
 <template>
 	<view class="sem-index-container">
-		<universalNavBar  :navType='1' rightTitle="筛选" rightImageName="/static/icon/address_loaction_icon.png" @leftToPrev="leftToPrev" @rightToPrev="rightToPrev">
+		<universalNavBar   :navType='1' rightTitle="筛选" rightImageName="/static/icon/icon-flitter.png" @leftToPrev="leftToPrev" @rightToPrev="rightToPrev">
 			<template name="nav">
 				<label class="navTitle">边民互市二级交易市场</label>
 			</template>
@@ -40,17 +40,103 @@
 				</view>
 			</view>
 		</bht-layout-container>
+		<view class="right-drawer">
+			<uni-drawer :visible="showRight" mode="right" @close="closeDrawer('right')">
+				<!-- #ifndef MP-BAIDU || MP-ALIPAY || MP-TOUTIAO -->
+				<view class="dialog-title">
+					筛选
+				</view>
+				<view class="flitter-item">
+					<view class="item-attr">
+						<view class="item-name">
+							车牌号
+						</view>
+						<view class="item-form-input">
+							<input class="item-input"   placeholder="请输入车牌号" />
+							<view class="arrow-right"></view>
+						</view>
+					</view>
+					<view class="item-attr">
+						<view class="item-name">
+							商品名称
+						</view>
+						<view class="item-form-input">
+							<input class="item-input"   placeholder="请输入商品名称" />
+							<view class="arrow-right"></view>
+						</view>
+					</view>
+					<view class="item-attr">
+						<view class="item-name">
+							边民姓名
+						</view>
+						<view class="item-form-input">
+							<input class="item-input"  placeholder="请输入边民姓名" />
+							<view class="arrow-right"></view>
+						</view>
+					</view>
+					<view class="item-attr">
+						<view class="item-name">
+							支付状态
+						</view>
+						<picker @change="pickerPaperTypeChange" :value="payIndex" :range="payArr">
+							<view class="item-form-input">
+								<input class="item-input" disabled="true" :value="roleText" placeholder="选择支付状态" />
+								<view class="arrow-right"><view class="iconfont aca-xiala"></view></view>
+							</view>
+						</picker>
+					</view>
+					<view class="item-attr">
+						<view class="item-name">
+							发票状态
+						</view>
+						<picker @change="pickerPaperTypeChange" :value="paperTypeIndex" :range="roleArr">
+							<view class="item-form-input">
+								<input class="item-input" disabled="true" :value="roleText" placeholder="选择发票状态" />
+								<view class="arrow-right"><view class="iconfont aca-xiala"></view></view>
+							</view>
+						</picker>
+					</view>
+					<view class="item-attr">
+						<view class="item-name">
+							下单时间
+						</view>
+						<picker @change="pickerPaperTypeChange" :value="paperTypeIndex" :range="roleArr">
+							<view class="item-form-input">
+								<input class="item-input" disabled="true" :value="roleText" placeholder="选择下单日期" />
+								<view class="arrow-right"><view class="iconfont aca-xiala"></view></view>
+							</view>
+						</picker>
+					</view>
+				</view>
+				<view class="dialog-bottom">
+					<view class="dialog-finish">
+						<button class="finish-btn" @click="confirm">查询</button>
+						<button class="reset-btn" @click="confirm">重置</button>
+					</view>
+				</view>
+				
+			</uni-drawer>
+		</view>
+		
+		<!-- <flitterDialog v-model="bShowFlitterDialog"></flitterDialog> -->
 	</view>
 </template>
 
 <script>
 import universalNavBar from '@/components/navbar/xw-dth-navbar-universal.vue';
+// import flitterDialog from '@/components/sem/xw-dth-flitter-dialog.vue';
+import uniDrawer from '@/third/uni-drawer/uni-drawer.vue'
 export default {
 	components: {
-		universalNavBar
+		universalNavBar,
+		uniDrawer
 	},
 	data() {
-		return {};
+		return {
+			showRight: false,
+			payArr: ['未支付', '已支付'],
+			payIndex: 0,
+		};
 	},
 	methods: {
 		leftToPrev(e) {
@@ -58,7 +144,11 @@ export default {
 		},
 		rightToPrev(e) {
 			console.log('导航右侧按钮' + e);
-		}
+			this.showRight = !this.showRight;
+		},
+		closeDrawer(e) {
+			this.showRight = false;
+		},
 	}
 };
 </script>
@@ -67,6 +157,7 @@ export default {
 .sem-index-container {
 	.navTitle{
 		color: #fff;
+		
 	}
 	.header {
 		display: flex;
@@ -186,6 +277,86 @@ export default {
 			background-color: #ff6f04;
 			border-radius: 41px;
 			color: #ffffff;
+		}
+	}
+	.right-drawer{
+		.dialog-title{
+			background: #F3F3F3;
+			width: 100%;
+			height: 44px;
+			line-height: 44px;
+			text-align: center;
+			color: #898989;
+			font-size: 30rpx;
+		}
+		.flitter-item{
+			.item-attr{
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				height: 120rpx;
+				line-height: 120rpx;
+				.item-name{
+					width: 160rpx;
+					font-size: 30rpx;
+					color: #6B6B6B;
+					text-align: right;
+				}
+				.item-form-input{
+					display: flex;
+					height: 80rpx;
+					line-height: 80rpx;
+					margin-right: 10rpx;
+					margin-left: 10rpx;
+					border-radius: 10rpx;
+					border: 1rpx solid #898989;
+					.item-input{
+						margin-left: 10rpx;
+						height: 100%;
+						
+					}
+						
+					input::-ms-input-placeholder{
+						font-size: 28rpx;
+						color: #898989;
+					}
+					.arrow-right{
+						// margin-right: 13rpx;
+						width: 60rpx;
+						height: 60rpx;
+					}
+				}
+			}
+		}
+		.dialog-bottom{
+			display: flex;
+			width: 100%;
+			height: 119rpx;
+			opacity: 1;
+			position: fixed;
+			bottom: 0;
+			justify-content: center;
+			.dialog-finish {
+				display: flex;
+				justify-content:space-between;
+				width: 325rpx;
+				.finish-btn {
+					height: 58rpx;
+					line-height: 58rpx;
+					width: 156rpx;
+					color: #ffffff;
+					font-size: 30rpx;
+					background: #FF3300;
+				}
+				.reset-btn {
+					height: 58rpx;
+					line-height: 58rpx;
+					width: 156rpx;
+					color: #FF3300;
+					font-size: 30rpx;
+					border: 1rpx solid #FF3300;
+				}
+			}
 		}
 	}
 }
