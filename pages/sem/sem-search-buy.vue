@@ -95,6 +95,11 @@ export default {
 			mescroll: null
 		};
 	},
+	computed: {
+		...mapGetters({
+			goodsData: 'sem/goodsData'
+		})
+	},
 	onLoad() {
 		this.addGoodsData([]);
 	},
@@ -128,6 +133,10 @@ export default {
 			searchGoodsList(this.paramsData)
 				.then(res => {
 					let { data } = res;
+					data.content.forEach((item, index) => {
+						item.checked = true;
+					});
+					this.addGoodsData([...data, ...this.goodsData.list]);
 					mescroll.endBySize(data.content, data.count);
 				})
 				.catch(error => {
