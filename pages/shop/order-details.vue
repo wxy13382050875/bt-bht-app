@@ -117,7 +117,7 @@ export default {
 		let param = {};
 		this.orderId = option.orderId;
 		this.mainOrderId = option.mainOrderId;
-		if(typeof(this.orderId)==undefined){
+		if(typeof(this.orderId)=='undefined'){
 			console.log('typeof(this.mainOrderId)');
 			param.mainOrderId = this.mainOrderId;
 			

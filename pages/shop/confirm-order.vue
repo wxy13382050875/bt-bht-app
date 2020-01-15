@@ -251,10 +251,10 @@ export default {
 					console.log(this.payInfo);
 					this.mainOrderId = res.data.mainOrderId;
 					//调用支付
-					// this.payhandle();
-					uni.navigateTo({
-						url: '/pages/shop/pay-success?type=fail&mainOrderId='+this.mainOrderId
-					});
+					this.payhandle();
+					// uni.navigateTo({
+					// 	url: '/pages/shop/pay-success?type=fail&mainOrderId='+this.mainOrderId
+					// });
 					//通知更新新购物信息
 					uni.$emit('updateCart', { msg: '页面更新' });
 				} else {
