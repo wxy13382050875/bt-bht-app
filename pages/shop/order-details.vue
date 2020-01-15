@@ -107,21 +107,28 @@ import { getOrderDetails } from '@/api/shop.js';
 export default {
 	data() {
 		return {
+			orderId: String,
 			mainOrderId: String,
 			dataSource: {}
 		};
 	},
 	onLoad: function(option) {
-		this.mainOrderId = option.mainOrderId;
-		// this.mainOrderId = '2020010714375499692143';
-
+		
 		let param = {};
-		param.mainOrderId = this.mainOrderId;
-		console.log(param);
+		this.orderId = option.orderId;
+		this.mainOrderId = option.mainOrderId;
+		if(typeof(this.orderId)==undefined){
+			console.log('typeof(this.mainOrderId)');
+			param.mainOrderId = this.mainOrderId;
+			
+		} else {
+			console.log('typeof(this.orderId)');
+			param.orderId = this.orderId;
+		}
+		
 		getOrderDetails(param).then(res => {
 			let { data, code, msg } = res;
 			if (code === '200') {
-				console.log(data);
 				this.dataSource = data;
 			} else {
 				uni.showToast({

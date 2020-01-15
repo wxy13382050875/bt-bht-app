@@ -71,8 +71,8 @@ export default {
 			calendarEndDate: formatterDate(new Date(), 'YY-MM-DD'),
 			calendarSplit: '',
 			paramsData: {
-				// startDate: formatterDate(new Date(), 'YY-MM-DD 00:00:00'),
-				// endDate: formatterDate(new Date(), 'YY-MM-DD 00:00:00'),
+				startDate: '',
+				endDate: '',
 				plateNumber: '',
 				goodsName: '',
 				page: 1,
@@ -211,6 +211,7 @@ export default {
 					.item-input {
 						margin-left: 10rpx;
 						height: 100%;
+						width: 360rpx;
 					}
 
 					input::-ms-input-placeholder {

@@ -41,7 +41,7 @@
 			</view>
 		</bht-layout-container>
 		<view class="right-drawer">
-			<uni-drawer :visible="showRight" mode="right" @close="closeDrawer('right')">
+			<uni-drawer :visible="showRight" width="85%" mode="right" @close="closeDrawer('right')">
 				<view class="dialog-title">筛选</view>
 				<view class="flitter-item">
 					<view class="item-attr">
@@ -84,6 +84,13 @@
 						</picker>
 					</view>
 					<view class="item-attr">
+						<view class="item-name">到货日期</view>
+						<view class="item-form-input" @click="showDatePicker">
+							<input class="item-input" disabled="true" :value="formData.startDate + calendarSplit + formData.endDate" placeholder="请选择到货日期" />
+							<view class="arrow-right"><view class="iconfont aca-xiala"></view></view>
+						</view>
+					</view>
+					<!-- <view class="item-attr">
 						<view class="item-name">下单时间</view>
 						<picker mode="date" @change="pickerOrderTimeChange" :value="formData.orderTime">
 							<view class="item-form-input">
@@ -91,7 +98,7 @@
 								<view class="arrow-right"><view class="iconfont aca-xiala"></view></view>
 							</view>
 						</picker>
-					</view>
+					</view> -->
 				</view>
 				<view class="dialog-bottom">
 					<view class="dialog-finish">
@@ -99,6 +106,7 @@
 						<button class="reset-btn" @click="resetClick">重置</button>
 					</view>
 				</view>
+				<uni-calendar :date="formData.startDate" :insert="false" :range="true" :endDate="calendarEndDate" ref="calendar" :lunar="false" @confirm="confirmDate" />
 			</uni-drawer>
 		</view>
 	</view>
@@ -107,6 +115,7 @@
 <script>
 import universalNavBar from '@/components/navbar/xw-dth-navbar-universal.vue';
 import uniDrawer from '@/third/uni-drawer/uni-drawer.vue';
+import { minusDate, formatterDate } from '@/utils/date';
 export default {
 	components: {
 		universalNavBar,
@@ -122,14 +131,16 @@ export default {
 			payIndex: 0,
 			billArr: ['未开票', '已开票'],
 			billIndex: 0,
-			date: currentDate,
+			calendarSplit: '',
+			calendarEndDate: formatterDate(new Date(), 'YY-MM-DD'),
 			formData: {
 				plateNumber: '', //车牌号
 				goodsName: '', //商品名称
 				peopleName: '', //边名姓名
 				payState: '', //支付状态
 				billState: '', //开票状态
-				orderTime: currentDate //下单时间
+				startDate: '' ,//开始时间
+				endDate:''//结束时间
 			}
 		};
 	},
@@ -156,10 +167,18 @@ export default {
 			this.formData.billState = this.billArr[this.billIndex];
 			this.$forceUpdate();
 		},
-		//时间选择
-		pickerOrderTimeChange(e) {
-			this.formData.orderTime = e.target.value
-			this.$forceUpdate();
+		// //时间选择
+		// pickerOrderTimeChange(e) {
+		// 	this.formData.orderTime = e.target.value
+		// 	this.$forceUpdate();
+		// },
+		showDatePicker() {
+			this.$refs.calendar.open();
+		},
+		confirmDate({ range }) {
+			this.formData.startDate = range.begin;
+			this.formData.endDate = range.end || range.begin;
+			this.calendarSplit = '~';
 		},
 		queryClick(){
 			console.log('查询');
@@ -173,7 +192,9 @@ export default {
 			this.formData.peopleName= ''; //边名姓名
 			this.formData.payState= ''; //支付状态
 			this.formData.billState= ''; //开票状态
-			this.formData.orderTime= this.currentDate; //下单时间
+			this.formData.startDate= ''; //下单时间
+			this.formData.endDate= ''; //下单时间
+			this.calendarSplit = '';
 		},
 		getDate(type) {
 			const date = new Date();
@@ -353,6 +374,7 @@ export default {
 					.item-input {
 						margin-left: 10rpx;
 						height: 100%;
+						width: 360rpx;
 					}
 
 					input::-ms-input-placeholder {

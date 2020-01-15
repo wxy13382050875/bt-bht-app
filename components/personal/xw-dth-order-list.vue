@@ -149,7 +149,7 @@ export default {
 		},
 		skipOrderDetail(item){
 			uni.navigateTo({
-				url:'/pages/shop/order-details?mainOrderId=' + item.mainOrderId
+				url:'/pages/shop/order-details?orderId=' + item.orderId
 			})
 		}
 
