@@ -30,12 +30,25 @@ export const submitOrder = (params) => {
 	}
 	return http.post('/assets-service/btMark/appOrder', JSON.stringify(appOrderResqVo));
 }
-
+/**
+ * 查询商品列表
+ */
 export const searchGoodsList = (params) => {
 	http.config.loading = true;
 	http.config.text = '正在查询...';
 	params.organization = '860301';
 	return http.get('/assets-service/btMark/goodsSearch', {
+		params: params
+	});
+}
+/**
+ * 查询订单列表
+ */
+export const searchOrderList = (params) => {
+	http.config.loading = true;
+	http.config.text = '正在查询...';
+	params.organization = '860301';
+	return http.get('/assets-service/btMark/search', {
 		params: params
 	});
 }

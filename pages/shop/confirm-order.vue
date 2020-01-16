@@ -116,7 +116,7 @@ export default {
 			payType: 0,
 			current: 0,
 			payInfo: {},
-			mainOrderId:'',
+			mainOrderId: '',
 			items: [
 				{
 					name: '支付宝',
@@ -184,7 +184,6 @@ export default {
 					}
 				});
 			} else {
-
 				uni.requestPayment({
 					provider: 'wxpay',
 					orderInfo: this.payInfo,
@@ -193,7 +192,7 @@ export default {
 						// 	title: '感谢您的赞助!'
 						// });
 						uni.navigateTo({
-							url: '/pages/shop/pay-success?type=success&mainOrderId='+this.mainOrderId
+							url: '/pages/shop/pay-success?type=success&mainOrderId=' + this.mainOrderId
 						});
 					},
 					fail: res => {
@@ -202,7 +201,7 @@ export default {
 							showCancel: false
 						});
 						uni.navigateTo({
-							url: '/pages/shop/pay-success?type=fail&mainOrderId='+this.mainOrderId
+							url: '/pages/shop/pay-success?type=fail&mainOrderId=' + this.mainOrderId
 						});
 					},
 					complete: () => {

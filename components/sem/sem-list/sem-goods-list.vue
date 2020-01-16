@@ -12,15 +12,15 @@
 				</view>
 				<view class="info-items">
 					<label class="title">边民姓名</label>
-					<text class="value">{{ item.name }}</text>
+					<text class="value">{{ item.seller }}</text>
 				</view>
 				<view class="info-items">
 					<label class="title">车牌号</label>
 					<text class="value">{{ item.plateNumber }}</text>
 				</view>
 				<view class="info-items">
-					<label class="title">数量</label>
-					<text class="value">{{ item.quantity }}</text>
+					<label class="title">重量</label>
+					<text class="value">{{ item.weight }}</text>
 				</view>
 			</view>
 		</view>

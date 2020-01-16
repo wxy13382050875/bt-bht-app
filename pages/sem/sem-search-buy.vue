@@ -1,14 +1,13 @@
 <template>
 	<view class="sem-search-container">
-		<universal-nav-bar :navType="1" rightTitle="筛选" rightImageName="/static/icon/address_loaction_icon.png" @rightToPrev="rightToPrev">
+		<universal-nav-bar :navType="1" rightTitle="筛选" rightImageName="/static/icon/icon-flitter.png"  @rightToPrev="rightToPrev">
 			<template name="nav">
 				<label class="navTitle">边民互市二级交易市场</label>
 			</template>
 		</universal-nav-bar>
 		<bht-layout-container bgColor="#F2F2F2" :bottom="0">
 			<view class="goods-list-container">
-				<mescroll-uni :down="downOption" @down="downCallback" :fixed="false" :up="upOption" @up="upCallback"></mescroll-uni>
-				<sem-goods-list></sem-goods-list>
+				<mescroll-uni :down="downOption" @down="downCallback" :fixed="false" :up="upOption" @up="upCallback"><sem-goods-list></sem-goods-list></mescroll-uni>
 			</view>
 			<sem-goods-footer @submitOrderSuccess="submitOrderSuccessHandler"></sem-goods-footer>
 		</bht-layout-container>
@@ -111,6 +110,7 @@ export default {
 		 * 搜索
 		 */
 		search() {
+			this.addGoodsData([]);
 			this.mescroll.triggerDownScroll();
 			this.closeDrawer();
 		},
@@ -134,9 +134,12 @@ export default {
 				.then(res => {
 					let { data } = res;
 					data.content.forEach((item, index) => {
-						item.checked = true;
+						item.checked = false;
 					});
-					this.addGoodsData([...data, ...this.goodsData.list]);
+					if (mescroll.num == 1) {
+						this.addGoodsData([]);
+					}
+					this.addGoodsData([...data.content, ...this.goodsData.list]);
 					mescroll.endBySize(data.content, data.count);
 				})
 				.catch(error => {
@@ -147,7 +150,10 @@ export default {
 		 * 处理下单成功回调
 		 * @param {Object} result true表示下单成功 false表示下单失败
 		 */
-		submitOrderSuccessHandler(result) {},
+		submitOrderSuccessHandler(result) {
+			this.addGoodsData([]);
+			this.mescroll.triggerDownScroll();
+		},
 		rightToPrev() {
 			this.showRight = true;
 		},

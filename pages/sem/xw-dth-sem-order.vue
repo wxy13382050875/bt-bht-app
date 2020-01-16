@@ -1,45 +1,48 @@
 <template>
 	<view class="sem-index-container">
-		<universalNavBar :navType="1" rightTitle="筛选" rightImageName="/static/icon/icon-flitter.png" @leftToPrev="leftToPrev" @rightToPrev="rightToPrev">
+		<universalNavBar :navType="1" rightTitle="筛选" rightImageName="/static/icon/icon-flitter.png"  @rightToPrev="rightToPrev">
 			<template name="nav">
 				<label class="navTitle">边民互市二级交易市场</label>
 			</template>
 		</universalNavBar>
 		<bht-layout-container bgColor="#F2F2F2" :bottom="0">
 			<view class="scan-list-container">
-				<view class="list-items" v-for="item in 4">
-					<view class="info">
-						<view class="info-header">
-							<view class="goods-name">木炭,鲜水果、活螃蟹...</view>
-							<view class="price">
-								<label class="symbol">¥</label>
-								<text class="value">8000</text>
+				<mescroll-uni :down="downOption" @down="downCallback" :fixed="false" :up="upOption" @up="upCallback">
+					<view class="list-items" v-for="(item, index) in dataSource" :key="index">
+						<view class="info">
+							<view class="info-header">
+								<view class="goods-name">{{ item.name }}</view>
+								<view class="price">
+									<label class="symbol">¥</label>
+									<text class="value">{{ item.price }}</text>
+								</view>
+							</view>
+							<view class="info-items">
+								<label class="title">边民姓名</label>
+								<text class="value">{{ item.seller }}</text>
+							</view>
+							<view class="info-items">
+								<label class="title">车牌号</label>
+								<text class="value">{{ item.plateNumber }}</text>
+							</view>
+							<view class="info-items">
+								<label class="title">重量</label>
+								<text class="value">{{ item.quantity }}</text>
+							</view>
+							<view class="info-items">
+								<label class="title">支付状态</label>
+								<text class="value" style="color: #008400;">{{ item.status == 'yetPay' ? '已支付' : '未支付' }}</text>
+							</view>
+							<view class="info-items">
+								<label class="title">发票状态</label>
+								<text class="value" style="color: #D20000;">{{ item.invoiceStatus == 'none' ? '未开票' : '已开票' }}</text>
 							</view>
 						</view>
-						<view class="info-items">
-							<label class="title">边民姓名</label>
-							<text class="value">王国富</text>
-						</view>
-						<view class="info-items">
-							<label class="title">车牌号</label>
-							<text class="value">云A.22222</text>
-						</view>
-						<view class="info-items">
-							<label class="title">重量</label>
-							<text class="value">200kg</text>
-						</view>
-						<view class="info-items">
-							<label class="title">支付状态</label>
-							<text class="value" style="color: #008400;">已支付</text>
-						</view>
-						<view class="info-items">
-							<label class="title">发票状态</label>
-							<text class="value" style="color: #D20000;">未开发票</text>
-						</view>
 					</view>
-				</view>
+				</mescroll-uni>
 			</view>
 		</bht-layout-container>
+
 		<view class="right-drawer">
 			<uni-drawer :visible="showRight" width="85%" mode="right" @close="closeDrawer('right')">
 				<view class="dialog-title">筛选</view>
@@ -54,31 +57,31 @@
 					<view class="item-attr">
 						<view class="item-name">商品名称</view>
 						<view class="item-form-input">
-							<input class="item-input" v-model="formData.goodsName" placeholder="请输入商品名称" />
+							<input class="item-input" v-model="formData.name" placeholder="请输入商品名称" />
 							<view class="arrow-right"></view>
 						</view>
 					</view>
 					<view class="item-attr">
 						<view class="item-name">边民姓名</view>
 						<view class="item-form-input">
-							<input class="item-input" v-model="formData.peopleName" placeholder="请输入边民姓名" />
+							<input class="item-input" v-model="formData.seller" placeholder="请输入边民姓名" />
 							<view class="arrow-right"></view>
 						</view>
 					</view>
 					<view class="item-attr">
 						<view class="item-name">支付状态</view>
-						<picker @change="pickerPayChange" :value="payIndex" :range="payArr">
+						<picker @change="pickerPayChange" :value="payIndex" :range="payArr" range-key="name">
 							<view class="item-form-input">
-								<input class="item-input" disabled="true" :value="formData.payState" placeholder="选择支付状态" />
+								<input class="item-input" disabled="true" :value="payState.name" placeholder="选择支付状态" />
 								<view class="arrow-right"><view class="iconfont aca-xiala"></view></view>
 							</view>
 						</picker>
 					</view>
 					<view class="item-attr">
 						<view class="item-name">发票状态</view>
-						<picker @change="pickerBillChange" :value="billIndex" :range="billArr">
+						<picker @change="pickerBillChange" :value="billIndex" :range="billArr" range-key="name">
 							<view class="item-form-input">
-								<input class="item-input" disabled="true" :value="formData.billState" placeholder="选择发票状态" />
+								<input class="item-input" disabled="true" :value="billState.name" placeholder="选择发票状态" />
 								<view class="arrow-right"><view class="iconfont aca-xiala"></view></view>
 							</view>
 						</picker>
@@ -116,6 +119,7 @@
 import universalNavBar from '@/components/navbar/xw-dth-navbar-universal.vue';
 import uniDrawer from '@/third/uni-drawer/uni-drawer.vue';
 import { minusDate, formatterDate } from '@/utils/date';
+import { searchOrderList } from '@/api/sem.js';
 export default {
 	components: {
 		universalNavBar,
@@ -127,29 +131,46 @@ export default {
 		});
 		return {
 			showRight: false,
-			payArr: ['未支付', '已支付'],
+			payArr: [{name:'未支付',value:'waitPay'}, {name:'已支付',value:'yetPay'}],
+			// payStateArr: ['waitPay', 'yetPay'],
 			payIndex: 0,
-			billArr: ['未开票', '已开票'],
+			payState:{},
+			billArr: [{name:'未开票',value:'none'},{name:'开票中',value:'wait'},{name:'已开票',value:'done'},{name:'开票失败',value:'fail'}],
+			
 			billIndex: 0,
+			billState:{},
 			calendarSplit: '',
 			calendarEndDate: formatterDate(new Date(), 'YY-MM-DD'),
 			formData: {
 				plateNumber: '', //车牌号
-				goodsName: '', //商品名称
-				peopleName: '', //边名姓名
-				payState: '', //支付状态
-				billState: '', //开票状态
-				startDate: '' ,//开始时间
-				endDate:''//结束时间
-			}
+				name: '', //商品名称
+				seller: '', //边名姓名
+				status: '', //支付状态
+				invoiceStatus: '', //开票状态
+				startDate: '', //开始时间
+				endDate: '', //结束时间
+				pageNum: 1,
+				pageSize: 10
+			},
+			downOption: {
+				use: true,
+				auto: true
+			},
+			upOption: {
+				use: true,
+				auto: false,
+				noMoreSize: 5,
+				empty: {
+					tip: '暂无相关数据'
+				}
+			},
+			dataSource: []
 		};
 	},
+
 	methods: {
-		leftToPrev(e) {
-			console.log('导航左侧按钮' + e);
-		},
+
 		rightToPrev(e) {
-			console.log('导航右侧按钮' + e);
 			this.showRight = !this.showRight;
 		},
 		closeDrawer(e) {
@@ -158,13 +179,15 @@ export default {
 		//支付状态选择
 		pickerPayChange(e) {
 			this.payIndex = e.target.value;
-			this.formData.payState = this.payArr[this.payIndex];
+			this.payState = this.payArr[this.payIndex];
+			this.formData.status = this.payState.value;
 			this.$forceUpdate();
 		},
 		//发票状态选择
 		pickerBillChange(e) {
 			this.billIndex = e.target.value;
-			this.formData.billState = this.billArr[this.billIndex];
+			this.billState = this.billArr[this.payIndex];
+			this.formData.invoiceStatus = this.billState.value;
 			this.$forceUpdate();
 		},
 		// //时间选择
@@ -180,20 +203,18 @@ export default {
 			this.formData.endDate = range.end || range.begin;
 			this.calendarSplit = '~';
 		},
-		queryClick(){
-			console.log('查询');
-			console.log(this.formData);
+		queryClick() {
 			this.showRight = false;
+			this.mescroll.triggerDownScroll();
 		},
-		resetClick(){
-			console.log('重置');
-			this.formData.plateNumber=''; //车牌号
-			this.formData.goodsName= ''; //商品名称
-			this.formData.peopleName= ''; //边名姓名
-			this.formData.payState= ''; //支付状态
-			this.formData.billState= ''; //开票状态
-			this.formData.startDate= ''; //下单时间
-			this.formData.endDate= ''; //下单时间
+		resetClick() {
+			this.formData.plateNumber = ''; //车牌号
+			this.formData.name = ''; //商品名称
+			this.formData.seller = ''; //边名姓名
+			this.formData.status = ''; //支付状态
+			this.formData.invoiceStatus = ''; //开票状态
+			this.formData.startDate = ''; //下单时间
+			this.formData.endDate = ''; //下单时间
 			this.calendarSplit = '';
 		},
 		getDate(type) {
@@ -210,6 +231,28 @@ export default {
 			month = month > 9 ? month : '0' + month;
 			day = day > 9 ? day : '0' + day;
 			return `${year}-${month}-${day}`;
+		},
+
+		downCallback(mescroll) {
+			this.mescroll = mescroll;
+			mescroll.resetUpScroll();
+		},
+		upCallback(mescroll) {
+			this.formData.pageNum = mescroll.num;
+			searchOrderList(this.formData)
+				.then(res => {
+					let { data } = res;
+					data.content.forEach((item, index) => {
+						item.checked = true;
+					});
+					// this.addGoodsData([...data, ...this.goodsData.list]);
+					if (mescroll.num == 1) this.dataSource = []; //如果是第一页需手动制空列表
+					this.dataSource = this.dataSource.concat(data.content); //追加新数据
+					mescroll.endBySize(data.content, data.count);
+				})
+				.catch(error => {
+					this.mescroll.endErr();
+				});
 		}
 	}
 };

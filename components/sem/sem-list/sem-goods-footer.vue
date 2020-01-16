@@ -26,6 +26,10 @@ export default {
 		}),
 		isDisabled() {
 			let { list } = this.goodsData;
+			//重大bug预留
+			this.goodsData.checkTotalCount =0;
+			this.goodsData.checkStatus = false;
+			this.goodsData.totalAmount = 0;
 			if (list.length > 0) {
 				return false;
 			} else {
@@ -44,6 +48,8 @@ export default {
 					}
 				});
 				val.totalAmount = totalPrice.toFixed(2);
+				
+				
 			}
 		}
 	},
