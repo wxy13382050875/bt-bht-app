@@ -79,8 +79,15 @@ export default {
 			uni.scanCode({
 				success: function(res) {
 					//res.result 扫描得到的身份证号码
-					queryGoodsListByIdCard({ idCode: '532331199701032644' })
+					queryGoodsListByIdCard({ idCode: res.result })
 						.then(res => {
+							if (res.data.length == 0) {
+								uni.showToast({
+									icon: 'none',
+									title: '没有查询到数据'
+								});
+								return;
+							}
 							res.data.forEach((item, index) => {
 								item.checked = false;
 							});
