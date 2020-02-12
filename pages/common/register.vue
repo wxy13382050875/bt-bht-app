@@ -23,6 +23,10 @@
 					<view class="aca-input-icon"><view class="iconfont aca-mima"></view></view>
 					<input class="aca-input" type="password" v-model="regData.password" placeholder="请输入密码" />
 				</view>
+				<view class="aca-form-input">
+					<view class="aca-input-icon"><view class="iconfont aca-mima"></view></view>
+					<input class="aca-input" type="password" v-model="regData.idcard" placeholder="请输入身份证号" />
+				</view>
 				<button class="app-btn" hover-class="" @click="handleReg">注册</button>
 			</view>
 		</bht-layout-container>
@@ -40,7 +44,8 @@ export default {
 				roleId: '',
 				phone: '',
 				password: '',
-				code: ''
+				code: '',
+				idcard:''
 			},
 			roleText: '',
 			paperTypeIndex: 0,
@@ -67,7 +72,13 @@ export default {
 					checkType: 'number',
 					checkRule: 'notnull',
 					errorMsg: '请填写密码'
-				}
+				},
+				{
+					name: 'idcard',
+					checkType: 'string',
+					checkRule: '18',
+					errorMsg: '请正确填写身份证号'
+				},
 			]
 		};
 	},
