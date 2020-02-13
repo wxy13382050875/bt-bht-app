@@ -25,7 +25,7 @@
 				</view>
 				<view class="aca-form-input">
 					<view class="aca-input-icon"><view class="iconfont aca-mima"></view></view>
-					<input class="aca-input" type="password" v-model="regData.idcard" placeholder="请输入身份证号" />
+					<input class="aca-input" type="password" v-model="regData.idCode" placeholder="请输入身份证号" />
 				</view>
 				<button class="app-btn" hover-class="" @click="handleReg">注册</button>
 			</view>
@@ -37,6 +37,9 @@
 import { mapGetters } from 'vuex';
 import formValidate from '@/utils/validate';
 import { saveUser } from '@/api/shop.js';
+import {
+		sendSmsCode
+	} from '@/api/user'
 export default {
 	data() {
 		return {
@@ -45,7 +48,7 @@ export default {
 				phone: '',
 				password: '',
 				code: '',
-				idcard:''
+				idCode:''
 			},
 			roleText: '',
 			paperTypeIndex: 0,
@@ -74,7 +77,7 @@ export default {
 					errorMsg: '请填写密码'
 				},
 				{
-					name: 'idcard',
+					name: 'idCode',
 					checkType: 'string',
 					checkRule: '18',
 					errorMsg: '请正确填写身份证号'
@@ -148,7 +151,9 @@ export default {
 				return;
 			}
 			this.vcodeBtnName = '发送中...';
-			sendMobileCode(this.regData.mobile)
+			let params = {};
+			params.phone=this.regData.mobile;
+			sendSmsCode(params)
 				.then(res => {
 					uni.setStorageSync('mobileCode', res);
 					// 倒计时
