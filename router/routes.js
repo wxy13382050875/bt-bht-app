@@ -323,6 +323,26 @@ const routesList = [{
 				requiresAuth: true
 			}
 		}
+	},
+	{
+		path: "/pages/bmhs/goods-dec-exit",
+		name: "goods-dec-exit",
+		meta: {
+			title: '出口商品申报',
+			auth: {
+				requiresAuth: true
+			}
+		}
+	},
+	{
+		path: '/pages/bmhs/goods-dec-import',
+		name: 'goods-dec-import',
+		meta: {
+			title: '进口商品申报',
+			auth: {
+				requiresAuth: true
+			}
+		}
 	}
 ]
 //导出

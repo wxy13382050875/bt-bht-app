@@ -344,6 +344,28 @@
 					"bounce": "none"
 				}
 			}
+		},
+		//出口商品申报
+		{
+			"path": "pages/bmhs/goods-dec-exit",
+			"style": {
+				"navigationStyle": "custom",
+				"app-plus": {
+					"titleNView": false,
+					"bounce": "none"
+				}
+			}
+		},
+		//出口商品申报
+		{
+			"path": "pages/bmhs/goods-dec-import",
+			"style": {
+				"navigationStyle": "custom",
+				"app-plus": {
+					"titleNView": false,
+					"bounce": "none"
+				}
+			}
 		}
 	]
 

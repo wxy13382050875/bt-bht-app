@@ -1,4 +1,4 @@
-import Request from './request'
+import Request from '@/utils/luch-request/request.js'
 import BasUrl from '@/utils/config'
 
 //边互通http请求实力 
@@ -26,6 +26,7 @@ bht_http.interceptor.request((config, cancel) => { /* 请求之前拦截器 */
 bht_http.interceptor.response((response) => { /* 请求之后拦截器 */
 	return response.data
 }, (response) => { // 请求错误做点什么
+	console.lo
 	uni.showToast({
 		icon: 'none',
 		title: '您的网络不给力，请稍后重试！'
