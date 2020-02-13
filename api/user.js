@@ -15,6 +15,10 @@ export const sendMobileCode = (mobile) => {
 	return bht_http.get(`verify/send/${mobile}`)
 };
 
+//发送短信验证码
+export const sendSmsCode = (params) => {
+	return bht_http.post('/assets-service/declare/sendSmsCode',params)
+};
 //注册用户
 export const register = (params) => {
 	return bht_http.post('user/reg', params, {
