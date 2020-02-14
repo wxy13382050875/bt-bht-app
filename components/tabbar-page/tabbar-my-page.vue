@@ -4,7 +4,7 @@
 		<bht-layout-container>
 			<view class="bht-layout-content">
 				<view class="header"><personalHeader :dataSource="userInfo" @togglePopup="togglePopup"></personalHeader></view>
-				<view class="body">
+				<view class="body" v-show="roleID != 1">
 					<personalOrder :dataSource="dataSource.order" sta></personalOrder>
 					<personalOrder :dataSource="dataSource.tool"></personalOrder>
 				</view>
@@ -58,7 +58,8 @@ export default {
 						// { pictureUrl: '/static/icon/icon-client-server.png', name: '订单中心', page: '/pages/sem/xw-dth-sem-order' },
 					]
 				}
-			}
+			},
+			roleID:0
 		};
 	},
 	computed: {
@@ -78,6 +79,7 @@ export default {
 				url: '/pages/common/login'
 			});
 		},
+		
 		togglePopup() {
 			if (this.userInfo.idCodeQr != '' && this.userInfo.idCodeQr != null) {
 				this.$nextTick(() => {
@@ -105,6 +107,11 @@ export default {
 			if (n === this.pageFlag) {
 			}
 		}
+	},
+	created() {
+		console.log('------ces');
+		let userInfo = uni.getStorageSync("userInfo");
+		this.roleID = userInfo.roleId;
 	}
 };
 </script>

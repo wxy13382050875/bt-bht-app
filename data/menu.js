@@ -10,13 +10,13 @@ const menuData = {
 			src: require('@/static/tab/cart_def_icon.png'),
 			selectedSrc: require('@/static/tab/cart_sel_icon.png'),
 			flag: 'cart'
-		},
+		}*/,
 		{
 			title: '我的',
 			src: require('@/static/tab/my_def_icon.png'),
 			selectedSrc: require('@/static/tab/my_sel_icon.png'),
 			flag: 'my'
-		}*/
+		}
 	],
 	"2": [{
 			title: '首页',
