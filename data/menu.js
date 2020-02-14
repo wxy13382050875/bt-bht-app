@@ -4,7 +4,7 @@ const menuData = {
 			src: require('@/static/tab/home_def_icon.png'),
 			selectedSrc: require('@/static/tab/home_sel_icon.png'),
 			flag: 'index'
-		},
+		}/*,
 		{
 			title: '购物车',
 			src: require('@/static/tab/cart_def_icon.png'),
@@ -16,7 +16,7 @@ const menuData = {
 			src: require('@/static/tab/my_def_icon.png'),
 			selectedSrc: require('@/static/tab/my_sel_icon.png'),
 			flag: 'my'
-		}
+		}*/
 	],
 	"2": [{
 			title: '首页',
