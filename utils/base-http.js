@@ -22,16 +22,13 @@ http.interceptor.response((response) => {
 	if (http.config.loading) {
 		uni.hideLoading();
 	}
-	console.log('-------');
-	console.log(data);
 	if (data.code != "200") {
+		handlerError(data.code, data.msg);
 		return Promise.reject(response)
 	}
 	return data
 }, (response) => {
-	console.log('----response---');
-	console.log(response);
-	handlerError(response.statusCode);
+	handlerError(response.statusCode, '');
 
 	return response
 })
@@ -40,7 +37,7 @@ http.interceptor.response((response) => {
  * 错误信息处理
  * @param {Object} statusCode
  */
-function handlerError(statusCode) {
+function handlerError(statusCode, msg) {
 	switch (statusCode) {
 		case 404:
 			uni.showToast({
@@ -51,7 +48,8 @@ function handlerError(statusCode) {
 		default:
 			uni.showToast({
 				icon: 'none',
-				title: 'statusCode==>' + statusCode
+				title: msg,
+				duration: 3000
 			})
 			break;
 	}

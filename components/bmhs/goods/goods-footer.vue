@@ -22,16 +22,30 @@
 						title: '暂无可申报数据',
 						icon: 'none'
 					})
+					return;
 				}
-				return;
 				uni.showModal({
 					title: '是否确认申报？',
-					success() {
-						postDecGoods({
-							seqno: this.seqNo
-						}).then(res => {
-							
-						})
+					success: (res) => {
+						if (res.confirm) {
+							postDecGoods({
+								seqNo: this.seqNo
+							}).then(res => {
+								if (res.code == '200') {
+									uni.showToast({
+										title: '申报成功',
+										icon: 'success',
+										success: () => {
+											this.$emit('successDec', true)
+										}
+									})
+								} else {
+									this.$emit('successDec', false)
+								}
+							}).catch(error => {
+
+							})
+						}
 					}
 				})
 			}

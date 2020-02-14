@@ -343,6 +343,15 @@ const routesList = [{
 				requiresAuth: true
 			}
 		}
+	},{
+		path: '/pages/bmhs/inspection-results',
+		name: 'inspection-results',
+		meta: {
+			title: '查验结果确认',
+			auth: {
+				requiresAuth: true
+			}
+		}
 	}
 ]
 //导出

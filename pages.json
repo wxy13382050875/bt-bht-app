@@ -366,6 +366,17 @@
 					"bounce": "none"
 				}
 			}
+		},
+		//查验结果确认
+		{
+			"path": "pages/bmhs/inspection-results",
+			"style": {
+				"navigationStyle": "custom",
+				"app-plus": {
+					"titleNView": false,
+					"bounce": "none"
+				}
+			}
 		}
 	]
 

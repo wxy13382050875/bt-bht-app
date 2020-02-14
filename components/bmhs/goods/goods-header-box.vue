@@ -3,7 +3,7 @@
 		<view class="box">
 			<view class="header">
 				<label class="title">结算单号</label>
-				<text>{{goodsHeaderData.billingseqno}}</text>
+				<text>{{goodsHeaderData.billingSeqNo}}</text>
 			</view>
 			<view class="body">
 				<view class="title">
@@ -12,9 +12,9 @@
 					<label>商品总额</label>
 				</view>
 				<view class="value">
-					<label>{{goodsHeaderData.civilname}}</label>
-					<label>{{goodsHeaderData.vehicleid}}</label>
-					<label>￥{{goodsHeaderData.totlagoodsamout}}</label>
+					<label>{{goodsHeaderData.civilName}}</label>
+					<label>{{goodsHeaderData.vehicleId}}</label>
+					<label>￥{{goodsHeaderData.totalGoodsAmout}}</label>
 				</view>
 			</view>
 		</view>

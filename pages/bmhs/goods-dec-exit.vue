@@ -7,14 +7,15 @@
 					<goods-header-box :goods-header-data="goodsHeaderData"></goods-header-box>
 				</view>
 				<view class="data-list-container">
-					<goods-data-list></goods-data-list>
+					<goods-data-list :goodsData="goodsData"></goods-data-list>
 				</view>
 				<view class="goods-footer-container">
-					<goods-footer :seqNo="seqNo"></goods-footer>
+					<goods-footer :seqNo="seqNo" @successDec="successDec"></goods-footer>
 				</view>
 			</view>
-			<view class="">
-				没有可申报的数据
+			<view class="no-data-container">
+				<image class="icon" src="/static/bmhs/no-data-icon.png"></image>
+				<label class="msg">没有可申报数据</label>
 			</view>
 		</bht-layout-container>
 	</view>
@@ -38,7 +39,7 @@
 		},
 		data() {
 			return {
-				inOut: 1,
+				inOut: 0,
 				seqNo: '',
 				goodsHeaderData: {},
 				goodsData: []
@@ -50,8 +51,26 @@
 		methods: {
 			postDec() {
 				goodsDesList(this.inOut).then(res => {
-					console.log(res)
+					let {
+						data
+					} = res;
+					this.goodsData = data.goodsList;
+					this.goodsHeaderData.civilName = data.civilName;
+					this.goodsHeaderData.vehicleId = data.vehicleId;
+					this.goodsHeaderData.inOut = data.inOut;
+					this.goodsHeaderData.totalGoodsAmout = data.totalGoodsAmout;
+					this.goodsHeaderData.billingSeqNo = data.billingSeqNo;
+					this.goodsHeaderData.seqNo = data.seqNo;
+					this.seqNo = data.seqNo;
+				}).catch(error => {
+
 				})
+			},
+			successDec(res) {
+				if (res) {
+					//如果申报成功，重新加载数据
+					this.postDec();
+				}
 			}
 		}
 	}
@@ -76,6 +95,25 @@
 
 		.goods-footer-container {
 			height: 60px;
+		}
+	}
+
+	.no-data-container {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+		height: 100%;
+
+		.icon {
+			width: 313rpx;
+			height: 215rpx;
+		}
+
+		.msg {
+			margin-top: $padding-content;
+			font-size: 24rpx;
+			color: #333;
 		}
 	}
 </style>

@@ -20,10 +20,10 @@ export const goodsDesList = (inOut) => {
 		idCode
 	} = uni.getStorageSync('userInfo');
 	http.config.loading = true;
-	return http.get('/goods/list', {
+	return http.get('/assets-service/declare/getWaitingDeclareData', {
 		params: {
-			idcardno: idCode,
-			inout: inOut
+			idCode: idCode,
+			inOut: inOut
 		}
 	});
 }
@@ -33,9 +33,31 @@ export const goodsDesList = (inOut) => {
  */
 export const postDecGoods = (params) => {
 	http.config.loading = true;
-	return http.get('/goods/post', {
+	http.config.text = '正在提交...';
+	return http.post('/assets-service/declare/commitWaitingDeclare', params);
+}
+
+/**
+ * 待查验数据确认数据展示接口
+ */
+export const getWaitingConfirmData = () => {
+	http.config.loading = true;
+	let {
+		idCode
+	} = uni.getStorageSync('userInfo');
+	http.config.loading = true;
+	return http.get('/assets-service/declare/getWaitingConfirmData', {
 		params: {
-			params
+			idCode: idCode,
 		}
 	});
+}
+
+/**
+ * 查验确认接口
+ */
+export const commitWaitingConfirm = (params) => {
+	http.config.loading = true;
+	http.config.text = '正在提交...';
+	return http.post('/assets-service/declare/commitWaitingConfirm', params);
 }
