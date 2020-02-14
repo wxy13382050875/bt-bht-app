@@ -89,7 +89,7 @@
 				}).then(res => {
 					if (res.code == "200") {
 						uni.showToast({
-							title: res.msg,
+							title: '确认成功',
 							icon: 'success',
 							success: () => {
 								//置空数据

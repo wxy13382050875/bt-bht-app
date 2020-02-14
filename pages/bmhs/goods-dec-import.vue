@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<nav-bar-back title="出口商品申报" popType="0"></nav-bar-back>
+		<nav-bar-back title="进口商品申报" popType="0"></nav-bar-back>
 		<bht-layout-container :bottom="0">
 			<view class="goods-dec-container" v-if="goodsData.length>0">
 				<view class="goods-header-container">
@@ -63,7 +63,7 @@
 					this.goodsHeaderData.seqNo = data.seqNo;
 					this.seqNo = data.seqNo;
 				}).catch(error => {
-
+					this.goodsData = [];
 				})
 			},
 			successDec(res) {

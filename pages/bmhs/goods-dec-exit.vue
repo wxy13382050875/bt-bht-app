@@ -39,7 +39,7 @@
 		},
 		data() {
 			return {
-				inOut: 0,
+				inOut: 1,
 				seqNo: '',
 				goodsHeaderData: {},
 				goodsData: []
@@ -63,7 +63,7 @@
 					this.goodsHeaderData.seqNo = data.seqNo;
 					this.seqNo = data.seqNo;
 				}).catch(error => {
-
+					this.goodsData = [];
 				})
 			},
 			successDec(res) {
