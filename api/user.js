@@ -1,8 +1,6 @@
 import http from '@/utils/base-http.js'
 import BasUrl from '@/utils/config'
-import {
-	bht_http
-} from '@/utils/http'
+
 http.setConfig((config) => {
 	config.baseUrl = BasUrl.BASE_BHT_URL
 	config.header = {
@@ -15,23 +13,23 @@ http.setConfig((config) => {
 //用户登录
 export const login = (params) => {
 	http.config.loading = true;
-	return bht_http.get('user/login', {
+	return http.get('user/login', {
 		params: params
 	})
 }
 
 //发送短信验证码
 export const sendMobileCode = (mobile) => {
-	return bht_http.get(`verify/send/${mobile}`)
+	return http.get(`verify/send/${mobile}`)
 };
 
 //发送短信验证码
 export const sendSmsCode = (params) => {
-	return bht_http.post('/assets-service/declare/sendSmsCode',params)
+	return http.post('/assets-service/declare/sendSmsCode',params)
 };
 //注册用户
 export const register = (params) => {
-	return bht_http.post('/assets-service/user/register', params)
+	return http.post('/assets-service/user/register', params)
 };
 
 //更新用户信息
