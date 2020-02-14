@@ -28,9 +28,9 @@ export default {
 			pageFlag: 'sem',
 			semHeaderBg: require('@/static/icon/sem_header_bg.png'),
 			dataSource: [
-				{ pictureUrl: '/static/icon/icon-my-address.png', name: '扫一扫', page: '/pages/sem/sem-scan-buy' },
-				{ pictureUrl: '/static/icon/icon-my-address.png', name: '商品收购', page: '/pages/sem/sem-search-buy' },
-				{ pictureUrl: '/static/icon/icon-client-server.png', name: '订单中心', page: '/pages/sem/xw-dth-sem-order' }
+				{ pictureUrl: '/static/icon/icon-my-address.png', name: '扫一扫', url: '/pages/sem/sem-scan-buy' },
+				{ pictureUrl: '/static/icon/icon-my-address.png', name: '商品收购', url: '/pages/sem/sem-search-buy' },
+				{ pictureUrl: '/static/icon/icon-client-server.png', name: '订单中心', url: '/pages/sem/xw-dth-sem-order' }
 			]
 		};
 	},

@@ -42,10 +42,10 @@ export default {
 					title: '我的订单',
 					moretitle: '查看全部订单',
 					list: [
-						{ pictureUrl: '/static/icon/icon-payment.png', name: '待付款', page: '/pages/personal/my-order-list?currentIndex=1' },
-						{ pictureUrl: '/static/icon/icon-shipments.png', name: '待发货', page: '/pages/personal/my-order-list?currentIndex=2' },
-						{ pictureUrl: '/static/icon/icon-receiving.png', name: '待收货', page: '/pages/personal/my-order-list?currentIndex=3' },
-						{ pictureUrl: '/static/icon/icon-finish.png', name: '已完成', page: '/pages/personal/my-order-list?currentIndex=4' }
+						{ pictureUrl: '/static/icon/icon-payment.png', name: '待付款', url: '/pages/personal/my-order-list?currentIndex=1' },
+						{ pictureUrl: '/static/icon/icon-shipments.png', name: '待发货', url: '/pages/personal/my-order-list?currentIndex=2' },
+						{ pictureUrl: '/static/icon/icon-receiving.png', name: '待收货', url: '/pages/personal/my-order-list?currentIndex=3' },
+						{ pictureUrl: '/static/icon/icon-finish.png', name: '已完成', url: '/pages/personal/my-order-list?currentIndex=4' }
 					]
 				},
 				tool: {
@@ -54,7 +54,7 @@ export default {
 					list: [
 						// { pictureUrl: '/static/icon/icon-message.png', name: '消息通知', page: 'goods-personnel-query' },
 						
-						{ pictureUrl: '/static/icon/icon-my-address.png', name: '我的地址', page: '/pages/personal/my-address-list?type=0' },
+						{ pictureUrl: '/static/icon/icon-my-address.png', name: '我的地址', url: '/pages/personal/my-address-list?type=0' },
 						// { pictureUrl: '/static/icon/icon-client-server.png', name: '订单中心', page: '/pages/sem/xw-dth-sem-order' },
 					]
 				}

@@ -1,7 +1,7 @@
 <template>
 	<view class="bht-fun-wrapper">
 		<view class="bht-fun">
-			<navigator hover-class="none" class="items" v-for="(item, index) in dataSource" :key="index" :url="item.page">
+			<navigator hover-class="none" class="items" v-for="(item, index) in dataSource" :key="index" :url="item.url">
 				<image class="icon" :style="{ width: iconWdith + 'rpx', height: iconWdith + 'rpx' }" :src="item.pictureUrl"></image>
 				<view class="title">{{ item.name }}</view>
 			</navigator>
