@@ -22,13 +22,17 @@ http.interceptor.response((response) => {
 	if (http.config.loading) {
 		uni.hideLoading();
 	}
-
+	console.log('-------');
+	console.log(data);
 	if (data.code != "200") {
 		return Promise.reject(response)
 	}
 	return data
 }, (response) => {
+	console.log('----response---');
+	console.log(response);
 	handlerError(response.statusCode);
+
 	return response
 })
 

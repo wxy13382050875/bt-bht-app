@@ -52,6 +52,7 @@ export default class Request {
      * @param {Request~responseErrCallback} ecb 响应拦截器，对响应错误做点什么
      */
     response: (cb, ecb) => {
+		console.log('cb, ecb');
       if (cb && ecb) {
         this.requestComFun = cb
         this.requestComFail = ecb
