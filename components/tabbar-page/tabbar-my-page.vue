@@ -3,8 +3,8 @@
 		<navBarTitle title="个人中心"></navBarTitle>
 		<bht-layout-container>
 			<view class="bht-layout-content">
-				<view class="header"><personalHeader :dataSource="userInfo" @togglePopup="togglePopup"></personalHeader></view>
-				<view class="body" v-show="roleID != 1">
+				<view class="header"><personalHeader :roleId="roleID" :dataSource="userInfo" @togglePopup="togglePopup"></personalHeader></view>
+				<view class="body" v-show="roleID != 2">
 					<personalOrder :dataSource="dataSource.order" sta></personalOrder>
 					<personalOrder :dataSource="dataSource.tool"></personalOrder>
 				</view>

@@ -23,7 +23,7 @@
 					<view class="aca-input-icon"><view class="iconfont aca-mima"></view></view>
 					<input class="aca-input" type="password" v-model="regData.password" placeholder="请输入密码" />
 				</view>
-				<view class="aca-form-input" v-show="regData.roleId==1">
+				<view class="aca-form-input" >
 					<view class="aca-input-icon"><view class="iconfont aca-mima"></view></view>
 					<input class="aca-input" type="string" v-model="regData.idCode" placeholder="请输入身份证号" />
 				</view>
@@ -75,6 +75,12 @@ export default {
 					name: 'password',
 					checkType: 'number',
 					checkRule: 'notnull',
+					errorMsg: '请填写密码'
+				},
+				{
+					name: 'idCode',
+					checkType: 'string',
+					checkRule: '18',
 					errorMsg: '请填写密码'
 				}
 			]

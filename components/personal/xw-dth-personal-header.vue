@@ -11,7 +11,7 @@
 						<view class="title" v-else>用户什么也没留下</view>
 					</view>
 				</view>
-				<view class="personal-set">
+				<view class="personal-set"  v-show="roleId!=2">
 					<view class="qr-code" @click="showQR"><image src="/static/icon/icon-erweima.png" mode="" ></image></view>
 					<view class="right-item">
 						<navigator url="/pages/user/edit-profile" hover-class="none" class="btn-name">设置</navigator>
@@ -50,7 +50,8 @@ export default {
 			default() {
 				return {};
 			}
-		}
+		},
+		roleId:0
 	},
 	methods: {
 		showQR(e) {
