@@ -16,7 +16,7 @@
 				</view>
 				<view class="aca-form-input">
 					<view class="aca-input-icon"><view class="iconfont aca-securityCode-b"></view></view>
-					<input class="aca-input" type="number" maxlength="6" v-model="regData.code" placeholder="请输入验证码" />
+					<input class="aca-input" type="number" maxlength="6" v-model="regData.smsCode" placeholder="请输入验证码" />
 					<text @click="getCode" class="se-code">{{ vcodeBtnName }}</text>
 				</view>
 				<view class="aca-form-input">
@@ -25,7 +25,7 @@
 				</view>
 				<view class="aca-form-input">
 					<view class="aca-input-icon"><view class="iconfont aca-mima"></view></view>
-					<input class="aca-input" type="password" v-model="regData.idCode" placeholder="请输入身份证号" />
+					<input class="aca-input" type="string" v-model="regData.idCode" placeholder="请输入身份证号" />
 				</view>
 				<button class="app-btn" hover-class="" @click="handleReg">注册</button>
 			</view>
@@ -38,7 +38,8 @@ import { mapGetters } from 'vuex';
 import formValidate from '@/utils/validate';
 import { saveUser } from '@/api/shop.js';
 import {
-		sendSmsCode
+		sendSmsCode,
+		register
 	} from '@/api/user'
 export default {
 	data() {
@@ -47,7 +48,7 @@ export default {
 				roleId: '',
 				phone: '',
 				password: '',
-				code: '',
+				smsCode: '',
 				idCode:''
 			},
 			roleText: '',
@@ -65,7 +66,7 @@ export default {
 					errorMsg: '请填写正确的手机号'
 				},
 				{
-					name: 'code',
+					name: 'smsCode',
 					checkType: 'string',
 					checkRule: '6',
 					errorMsg: '请正确填写短信验证码'
@@ -97,7 +98,7 @@ export default {
 					title: '正在注册...',
 					mask: true
 				});
-				saveUser(this.regData)
+				register(this.regData)
 					.then(res => {
 						uni.hideLoading();
 						let { code, msg } = res;
@@ -138,7 +139,7 @@ export default {
 		//获取验证码
 		getCode() {
 			var myreg = /^[1][1,2,3,4,5,7,8,9][0-9]{9}$/;
-			if (!myreg.test(this.regData.mobile)) {
+			if (!myreg.test(this.regData.phone)) {
 				uni.showToast({
 					title: '请正确填写手机号码',
 					icon: 'none'
@@ -152,10 +153,16 @@ export default {
 			}
 			this.vcodeBtnName = '发送中...';
 			let params = {};
-			params.phone=this.regData.mobile;
+			params.phone=this.regData.phone;
+			uni.showLoading({
+				title: '正在发送...',
+				mask: true
+			});
 			sendSmsCode(params)
 				.then(res => {
-					uni.setStorageSync('mobileCode', res);
+					console.log(res);
+					uni.hideLoading();
+					// uni.setStorageSync('mobileCode', res);
 					// 倒计时
 					this.countNum = 120;
 					this.countDownTimer = setInterval(
@@ -166,6 +173,8 @@ export default {
 					);
 				})
 				.catch(error => {
+					console.log(error);
+					uni.hideLoading();
 					this.vcodeBtnName = '重新发送';
 					uni.showToast({
 						icon: 'none',

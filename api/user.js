@@ -1,6 +1,8 @@
 import http from '@/utils/base-http.js'
 import BasUrl from '@/utils/config'
-
+import {
+	bht_http
+} from '@/utils/http'
 http.setConfig((config) => {
 	config.baseUrl = BasUrl.BASE_BHT_URL
 	config.header = {
@@ -29,11 +31,7 @@ export const sendSmsCode = (params) => {
 };
 //注册用户
 export const register = (params) => {
-	return bht_http.post('user/reg', params, {
-		header: {
-			'Content-Type': 'application/x-www-form-urlencoded'
-		}
-	})
+	return bht_http.post('/assets-service/user/register', params)
 };
 
 //更新用户信息
