@@ -99,6 +99,10 @@ export default {
 						}
 					})
 					.catch(erro => {
+						uni.showToast({
+							icon: 'none',
+							title: erro.data.msg
+						});
 						uni.hideLoading();
 					});
 			} else {

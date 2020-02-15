@@ -8,7 +8,10 @@ var http = new Request();
 http.interceptor.request((config, cancel) => {
 	if (http.config.loading) {
 		uni.showLoading({
-			title: http.config.text || '请求中...'
+			title: http.config.text || '请求中...',
+			success() {
+				http.config.text = '';
+			}
 		});
 	}
 	return config;
@@ -23,7 +26,7 @@ http.interceptor.response((response) => {
 		uni.hideLoading();
 	}
 	if (data.code != "200") {
-		handlerError(data.code, data.msg);
+		//handlerError(data.code, data.msg);
 		return Promise.reject(response)
 	}
 	return data

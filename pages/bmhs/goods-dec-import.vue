@@ -13,7 +13,7 @@
 					<goods-footer :seqNo="seqNo" @successDec="successDec"></goods-footer>
 				</view>
 			</view>
-			<view class="no-data-container">
+			<view class="no-data-container" v-else>
 				<image class="icon" src="/static/bmhs/no-data-icon.png"></image>
 				<label class="msg">没有可申报数据</label>
 			</view>
