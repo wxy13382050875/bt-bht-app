@@ -35,7 +35,7 @@
 	import formValidate from '@/utils/validate'
 	import {
 		forgetPassword,
-		sendMobileCode
+		sendSmsCode
 	} from '@/api/user'
 	export default {
 		data() {
@@ -127,20 +127,29 @@
 					return;
 				}
 				this.vcodeBtnName = "发送中...";
-				sendMobileCode(this.formData.account).then(res => {
-					uni.setStorageSync("mobileCode", res);
-					// 倒计时
-					this.countNum = 120;
-					this.countDownTimer = setInterval(function() {
-						this.countDown();
-					}.bind(this), 1000);
-				}).catch(error => {
-					this.vcodeBtnName = "重新发送";
-					uni.showToast({
-						icon: 'none',
-						title: '验证码发送失败！'
+				sendSmsCode(params)
+					.then(res => {
+						console.log(res);
+						uni.hideLoading();
+						// uni.setStorageSync('mobileCode', res);
+						// 倒计时
+						this.countNum = 120;
+						this.countDownTimer = setInterval(
+							function() {
+								this.countDown();
+							}.bind(this),
+							1000
+						);
 					})
-				});
+					.catch(error => {
+						console.log(error);
+						uni.hideLoading();
+						this.vcodeBtnName = '重新发送';
+						uni.showToast({
+							icon: 'none',
+							title: '验证码发送失败！'
+						});
+					});
 			},
 			countDown() {
 				if (this.countNum < 1) {
