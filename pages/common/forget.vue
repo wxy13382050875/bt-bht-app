@@ -7,7 +7,7 @@
 					<view class="aca-input-icon">
 						<view class="iconfont aca-shouji"></view>
 					</view>
-					<input class="aca-input" type="number" v-model="formData.account" placeholder="请输入手机号" />
+					<input class="aca-input" type="number" v-model="formData.mobile" placeholder="请输入手机号" />
 				</view>
 				<view class="aca-form-input">
 					<view class="aca-input-icon">
@@ -34,14 +34,14 @@
 	} from 'vuex'
 	import formValidate from '@/utils/validate'
 	import {
-		forgetPassword,
 		sendSmsCode
 	} from '@/api/user'
+	import { saveUser } from '@/api/shop.js';
 	export default {
 		data() {
 			return {
 				formData: {
-					account: '',
+					mobile: '',
 					password: '',
 					code: '',
 				},
@@ -49,7 +49,7 @@
 				paperTypeIndex: 0,
 				vcodeBtnName: '获取验证码',
 				rule: [{
-						name: "account",
+						name: "mobile",
 						checkType: "phoneno",
 						errorMsg: "请填写正确的手机号"
 					},
@@ -77,33 +77,11 @@
 				let valid = formValidate.check({ ...this.formData
 				}, this.rule);
 				if (valid) {
-					if (this.validateCode()) {
-						forgetPassword(this.formData).then(res => {
-							let {
-								code,
-								msg
-							} = res;
-							if (code === 200) {
-								uni.showToast({
-									title: '修改成功'
-								});
-								setTimeout(() => {
-									uni.removeStorageSync("mobileCode");
-									this.$Router.replace({
-										name: 'login'
-									})
-								}, 2000);
-							}
-							if (code === 500) {
-								uni.showToast({
-									icon: 'none',
-									title: msg
-								})
-							}
-						}).catch(erro => {
+					saveUser(this.formData).then(res => {
+						
+					}).catch(erro => {
 
-						})
-					}
+					})
 				} else {
 					uni.showToast({
 						title: formValidate.error,
@@ -114,7 +92,7 @@
 			//获取验证码
 			getCode() {
 				var myreg = /^[1][1,2,3,4,5,7,8,9][0-9]{9}$/;
-				if (!myreg.test(this.formData.account)) {
+				if (!myreg.test(this.formData.mobile)) {
 					uni.showToast({
 						title: '请正确填写手机号码',
 						icon: "none"
@@ -127,6 +105,10 @@
 					return;
 				}
 				this.vcodeBtnName = "发送中...";
+				let params = {
+					phone: this.formData.mobile
+				};
+
 				sendSmsCode(params)
 					.then(res => {
 						console.log(res);
@@ -166,11 +148,11 @@
 				let mobileCode = uni.getStorageSync("mobileCode");
 				if (mobileCode !== undefined && mobileCode !== "") {
 					let {
-						account,
+						mobile,
 						code
 					} = this.formData;
 
-					if (mobileCode.mobile !== account) {
+					if (mobileCode.mobile !== mobile) {
 						uni.showToast({
 							title: '请发送验证码',
 							icon: "none"

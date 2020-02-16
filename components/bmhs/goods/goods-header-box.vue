@@ -14,7 +14,7 @@
 				<view class="value">
 					<label>{{goodsHeaderData.civilName}}</label>
 					<label>{{goodsHeaderData.vehicleId}}</label>
-					<label>￥{{goodsHeaderData.totalGoodsAmout}}</label>
+					<label>￥{{goodsHeaderData.totalGoodsAmout}}元</label>
 				</view>
 			</view>
 		</view>
@@ -53,7 +53,7 @@
 				align-items: center;
 				justify-content: space-between;
 				padding: 0 12px;
-				height: 42px;
+				height: 32px;
 				font-size: 29rpx;
 
 				&::after {

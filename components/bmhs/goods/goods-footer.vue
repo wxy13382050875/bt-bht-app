@@ -24,8 +24,10 @@
 					})
 					return;
 				}
+				uni.moda
 				uni.showModal({
-					title: '是否确认申报？',
+					title: '提示',
+					content: '是否确认申报？',
 					success: (res) => {
 						if (res.confirm) {
 							postDecGoods({
@@ -67,6 +69,7 @@
 			display: flex;
 			align-items: center;
 			justify-content: center;
+			
 			height: 42px;
 			color: #fff;
 			border-radius: 50px;

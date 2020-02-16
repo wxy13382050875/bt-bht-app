@@ -123,7 +123,11 @@ export default {
 						}
 						
 					})
-					.catch(erro => {
+					.catch(error => {
+						uni.showToast({
+							title: error.data.msg,
+							icon: 'none'
+						});
 						uni.hideLoading();
 					});
 				

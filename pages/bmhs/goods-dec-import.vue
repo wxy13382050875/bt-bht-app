@@ -68,8 +68,12 @@
 			},
 			successDec(res) {
 				if (res) {
-					//如果申报成功，重新加载数据
 					this.postDec();
+					uni.showToast({
+						title: '申报成功！',
+						icon: 'success',
+						duration: 3000
+					})
 				}
 			}
 		}

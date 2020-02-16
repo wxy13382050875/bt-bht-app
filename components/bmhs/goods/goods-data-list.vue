@@ -2,8 +2,8 @@
 	<view class="data-list">
 		<view class="items" v-for="(item, index) in goodsData" :key="index">
 			<view class="header">
-				<label class="title">商品分类</label>
-				<label class="value">{{item.type}}</label>
+				<label class="title">商品名称</label>
+				<label class="value">{{item.name}}</label>
 			</view>
 			<view class="body">
 				<view class="left">
@@ -12,41 +12,41 @@
 						<label>{{item.goods_tax}}</label>
 					</view> -->
 					<view class="cell">
-						<label class="title">单位:</label>
-						<label>{{item.unit}}</label>
+						<label class="title">单位</label>
+						<label>：{{item.unit}}</label>
 					</view>
 					<view class="cell">
-						<label class="title">单价:</label>
-						<label>{{item.price}}</label>
+						<label class="title">单价</label>
+						<label>：￥{{item.price}}元</label>
 					</view>
 					<view class="cell">
-						<label class="title">数量(件/箱):</label>
-						<label>{{item.qty}}</label>
+						<label class="title">数量</label>
+						<label>：{{item.qty}}(件/箱)</label>
+					</view>
+					<view class="cell">
+						<label class="title">唛码</label>
+						<label>：{{item.lableCode}}</label>
 					</view>
 				</view>
 				<view class="right">
 					<view class="cell">
-						<label class="title">重量(千克):</label>
-						<label>{{item.wt}}</label>
+						<label class="title">重量</label>
+						<label>：{{item.wt}}千克</label>
 					</view>
 					<view class="cell">
-						<label class="title">金额:</label>
-						<label>{{item.amount}}</label>
+						<label class="title">金额</label>
+						<label>：￥{{item.amount}}元</label>
 					</view>
 					<view class="cell">
-						<label class="title">交易摊位:</label>
-						<label>{{item.storeName}}</label>
-					</view>
-					<view class="cell">
-						<label class="title">唛码:</label>
-						<label>{{item.lableCode}}</label>
+						<label class="title">交易摊位</label>
+						<label>：{{item.storeName}}</label>
 					</view>
 				</view>
 			</view>
-			<view class="footer">
+			<!-- <view class="footer">
 				<label class="title">商品名称</label>
 				<label class="value">{{item.name}}</label>
-			</view>
+			</view> -->
 		</view>
 	</view>
 </template>
@@ -136,9 +136,10 @@
 						}
 
 						.title {
-							width: 82px;
+							width: 120rpx;
 							margin-right: 5px;
-							text-align: right;
+							text-align: justify;
+							text-align-last: justify;
 						}
 
 					}
