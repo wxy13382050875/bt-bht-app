@@ -35,7 +35,8 @@
 	} from 'vuex'
 	import formValidate from '@/utils/validate'
 	import {
-		sendSmsCode
+		sendSmsCode,
+		forgetPassword
 	} from '@/api/user'
 	import {
 		saveUser
