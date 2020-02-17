@@ -7,13 +7,14 @@
 					<view class="aca-input-icon">
 						<view class="iconfont aca-shouji"></view>
 					</view>
-					<input class="aca-input" type="number" v-model="formData.mobile" placeholder="请输入手机号" />
+					<input class="aca-input" type="number" v-model="formData.phone" placeholder="请输入手机号" />
+
 				</view>
 				<view class="aca-form-input">
 					<view class="aca-input-icon">
 						<view class="iconfont aca-securityCode-b"></view>
 					</view>
-					<input class="aca-input" type="number" maxlength="6" v-model="formData.code" placeholder="请输入验证码" />
+					<input class="aca-input" type="number" maxlength="6" v-model="formData.smsCode" placeholder="请输入验证码" />
 					<text @click="getCode" class="se-code">{{vcodeBtnName}}</text>
 				</view>
 				<view class="aca-form-input">
@@ -36,25 +37,27 @@
 	import {
 		sendSmsCode
 	} from '@/api/user'
-	import { saveUser } from '@/api/shop.js';
+	import {
+		saveUser
+	} from '@/api/shop.js';
 	export default {
 		data() {
 			return {
 				formData: {
-					mobile: '',
+					phone: '',
 					password: '',
-					code: '',
+					smsCode: '',
 				},
 				roleText: '',
 				paperTypeIndex: 0,
 				vcodeBtnName: '获取验证码',
 				rule: [{
-						name: "mobile",
+						name: "phone",
 						checkType: "phoneno",
 						errorMsg: "请填写正确的手机号"
 					},
 					{
-						name: "code",
+						name: "smsCode",
 						checkType: "string",
 						checkRule: "6",
 						errorMsg: "请正确填写短信验证码"
@@ -77,11 +80,37 @@
 				let valid = formValidate.check({ ...this.formData
 				}, this.rule);
 				if (valid) {
-					saveUser(this.formData).then(res => {
-						
-					}).catch(erro => {
+					// if (this.validateCode()) {
+					forgetPassword(this.formData).then(res => {
+						let {
+							code,
+							msg
+						} = res;
+						if (code === 200) {
+							uni.showToast({
+								title: '修改成功'
+							});
+							setTimeout(() => {
+								uni.removeStorageSync("mobileCode");
+								this.$Router.replace({
+									name: 'login'
+								})
+							}, 2000);
+						}
+						if (code === 500) {
+							uni.showToast({
+								icon: 'none',
+								title: msg
+							})
+						}
+					}).catch(error => {
+						uni.showToast({
+							title: error.data.msg,
+							icon: 'none'
+						});
+						uni.hideLoading();
+					});
 
-					})
 				} else {
 					uni.showToast({
 						title: formValidate.error,
@@ -92,10 +121,11 @@
 			//获取验证码
 			getCode() {
 				var myreg = /^[1][1,2,3,4,5,7,8,9][0-9]{9}$/;
-				if (!myreg.test(this.formData.mobile)) {
+				if (!myreg.test(this.formData.phone)) {
+
 					uni.showToast({
 						title: '请正确填写手机号码',
-						icon: "none"
+						icon: 'none'
 					});
 					return false;
 				}
@@ -104,10 +134,13 @@
 				if (this.vcodeBtnName != '获取验证码' && this.vcodeBtnName != '重新发送') {
 					return;
 				}
-				this.vcodeBtnName = "发送中...";
-				let params = {
-					phone: this.formData.mobile
-				};
+				this.vcodeBtnName = '发送中...';
+				let params = {};
+				params.phone = this.formData.phone;
+				uni.showLoading({
+					title: '正在发送...',
+					mask: true
+				});
 
 				sendSmsCode(params)
 					.then(res => {

@@ -55,21 +55,22 @@ export const updateUserInfo = (params) => {
 
 //找回密码
 export const forgetPassword = (params) => {
-	uni.showLoading({
-		title: '正在努力提交...',
-		mask: true
-	});
-	return new Promise((resolve, reject) => {
-		bht_http.post("user/resetPassword", params, {
-			header: {
-				'content-type': 'application/x-www-form-urlencoded'
-			}
-		}).then(res => {
-			uni.hideLoading();
-			resolve(res);
-		}).catch(error => {
-			uni.hideLoading();
-			reject(error);
-		})
-	})
+	return http.post('/assets-service/user/resetPassword', params)
+	// uni.showLoading({
+	// 	title: '正在努力提交...',
+	// 	mask: true
+	// });
+	// return new Promise((resolve, reject) => {
+	// 	bht_http.post("/assets-service/user/resetPassword", params, {
+	// 		header: {
+	// 			'content-type': 'application/x-www-form-urlencoded'
+	// 		}
+	// 	}).then(res => {
+	// 		uni.hideLoading();
+	// 		resolve(res);
+	// 	}).catch(error => {
+	// 		uni.hideLoading();
+	// 		reject(error);
+	// 	})
+	// })
 }
