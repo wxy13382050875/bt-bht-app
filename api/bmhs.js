@@ -61,3 +61,19 @@ export const commitWaitingConfirm = (params) => {
 	http.config.text = '正在提交...';
 	return http.post('/assets-service/declare/commitWaitingConfirm', params);
 }
+/**
+ * 运输工具申报-获取商品信息list接口
+ */
+export const getGoodsList = (params) => {
+	http.config.loading = true;
+	http.config.text = '正在提交...';
+	return http.post('/assets-service/declare/getGoodsList', params);
+}
+/**
+ * 运输工具申报-获取车辆信息list
+ */
+export const getRecordVehicleList = (params) => {
+	http.config.loading = true;
+	http.config.text = '正在提交...';
+	return http.post('/assets-service/declare/getRecordVehicleList', params);
+}
