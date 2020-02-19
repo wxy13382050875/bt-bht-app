@@ -3,17 +3,17 @@
 		<view class="status" :style="{ height: statusHeight + 'px' }"></view>
 		<view class="navbar-universal-wrapper" :style="{ height: navHeight + 'px' }">
 			<view class="nav-universal-wrapper">
-				<view v-show="navType === 1" class="nav-back" @click="backToPrev"><label class="icon iconfont aca-fanhui1"></label></view>
-				<view v-show="leftTitle != '' || leftImageName != ''" class="nav-left" @click="leftToPrev">
-					<label v-show="leftTitle != ''">{{ leftTitle }}</label>
-					<image v-show="leftImageName != ''" :src="leftImageName"></image>
+				<view v-if="navType === 1" class="nav-back" @click="backToPrev"><label class="icon iconfont aca-fanhui1"></label></view>
+				<view v-if="leftTitle != '' || leftImageName != ''" class="nav-left" @click="leftToPrev">
+					<label v-if="leftTitle != ''">{{ leftTitle }}</label>
+					<image v-if="leftImageName != ''" :src="leftImageName"></image>
 				</view>
 				
 				<slot></slot>
 	
-				<view v-show="rightTitle != '' || rightImageName != ''" class="nav-right" @click="rightToPrev">
-					<label v-show="rightTitle != ''">{{ rightTitle }}</label>
-					<image v-show="rightImageName != ''" :src="rightImageName"></image>
+				<view v-if="rightTitle != '' || rightImageName != ''" class="nav-right" @click="rightToPrev">
+					<label v-if="rightTitle != ''">{{ rightTitle }}</label>
+					<image v-if="rightImageName != ''" :src="rightImageName"></image>
 				</view>
 			</view>
 		</view>
@@ -51,7 +51,7 @@ export default {
 					url: '/pages/index/index'
 				});
 			} else {
-				if (this.popType == 0) {
+				if (this.navType == 1) {
 					this.$Router.back();
 				} else {
 					uni.navigateTo({
