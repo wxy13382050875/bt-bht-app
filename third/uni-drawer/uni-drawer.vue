@@ -1,5 +1,5 @@
 <template>
-	<view v-if="visibleSync" :class="{ 'uni-drawer--visible': showDrawer }" class="uni-drawer">
+	<view v-if="visibleSync" :style="{'z-index': zIndex}" :class="{ 'uni-drawer--visible': showDrawer }" class="uni-drawer">
 		<view class="uni-drawer__mask" :class="{ 'uni-drawer__mask--visible': showDrawer && mask }" @tap="close" />
 		<view
 			class="uni-drawer__content"
@@ -39,6 +39,10 @@ export default {
 		width: {
 			type: String,
 			default: '70%'
+		},
+		zIndex: {
+			type: Number,
+			default: 999
 		}
 	},
 	data() {

@@ -377,6 +377,17 @@
 					"bounce": "none"
 				}
 			}
+		},
+		//进境运输工具申报
+		{
+			"path": "pages/bmhs/vehicle-dec-exit",
+			"style": {
+				"navigationStyle": "custom",
+				"app-plus": {
+					"titleNView": false
+					//"bounce": "none"
+				}
+			}
 		}
 	]
 

@@ -343,7 +343,7 @@ const routesList = [{
 				requiresAuth: true
 			}
 		}
-	},{
+	}, {
 		path: '/pages/bmhs/inspection-results',
 		name: 'inspection-results',
 		meta: {
@@ -352,6 +352,16 @@ const routesList = [{
 				requiresAuth: true
 			}
 		}
+	}, {
+		path: '/pages/bmhs/vehicle-dec-exit',
+		name: 'vehicle-dec-exit',
+		meta: {
+			title: '查验结果确认',
+			auth: {
+				requiresAuth: true
+			}
+		}
+
 	}
 ]
 //导出

@@ -14,8 +14,8 @@
 </template>
 
 <script>
+	import { mapActions, mapGetters } from 'vuex';
 	export default {
-		name: 'center-nav-bar',
 		props: {
 			/*风格*/
 			styleModel: {
@@ -29,26 +29,11 @@
 				default: 1
 			}
 		},
-		data() {
-			return {
-				navHeight: 0,
-				statusHeight: 0,
-			}
-		},
-		created() {
-			/*动态计算*/
-			// var sysinfo = uni.getSystemInfoSync(),
-			// 	statusHeight = sysinfo.statusBarHeight,
-			// 	isiOS = sysinfo.system.indexOf('iOS') > -1;
-
-			// if (!isiOS) {
-			// 	this.navHeight = 48;
-			// } else {
-			// 	this.navHeight = 44;
-			// }
-
-			// this.statusHeight = statusHeight;
-
+		computed: {
+			...mapGetters({
+				statusHeight: 'utp/statusHeight',
+				navHeight: 'utp/navHeight'
+			})
 		},
 		methods: {
 			backToPrev(e) {
@@ -74,27 +59,6 @@
 		align-items: center;
 		justify-content: space-between;
 		padding: 0 $padding-content;
-
-		.nav-logo {
-			width: 179rpx;
-			height: 57rpx;
-		}
-
-		.navbar-right {
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-
-			.nav-bar-icon {
-				width: 39rpx;
-				height: 39rpx;
-			}
-
-			.title {
-				font-size: 22rpx;
-				color: $text-color-white;
-			}
-		}
 
 		.nav-level-2 {
 			position: relative;
@@ -151,7 +115,6 @@
 				font-size: 40rpx;
 				color: #fff;
 			}
-
 			.navbar-iccon-split {
 				width: 1px;
 				height: 85%;

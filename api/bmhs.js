@@ -65,15 +65,23 @@ export const commitWaitingConfirm = (params) => {
  * 运输工具申报-获取商品信息list接口
  */
 export const getGoodsList = (params) => {
+
+	let {
+		customs,
+		region
+	} = uni.getStorageSync('userInfo');
+	params.lshg = customs;
+	params.frontierTrader = region;
+	params.inOut = 1;
 	http.config.loading = true;
-	http.config.text = '正在提交...';
-	return http.post('/assets-service/declare/getGoodsList', params);
+	http.config.text = '正在查询...';
+	return http.get('/assets-service/declare/getGoodsList', {
+		params: params
+	});
 }
 /**
  * 运输工具申报-获取车辆信息list
  */
 export const getRecordVehicleList = (params) => {
-	http.config.loading = true;
-	http.config.text = '正在提交...';
 	return http.post('/assets-service/declare/getRecordVehicleList', params);
 }
