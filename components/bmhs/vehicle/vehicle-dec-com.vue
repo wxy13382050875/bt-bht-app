@@ -3,88 +3,232 @@
 		<bht-layout-container :bottom="0" bgColor="#fff">
 			<view class="vehicle-dec-data-container">
 				<view class="aca-cell">
-					<view class="label">运输工具类型</view>
-					<view class="content"><input type="text" class="input" placeholder="请输入姓名" /></view>
-				</view>
-				<view class="aca-cell">
 					<view class="label">承运人</view>
-					<view class="content"><input type="text" class="input" placeholder="请输入承运人" /></view>
+					<view class="content"><input type="text" v-model="decData.tranMan" class="input" placeholder="请输入承运人" /></view>
 				</view>
 				<view class="aca-cell">
 					<view class="label">车牌号</view>
-					<view class="content" @click="showSearchVehile"><input type="text" class="input" placeholder="请输入车牌号" disabled="" /></view>
+					<view class="content" @click="showSearchVehile"><input type="text" v-model="decData.vehicleId" class="input"
+						 placeholder="请输入车牌号" disabled="disabled" /></view>
 				</view>
 				<view class="aca-cell">
 					<view class="label">证件类型</view>
-					<view class="content"><input type="text" class="input" placeholder="请选择证件类型" /></view>
+
+					<view class="content">
+						<picker @change="bindPickerChange" :value="credTypeIndex" :range="credTypeArr">
+							<input type="text" v-model="credTypeText" disabled="disabled" class="input" placeholder="请选择证件类型" />
+						</picker>
+					</view>
 				</view>
 				<view class="aca-cell">
 					<view class="label">证件号码</view>
-					<view class="content"><input type="text" class="input" placeholder="请输入证件号码" /></view>
+					<view class="content"><input type="text" v-model="decData.credNum" class="input" placeholder="请输入证件号码" /></view>
 				</view>
 
-				<view class="show-selected-goods">查看已添加的商品</view>
+				<view class="show-selected-goods" @click="showSelectGoods">查看已添加的商品</view>
 			</view>
 			<view class="vehicle-dec-footer">
 				<view class="btn add-goods-btn" @click="addGoodsModal">添加商品</view>
 				<view class="btn confirm-dec-btn" @click="confirmDec">确认申报</view>
 			</view>
 		</bht-layout-container>
-		<searc-modal @searchInput="searchInput" v-model="showSearchVehicleStatus">
+		<search-modal @searchInput="searchInput" v-model="showSearchVehicleStatus">
 			<view class="search-vehicle-result">
-				<view class="item" v-for="item in 10" @click="selectVehicleHandler(item)">
+				<view class="item" v-for="item in vehicleList" @click="selectVehicleHandler(item)" :key="item">
 					<label class="text">{{item}}</label>
 				</view>
 			</view>
-		</searc-modal>
+		</search-modal>
 		<uni-drawer ref="addGoodsModal" :zIndex="2000" width="100%">
 			<goods-search-modal @close="closeDrawer"></goods-search-modal>
+		</uni-drawer>
+		<uni-drawer ref="showSelectGoods" :zIndex="2000" width="100%">
+			<selected-show-goods @close="closeShowGoods"></selected-show-goods>
 		</uni-drawer>
 	</view>
 </template>
 <script>
-	import SearcModal from '@/components/common/search-modal.vue'
+	import SearchModal from '@/components/common/search-modal.vue'
 	import UniDrawer from '@/third/uni-drawer/uni-drawer.vue'
 	import GoodsSearchModal from '@/components/bmhs/vehicle/goods-search-modal.vue'
+	import SelectedShowGoods from '@/components/bmhs/vehicle/selected-show-goods.vue'
+	import formValidate from '@/utils/validate';
+	import {
+		mapGetters,
+		mapActions
+	} from 'vuex'
+	import {
+		getRecordVehicleList,
+		declareTransport
+	} from '@/api/bmhs.js'
 	export default {
 		components: {
-			SearcModal,
+			SearchModal,
 			UniDrawer,
-			GoodsSearchModal
+			GoodsSearchModal,
+			SelectedShowGoods
 		},
 		data() {
-
 			return {
 				showSearchVehicleStatus: false,
+				vehicleList: [],
+				credTypeIndex: 0,
+				credTypeArr: [
+					'身份证',
+					'护照',
+					'军官证',
+					'港澳通行证',
+					'马邦丁',
+				],
+				credTypeData: [
+					'0001',
+					'0002',
+					'0003',
+					'0004',
+					'0005'
+				],
+				credTypeText: '身份证',
+				decData: {
+					vehicleId: '',
+					credType: '001',
+					credNum: '',
+					tranMan: '',
+					goodsList: []
+				},
+				rule: [{
+						name: 'vehicleId',
+						checkType: 'tranMan',
+						errorMsg: '请填写承运人'
+					}, {
+						name: 'vehicleId',
+						checkType: 'notnull',
+						errorMsg: '请选择车牌号'
+					},
+					{
+						name: 'credNum',
+						checkType: 'notnull',
+						errorMsg: '请填写证件号码'
+					}
+				]
 			}
+		},
+		created() {
+			//清空保存的数据
+			this.$store.state.bmhs.goodsList = [];
+		},
+		computed: {
+			...mapGetters({
+				goodsList: 'bmhs/getGoodsList'
+			})
 		},
 		methods: {
 			confirmDec() {
-				uni.showModal({
-					title: '提示',
-					content: '是否确认申报？',
-					success: (res) => {
+				let valid = formValidate.check({ ...this.decData
+				}, this.rule);
+				if (valid) {
+					uni.showModal({
+						title: '提示',
+						content: '是否确认申报？',
+						success: (res) => {
+							let seqNoArr = [];
+							this.goodsList.forEach((item, index) => {
+								let seqObj = {
+									seqno: item.seqNo
+								}
+								seqNoArr.push(seqObj);
+							})
+							this.decData.goodsList = seqNoArr;
+							declareTransport(this.decData).then(res => {
+								if (res.code == '200') {
+									uni.showToast({
+										title: '运输工具申报成功',
+										icon: 'success',
+										duration: 3000,
 
-					}
-				})
+									})
+									setTimeout(() => {
+										uni.redirectTo({
+											url: '/pages/main'
+										})
+									}, 2000)
+								}
+							}).catch(error => {
+								uni.showToast({
+									title: error.msg,
+									icon: 'none',
+									duration: 3000
+								})
+							})
+						}
+					})
+				} else {
+					uni.showToast({
+						title: formValidate.error,
+						icon: 'none'
+					});
+				}
 			},
+			/**
+			 * 关闭添加商品modal
+			 */
 			closeDrawer() {
 				this.$refs.addGoodsModal.close();
 			},
+			/**
+			 * 显示添加商品
+			 */
 			addGoodsModal() {
 				this.$refs.addGoodsModal.open();
 			},
+			/**
+			 * 显示车辆搜索
+			 */
 			showSearchVehile() {
+				this.vehicleList = [];
 				this.showSearchVehicleStatus = true;
 			},
+			/**
+			 * 选择证件类型
+			 */
+			bindPickerChange(e) {
+				this.credTypeIndex = e.target.value;
+				this.credTypeText = this.credTypeArr[this.credTypeIndex];
+				this.decData.credType = this.credTypeData[this.credTypeIndex];
+			},
+			/**
+			 * 搜索车牌号
+			 * @param {Object} value
+			 */
 			searchInput(value) {
-				//console.log(value)
+				if (value.length < 3) {
+					return;
+				}
+				getRecordVehicleList({
+					vehicleId: value
+				}).then(res => {
+					let {
+						data
+					} = res;
+					this.vehicleList = data;
+				}).catch(error => {
+					uni.showToast({
+						title: '没有查询到车牌号',
+						icon: 'none'
+					})
+					this.vehicleList = []
+				})
+			},
+			showSelectGoods() {
+				this.$refs.showSelectGoods.open();
+			},
+			closeShowGoods() {
+				this.$refs.showSelectGoods.close();
 			},
 			search(value) {
 
 			},
 			selectVehicleHandler(vehicleNo) {
-				console.log(vehicleNo)
+				this.decData.vehicleId = vehicleNo;
 				this.showSearchVehicleStatus = false;
 			}
 		}

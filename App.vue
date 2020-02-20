@@ -31,6 +31,11 @@ export default {
 @import url('/third/yb-filter/main.css');
 @import url('/third/yb-filter/icon.css');
 
+/* #ifdef H5 */
+uni-toast,uni-modal{
+	z-index: 19931120;
+}
+/* #endif */
 input {
 	caret-color: #e42231;
 }

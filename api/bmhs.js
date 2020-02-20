@@ -3,6 +3,7 @@
  */
 import http from '@/utils/base-http.js'
 import BasUrl from '@/utils/config'
+import store from '@/store'
 
 http.setConfig((config) => {
 	config.baseUrl = BasUrl.BASE_TRADEING_URL
@@ -72,7 +73,7 @@ export const getGoodsList = (params) => {
 	} = uni.getStorageSync('userInfo');
 	params.lshg = customs;
 	params.frontierTrader = region;
-	params.inOut = 1;
+	params.inOut = store.state.bmhs.inOut;
 	http.config.loading = true;
 	http.config.text = '正在查询...';
 	return http.get('/assets-service/declare/getGoodsList', {
@@ -83,5 +84,30 @@ export const getGoodsList = (params) => {
  * 运输工具申报-获取车辆信息list
  */
 export const getRecordVehicleList = (params) => {
-	return http.post('/assets-service/declare/getRecordVehicleList', params);
+	let {
+		customs,
+		region
+	} = uni.getStorageSync('userInfo');
+	params.lshg = customs;
+	params.frontierTrader = region;
+	return http.get('/assets-service/declare/getRecordVehicleList', {
+		params: params
+	});
+}
+
+
+export const declareTransport = (params)=>{
+	http.config.loading = true;
+	http.config.text = '正在提交...';
+	
+	let {
+		customs,
+		region,
+		idCode
+	} = uni.getStorageSync('userInfo');
+	params.lshg = customs;
+	params.frontierTrader = region;
+	params.inOut = store.state.bmhs.inOut;
+	params.idCardNo = idCode
+	return http.post('/assets-service/declare/declareTransport', params);
 }

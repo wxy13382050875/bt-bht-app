@@ -356,7 +356,17 @@ const routesList = [{
 		path: '/pages/bmhs/vehicle-dec-exit',
 		name: 'vehicle-dec-exit',
 		meta: {
-			title: '查验结果确认',
+			title: '出境运输工具申报',
+			auth: {
+				requiresAuth: true
+			}
+		}
+	},
+	{
+		path: '/pages/bmhs/vehicle-dec-import',
+		name: 'vehicle-dec-import',
+		meta: {
+			title: '进境运输工具申报',
 			auth: {
 				requiresAuth: true
 			}

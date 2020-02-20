@@ -3,7 +3,8 @@
  */
 const state = {
 	//保存选择添加的商品
-	goodsList: []
+	goodsList: [],
+	inOut: 0,
 }
 
 const getters = {
@@ -14,11 +15,18 @@ const getters = {
 
 const mutations = {
 	addGoodsList(state, data) {
-		state.goodsList = data
+		if (state.goodsList.length > 0) {
+			let arr = [...state.goodsList].filter(g => [...data].every(d => d.seqNo !== g.seqNo));
+			if (arr.length > 0) {
+				state.goodsList = [...state.goodsList, ...arr];
+			}
+		} else {
+			state.goodsList = data
+		}
+
 	},
 	delGoods(state, seqNo) {
 		state.goodsList.splice(state.goodsList.findIndex(item => item.seqNo === seqNo), 1);
-		console.log(state.goodsList)
 	}
 }
 

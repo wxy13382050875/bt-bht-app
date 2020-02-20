@@ -9,9 +9,9 @@
 						 placeholder="请输入商品名称" /></view>
 				</view>
 				<view class="goods-search-btn">
-					<view class="btn clear-btn">清除</view>
+					<view class="btn clear-btn" @click="clearForm">清除</view>
 					<view class="btn search-btn" @click="searchGoods">搜索</view>
-					<view class="btn confirm-btn">确认添加</view>
+					<view class="btn confirm-btn" @click="addGoodsConfrim">确认添加</view>
 				</view>
 			</view>
 			<view class="search-goods-result" :style="{top: top+'px'}">
@@ -61,7 +61,10 @@
 	 */
 	import PopupNavBar from '@/third/acaui/nav/popup-nav-bar.vue'
 	import NzCheckbox from '@/third/acaui/nz-checkbox/nz-checkbox.vue'
-
+	import {
+		mapActions,
+		mapGetters
+	} from 'vuex'
 	import {
 		getGoodsList
 	} from '@/api/bmhs.js'
@@ -70,13 +73,17 @@
 			PopupNavBar,
 			NzCheckbox
 		},
-
 		data() {
 			return {
 				top: 0,
 				goodsName: '',
 				goodsData: []
 			}
+		},
+		computed: {
+			...mapGetters({
+				getGoodsList: 'bmhs/getGoodsList'
+			})
 		},
 		mounted() {
 			let info = uni.createSelectorQuery().select(".search-goods-container");
@@ -85,6 +92,9 @@
 			}).exec()
 		},
 		methods: {
+			...mapActions({
+				addGoodsData: 'bmhs/addGoodsData'
+			}),
 			backEvent() {
 				this.$emit('close', close)
 			},
@@ -92,19 +102,52 @@
 			 * 确认添加商品
 			 */
 			addGoodsConfrim() {
-
+				let arr = this.goodsData.filter((item) => item.check)
+				if (arr.length === 0) {
+					uni.showToast({
+						title: '请选择商品',
+						icon: 'none',
+						duration: 3000
+					})
+					return;
+				}
+				this.addGoodsData(arr);
+				this.$emit('close', close)
+			},
+			/**
+			 * 清除商品
+			 */
+			clearForm() {
+				this.goodsName = '';
 			},
 			/**
 			 * 搜索商品
 			 */
 			searchGoods() {
+				if (this.goodsName.length <= 0) {
+					uni.showToast({
+						title: '请输入商品名称',
+						icon: 'none',
+						duration: 3000
+					})
+					return;
+				}
 				getGoodsList({
 					goodsName: this.goodsName
 				}).then(res => {
 					let {
 						data
 					} = res;
-					this.goodsData = data;
+					data.forEach((item, index) => {
+						item.check = false;
+					})
+					if (this.getGoodsList.length > 0) {
+						let arr = [...data].filter(x => [...this.getGoodsList].every(y => y.seqNo !== x.seqNo));
+						this.goodsData = arr;
+					} else {
+						this.goodsData = data;
+					}
+
 				}).catch(error => {
 					console.log(error)
 				})
@@ -180,6 +223,10 @@
 			display: flex;
 			align-items: center;
 			background-color: #fff;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
 
 			.goods-info {
 				flex: 1;
