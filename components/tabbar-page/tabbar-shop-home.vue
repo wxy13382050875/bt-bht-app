@@ -10,7 +10,6 @@
 					<!-- <xw-dth-goods v-show="roleID != 2" :dataSource="dataSource.bestGoodsList" :count="3" title="商品热卖" state="selling"></xw-dth-goods>
 					<xw-dth-goods v-show="roleID != 2" :dataSource="dataSource.recommendGoodsList" :count="2" title="商品推荐" state="recommended"></xw-dth-goods>
 					<xw-dth-goods v-show="roleID != 2" :dataSource="dataSource.newGoodsList" :count="3" title="新品上市" state="newProduct"></xw-dth-goods> -->
-					<navigator url="/pages/bmhs/vehicle-dec-exit">出境运输工具申报</navigator>
 				</mescroll-uni>
 			</view>
 		</bht-layout-container>
