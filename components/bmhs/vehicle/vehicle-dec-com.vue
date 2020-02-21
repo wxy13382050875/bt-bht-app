@@ -62,6 +62,7 @@
 		declareTransport
 	} from '@/api/bmhs.js'
 	export default {
+		name: 'vehicle-dec-com',
 		components: {
 			SearchModal,
 			UniDrawer,

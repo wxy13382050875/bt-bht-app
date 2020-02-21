@@ -3,7 +3,7 @@
 		<view class="search-container" :style="{ height: statusHeight + navHeight + 'px' }">
 			<view class="status" :style="{ height: statusHeight + 'px' }"></view>
 			<view class="search-wrapper" :style="{ height: navHeight + 'px' }">
-				<uni-search-bar radius="100" @input="searchInput" placeholder="请输入车牌号" clearButton="auto" cancelButton="auto"
+				<uni-search-bar style="width: 100%;" radius="100" @input="searchInput" placeholder="请输入车牌号" clearButton="auto" cancelButton="auto"
 				 @confirm="search" @cancel="cancel" />
 			</view>
 		</view>
@@ -95,15 +95,15 @@
 		width: 100%;
 		z-index: 1995;
 		background-color: #fff;
-
 		.search-container {
+			width: 100%;
 			background: $nav-bg-color;
 		}
 
 		.search-wrapper {
+			width: 100%;
 			display: flex;
 			align-items: center;
-
 		}
 	}
 </style>

@@ -191,28 +191,6 @@
 				}
 			}
 		},
-		//新闻列表
-		{
-			"path": "pages/news/news-list",
-			"style": {
-				"navigationStyle": "custom",
-				"disableScroll": true,
-				"app-plus": {
-					"bounce": "none"
-				}
-			}
-		},
-		{
-			"path": "pages/news/news-details",
-			"style": {
-				"navigationStyle": "custom",
-				"disableScroll": true,
-				"app-plus": {
-					"bounce": "none"
-				}
-			}
-		},
-
 		{
 			"path": "pages/staff/statistics-charts",
 			"style": {

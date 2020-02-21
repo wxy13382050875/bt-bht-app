@@ -83,7 +83,7 @@
 				})
 			},
 			backEvent() {
-				this.$emit('close', close)
+				this.$emit('close', 'close')
 			},
 		}
 

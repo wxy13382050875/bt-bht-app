@@ -14,7 +14,7 @@
 					<view class="btn confirm-btn" @click="addGoodsConfrim">确认添加</view>
 				</view>
 			</view>
-			<view class="search-goods-result" :style="{top: top+'px'}">
+			<view class="search-goods-result">
 				<view class="items" v-for="(item, index) in goodsData" :key="index">
 					<nz-checkbox :circle="true" v-model="item.check"></nz-checkbox>
 					<view class="goods-info">
@@ -86,17 +86,20 @@
 			})
 		},
 		mounted() {
-			let info = uni.createSelectorQuery().select(".search-goods-container");
-			info.boundingClientRect((elRes) => {
-				this.top = elRes.height;
-			}).exec()
+			// const query = uni.createSelectorQuery().in(this);
+			// setTimeout(() => {
+			// 	query.select('.search-goods-container').boundingClientRect(data => {
+			// 		this.top = data.height;
+			// 		console.log(JSON.stringify(data))
+			// 	}).exec();
+			// }, 1000)
 		},
 		methods: {
 			...mapActions({
 				addGoodsData: 'bmhs/addGoodsData'
 			}),
 			backEvent() {
-				this.$emit('close', close)
+				this.$emit('close', 'close')
 			},
 			/**
 			 * 确认添加商品
@@ -112,7 +115,7 @@
 					return;
 				}
 				this.addGoodsData(arr);
-				this.$emit('close', close)
+				this.$emit('close', 'close')
 			},
 			/**
 			 * 清除商品
@@ -179,8 +182,8 @@
 
 	.search-goods-container {
 		padding: 0 $padding-content;
+		height: 196rpx;
 		border-bottom: 1px solid #ECECEC;
-
 		.goods-search-btn {
 			display: flex;
 			justify-content: space-between;
@@ -213,6 +216,7 @@
 	.search-goods-result {
 		position: absolute;
 		bottom: 0;
+		top: 196rpx;
 		overflow-y: scroll;
 		width: 100%;
 		background-color: rgb(248, 248, 248);

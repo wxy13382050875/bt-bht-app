@@ -37,7 +37,7 @@
 						<label class="value">{{insData.isCheckIdea}}</label>
 					</view>
 					<view class="cell">
-						<label class="title">查验官员：</label>
+						<label class="title">查验关员：</label>
 						<label class="value">{{insData.chkUser}}</label>
 					</view>
 					<view class="cell">
@@ -80,7 +80,7 @@
 				getWaitingConfirmData().then(res => {
 					this.insData = res.data;
 				}).catch(error => {
-
+					this.insData = null
 				})
 			},
 			checkConfirm() {
@@ -91,14 +91,18 @@
 						uni.showToast({
 							title: '确认成功',
 							icon: 'success',
-							success: () => {
-								//置空数据
-								this.insData = null;
-							}
+							duration: 3000
 						})
+						setTimeout(() => {
+							this.getData();
+						}, 3000)
 					}
 				}).catch(error => {
-
+					uni.showToast({
+						title: error.msg,
+						icon: 'none',
+						duration: 3000
+					})
 				})
 			}
 		}

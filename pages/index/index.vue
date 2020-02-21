@@ -19,7 +19,7 @@ import { mapGetters, mapActions } from 'vuex';
 import BhtBanner from '@/components/common/bht-banner';
 import BhtFn from '@/components/common/bht-fn';
 import BhtAdv from '@/components/common/bht-adv';
-import BhtNews from '@/components/common/bht-news';
+
 
 import { invoiceList } from '@/api/bill.js';
 export default {
@@ -27,7 +27,6 @@ export default {
 		BhtBanner,
 		BhtFn,
 		BhtAdv,
-		BhtNews
 	},
 	data() {
 		return {
