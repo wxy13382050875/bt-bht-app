@@ -1,6 +1,6 @@
 {
     "name" : "边互通",
-    "appid" : "__UNI__6D3828D",
+    "appid" : "__UNI__8C052E6",
     "description" : "",
     "versionName" : "1.0.0",
     "versionCode" : "100",
@@ -98,7 +98,8 @@
                     }
                 }
             }
-        }
+        },
+        "nativePlugins" : {}
     },
     /* 快应用特有相关 */
     "quickapp" : {},

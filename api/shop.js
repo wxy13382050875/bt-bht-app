@@ -90,6 +90,11 @@ export const getOrderDetails = (params) => {
 		params: params
 	})
 }
-
+//活人认证 http://ds.bt-dev.yndth.cn/assets-service/face/getVerifyToken?bizId=d9d5&bizType=realPersonAuth
+export const getFaceVerifyToken = (params) => {
+	return http.get('/assets-service/face/getVerifyToken',{
+		params: params
+	})
+};
 
 

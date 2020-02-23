@@ -32,12 +32,22 @@ import formValidate from '@/utils/validate';
 import navBarTitle from '@/components/navbar/navbar-title-default.vue';
 import { login } from '@/api/shop.js';
 import { mapActions } from 'vuex';
+
+//测试
+import {
+		getVerifyToken,
+		getVerifyResult
+	} from '@/api/user.js'
+// require插件名称
+// const dthRpAly = uni.requireNativePlugin('DTH-RP-ALY');
+
 export default {
 	components: {
 		navBarTitle
 	},
 	data() {
 		return {
+			bizId: '',
 			loginData: {
 				phone: '',
 				password: ''
@@ -61,6 +71,7 @@ export default {
 	created() {
 		//赋值手机号
 		this.loginData.phone = this.mobile;
+		this.getBizId();
 	},
 	methods: {
 		...mapActions({
@@ -69,6 +80,7 @@ export default {
 			setRoleMenu: 'utp/setRoleMenu',
 			setAddress: 'utp/setAddress'
 		}),
+		
 		//登录处理
 		handleLogin() {
 			let valid = formValidate.check({ ...this.loginData }, this.rule);
@@ -122,7 +134,11 @@ export default {
 		},
 		inputBlur() {
 			this.bottom = 0;
-		}
+		},
+		getBizId() {
+			this.bizId = (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
+		},
+		
 	}
 };
 </script>
