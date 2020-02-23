@@ -377,6 +377,17 @@
 					//"bounce": "none"
 				}
 			}
+		},
+		//人脸识别界面
+		{
+			"path": "pages/bmhs/dth-bmhs-rp",
+			"style": {
+				"navigationStyle": "custom",
+				"app-plus": {
+					"titleNView": false
+					//"bounce": "none"
+				}
+			}
 		}
 	]
 

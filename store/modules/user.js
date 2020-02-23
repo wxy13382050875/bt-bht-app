@@ -2,7 +2,9 @@
  * user store
  */
 const state = {
-	userInfo: {} /*用户信息*/
+	userInfo: {},
+	/*用户信息*/
+	idCardNumber: ''
 }
 
 const getters = {
