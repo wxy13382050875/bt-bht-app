@@ -18,6 +18,7 @@ export const login = (params) => {
 	})
 }
 
+
 //发送短信验证码
 export const sendMobileCode = (mobile) => {
 	return http.get(`verify/send/${mobile}`)
@@ -73,4 +74,34 @@ export const forgetPassword = (params) => {
 	// 		reject(error);
 	// 	})
 	// })
+}
+/**
+ * 获取token
+ */
+export const getVerifyToken = (params) => {
+	http.config.loading = true;
+	http.config.text = '正在加载...'
+	return http.get('/assets-service/face/getVerifyToken', {
+		params: params
+	})
+}
+
+/**
+ * 获取认证结果
+ */
+export const getVerifyResult = (params) => {
+	
+	return http.get('/assets-service/face/getVerifyResult', {
+		params: params
+	})
+}
+
+/**
+ * 获取认证结果底图
+ */
+export const getFaceImageUrl = (params) => {
+	
+	return http.get('/assets-service/face/getFaceImageUrl', {
+		params: params
+	})
 }

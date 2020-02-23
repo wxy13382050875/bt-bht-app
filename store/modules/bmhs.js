@@ -16,7 +16,10 @@ const getters = {
 const mutations = {
 	addGoodsList(state, data) {
 		if (state.goodsList.length > 0) {
-			let arr = [...state.goodsList].filter(g => [...data].every(d => d.seqNo !== g.seqNo));
+			
+			let arr = [...data].filter(g => [...state.goodsList].every(d => d.seqNo !== g.seqNo));
+			console.log('--------');
+			console.log(arr);
 			if (arr.length > 0) {
 				state.goodsList = [...state.goodsList, ...arr];
 			}

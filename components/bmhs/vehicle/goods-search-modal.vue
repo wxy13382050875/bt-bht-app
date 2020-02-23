@@ -99,6 +99,7 @@
 				addGoodsData: 'bmhs/addGoodsData'
 			}),
 			backEvent() {
+				this.goodsData = [];
 				this.$emit('close', 'close')
 			},
 			/**
@@ -114,6 +115,7 @@
 					})
 					return;
 				}
+				console.log(arr);
 				this.addGoodsData(arr);
 				this.$emit('close', 'close')
 			},

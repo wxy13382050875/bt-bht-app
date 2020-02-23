@@ -49,6 +49,7 @@
 		},
 		data() {
 			return {
+				bizId: '',
 				loginData: {
 					phone: '',
 					password: ''
@@ -68,10 +69,6 @@
 				bottom: 0
 			};
 		},
-		created() {
-			//赋值手机号
-			this.loginData.phone = this.mobile;
-		},
 		methods: {
 			...mapActions({
 				setLoginStatus: 'user/setLoginStatus',
@@ -79,6 +76,7 @@
 				setRoleMenu: 'utp/setRoleMenu',
 				setAddress: 'utp/setAddress'
 			}),
+
 			//登录处理
 			handleLogin() {
 				let valid = formValidate.check({ ...this.loginData
