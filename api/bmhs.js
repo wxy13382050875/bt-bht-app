@@ -108,6 +108,6 @@ export const declareTransport = (params)=>{
 	params.lshg = customs;
 	params.frontierTrader = region;
 	params.inOut = store.state.bmhs.inOut;
-	params.idCardNo = idCode
+	params.idCode = idCode
 	return http.post('/assets-service/declare/declareTransport', params);
 }

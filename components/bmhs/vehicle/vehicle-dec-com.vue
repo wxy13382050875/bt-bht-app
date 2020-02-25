@@ -107,8 +107,9 @@
 					},
 					{
 						name: 'credNum',
-						checkType: 'notnull',
-						errorMsg: '请填写证件号码'
+						checkType: 'string',
+						checkRule: '18',
+						errorMsg: '请正确填写证件号'
 					}
 				]
 			}

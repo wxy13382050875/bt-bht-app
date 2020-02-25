@@ -372,6 +372,17 @@ const routesList = [{
 			}
 		}
 
+	},
+	{
+		path: '/pages/bmhs/dth-bmhs-rp',
+		name: 'dth-bmhs-rp',
+		meta: {
+			title: '人脸识别',
+			auth: {
+				requiresAuth: true
+			}
+		}
+	
 	}
 ]
 //导出

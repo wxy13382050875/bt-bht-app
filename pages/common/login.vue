@@ -4,17 +4,24 @@
 		<bht-layout-container bgColor="#fff" :bottom="0">
 			<view class="login-wrapper" :style="{ bottom: bottom + 'rpx' }">
 				<view class="login-top">
-					<view class="logo-box"><image class="app-logo" src="/static/app_logo_d.png"></image></view>
+					<view class="logo-box">
+						<image class="app-logo" src="/static/app_logo_d.png"></image>
+					</view>
 					<image class="app-logo-2" src="/static/app_logo_login1.png"></image>
 				</view>
 				<view class="app-login">
 					<view class="aca-form-input">
-						<view class="aca-input-icon"><view class="iconfont aca-shouji"></view></view>
+						<view class="aca-input-icon">
+							<view class="iconfont aca-shouji"></view>
+						</view>
 						<input class="aca-input" type="number" name="input" v-model="loginData.phone" placeholder="请输入手机号" />
 					</view>
 					<view class="aca-form-input">
-						<view class="aca-input-icon"><view class="iconfont aca-mima"></view></view>
-						<input class="aca-input" @focus="inputFocus" @blur="inputBlur" type="password" name="input" v-model="loginData.password" placeholder="请输入密码" />
+						<view class="aca-input-icon">
+							<view class="iconfont aca-mima"></view>
+						</view>
+						<input class="aca-input" @focus="inputFocus" @blur="inputBlur" type="password" name="input" v-model="loginData.password"
+						 placeholder="请输入密码" />
 					</view>
 					<button class="app-btn" hover-class="" @click="handleLogin">登录</button>
 					<view class="login-footer">
@@ -28,224 +35,157 @@
 </template>
 
 <script>
-import formValidate from '@/utils/validate';
-import navBarTitle from '@/components/navbar/navbar-title-default.vue';
-import { login } from '@/api/shop.js';
-import { mapActions } from 'vuex';
-
-//测试
-import {
-		getVerifyToken,
-		getVerifyResult
-	} from '@/api/user.js'
-// require插件名称
-// const dthRpAly = uni.requireNativePlugin('DTH-RP-ALY');
-
-export default {
-	components: {
-		navBarTitle
-	},
-	data() {
-		return {
-			bizId: '',
-			loginData: {
-				phone: '',
-				password: ''
-			},
-			rule: [
-				{
-					name: 'phone',
-					checkType: 'phoneno',
-					errorMsg: '请填写正确的手机号'
+	import formValidate from '@/utils/validate';
+	import navBarTitle from '@/components/navbar/navbar-title-default.vue';
+	import {
+		login
+	} from '@/api/shop.js';
+	import {
+		mapActions
+	} from 'vuex';
+	export default {
+		components: {
+			navBarTitle
+		},
+		data() {
+			return {
+				bizId: '',
+				loginData: {
+					phone: '',
+					password: ''
 				},
-				{
-					name: 'password',
-					checkType: 'notnull',
-					errorMsg: '请填写密码'
-				}
-			],
-			loginBtn: true,
-			bottom: 0
-		};
-	},
-	created() {
-		//赋值手机号
-		this.loginData.phone = this.mobile;
-		this.getBizId();
-	},
-	methods: {
-		...mapActions({
-			setLoginStatus: 'user/setLoginStatus',
-			setUserInfo: 'user/setUserInfo',
-			setRoleMenu: 'utp/setRoleMenu',
-			setAddress: 'utp/setAddress'
-		}),
-		
-		//登录处理
-		handleLogin() {
-			
-				let params = {
-					bizId: this.bizId,
-					bizType: "realPersonAuth"
-				}
-				this.params = params;
-				getVerifyToken(params).then(res => {
-					this.verifyToken = res.data;
-					console.log(this.verifyToken);
-					uni.showToast({
-						title: 'token==》' + this.verifyToken,
-						icon: 'none'
-					})
-					let dthRpAly = uni.requireNativePlugin('DTH-RP-ALY');
-					dthRpAly.show({
-						verifyToken: this.verifyToken,
-					}, res => {
-						let {
-							status,
-							code
-						} = res;
-						if (status == 'AUDIT_PASS') {
-							getVerifyResult(params).then(res => {
-								let {
-									code,
-									data
-								} = res;
-								this.dataInfo.material = data.material
+				rule: [{
+						name: 'phone',
+						checkType: 'phoneno',
+						errorMsg: '请填写正确的手机号'
+					},
+					{
+						name: 'password',
+						checkType: 'notnull',
+						errorMsg: '请填写密码'
+					}
+				],
+				loginBtn: true,
+				bottom: 0
+			};
+		},
+		methods: {
+			...mapActions({
+				setLoginStatus: 'user/setLoginStatus',
+				setUserInfo: 'user/setUserInfo',
+				setRoleMenu: 'utp/setRoleMenu',
+				setAddress: 'utp/setAddress'
+			}),
+
+			//登录处理
+			handleLogin() {
+				let valid = formValidate.check({ ...this.loginData
+				}, this.rule);
+				if (valid) {
+					uni.showLoading({
+						title: '正在登陆...',
+						mask: true
+					});
+					login(this.loginData)
+						.then(res => {
+							uni.hideLoading();
+							if (res.code === '200') {
+								this.$store.state.user.idCardNumber = res.data.idCode;
+								//保存用户信息到store
+								this.setUserInfo(res.data);
+								//缓存用户信息
+								uni.setStorageSync('isLogin', true);
+								uni.setStorageSync('userInfo', res.data);
+								this.setRoleMenu(res.data.roleId);
+								this.setAddress(res.data.defaultAddress, null);
+								uni.redirectTo({
+									url: '/pages/main'
+								});
+							} else {
 								uni.showToast({
-									title: '结果：' + JSON.stringify(data),
 									icon: 'none',
-									duration: 1000 * 10
-								})
-							})
-						} else if (status == 'AUDIT_FAIL') {
+									title: res.msg
+								});
+							}
+						})
+						.catch(erro => {
 							uni.showToast({
-								title: 'AUDIT_FAIL code==>' + code,
 								icon: 'none',
-								duration: 3000,
-							})
-						} else if (status == 'AUDIT_NOT') {
-							uni.showToast({
-								title: 'AUDIT_NOT  code==>' + code,
-								icon: 'none',
-								duration: 3000
-							})
-						}
-					})
-				}).catch(error => {
-					console.log(error)
+								title: erro.data.msg
+							});
+							uni.hideLoading();
+						});
+				} else {
 					uni.showToast({
-						title: error,
-						icon: 'none',
-						duration: 3000
-					})
-				})
-			// let valid = formValidate.check({ ...this.loginData }, this.rule);
-			// if (valid) {
-			// 	uni.showLoading({
-			// 		title: '正在登陆...',
-			// 		mask: true
-			// 	});
-			// 	login(this.loginData)
-			// 		.then(res => {
-			// 			uni.hideLoading();
-			// 			if (res.code === '200') {
-			// 				//保存用户信息到store
-			// 				this.setUserInfo(res.data);
-			// 				//缓存用户信息
-			// 				uni.setStorageSync('isLogin', true);
-			// 				uni.setStorageSync('userInfo', res.data);
-			// 				this.setRoleMenu(res.data.roleId);
-			// 				this.setAddress(res.data.defaultAddress, null);
-			// 				uni.redirectTo({
-			// 					url: '/pages/main'
-			// 				});
-			// 			} else {
-			// 				uni.showToast({
-			// 					icon: 'none',
-			// 					title: res.msg
-			// 				});
-			// 			}
-			// 		})
-			// 		.catch(erro => {
-			// 			uni.showToast({
-			// 				icon: 'none',
-			// 				title: erro.data.msg
-			// 			});
-			// 			uni.hideLoading();
-			// 		});
-			// } else {
-			// 	uni.showToast({
-			// 		title: formValidate.error,
-			// 		icon: 'none'
-			// 	});
-			// }
-		},
-		inputFocus({ detail }) {
-			var that = this;
-			uni.getSystemInfo({
-				success(res) {
-					that.bottom = detail.height;
+						title: formValidate.error,
+						icon: 'none'
+					});
 				}
-			});
-		},
-		inputBlur() {
-			this.bottom = 0;
-		},
-		getBizId() {
-			this.bizId = (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
-		},
-		
-	}
-};
+			},
+			inputFocus({
+				detail
+			}) {
+				var that = this;
+				uni.getSystemInfo({
+					success(res) {
+						that.bottom = detail.height;
+					}
+				});
+			},
+			inputBlur() {
+				this.bottom = 0;
+			}
+		}
+	};
 </script>
 
 <style lang="scss">
-.login-wrapper {
-	position: relative;
-	background: #ffffff;
-}
+	.login-wrapper {
+		position: relative;
+		background: #ffffff;
+	}
 
-.login-top {
-	margin-top: 65rpx;
-	text-align: center;
+	.login-top {
+		margin-top: 65rpx;
+		text-align: center;
 
-	.logo-box {
-		margin: 0 auto;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		width: 241rpx;
-		height: 241rpx;
-		background: rgba(207, 32, 34, 1);
-		border-radius: 121px;
+		.logo-box {
+			margin: 0 auto;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 241rpx;
+			height: 241rpx;
+			background: rgba(207, 32, 34, 1);
+			border-radius: 121px;
 
-		.app-logo {
-			width: 142rpx;
-			height: 141rpx;
+			.app-logo {
+				width: 142rpx;
+				height: 141rpx;
+			}
+		}
+
+		.app-logo-2 {
+			margin-top: 27rpx;
+			width: 218rpx;
+			height: 95rpx;
 		}
 	}
 
-	.app-logo-2 {
-		margin-top: 27rpx;
-		width: 218rpx;
-		height: 95rpx;
-	}
-}
+	.app-login {
+		margin-top: 134rpx;
+		padding: 0 60rpx;
 
-.app-login {
-	margin-top: 134rpx;
-	padding: 0 60rpx;
+		.login-footer {
+			margin-top: 23rpx;
+			padding: 0 30rpx;
+			display: flex;
+			justify-content: space-between;
 
-	.login-footer {
-		margin-top: 23rpx;
-		padding: 0 30rpx;
-		display: flex;
-		justify-content: space-between;
-
-		.item {
-			font-size: 30rpx;
-			color: #e40011;
+			.item {
+				font-size: 30rpx;
+				color: #e40011;
+			}
 		}
 	}
-}
 </style>
