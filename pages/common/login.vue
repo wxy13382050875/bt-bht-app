@@ -83,46 +83,102 @@ export default {
 		
 		//登录处理
 		handleLogin() {
-			let valid = formValidate.check({ ...this.loginData }, this.rule);
-			if (valid) {
-				uni.showLoading({
-					title: '正在登陆...',
-					mask: true
-				});
-				login(this.loginData)
-					.then(res => {
-						uni.hideLoading();
-						if (res.code === '200') {
-							//保存用户信息到store
-							this.setUserInfo(res.data);
-							//缓存用户信息
-							uni.setStorageSync('isLogin', true);
-							uni.setStorageSync('userInfo', res.data);
-							this.setRoleMenu(res.data.roleId);
-							this.setAddress(res.data.defaultAddress, null);
-							uni.redirectTo({
-								url: '/pages/main'
-							});
-						} else {
+			
+				let params = {
+					bizId: this.bizId,
+					bizType: "realPersonAuth"
+				}
+				this.params = params;
+				getVerifyToken(params).then(res => {
+					this.verifyToken = res.data;
+					console.log(this.verifyToken);
+					uni.showToast({
+						title: 'token==》' + this.verifyToken,
+						icon: 'none'
+					})
+					let dthRpAly = uni.requireNativePlugin('DTH-RP-ALY');
+					dthRpAly.show({
+						verifyToken: this.verifyToken,
+					}, res => {
+						let {
+							status,
+							code
+						} = res;
+						if (status == 'AUDIT_PASS') {
+							getVerifyResult(params).then(res => {
+								let {
+									code,
+									data
+								} = res;
+								this.dataInfo.material = data.material
+								uni.showToast({
+									title: '结果：' + JSON.stringify(data),
+									icon: 'none',
+									duration: 1000 * 10
+								})
+							})
+						} else if (status == 'AUDIT_FAIL') {
 							uni.showToast({
+								title: 'AUDIT_FAIL code==>' + code,
 								icon: 'none',
-								title: res.msg
-							});
+								duration: 3000,
+							})
+						} else if (status == 'AUDIT_NOT') {
+							uni.showToast({
+								title: 'AUDIT_NOT  code==>' + code,
+								icon: 'none',
+								duration: 3000
+							})
 						}
 					})
-					.catch(erro => {
-						uni.showToast({
-							icon: 'none',
-							title: erro.data.msg
-						});
-						uni.hideLoading();
-					});
-			} else {
-				uni.showToast({
-					title: formValidate.error,
-					icon: 'none'
-				});
-			}
+				}).catch(error => {
+					console.log(error)
+					uni.showToast({
+						title: error,
+						icon: 'none',
+						duration: 3000
+					})
+				})
+			// let valid = formValidate.check({ ...this.loginData }, this.rule);
+			// if (valid) {
+			// 	uni.showLoading({
+			// 		title: '正在登陆...',
+			// 		mask: true
+			// 	});
+			// 	login(this.loginData)
+			// 		.then(res => {
+			// 			uni.hideLoading();
+			// 			if (res.code === '200') {
+			// 				//保存用户信息到store
+			// 				this.setUserInfo(res.data);
+			// 				//缓存用户信息
+			// 				uni.setStorageSync('isLogin', true);
+			// 				uni.setStorageSync('userInfo', res.data);
+			// 				this.setRoleMenu(res.data.roleId);
+			// 				this.setAddress(res.data.defaultAddress, null);
+			// 				uni.redirectTo({
+			// 					url: '/pages/main'
+			// 				});
+			// 			} else {
+			// 				uni.showToast({
+			// 					icon: 'none',
+			// 					title: res.msg
+			// 				});
+			// 			}
+			// 		})
+			// 		.catch(erro => {
+			// 			uni.showToast({
+			// 				icon: 'none',
+			// 				title: erro.data.msg
+			// 			});
+			// 			uni.hideLoading();
+			// 		});
+			// } else {
+			// 	uni.showToast({
+			// 		title: formValidate.error,
+			// 		icon: 'none'
+			// 	});
+			// }
 		},
 		inputFocus({ detail }) {
 			var that = this;
