@@ -131,8 +131,29 @@
 									this.$store.state.user.idCardNumber = this.regData.idCode;
 									//进入实人认证
 									this.realPersonAuth().then(res => {
-										uni.redirectTo({
-											url: '/pages/common/login'
+										//去互市认证是否是真实边民
+										getCivilFaceStatus({
+											idCode: this.regData.idCode,
+											phone: this.regData.phone
+										}).then(res => {
+											if (res.code == '200') {
+												uni.showToast({
+													title: '认证成功',
+													icon: 'none'
+												})
+												setTimeout(() => {
+													this.$Router.back();
+												},2000)
+											}
+										}).catch(error => {
+											let {
+												data
+											} = error;
+											uni.showToast({
+												title: '未在互市备案，会影响后续操作，请您备案!',
+												icon: 'none',
+												duration: 3000
+											})
 										})
 									}).catch(error => {
 										uni.showToast({

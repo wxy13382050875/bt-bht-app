@@ -49,5 +49,7 @@ export const getFaceImageUrl = (params) => {
  * @param phone
  */
 export const getCivilFaceStatus = (params) => {
+	http.config.loading = true;
+	http.config.text = '正在验证信息...'
 	return http.post('/assets-service/face/setCivilFaceStatus', params);
 }

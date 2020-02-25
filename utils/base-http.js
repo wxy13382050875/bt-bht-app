@@ -23,6 +23,8 @@ http.interceptor.response((response) => {
 	} = response
 
 	if (http.config.loading) {
+		http.config.loading = false;
+		http.config.text = '';
 		uni.hideLoading();
 	}
 	if (data.code != "200") {

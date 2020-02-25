@@ -62,7 +62,7 @@
 					})
 				}).catch(error => {
 					uni.showToast({
-						title: '认证失败',
+						title: error,
 						icon: 'none'
 					})
 				})
