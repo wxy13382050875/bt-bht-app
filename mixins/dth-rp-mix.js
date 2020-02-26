@@ -62,16 +62,9 @@ export const mixin_dth_rp_aly = {
 						})
 					})
 				}).catch(error => {
-					uni.showModal({
-						title: '获取token失败',
-						content: 'erro=>' + JSON.stringify(error) + 'tokenparams==>' + this.faceVerifyParams,
-						success: (res) => {
-							if (res.confirm) {
-								reject(error)
-							} else {
-								reject(error)
-							}
-						}
+					uni.showToast({
+						title: '请求出错，请稍后重试！',
+						icon: 'none'
 					})
 				});
 			})
@@ -124,44 +117,31 @@ export const mixin_dth_rp_aly = {
 							data
 						} = res;
 						if (data.verifyStatus == 1) {
-							reslove("认证成功");
-							//TODO 返回的身份信息和当前绑定的身份证做比较
-							// uni.showModal({
-							// 	title: '日志打印',
-							// 	content: '返回结果==>' + JSON.stringify(data.material),
-							// 	success: (res) => {
-							// 		if (res.confirm) {
-							// 			reslove("认证成功")
-							// 		}
-							// 	}
-							// })
-							// if (this.$store.state.user.idCardNumber == data.material.idCardNumber) {
-							// 	reslove("认证成功")
-							// } else {
-							// 	uni.showModal({
-							// 		title: '日志打印',
-							// 		content: '返回结果==>'+JSON.stringify(data.material),
-							// 		success: (res) => {
-							// 			if(res.confirm){
-							// 				reject("认证失败,非本人操作!");
-							// 			}
-							// 		}
-							// 	})
-
-							// }
-
+							
+							if (this.faceVerifyParams.bizType == 'realPersonAuth') {
+								////实人认证 需要跟身身份证做比较
+								//比较实人认证和填写身份证是否是同一人
+								if (this.$store.state.user.idCardNumber == data.material.idCardNumber) {
+									reslove("认证成功");
+								} else {
+									reject("填写的身份证，和实人认证身份证不一致！");
+								}
+							} else {
+								//活体认证直接成功
+								reslove("认证成功");
+							}
 						} else {
-							reject("获取认证结果==>认证失败");
+							reject("认证失败");
 						}
 					}).catch(error => {
 						reject(error);
 					})
 				} else if (status == 'AUDIT_FAIL') {
-					reject("SDK==>认证失败 CODE==>" + sdkCode);
+					//reject("SDK==>认证失败 CODE==>" + sdkCode);
 
 				} else if (status == 'AUDIT_NOT') {
-					reject("SDK==>未完成认证  CODE==>" + sdkCode);
-				}else{
+					//reject("SDK==>未完成认证  CODE==>" + sdkCode);
+				} else {
 					reject("SDK==>未知失败  CODE==>" + sdkCode);
 				}
 			})

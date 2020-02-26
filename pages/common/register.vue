@@ -58,8 +58,12 @@
 		register
 	} from '@/api/user'
 	import {
+		getCivilFaceStatus
+	} from '@/api/dth-rp-aly.js'
+	import {
 		mixin_dth_rp_aly
 	} from '@/mixins/dth-rp-mix.js'
+
 	export default {
 		mixins: [mixin_dth_rp_aly],
 		data() {
@@ -118,74 +122,13 @@
 						title: '正在注册...',
 						mask: true
 					});
-					register(this.regData)
-						.then(res => {
-							uni.hideLoading();
-							let {
-								code,
-								msg
-							} = res;
-							//注册成功
-							if (code === '200') {
-								if (this.regData.roleId == 2) {
-									this.$store.state.user.idCardNumber = this.regData.idCode;
-									//进入实人认证
-									this.realPersonAuth().then(res => {
-										//去互市认证是否是真实边民
-										getCivilFaceStatus({
-											idCode: this.regData.idCode,
-											phone: this.regData.phone
-										}).then(res => {
-											if (res.code == '200') {
-												uni.showToast({
-													title: '认证成功',
-													icon: 'none'
-												})
-												setTimeout(() => {
-													this.$Router.back();
-												},2000)
-											}
-										}).catch(error => {
-											let {
-												data
-											} = error;
-											uni.showToast({
-												title: '未在互市备案，会影响后续操作，请您备案!',
-												icon: 'none',
-												duration: 3000
-											})
-										})
-									}).catch(error => {
-										uni.showToast({
-											title: error,
-											icon: 'none'
-										})
-									})
-								} else {
-									uni.showToast({
-										title: '注册成功'
-									});
-									setTimeout(() => {
-										uni.removeStorageSync('mobileCode');
-										this.$Router.back();
-									}, 2000);
-								}
-
-							} else {
-								uni.showToast({
-									title: msg,
-									icon: 'none'
-								});
-							}
-
-						})
-						.catch(error => {
-							uni.showToast({
-								title: error.data.msg,
-								icon: 'none'
-							});
-							uni.hideLoading();
-						});
+					if (this.regData.roleId == 2) {
+						//边民做实人认证
+						this.civilDoFaceVerify();
+					} else {
+						//提交注册信息
+						this.submitRegisterInfo();
+					}
 
 				} else {
 					uni.showToast({
@@ -193,6 +136,73 @@
 						icon: 'none'
 					});
 				}
+			},
+			/**
+			 * 边民做实人认证
+			 */
+			civilDoFaceVerify() {
+				getCivilFaceStatus({
+					idCode: this.regData.idCode,
+					phone: this.regData.phone
+				}).then(res => {
+					this.$store.state.user.idCardNumber = this.regData.idCode;
+					/**
+					 * 在互市备案过，进行实人认证
+					 */
+					this.realPersonAuth().then(res => {
+						//实人认证通过，提交注册
+						this.submitRegisterInfo();
+					}).catch(error => {
+						uni.showToast({
+							title: error,
+							icon: 'none'
+						})
+					})
+				}).catch(error => {
+					let {
+						data
+					} = error;
+					uni.showToast({
+						title: '未在互市备案，请备案后再操作！',
+						icon: 'none',
+						duration: 3000
+					})
+				})
+			},
+			/**
+			 * 提交注册信息
+			 */
+			submitRegisterInfo() {
+				register(this.regData)
+					.then(res => {
+						uni.hideLoading();
+						let {
+							code,
+							msg
+						} = res;
+						if (code === '200') {
+							uni.showToast({
+								title: '注册成功'
+							})
+							setTimeout(() => {
+								uni.removeStorageSync('mobileCode');
+								this.$Router.back();
+							}, 2000);
+						} else {
+							uni.showToast({
+								title: msg,
+								icon: 'none'
+							});
+						}
+
+					})
+					.catch(error => {
+						uni.showToast({
+							title: error.data.msg,
+							icon: 'none'
+						});
+						uni.hideLoading();
+					});
 			},
 			pickerPaperTypeChange({
 				target
@@ -225,7 +235,6 @@
 				});
 				sendSmsCode(params)
 					.then(res => {
-						console.log(res);
 						uni.hideLoading();
 						// uni.setStorageSync('mobileCode', res);
 						// 倒计时

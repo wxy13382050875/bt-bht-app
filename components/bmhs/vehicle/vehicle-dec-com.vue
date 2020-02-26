@@ -91,7 +91,7 @@
 				credTypeText: '身份证',
 				decData: {
 					vehicleId: '',
-					credType: '001',
+					credType: '0001',
 					credNum: '',
 					tranMan: '',
 					goodsList: []
