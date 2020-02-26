@@ -25,18 +25,6 @@ const menuData = {
 			flag: 'index'
 		},
 		{
-			title: '统计报表',
-			src: require('@/static/tab/tjbb_def_icon.png'),
-			selectedSrc: require('@/static/tab/tjbb_sel_icon.png'),
-			flag: 'stat'
-		},
-		{
-			title: '购物车',
-			src: require('@/static/tab/cart_def_icon.png'),
-			selectedSrc: require('@/static/tab/cart_sel_icon.png'),
-			flag: 'cart'
-		},
-		{
 			title: '我的',
 			src: require('@/static/tab/my_def_icon.png'),
 			selectedSrc: require('@/static/tab/my_sel_icon.png'),

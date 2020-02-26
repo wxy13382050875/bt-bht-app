@@ -1,8 +1,13 @@
 <template>
 	<view>
 		<nav-bar-back title="人脸识别" popType="0"></nav-bar-back>
-		<bht-layout-container :bottom="0">
-			<button class="btn" @click="dthRpFace">人脸识别</button>
+		<bht-layout-container :bottom="0" bgColor="#fff">
+			<view class="face-container">
+				<view class="btn" @click="dthRpFace">
+					<image class="icon" src="/static/bmhs/face_icon.png"></image>
+					<label class="title">人脸识别</label>
+				</view>
+			</view>
 		</bht-layout-container>
 	</view>
 </template>
@@ -33,43 +38,52 @@
 					idCode,
 					phone
 				} = uni.getStorageSync('userInfo');
-
 				this.liveFaceVerify(idCode).then(res => {
-					getCivilFaceStatus({
-						idCode: idCode,
-						phone: phone
-					}).then(res => {
-						if (res.code == '200') {
-							uni.showToast({
-								title: '认证成功',
-								icon: 'none'
-							})
-							setTimeout(() => {
-								uni.navigateTo({
-									url: this.url
-								})
-							})
-						}
-					}).catch(error => {
-						let {
-							data
-						} = error;
-						uni.showToast({
-							title: data.msg,
-							icon: 'none',
-							duration: 3000
+					setTimeout(() => {
+						uni.navigateTo({
+							url: this.url
 						})
 					})
 				}).catch(error => {
 					uni.showToast({
 						title: error,
-						icon: 'none'
+						icon: 'none',
+						duration: 3000
 					})
+					setTimeout(() => {
+						uni.navigateBack();
+					}, 3000)
+
 				})
 			}
 		}
 	}
 </script>
 
-<style>
+<style lang="scss">
+	.face-container {
+		display: flex;
+		width: 100%;
+		height: 100%;
+		align-items: center;
+		justify-content: center;
+		.btn{
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-direction: column;
+			width: 240rpx;
+			height: 240rpx;
+			background-color: #fff;
+			box-shadow: 0px 0px 20px #dedede;
+			    border-radius: 10px;
+			.icon{
+				width: 110rpx;
+				height: 110rpx;
+			}
+			.title{
+				mariong-top: 5px;
+			}
+		}
+	}
 </style>

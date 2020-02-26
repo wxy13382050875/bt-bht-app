@@ -11,7 +11,8 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
 	let {
-		requiresAuth
+		requiresAuth,
+		civilStatus
 	} = to.meta.auth;
 	let isLogin = uni.getStorageSync("isLogin");
 	if (requiresAuth) {
@@ -24,8 +25,27 @@ router.beforeEach((to, from, next) => {
 				},
 				NAVTYPE: 'push'
 			})
-		} else{
-			next();
+		} else {
+			let {
+				roleId,
+				customs
+			} = uni.getStorageSync('userInfo');
+			if (roleId == 2 && civilStatus) {
+				if (customs == undefined) {
+					next({
+						path: '/pages/user/edit-profile',
+						query: {
+							// redirect: to.meta.title
+						},
+						NAVTYPE: 'push'
+					})
+				} else {
+					next();
+				}
+			} else {
+				next();
+			}
+
 		}
 	} else {
 		next()

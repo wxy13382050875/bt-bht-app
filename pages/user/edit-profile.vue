@@ -31,7 +31,7 @@
 						</view>
 					</picker>
 				</view>
-				<view class="aca-cell">
+				<!-- <view class="aca-cell">
 					<view class="label">证件类型</view>
 					<picker @change="pickerIdTypeChange" :value="idTypeIndex" :range="idTypeArr">
 						<view class="content" @click="hideKeyBoard">
@@ -43,7 +43,7 @@
 				<view class="aca-cell">
 					<view class="label">证件号码</view>
 					<view class="content"><input type="text" class="input" v-model="formData.idCode" placeholder="请输入证件号码" /></view>
-				</view>
+				</view> -->
 				<view class="aca-cell">
 					<view class="label">隶属海关</view>
 					<view class="content" @click="showRegion">
@@ -122,22 +122,22 @@ export default {
 					checkType: 'notnull',
 					errorMsg: '请选择国籍'
 				},
-				{
-					name: 'idType',
-					checkType: 'notnull',
-					errorMsg: '请选择证件类型'
-				},
-				{
-					name: 'idCode',
-					checkType: 'notnull',
-					errorMsg: '请填写证件号码'
-				},
-				{
-					name: 'idCode',
-					checkType: 'string',
-					checkRule: '18',
-					errorMsg: '证件号不合法'
-				},
+				// {
+				// 	name: 'idType',
+				// 	checkType: 'notnull',
+				// 	errorMsg: '请选择证件类型'
+				// },
+				// {
+				// 	name: 'idCode',
+				// 	checkType: 'notnull',
+				// 	errorMsg: '请填写证件号码'
+				// },
+				// {
+				// 	name: 'idCode',
+				// 	checkType: 'string',
+				// 	checkRule: '18',
+				// 	errorMsg: '证件号不合法'
+				// },
 				{
 					name: 'customs',
 					checkType: 'notnull',

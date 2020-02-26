@@ -379,7 +379,8 @@ const routesList = [{
 		meta: {
 			title: '人脸识别',
 			auth: {
-				requiresAuth: true
+				requiresAuth: true,
+				civilStatus: true
 			}
 		}
 	
