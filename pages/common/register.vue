@@ -3,10 +3,16 @@
 		<nav-bar-back title="注册" popType="0"></nav-bar-back>
 		<bht-layout-container bg-color="#ffffff" :bottom="0">
 			<view class="app-register">
+				<view class="aca-form-input">
+					<view class="aca-input-icon">
+						<view class="iconfont icon-idcard"></view>
+					</view>
+					<input class="aca-input" type="string" v-model="regData.idCode" placeholder="请输入身份证号" />
+				</view>
 				<picker @change="pickerPaperTypeChange" :value="paperTypeIndex" :range="roleArr">
 					<view class="aca-form-input">
 						<view class="aca-input-icon">
-							<view class="iconfont aca-user"></view>
+							<view class="iconfont icon-user-type"></view>
 						</view>
 						<input class="aca-input" disabled="true" :value="roleText" placeholder="请选择角色" />
 						<view class="arrow-right">
@@ -16,28 +22,22 @@
 				</picker>
 				<view class="aca-form-input">
 					<view class="aca-input-icon">
-						<view class="iconfont aca-shouji"></view>
+						<view class="iconfont icon-phone"></view>
 					</view>
 					<input class="aca-input" type="number" v-model="regData.phone" placeholder="请输入手机号" />
 				</view>
 				<view class="aca-form-input">
 					<view class="aca-input-icon">
-						<view class="iconfont aca-securityCode-b"></view>
+						<view class="iconfont icon-verify-code"></view>
 					</view>
 					<input class="aca-input" type="number" maxlength="6" v-model="regData.smsCode" placeholder="请输入验证码" />
 					<text @click="getCode" class="se-code">{{ vcodeBtnName }}</text>
 				</view>
 				<view class="aca-form-input">
 					<view class="aca-input-icon">
-						<view class="iconfont aca-mima"></view>
+						<view class="iconfont icon-password"></view>
 					</view>
 					<input class="aca-input" type="password" v-model="regData.password" placeholder="请输入密码" />
-				</view>
-				<view class="aca-form-input">
-					<view class="aca-input-icon">
-						<view class="iconfont aca-mima"></view>
-					</view>
-					<input class="aca-input" type="string" v-model="regData.idCode" placeholder="请输入身份证号" />
 				</view>
 				<button class="app-btn" hover-class="" @click="handleReg">注册</button>
 			</view>
@@ -69,14 +69,14 @@
 		data() {
 			return {
 				regData: {
-					roleId: '',
+					roleId: '2',
 					phone: '',
 					password: '',
 					smsCode: '',
 					idCode: ''
 				},
-				roleText: '',
-				paperTypeIndex: 0,
+				roleText: '边民',
+				paperTypeIndex: 1,
 				vcodeBtnName: '获取验证码',
 				rule: [{
 						name: 'roleId',
@@ -305,7 +305,7 @@
 
 <style scoped lang="scss">
 	.app-register {
-		padding: 60rpx 60rpx 0;
+		padding: $padding-content;
 
 		.se-code {
 			margin: 0 24rpx;

@@ -2,8 +2,14 @@
  * 基础http
  */
 import Request from '@/utils/luch-request/request.js'
+import BasUrl from '@/utils/config'
 
 var http = new Request();
+
+http.setConfig((config) => {
+	config.baseUrl = BasUrl.BASE_BHT_DEV_URL
+	return config
+})
 
 http.interceptor.request((config, cancel) => {
 	if (http.config.loading) {

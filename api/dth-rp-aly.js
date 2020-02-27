@@ -2,15 +2,6 @@
  * 人脸识别服务接口
  */
 import http from '@/utils/base-http.js'
-import BasUrl from '@/utils/config'
-
-http.setConfig((config) => {
-	config.baseUrl = BasUrl.BASE_BHT_URL
-	config.header = {
-		...config.header
-	}
-	return config
-});
 
 /**
  * 获取token

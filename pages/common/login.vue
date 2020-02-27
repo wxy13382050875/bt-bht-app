@@ -12,13 +12,13 @@
 				<view class="app-login">
 					<view class="aca-form-input">
 						<view class="aca-input-icon">
-							<view class="iconfont aca-shouji"></view>
+							<view class="iconfont icon-phone"></view>
 						</view>
 						<input class="aca-input" type="number" name="input" v-model="loginData.phone" placeholder="请输入手机号" />
 					</view>
 					<view class="aca-form-input">
 						<view class="aca-input-icon">
-							<view class="iconfont aca-mima"></view>
+							<view class="iconfont icon-password"></view>
 						</view>
 						<input class="aca-input" @focus="inputFocus" @blur="inputBlur" type="password" name="input" v-model="loginData.password"
 						 placeholder="请输入密码" />
@@ -174,7 +174,7 @@
 
 	.app-login {
 		margin-top: 134rpx;
-		padding: 0 60rpx;
+		padding: 0 $padding-content;
 
 		.login-footer {
 			margin-top: 23rpx;

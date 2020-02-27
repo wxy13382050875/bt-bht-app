@@ -3,7 +3,6 @@
 		<view class="status" :style="{ height: statusHeight + 'px' }"></view>
 		<view class="navbar-personal-header" :style="{ height: navHeight + 'px' }">
 			<view class="title">{{ title }}</view>
-			
 		</view>
 	</view>
 </template>

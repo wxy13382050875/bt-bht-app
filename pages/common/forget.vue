@@ -5,21 +5,21 @@
 			<view class="app-register">
 				<view class="aca-form-input">
 					<view class="aca-input-icon">
-						<view class="iconfont aca-shouji"></view>
+						<view class="iconfont icon-phone"></view>
 					</view>
 					<input class="aca-input" type="number" v-model="formData.phone" placeholder="请输入手机号" />
 
 				</view>
 				<view class="aca-form-input">
 					<view class="aca-input-icon">
-						<view class="iconfont aca-securityCode-b"></view>
+						<view class="iconfont icon-verify-code"></view>
 					</view>
 					<input class="aca-input" type="number" maxlength="6" v-model="formData.smsCode" placeholder="请输入验证码" />
 					<text @click="getCode" class="se-code">{{vcodeBtnName}}</text>
 				</view>
 				<view class="aca-form-input">
 					<view class="aca-input-icon">
-						<view class="iconfont aca-mima"></view>
+						<view class="iconfont icon-password"></view>
 					</view>
 					<input class="aca-input" type="password" v-model="formData.password" placeholder="请输入新密码" />
 				</view>
@@ -87,7 +87,7 @@
 							code,
 							msg
 						} = res;
-						if (code === 200) {
+						if (code == '200') {
 							uni.showToast({
 								title: '修改成功'
 							});
@@ -215,7 +215,7 @@
 
 <style scoped lang="scss">
 	.app-register {
-		padding: 60rpx 60rpx 0;
+		padding: $padding-content;
 
 		.se-code {
 			margin: 0 24rpx;
