@@ -18,11 +18,11 @@ export const sendMobileCode = (mobile) => {
 
 //发送短信验证码
 export const sendSmsCode = (params) => {
-	return http.post('/assets-service/declare/sendSmsCode',params)
+	return http.post('/declare/sendSmsCode',params)
 };
 //注册用户
 export const register = (params) => {
-	return http.post('/assets-service/user/register', params)
+	return http.post('/user/register', params)
 };
 
 //更新用户信息
@@ -48,7 +48,7 @@ export const updateUserInfo = (params) => {
 
 //找回密码
 export const forgetPassword = (params) => {
-	return http.post('/assets-service/user/resetPassword', params)
+	return http.post('/user/resetPassword', params)
 	// uni.showLoading({
 	// 	title: '正在努力提交...',
 	// 	mask: true
@@ -73,7 +73,7 @@ export const forgetPassword = (params) => {
 export const getVerifyToken = (params) => {
 	http.config.loading = true;
 	http.config.text = '正在加载...'
-	return http.get('/assets-service/face/getVerifyToken', {
+	return http.get('/face/getVerifyToken', {
 		params: params
 	})
 }
@@ -83,7 +83,7 @@ export const getVerifyToken = (params) => {
  */
 export const getVerifyResult = (params) => {
 	
-	return http.get('/assets-service/face/getVerifyResult', {
+	return http.get('/face/getVerifyResult', {
 		params: params
 	})
 }
@@ -93,7 +93,7 @@ export const getVerifyResult = (params) => {
  */
 export const getFaceImageUrl = (params) => {
 	
-	return http.get('/assets-service/face/getFaceImageUrl', {
+	return http.get('/face/getFaceImageUrl', {
 		params: params
 	})
 }

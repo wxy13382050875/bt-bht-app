@@ -12,7 +12,7 @@ export const goodsDesList = (inOut) => {
 		idCode
 	} = uni.getStorageSync('userInfo');
 	http.config.loading = true;
-	return http.get('/assets-service/declare/getWaitingDeclareData', {
+	return http.get('/declare/getWaitingDeclareData', {
 		params: {
 			idCode: idCode,
 			inOut: inOut
@@ -26,7 +26,7 @@ export const goodsDesList = (inOut) => {
 export const postDecGoods = (params) => {
 	http.config.loading = true;
 	http.config.text = '正在提交...';
-	return http.post('/assets-service/declare/commitWaitingDeclare', params);
+	return http.post('/declare/commitWaitingDeclare', params);
 }
 
 /**
@@ -38,7 +38,7 @@ export const getWaitingConfirmData = () => {
 		idCode
 	} = uni.getStorageSync('userInfo');
 	http.config.loading = true;
-	return http.get('/assets-service/declare/getWaitingConfirmData', {
+	return http.get('/declare/getWaitingConfirmData', {
 		params: {
 			idCode: idCode,
 		}
@@ -51,7 +51,7 @@ export const getWaitingConfirmData = () => {
 export const commitWaitingConfirm = (params) => {
 	http.config.loading = true;
 	http.config.text = '正在提交...';
-	return http.post('/assets-service/declare/commitWaitingConfirm', params);
+	return http.post('/declare/commitWaitingConfirm', params);
 }
 /**
  * 运输工具申报-获取商品信息list接口
@@ -67,7 +67,7 @@ export const getGoodsList = (params) => {
 	params.inOut = store.state.bmhs.inOut;
 	http.config.loading = true;
 	http.config.text = '正在查询...';
-	return http.get('/assets-service/declare/getGoodsList', {
+	return http.get('/declare/getGoodsList', {
 		params: params
 	});
 }
@@ -81,7 +81,7 @@ export const getRecordVehicleList = (params) => {
 	} = uni.getStorageSync('userInfo');
 	params.lshg = customs;
 	params.frontierTrader = region;
-	return http.get('/assets-service/declare/getRecordVehicleList', {
+	return http.get('/declare/getRecordVehicleList', {
 		params: params
 	});
 }
@@ -100,5 +100,5 @@ export const declareTransport = (params)=>{
 	params.frontierTrader = region;
 	params.inOut = store.state.bmhs.inOut;
 	params.idCode = idCode
-	return http.post('/assets-service/declare/declareTransport', params);
+	return http.post('/declare/declareTransport', params);
 }

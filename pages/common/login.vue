@@ -92,6 +92,7 @@
 							if (res.code === '200') {
 								this.$store.state.user.idCardNumber = res.data.idCode;
 								//保存用户信息到store
+								
 								this.setUserInfo(res.data);
 								//缓存用户信息
 								uni.setStorageSync('isLogin', true);

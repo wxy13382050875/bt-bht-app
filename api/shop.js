@@ -4,7 +4,7 @@ import http from '@/utils/base-http.js'
 export const getFindHomeGoods = (params) => {
 	let userInfo = uni.getStorageSync("userInfo");
 	params.userId = userInfo.userId;
-	return http.get('/assets-service/home/findHomeGoods',{
+	return http.get('/home/findHomeGoods',{
 		params: params
 	})
 };
@@ -22,7 +22,7 @@ export const addGoodsCart = (params) => {
 }
 //通过商品id查询商品信息
 export const findGoodsAllInfoByGodosIdAndStoreId = (params) => {
-	return http.get('/assets-service/goods/findGoodsAllInfoByGodosIdAndStoreId',{
+	return http.get('/goods/findGoodsAllInfoByGodosIdAndStoreId',{
 		params: params
 	})
 }
@@ -52,7 +52,7 @@ export const getOrderList = (params) => {
 export const getUserAddressList = (params) => {
 	let userInfo = uni.getStorageSync("userInfo");
 	params.userId = userInfo.userId;
-	return http.get('/assets-service/user/address',{
+	return http.get('/user/address',{
 		params: params
 	})
 }
@@ -60,19 +60,19 @@ export const getUserAddressList = (params) => {
 export const saveUserAddress = (params) => {
 	let userInfo = uni.getStorageSync("userInfo");
 	params.userId = userInfo.userId;
-	return http.post('/assets-service/user/saveAddress',params)
+	return http.post('/user/saveAddress',params)
 }
 //用户登录
 export const login = (params) => {
-	return http.post('/assets-service/user/login',params)
+	return http.post('/user/login',params)
 };
 //注册用户/保存用户信息
 export const saveUser = (params) => {
-	return http.post('/assets-service/user/saveUser',params)
+	return http.post('/user/saveUser',params)
 };
 //注册用户/保存用户信息
 export const deleteAddress = (params) => {
-	return http.post('/assets-service/user/deleteAddress',params)
+	return http.post('/user/deleteAddress',params)
 };
 export const getOrderDetails = (params) => {
 	let userInfo = uni.getStorageSync("userInfo");
@@ -83,7 +83,7 @@ export const getOrderDetails = (params) => {
 }
 //活人认证 http://ds.bt-dev.yndth.cn/assets-service/face/getVerifyToken?bizId=d9d5&bizType=realPersonAuth
 export const getFaceVerifyToken = (params) => {
-	return http.get('/assets-service/face/getVerifyToken',{
+	return http.get('/face/getVerifyToken',{
 		params: params
 	})
 };
