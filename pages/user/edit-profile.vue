@@ -44,13 +44,13 @@
 					<view class="label">证件号码</view>
 					<view class="content"><input type="text" class="input" v-model="formData.idCode" placeholder="请输入证件号码" /></view>
 				</view> -->
-				<view class="aca-cell">
+				<!-- <view class="aca-cell">
 					<view class="label">隶属海关</view>
 					<view class="content" @click="showRegion">
 						<input type="text" class="input" :value="regionText" disabled placeholder="请选择隶属海关" />
 						<view class="arrow-right"><view class="iconfont aca-youjiantou"></view></view>
 					</view>
-				</view>
+				</view> -->
 				<view class="app-btn" @click="handleUpdate">提交</view>
 			</view>
 		</bht-layout-container>
