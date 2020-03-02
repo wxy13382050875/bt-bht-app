@@ -375,7 +375,7 @@ const routesList = [{
 	},
 	{
 		path: '/pages/bmhs/dth-bmhs-rp',
-		name: 'dth-bmhs-rp',
+		name: 'live-face-verify',
 		meta: {
 			title: '人脸识别',
 			auth: {
@@ -383,7 +383,6 @@ const routesList = [{
 				civilStatus: true
 			}
 		}
-	
 	}
 ]
 //导出

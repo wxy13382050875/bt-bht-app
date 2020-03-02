@@ -1,0 +1,1 @@
+<view class="goods-image"><view class="item"><label class="gray_line"></label><label class="title">商品详情</label><label class="gray_line"></label></view><view><block wx:for="{{goodsDetails}}" wx:for-item="item" wx:for-index="index"><image style="width:100%;" src="{{item.pictureUrl}}" mode="widthFix"></image></block></view></view>

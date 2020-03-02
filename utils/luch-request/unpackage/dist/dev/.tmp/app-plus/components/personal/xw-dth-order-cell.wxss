@@ -1,0 +1,162 @@
+@charset "UTF-8";
+/*统计标题样式*/
+/*box*/
+/*统计页面头部 chart-header-bg*/
+.order-info {
+  padding: 0 18rpx;
+  margin-top: 10rpx;
+}
+.order-info .order-info-content {
+    background: #FFFFFF;
+    padding: 0 18rpx;
+}
+.order-info .order-info-content .store-info {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-pack: justify;
+      -webkit-justify-content: space-between;
+              justify-content: space-between;
+      height: 80rpx;
+      line-height: 80rpx;
+}
+.order-info .order-info-content .store-info .item-left {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+                align-items: center;
+}
+.order-info .order-info-content .store-info .item-left .store-logo {
+          width: 34rpx;
+          height: 34rpx;
+}
+.order-info .order-info-content .store-info .item-left .store-name {
+          margin-left: 20rpx;
+          font-size: 32rpx;
+          color: #333333;
+}
+.order-info .order-info-content .store-info .item-left .right-icon {
+          margin-left: 20rpx;
+          width: 16rpx;
+          height: 30rpx;
+}
+.order-info .order-info-content .store-info .item-right {
+        font-size: 26rpx;
+        color: #FF3333;
+}
+.order-info .order-info-content .xw-order-list {
+      border-bottom: 1rpx solid #a7a7a7;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: flex;
+      background: #FFFFFF;
+}
+.order-info .order-info-content .xw-order-list .o-image {
+        margin-left: 20rpx;
+        margin-top: 20rpx;
+        margin-bottom: 20rpx;
+}
+.order-info .order-info-content .xw-order-list .o-image image {
+          width: 240rpx;
+          height: 240rpx;
+}
+.order-info .order-info-content .xw-order-list .o-info {
+        width: 100%;
+        margin-left: 28rpx;
+        display: block;
+        margin-right: 20rpx;
+        margin-top: 20rpx;
+        margin-bottom: 20rpx;
+}
+.order-info .order-info-content .xw-order-list .o-info .title {
+          font-size: 26rpx;
+          color: #333333;
+}
+.order-info .order-info-content .xw-order-list .o-info .specifi {
+          line-height: 80rpx;
+          font-size: 22rpx;
+          color: #999999;
+}
+.order-info .order-info-content .xw-order-list .o-info .delivery {
+          line-height: 80rpx;
+          font-size: 22rpx;
+          color: #999999;
+}
+.order-info .order-info-content .xw-order-list .o-price-num {
+        display: block;
+        margin-right: 20rpx;
+        margin-top: 20rpx;
+        width: 80rpx;
+        text-align: right;
+}
+.order-info .order-info-content .xw-order-list .o-price-num .price {
+          font-size: 22rpx;
+          color: #333333;
+}
+.order-info .order-info-content .xw-order-list .o-price-num .number {
+          font-size: 26rpx;
+          color: #999999;
+}
+.order-info .order-info-content .o-delivery {
+      border-bottom: 1rpx solid #a7a7a7;
+}
+.order-info .order-info-content .o-delivery .o-item {
+        height: 80rpx;
+        line-height: 80rpx;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+                justify-content: space-between;
+        font-size: 26rpx;
+}
+.order-info .order-info-content .o-delivery .o-item .distribution {
+          color: #868686;
+}
+.order-info .order-info-content .o-delivery .o-item .remark {
+          color: #868686;
+}
+.order-info .order-info-content .o-delivery .o-amount {
+        height: 80rpx;
+        line-height: 80rpx;
+        text-align: right;
+        font-size: 26rpx;
+        color: #333333;
+}
+.order-info .order-info-content .o-buttom {
+      background: #FFFFFF;
+      width: 100%;
+      height: 120rpx;
+}
+.order-info .order-info-content .o-buttom .o-btttom-btn {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+                align-items: center;
+        height: 100%;
+        float: right;
+}
+.order-info .order-info-content .o-buttom .o-btttom-btn .border-gray {
+          color: #bbbbbb;
+          font-size: 24rpx;
+          border: 1rpx solid #bbbbbb;
+          background: #FFFFFF;
+          border-radius: 26rpx;
+          opacity: 1;
+          margin-right: 20rpx;
+}
+.order-info .order-info-content .o-buttom .o-btttom-btn .border-red {
+          color: white;
+          font-size: 24rpx;
+          border: 1rpx solid #bbbbbb;
+          background: -webkit-linear-gradient(347deg, #e42332 0%, #e40011 48%, #e20011 51%, #b10613 100%);
+          background: linear-gradient(103deg, #e42332 0%, #e40011 48%, #e20011 51%, #b10613 100%);
+          border-radius: 26rpx;
+          opacity: 1;
+}
+

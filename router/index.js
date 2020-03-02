@@ -26,26 +26,7 @@ router.beforeEach((to, from, next) => {
 				NAVTYPE: 'push'
 			})
 		} else {
-			let {
-				roleId,
-				customs
-			} = uni.getStorageSync('userInfo');
-			if (roleId == 2 && civilStatus) {
-				if (customs == undefined) {
-					next({
-						path: '/pages/user/edit-profile',
-						query: {
-							// redirect: to.meta.title
-						},
-						NAVTYPE: 'push'
-					})
-				} else {
-					next();
-				}
-			} else {
-				next();
-			}
-
+			next();
 		}
 	} else {
 		next()

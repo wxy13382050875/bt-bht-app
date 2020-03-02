@@ -378,7 +378,7 @@
 				}
 			}
 		},
-		//人脸识别界面
+		//活体检测
 		{
 			"path": "pages/bmhs/dth-bmhs-rp",
 			"style": {

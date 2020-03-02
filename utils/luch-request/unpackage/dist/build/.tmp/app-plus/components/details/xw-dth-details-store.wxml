@@ -1,0 +1,1 @@
+<view class="goods-store"><view class="left-item"><image src="{{storeInfo.storePicture||'/static/icon_favicon.ico'}}"></image><view style="margin-left:20rpx;align-items:center;"><view class="title">{{storeInfo.storeName}}</view><view class="describe">{{storeInfo.storeAddress}}</view></view></view><view class="right-item"></view></view>

@@ -1,0 +1,15 @@
+{
+  "navigationStyle": "custom",
+  "disableScroll": true,
+  "titleNView": false,
+  "bounce": "none",
+  "usingComponents": {
+    "bht-layout-container": "/components/common/bht-layout-container",
+    "mescroll-uni": "/third/mescroll-uni/mescroll-uni",
+    "uni-calendar": "/third/uni-calendar/uni-calendar",
+    "universal-nav-bar": "/components/navbar/xw-dth-navbar-universal",
+    "sem-goods-list": "/components/sem/sem-list/sem-goods-list",
+    "sem-goods-footer": "/components/sem/sem-list/sem-goods-footer",
+    "uni-drawer": "/third/uni-drawer/uni-drawer"
+  }
+}

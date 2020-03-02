@@ -1,0 +1,9 @@
+{
+  "navigationStyle": "custom",
+  "disableScroll": true,
+  "bounce": "none",
+  "usingComponents": {
+    "aca-nav-bar": "/third/acaui/nav/header-nav-bar",
+    "bht-layout-container": "/components/common/bht-layout-container"
+  }
+}

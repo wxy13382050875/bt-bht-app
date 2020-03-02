@@ -2,16 +2,7 @@
  * 边民互市接口
  */
 import http from '@/utils/base-http.js'
-import BasUrl from '@/utils/config'
 import store from '@/store'
-
-http.setConfig((config) => {
-	config.baseUrl = BasUrl.BASE_TRADEING_URL
-	config.header = {
-		...config.header
-	}
-	return config
-});
 
 /**
  * 申报数据列表

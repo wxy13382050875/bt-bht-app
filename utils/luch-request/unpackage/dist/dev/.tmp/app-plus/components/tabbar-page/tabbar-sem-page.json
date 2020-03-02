@@ -1,0 +1,9 @@
+{
+  "component": true,
+  "usingComponents": {
+    "bht-layout-container": "/components/common/bht-layout-container",
+    "nav-bar-title": "/components/navbar/navbar-title-default",
+    "nz-checkbox": "/third/acaui/nz-checkbox/nz-checkbox",
+    "xw-dth-grid": "/components/details/xw-dth-grid"
+  }
+}

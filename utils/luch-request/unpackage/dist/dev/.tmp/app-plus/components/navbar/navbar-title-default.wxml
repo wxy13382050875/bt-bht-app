@@ -1,0 +1,1 @@
+<view class="navbar-personal-wrapper data-v-6205c5d4" style="{{'height:'+(statusHeight+navHeight+'px')+';'}}"><view class="status data-v-6205c5d4" style="{{'height:'+(statusHeight+'px')+';'}}"></view><view class="navbar-personal-header data-v-6205c5d4" style="{{'height:'+(navHeight+'px')+';'}}"><view class="title data-v-6205c5d4">{{title}}</view></view></view>

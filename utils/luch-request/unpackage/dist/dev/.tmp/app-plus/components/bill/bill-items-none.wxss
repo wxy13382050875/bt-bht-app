@@ -1,0 +1,86 @@
+@charset "UTF-8";
+/*统计标题样式*/
+/*box*/
+/*统计页面头部 chart-header-bg*/
+.wait-content {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 116rpx;
+  left: 0;
+}
+.wait-footer {
+  position: fixed;
+  bottom: 20rpx;
+  right: 0;
+  left: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  padding: 0 18rpx;
+  height: 94rpx;
+}
+.wait-footer .show {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+            align-items: center;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+            justify-content: space-between;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+            flex: 1;
+    height: 100%;
+    background-color: #f2f2f2;
+}
+.wait-footer .show .check-all {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+              align-items: center;
+      height: 100%;
+      font-size: 34rpx;
+      color: #383838;
+}
+.wait-footer .show .total {
+      margin-right: 31rpx;
+      font-size: 32rpx;
+}
+.wait-footer .btn {
+    width: 158rpx;
+    font-size: 34rpx;
+    color: #fff;
+    text-align: center;
+    line-height: 94rpx;
+    background-color: #ff3333;
+}
+.bill-list .items {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+}
+.bill-list .items .left-check {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+            align-items: center;
+    width: 50rpx;
+}
+.bill-list .items .right-content {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+            flex: 1;
+    margin-left: 21rpx;
+}
+.bill-list .items .right-content .line::before {
+      right: 0;
+      left: 0;
+}
+

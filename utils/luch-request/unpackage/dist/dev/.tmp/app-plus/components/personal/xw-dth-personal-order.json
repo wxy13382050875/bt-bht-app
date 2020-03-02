@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "grid": "/components/details/xw-dth-grid"
+  }
+}

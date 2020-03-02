@@ -1,0 +1,1 @@
+<view class="dec-footer data-v-3a1e4a8a"><view data-event-opts="{{[['tap',[['postData',['$event']]]]]}}" class="btn data-v-3a1e4a8a" bindtap="__e">确认申报</view></view>

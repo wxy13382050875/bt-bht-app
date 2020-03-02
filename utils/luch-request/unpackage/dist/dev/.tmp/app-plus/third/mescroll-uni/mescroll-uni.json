@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "mescroll-empty": "/third/mescroll-uni/components/mescroll-empty",
+    "mescroll-top": "/third/mescroll-uni/components/mescroll-top"
+  }
+}

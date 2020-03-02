@@ -1,0 +1,11 @@
+{
+  "navigationStyle": "custom",
+  "disableScroll": true,
+  "titleNView": false,
+  "bounce": "none",
+  "usingComponents": {
+    "bht-layout-container": "/components/common/bht-layout-container",
+    "lb-picker": "/third/lb-picker/index",
+    "navbar-back-address-edit": "/components/navbar/navbar-back-address-edit"
+  }
+}

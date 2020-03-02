@@ -1,0 +1,94 @@
+@charset "UTF-8";
+/*统计标题样式*/
+/*box*/
+/*统计页面头部 chart-header-bg*/
+.header-box.data-v-3b249ffa {
+  padding: 12px;
+  height: 120px;
+}
+.header-box .box.data-v-3b249ffa {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+            flex-direction: column;
+    height: 100%;
+    border-radius: 14px;
+    background-color: #fff;
+    box-shadow: 0 0 13px 0px #dddddd;
+}
+.header-box .box .header.data-v-3b249ffa {
+      position: relative;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+              align-items: center;
+      -webkit-box-pack: justify;
+      -webkit-justify-content: space-between;
+              justify-content: space-between;
+      padding: 0 12px;
+      height: 32px;
+      font-size: 29rpx;
+}
+.header-box .box .header.data-v-3b249ffa::after {
+        content: '';
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        height: 1px;
+        background-color: #EEEEEE;
+}
+.header-box .box .body.data-v-3b249ffa {
+      -webkit-box-flex: 1;
+      -webkit-flex: 1;
+              flex: 1;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: column;
+              flex-direction: column;
+}
+.header-box .box .body .title.data-v-3b249ffa {
+        font-size: 29rpx;
+        color: #8d8d8d;
+}
+.header-box .box .body .value.data-v-3b249ffa {
+        font-size: 33rpx;
+        color: #333;
+}
+.header-box .box .body .title.data-v-3b249ffa,
+      .header-box .box .body .value.data-v-3b249ffa {
+        -webkit-box-flex: 1;
+        -webkit-flex: 1;
+                flex: 1;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+                justify-content: space-between;
+}
+.header-box .box .body .title label.data-v-3b249ffa,
+        .header-box .box .body .value label.data-v-3b249ffa {
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: flex;
+          -webkit-box-align: center;
+          -webkit-align-items: center;
+                  align-items: center;
+          -webkit-box-pack: center;
+          -webkit-justify-content: center;
+                  justify-content: center;
+          -webkit-box-flex: 1;
+          -webkit-flex: 1;
+                  flex: 1;
+          text-align: center;
+}
+

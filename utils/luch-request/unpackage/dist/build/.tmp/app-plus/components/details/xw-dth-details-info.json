@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "xw-dth-banner": "/components/details/xw-dth-banner"
+  }
+}

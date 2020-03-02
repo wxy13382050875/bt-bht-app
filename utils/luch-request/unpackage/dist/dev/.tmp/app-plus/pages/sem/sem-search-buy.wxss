@@ -1,0 +1,104 @@
+@charset "UTF-8";
+/*统计标题样式*/
+/*box*/
+/*统计页面头部 chart-header-bg*/
+.sem-search-container .goods-list-container {
+  position: absolute;
+  top: 0;
+  bottom: 114rpx;
+  width: 100%;
+}
+.sem-search-container .navTitle {
+  color: #fff;
+}
+.sem-search-container .right-drawer .dialog-title {
+  background: #f3f3f3;
+  width: 100%;
+  height: 44px;
+  line-height: 44px;
+  text-align: center;
+  color: #898989;
+  font-size: 30rpx;
+}
+.sem-search-container .right-drawer .flitter-item .item-attr {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  height: 120rpx;
+  line-height: 120rpx;
+}
+.sem-search-container .right-drawer .flitter-item .item-attr .item-name {
+    width: 160rpx;
+    font-size: 30rpx;
+    color: #6b6b6b;
+    text-align: right;
+}
+.sem-search-container .right-drawer .flitter-item .item-attr .item-form-input {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    height: 80rpx;
+    line-height: 80rpx;
+    margin-right: 10rpx;
+    margin-left: 10rpx;
+    border-radius: 10rpx;
+    border: 1rpx solid #898989;
+}
+.sem-search-container .right-drawer .flitter-item .item-attr .item-form-input .item-input {
+      margin-left: 10rpx;
+      height: 100%;
+      width: 360rpx;
+}
+.sem-search-container .right-drawer .flitter-item .item-attr .item-form-input input::-ms-input-placeholder {
+      font-size: 28rpx;
+      color: #898989;
+}
+.sem-search-container .right-drawer .flitter-item .item-attr .item-form-input .arrow-right {
+      width: 60rpx;
+      height: 60rpx;
+}
+.sem-search-container .right-drawer .dialog-bottom {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  width: 100%;
+  height: 119rpx;
+  opacity: 1;
+  position: fixed;
+  bottom: 0;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+}
+.sem-search-container .right-drawer .dialog-bottom .dialog-finish {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+            justify-content: space-between;
+    width: 325rpx;
+}
+.sem-search-container .right-drawer .dialog-bottom .dialog-finish .finish-btn {
+      height: 58rpx;
+      line-height: 58rpx;
+      width: 156rpx;
+      color: #ffffff;
+      font-size: 30rpx;
+      background: #ff3300;
+}
+.sem-search-container .right-drawer .dialog-bottom .dialog-finish .reset-btn {
+      height: 58rpx;
+      line-height: 58rpx;
+      width: 156rpx;
+      color: #ff3300;
+      font-size: 30rpx;
+      border: 1rpx solid #ff3300;
+}
+

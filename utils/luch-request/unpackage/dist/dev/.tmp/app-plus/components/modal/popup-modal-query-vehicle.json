@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "bht-layout-container": "/components/common/bht-layout-container",
+    "uni-calendar": "/third/uni-calendar/uni-calendar",
+    "popup-nav-bar": "/third/acaui/nav/popup-nav-bar"
+  }
+}

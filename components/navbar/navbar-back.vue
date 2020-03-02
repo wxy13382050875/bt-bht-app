@@ -3,7 +3,7 @@
 		<view class="status" :style="{ height: statusHeight + 'px' }"></view>
 		<view class="navbar-back-wrapper" :style="{ height: navHeight + 'px' }">
 			<view class="nav-back-wrapper">
-				<view class="nav-back" @click="backToPrev"><label class="icon iconfont aca-fanhui1"></label></view>
+				<view class="nav-back" @click="backToPrev"><label class="icon iconfont icon-nav-back"></label></view>
 				<view class="title">
 					<label>{{ title }}</label>
 				</view>

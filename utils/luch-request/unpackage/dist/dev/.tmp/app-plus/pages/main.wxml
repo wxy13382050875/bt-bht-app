@@ -1,0 +1,1 @@
+<view class="xxx"><tabbar-map-page vue-id="1" bind:__l="__l"></tabbar-map-page><stat-page vue-id="2" bind:__l="__l"></stat-page><tabbar-sem-page vue-id="3" bind:__l="__l"></tabbar-sem-page><shopping-cart vue-id="4" bind:__l="__l"></shopping-cart><my-page vue-id="5" bind:__l="__l"></my-page><tab-bar vue-id="6" tabbar="{{tabbar}}" bind:__l="__l"></tab-bar></view>
