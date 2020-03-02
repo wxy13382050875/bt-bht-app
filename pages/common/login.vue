@@ -96,6 +96,7 @@
 								this.setUserInfo(res.data);
 								//缓存用户信息
 								uni.setStorageSync('isLogin', true);
+								uni.setStorageSync('token', res.data.token);
 								uni.setStorageSync('userInfo', res.data);
 								this.setRoleMenu(res.data.roleId);
 								this.setAddress(res.data.defaultAddress, null);

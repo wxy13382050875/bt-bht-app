@@ -49,51 +49,5 @@ export const updateUserInfo = (params) => {
 //找回密码
 export const forgetPassword = (params) => {
 	return http.post('/user/resetPassword', params)
-	// uni.showLoading({
-	// 	title: '正在努力提交...',
-	// 	mask: true
-	// });
-	// return new Promise((resolve, reject) => {
-	// 	bht_http.post("/assets-service/user/resetPassword", params, {
-	// 		header: {
-	// 			'content-type': 'application/x-www-form-urlencoded'
-	// 		}
-	// 	}).then(res => {
-	// 		uni.hideLoading();
-	// 		resolve(res);
-	// 	}).catch(error => {
-	// 		uni.hideLoading();
-	// 		reject(error);
-	// 	})
-	// })
-}
-/**
- * 获取token
- */
-export const getVerifyToken = (params) => {
-	http.config.loading = true;
-	http.config.text = '正在加载...'
-	return http.get('/face/getVerifyToken', {
-		params: params
-	})
-}
-
-/**
- * 获取认证结果
- */
-export const getVerifyResult = (params) => {
 	
-	return http.get('/face/getVerifyResult', {
-		params: params
-	})
-}
-
-/**
- * 获取认证结果底图
- */
-export const getFaceImageUrl = (params) => {
-	
-	return http.get('/face/getFaceImageUrl', {
-		params: params
-	})
 }

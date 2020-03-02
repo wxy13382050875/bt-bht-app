@@ -75,6 +75,7 @@ export default {
 		loginout() {
 			this.setTabBarIndex('index');
 			uni.setStorageSync('isLogin', false);
+			uni.setStorageSync('token', '');
 			uni.redirectTo({
 				url: '/pages/common/login'
 			});

@@ -117,7 +117,7 @@ export const mixin_dth_rp_aly = {
 							data
 						} = res;
 						if (data.verifyStatus == 1) {
-
+							
 							if (this.faceVerifyParams.bizType == 'realPersonAuth') {
 								////实人认证 需要跟身身份证做比较
 								//比较实人认证和填写身份证是否是同一人
@@ -137,12 +137,12 @@ export const mixin_dth_rp_aly = {
 						reject(error);
 					})
 				} else if (status == 'AUDIT_FAIL') {
-					reject("认证失败");
+					//reject("SDK==>认证失败 CODE==>" + sdkCode);
 
 				} else if (status == 'AUDIT_NOT') {
-					reject("认证失败");
+					//reject("SDK==>未完成认证  CODE==>" + sdkCode);
 				} else {
-					reject("认证失败");
+					reject("SDK==>未知失败  CODE==>" + sdkCode);
 				}
 			})
 		}

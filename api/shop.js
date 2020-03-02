@@ -77,15 +77,10 @@ export const deleteAddress = (params) => {
 export const getOrderDetails = (params) => {
 	let userInfo = uni.getStorageSync("userInfo");
 	params.userId = userInfo.userId;
-	return http.get('/order-service/order/getDetails',{
+	return http.get('/order/getDetails',{
 		params: params
 	})
 }
-//活人认证 http://ds.bt-dev.yndth.cn/assets-service/face/getVerifyToken?bizId=d9d5&bizType=realPersonAuth
-export const getFaceVerifyToken = (params) => {
-	return http.get('/face/getVerifyToken',{
-		params: params
-	})
-};
+
 
 

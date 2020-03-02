@@ -9,7 +9,7 @@ import http from './base.js'
  */
 export const queryGoodsListByIdCard = (params) => {
 	http.config.loading = true;
-	return http.post('/assets-service/btMark/appShop', params, {
+	return http.post('/btMark/appShop', params, {
 		header: {
 			'Content-Type': 'application/x-www-form-urlencoded'
 		}
@@ -28,7 +28,7 @@ export const submitOrder = (params) => {
 		organization: '860301',
 		ids: params
 	}
-	return http.post('/assets-service/btMark/appOrder', JSON.stringify(appOrderResqVo));
+	return http.post('/btMark/appOrder', JSON.stringify(appOrderResqVo));
 }
 /**
  * 查询商品列表
@@ -37,7 +37,7 @@ export const searchGoodsList = (params) => {
 	http.config.loading = true;
 	http.config.text = '正在查询...';
 	params.organization = '860301';
-	return http.get('/assets-service/btMark/goodsSearch', {
+	return http.get('/btMark/goodsSearch', {
 		params: params
 	});
 }
@@ -48,7 +48,7 @@ export const searchOrderList = (params) => {
 	http.config.loading = true;
 	http.config.text = '正在查询...';
 	params.organization = '860301';
-	return http.get('/assets-service/btMark/search', {
+	return http.get('/btMark/search', {
 		params: params
 	});
 }

@@ -9,7 +9,7 @@ import http from '@/utils/base-http.js'
 export const getVerifyToken = (params) => {
 	http.config.loading = true;
 	http.config.text = '正在加载...'
-	return http.get('/assets-service/face/getVerifyToken', {
+	return http.get('/face/getVerifyToken', {
 		params: params
 	})
 }
@@ -19,7 +19,7 @@ export const getVerifyToken = (params) => {
  */
 export const getVerifyResult = (params) => {
 
-	return http.get('/assets-service/face/getVerifyResult', {
+	return http.get('/face/getVerifyResult', {
 		params: params
 	})
 }
@@ -29,7 +29,7 @@ export const getVerifyResult = (params) => {
  */
 export const getFaceImageUrl = (params) => {
 
-	return http.get('/assets-service/face/getFaceImageUrl', {
+	return http.get('/face/getFaceImageUrl', {
 		params: params
 	})
 }
@@ -42,5 +42,5 @@ export const getFaceImageUrl = (params) => {
 export const getCivilFaceStatus = (params) => {
 	http.config.loading = true;
 	http.config.text = '正在验证信息...'
-	return http.post('/assets-service/face/setCivilFaceStatus', params);
+	return http.post('/face/setCivilFaceStatus', params);
 }
