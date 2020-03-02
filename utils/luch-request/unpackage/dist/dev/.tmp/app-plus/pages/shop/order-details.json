@@ -1,0 +1,9 @@
+{
+  "navigationStyle": "custom",
+  "disableScroll": true,
+  "bounce": "none",
+  "usingComponents": {
+    "nav-bar-back": "/components/navbar/navbar-back",
+    "bht-layout-container": "/components/common/bht-layout-container"
+  }
+}

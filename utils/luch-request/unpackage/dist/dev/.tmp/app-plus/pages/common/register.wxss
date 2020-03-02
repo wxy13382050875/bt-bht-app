@@ -1,0 +1,18 @@
+@charset "UTF-8";
+/*统计标题样式*/
+/*box*/
+/*统计页面头部 chart-header-bg*/
+.app-register.data-v-c4065826 {
+  padding: 60rpx 60rpx 0;
+}
+.app-register .se-code.data-v-c4065826 {
+    margin: 0 24rpx;
+    font-size: 30rpx;
+    color: #e40011;
+}
+.app-register .arrow-right.data-v-c4065826 {
+    width: 80rpx;
+    text-align: center;
+    color: #a9a8a8;
+}
+

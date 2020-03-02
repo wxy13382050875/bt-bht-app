@@ -1,0 +1,53 @@
+
+.uni-numbox.data-v-716f58f9 {
+	display: -webkit-inline-box;
+	display: -webkit-inline-flex;
+	display: inline-flex;
+	-webkit-box-pack: start;
+	-webkit-justify-content: flex-start;
+	        justify-content: flex-start;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	/* height: 50upx; */
+	position: relative;
+	border: 1px solid #c0c0c0;
+	border-radius: 8rpx;
+}
+.uni-numbox-minus.data-v-716f58f9,
+.uni-numbox-plus.data-v-716f58f9 {
+	margin: 0;
+	background-color: #fff;
+	width: 50rpx;
+	height: 50rpx;
+	font-size: 30rpx;
+	line-height: 50rpx;
+	text-align: center;
+	display: -webkit-inline-box;
+	display: -webkit-inline-flex;
+	display: inline-flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
+	color: #333;
+	position: relative;
+	border-radius: 8rpx;
+}
+.uni-numbox-value.data-v-716f58f9 {
+	position: relative;
+	width: 52px;
+	height: 50rpx;
+	line-height: 50rpx;
+	text-align: center;
+	padding: 0;
+	font-size: 30rpx;
+	border-left: 1px solid #c0c0c0;
+	border-right: 1px solid #c0c0c0;
+}
+.uni-numbox-disabled.data-v-716f58f9 {
+	color: #d6d6d6;
+}
+

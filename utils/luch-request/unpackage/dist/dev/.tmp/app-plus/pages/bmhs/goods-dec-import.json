@@ -1,0 +1,12 @@
+{
+  "navigationStyle": "custom",
+  "titleNView": false,
+  "bounce": "none",
+  "usingComponents": {
+    "nav-bar-back": "/components/navbar/navbar-back",
+    "bht-layout-container": "/components/common/bht-layout-container",
+    "goods-header-box": "/components/bmhs/goods/goods-header-box",
+    "goods-data-list": "/components/bmhs/goods/goods-data-list",
+    "goods-footer": "/components/bmhs/goods/goods-footer"
+  }
+}

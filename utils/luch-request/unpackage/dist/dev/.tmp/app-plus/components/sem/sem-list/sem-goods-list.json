@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "nz-checkbox": "/third/acaui/nz-checkbox/nz-checkbox"
+  }
+}

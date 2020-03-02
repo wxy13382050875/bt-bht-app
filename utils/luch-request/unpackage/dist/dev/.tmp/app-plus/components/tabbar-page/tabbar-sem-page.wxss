@@ -1,0 +1,12 @@
+@charset "UTF-8";
+/*统计标题样式*/
+/*box*/
+/*统计页面头部 chart-header-bg*/
+.sem-index-container .header {
+  height: 255rpx;
+}
+.sem-index-container .header .bg {
+    width: 100%;
+    height: 100%;
+}
+

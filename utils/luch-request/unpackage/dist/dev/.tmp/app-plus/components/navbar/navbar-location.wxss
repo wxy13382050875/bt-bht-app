@@ -1,0 +1,151 @@
+@charset "UTF-8";
+/*统计标题样式*/
+/*box*/
+/*统计页面头部 chart-header-bg*/
+.nav {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1993;
+  text-align: center;
+  background: -webkit-linear-gradient(left, #e42332, #e40011, #b10613);
+  background: linear-gradient(90deg, #e42332, #e40011, #b10613);
+}
+.navbar {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+  padding: 0 18rpx;
+}
+.navbar .nav-logo-wrapper {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+            flex: 1;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+            align-items: center;
+    height: 100%;
+}
+.navbar .nav-logo-wrapper .nav-logo {
+      margin-left: 66rpx;
+      width: 179rpx;
+      height: 57rpx;
+}
+.navbar .navbar-right {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+            align-items: center;
+}
+.navbar .navbar-right .nav-bar-icon {
+      width: 39rpx;
+      height: 39rpx;
+}
+.navbar .navbar-right .title {
+      font-size: 22rpx;
+      color: #fff;
+}
+.navbar .navbar-location {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+            align-items: center;
+    height: 100%;
+}
+.navbar .navbar-location .icon {
+      width: 27rpx;
+      height: 32rpx;
+}
+.navbar .navbar-location .title {
+      margin-left: 5px;
+      font-size: 28rpx;
+      color: #fff;
+}
+.navbar .nav-level-2 {
+    position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+            align-items: center;
+    width: 100%;
+    height: 100%;
+}
+.navbar .nav-level-2 .nav-back {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: flex;
+      width: 32px;
+      height: 100%;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+              align-items: center;
+      color: #fff;
+      font-size: 34rpx;
+      z-index: 22;
+}
+.navbar .nav-level-2 .nav-back .icon {
+        font-size: 34rpx;
+}
+.navbar .nav-level-2 .nav-back .back-title {
+        margin-left: 10rpx;
+}
+.navbar .nav-level-2 .title {
+      position: absolute;
+      left: 0;
+      right: 0;
+      -webkit-box-flex: 1;
+      -webkit-flex: 1;
+              flex: 1;
+      font-size: 30rpx;
+      color: #fff;
+      text-align: center;
+}
+.navbar .navbar-capsule {
+    position: absolute;
+    width: 85px;
+    height: 30px;
+    border: 1px solid #c7c7c7;
+    border-radius: 50px;
+    background-color: trans;
+}
+.navbar .navbar-capsule {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+            align-items: center;
+}
+.navbar .navbar-capsule .navbar-icon {
+      -webkit-box-flex: 1;
+      -webkit-flex: 1;
+              flex: 1;
+      font-size: 40rpx;
+      color: #fff;
+}
+.navbar .navbar-capsule .navbar-iccon-split {
+      width: 1px;
+      height: 85%;
+      background: #c7c7c7;
+}
+

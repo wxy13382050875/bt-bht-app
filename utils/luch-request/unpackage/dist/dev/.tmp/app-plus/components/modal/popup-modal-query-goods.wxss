@@ -1,0 +1,78 @@
+@charset "UTF-8";
+/*统计标题样式*/
+/*box*/
+/*统计页面头部 chart-header-bg*/
+.aca-popup.data-v-c26d20d8 {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: #fff;
+  z-index: 19931120;
+}
+.form-wrapper.data-v-c26d20d8 {
+  padding: 0 18rpx;
+}
+.form-wrapper .form-item.data-v-c26d20d8 {
+    margin-top: 20rpx;
+}
+.form-wrapper .form-item .form-title.data-v-c26d20d8 {
+      margin-bottom: 10rpx;
+      font-size: 30rpx;
+      color: #383838;
+}
+.form-wrapper .form-item .form-input.data-v-c26d20d8 {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+              align-items: center;
+      height: 80rpx;
+      background: #f2f2f2;
+      border-radius: 8px;
+}
+.form-wrapper .form-item .form-input .input.data-v-c26d20d8 {
+        -webkit-box-flex: 1;
+        -webkit-flex: 1;
+                flex: 1;
+        padding-left: 20rpx;
+        font-size: 28rpx;
+}
+.form-wrapper .form-btn.data-v-c26d20d8 {
+    margin-top: 30rpx;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+}
+.form-wrapper .form-btn .rest-btn.data-v-c26d20d8,
+    .form-wrapper .form-btn .query-btn.data-v-c26d20d8 {
+      -webkit-box-flex: 1;
+      -webkit-flex: 1;
+              flex: 1;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+              align-items: center;
+      -webkit-box-pack: center;
+      -webkit-justify-content: center;
+              justify-content: center;
+      height: 94rpx;
+      font-size: 34rpx;
+}
+.form-wrapper .form-btn .rest-btn.data-v-c26d20d8 {
+      background: #f2f2f2;
+      color: #383838;
+}
+.form-wrapper .form-btn .query-btn.data-v-c26d20d8 {
+      background: #ff3333;
+      color: white;
+}
+.radio.data-v-c26d20d8 {
+  margin-right: 18rpx;
+  font-size: 28rpx;
+}
+

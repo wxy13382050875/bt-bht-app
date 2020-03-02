@@ -1,0 +1,1 @@
+<view class="goods-recommend"><view class="item"><label class="gray_line"></label><label class="title">看了又看</label><label class="gray_line"></label></view><goods-items vue-id="1" dataSource="{{dataSource.list}}" count="{{2}}" bind:__l="__l"></goods-items></view>

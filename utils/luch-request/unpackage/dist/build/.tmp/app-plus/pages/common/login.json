@@ -1,0 +1,11 @@
+{
+  "navigationStyle": "custom",
+  "disableScroll": true,
+  "bounce": "none",
+  "softinputNavBar": "none",
+  "softinputMode": "adjustResize",
+  "usingComponents": {
+    "bht-layout-container": "/components/common/bht-layout-container",
+    "nav-bar-title": "/components/navbar/navbar-title-default"
+  }
+}

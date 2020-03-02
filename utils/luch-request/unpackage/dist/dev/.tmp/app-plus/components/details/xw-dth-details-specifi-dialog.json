@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "uni-popup": "/third/uni-popup/uni-popup",
+    "stepper": "/third/stepper/stepper"
+  }
+}

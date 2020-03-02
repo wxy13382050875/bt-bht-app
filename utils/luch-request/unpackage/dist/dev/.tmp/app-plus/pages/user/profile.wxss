@@ -1,0 +1,63 @@
+@charset "UTF-8";
+/*统计标题样式*/
+/*box*/
+/*统计页面头部 chart-header-bg*/
+.profile-content.data-v-3951a8a2 {
+  padding: 0 18rpx;
+}
+.aca-cell.data-v-3951a8a2 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  font-size: 30rpx;
+  color: #6b6b6b;
+  height: 80rpx;
+}
+.aca-cell.data-v-3951a8a2::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 2rpx;
+    background: #e5e5e5;
+}
+.aca-cell .label.data-v-3951a8a2 {
+    width: 120rpx;
+}
+.aca-cell .content.data-v-3951a8a2 {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+            flex: 1;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: end;
+    -webkit-justify-content: flex-end;
+            justify-content: flex-end;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+            align-items: center;
+    text-align: right;
+}
+.aca-cell .content .input.data-v-3951a8a2 {
+      text-align: right;
+      font-size: 30rpx;
+}
+.aca-cell .content .arrow-right.data-v-3951a8a2 {
+      margin-left: 18rpx;
+      color: #AAAAAA;
+}
+.app-btn.data-v-3951a8a2 {
+  margin-top: 140rpx;
+  text-align: center;
+  line-height: 94rpx;
+}
+
