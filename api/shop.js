@@ -3,10 +3,7 @@ import http from '@/utils/base-http.js'
 //获取首页数据
 export const getFindHomeGoods = (params) => {
 	let userInfo = uni.getStorageSync("userInfo");
-	params.userId = userInfo.userId;
-	return http.get('/home/findHomeGoods',{
-		params: params
-	})
+	return http.get(`/home/${userInfo.userId}`);
 };
 
 //分页获取最新商品

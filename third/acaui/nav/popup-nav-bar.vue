@@ -4,7 +4,7 @@
 		<view class='navbar' :style="{height: navHeight +'px'}">
 			<view class="nav-level-2">
 				<view class="nav-back" @click="backToPrev">
-					<label class="icon iconfont aca-fanhui1"></label>
+					<label class="icon iconfont icon-nav-back"></label>
 					<!-- <text class="back-title">返回</text> -->
 				</view>
 				<view class="title">{{title}}</view>
@@ -14,7 +14,10 @@
 </template>
 
 <script>
-	import { mapActions, mapGetters } from 'vuex';
+	import {
+		mapActions,
+		mapGetters
+	} from 'vuex';
 	export default {
 		props: {
 			/*风格*/
@@ -93,7 +96,10 @@
 				flex: 1;
 				font-size: 30rpx;
 				color: $text-color-white;
-				text-align: center;
+				height: 100%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
 			}
 		}
 
@@ -115,6 +121,7 @@
 				font-size: 40rpx;
 				color: #fff;
 			}
+
 			.navbar-iccon-split {
 				width: 1px;
 				height: 85%;

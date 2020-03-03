@@ -138,11 +138,11 @@ export default {
 				// 	checkRule: '18',
 				// 	errorMsg: '证件号不合法'
 				// },
-				{
-					name: 'customs',
-					checkType: 'notnull',
-					errorMsg: '请选择隶属海关'
-				}
+				// {
+				// 	name: 'customs',
+				// 	checkType: 'notnull',
+				// 	errorMsg: '请选择隶属海关'
+				// }
 			];
 			var valid = formValidate.check({ ...this.formData }, rule);
 			if (valid) {

@@ -1,6 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "uni-search-bar": "/third/uni-search-bar/uni-search-bar"
-  }
-}

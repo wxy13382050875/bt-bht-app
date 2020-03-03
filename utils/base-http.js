@@ -7,18 +7,31 @@ import BasUrl from '@/utils/config'
 var http = new Request();
 
 http.setConfig((config) => {
-	config.baseUrl = BasUrl.BASE_BHT_DEV_URL
+	if (process.env.NODE_ENV === 'development') {
+		//测试环境地址
+		config.baseUrl = BasUrl.BASE_BHT_DEV_URL
+	} else {
+		//生产环境地址
+		config.baseUrl = BasUrl.BASE_BHT_DEV_URL
+	}
 	return config
 })
+
+http.validateStatus = (statusCode) => {
+	return statusCode === 200
+}
 
 http.interceptor.request((config, cancel) => {
 	if (http.config.loading) {
 		uni.showLoading({
-			title: http.config.text || '请求中...',
-			success() {
-				http.config.text = '';
-			}
+			title: http.config.text || '请求中...'
 		});
+	}
+	if (uni.getStorageSync('token')) {
+		config.header = {
+			...config.header,
+			'Authorization': uni.getStorageSync('token')
+		}
 	}
 	return config;
 })
@@ -33,14 +46,18 @@ http.interceptor.response((response) => {
 		http.config.text = '';
 		uni.hideLoading();
 	}
+
 	if (data.code != "200") {
-		//handlerError(data.code, data.msg);
-		return Promise.reject(response)
+		if (process.env.NODE_ENV === 'development') {
+			handlerError(data.code, data.msg);
+			return Promise.reject(response);
+		} else {
+			return Promise.reject(response);
+		}
 	}
 	return data
 }, (response) => {
-	handlerError(response.statusCode, '');
-
+	handlerError(response.statusCode, response.msg)
 	return response
 })
 
@@ -49,21 +66,28 @@ http.interceptor.response((response) => {
  * @param {Object} statusCode
  */
 function handlerError(statusCode, msg) {
-	switch (statusCode) {
-		case 404:
+	if (statusCode == '401') {
+		uni.showToast({
+			title: '登陆失效',
+			icon: 'none',
+			success() {
+				setTimeout(() => {
+					uni.redirectTo({
+						url: '/pages/common/login'
+					})
+				})
+			}
+		})
+	} else {
+		if (process.env.NODE_ENV === 'development') {
 			uni.showToast({
+				title: "CODE==>" + statusCode + "   msg==>" + msg,
 				icon: 'none',
-				title: '未请求到资源'
+				duration: 5000 * 2
 			})
-			break;
-		default:
-			uni.showToast({
-				icon: 'none',
-				title: msg,
-				duration: 3000
-			})
-			break;
+		}
 	}
+
 }
 
 export default http;

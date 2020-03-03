@@ -3,7 +3,8 @@
 		<!--轮播-->
 		<swiper class="swiper" :autoplay="type === 'index' ? true : false" interval="3000" :indicator-dots="indicatorDots" duration="300" circular="true" @change="changeSwiper">
 			<swiper-item v-for="(item, index) in dataSource" :key="index">
-				<navigator class="navigator" v-if="type === 'index'" :url="'/pages/shop/goods-details?id=' + item.id" hover-class="none">
+				<!-- :url="'/pages/shop/goods-details?id=' + item.id" -->
+				<navigator class="navigator" v-if="type === 'index'" hover-class="none">
 					<image :src="item.pictureUrl" mode="widthFix" class="img"></image>
 				</navigator>
 				<image class="img" v-if="type === 'details'" :src="item.pictureUrl" mode="widthFix"></image>

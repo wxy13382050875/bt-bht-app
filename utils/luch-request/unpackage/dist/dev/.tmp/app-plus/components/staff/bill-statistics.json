@@ -1,6 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "bht-num-count": "/components/common/bht-num-count"
-  }
-}

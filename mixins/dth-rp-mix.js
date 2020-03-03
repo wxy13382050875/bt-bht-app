@@ -137,12 +137,12 @@ export const mixin_dth_rp_aly = {
 						reject(error);
 					})
 				} else if (status == 'AUDIT_FAIL') {
-					//reject("SDK==>认证失败 CODE==>" + sdkCode);
-
+					reject("认证失败")
 				} else if (status == 'AUDIT_NOT') {
+					reject("未完成认证")
 					//reject("SDK==>未完成认证  CODE==>" + sdkCode);
 				} else {
-					reject("SDK==>未知失败  CODE==>" + sdkCode);
+					reject("认证失败");
 				}
 			})
 		}

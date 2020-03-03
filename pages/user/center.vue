@@ -71,7 +71,7 @@
 			...mapActions('user', ['setUserInfo', 'setLoginStatus']),
 			//退出处理
 			loginOut() {
-				uni.removeStorageSync('userInfo');
+				uni.clearStorageSync();
 				this.setUserInfo({})
 				this.setLoginStatus(false)
 				this.$Router.push({

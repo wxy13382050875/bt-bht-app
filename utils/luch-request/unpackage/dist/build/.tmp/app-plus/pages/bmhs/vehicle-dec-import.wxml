@@ -1,1 +1,0 @@
-<view><nav-bar-back vue-id="1" title="进境运输工具申报" popType="0" bind:__l="__l"></nav-bar-back><vehicle-dec-com vue-id="2" bind:__l="__l"></vehicle-dec-com></view>

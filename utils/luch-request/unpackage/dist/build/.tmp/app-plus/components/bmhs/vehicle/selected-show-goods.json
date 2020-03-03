@@ -1,7 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "bht-layout-container": "/components/common/bht-layout-container",
-    "popup-nav-bar": "/third/acaui/nav/popup-nav-bar"
-  }
-}

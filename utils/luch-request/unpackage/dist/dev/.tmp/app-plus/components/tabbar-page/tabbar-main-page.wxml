@@ -1,1 +1,0 @@
-<view hidden="{{!(pageFlag===tabBarFlag)}}"><tabbar-shop-home vue-id="1" bind:__l="__l"></tabbar-shop-home></view>

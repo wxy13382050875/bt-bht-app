@@ -1,1 +1,0 @@
-<view class="goods-params"><view data-event-opts="{{[['tap',[['showParamDialog',['$event']]]]]}}" class="params-item" bindtap="__e"><view class="leftlabel">商品参数</view><view class="rightlabel"><view>查看</view><image src="../../static/icon/icon_right_arrow.png"></image></view></view></view>

@@ -1,8 +1,0 @@
-{
-  "navigationStyle": "custom",
-  "titleNView": false,
-  "usingComponents": {
-    "nav-bar-back": "/components/navbar/navbar-back",
-    "vehicle-dec-com": "/components/bmhs/vehicle/vehicle-dec-com"
-  }
-}

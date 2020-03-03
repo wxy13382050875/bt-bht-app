@@ -132,35 +132,37 @@
 						title: '提示',
 						content: '是否确认申报？',
 						success: (res) => {
-							let seqNoArr = [];
-							this.goodsList.forEach((item, index) => {
-								let seqObj = {
-									seqno: item.seqNo
-								}
-								seqNoArr.push(seqObj);
-							})
-							this.decData.goodsList = seqNoArr;
-							declareTransport(this.decData).then(res => {
-								if (res.code == '200') {
-									uni.showToast({
-										title: '运输工具申报成功',
-										icon: 'success',
-										duration: 3000,
-
-									})
-									setTimeout(() => {
-										uni.redirectTo({
-											url: '/pages/main'
-										})
-									}, 2000)
-								}
-							}).catch(error => {
-								uni.showToast({
-									title: error.msg,
-									icon: 'none',
-									duration: 3000
+							if (res.confirm) {
+								let seqNoArr = [];
+								this.goodsList.forEach((item, index) => {
+									let seqObj = {
+										seqno: item.seqNo
+									}
+									seqNoArr.push(seqObj);
 								})
-							})
+								this.decData.goodsList = seqNoArr;
+								declareTransport(this.decData).then(res => {
+									if (res.code == '200') {
+										uni.showToast({
+											title: '运输工具申报成功',
+											icon: 'success',
+											duration: 3000,
+
+										})
+										setTimeout(() => {
+											uni.redirectTo({
+												url: '/pages/main'
+											})
+										}, 2000)
+									}
+								}).catch(error => {
+									uni.showToast({
+										title: error.msg,
+										icon: 'none',
+										duration: 3000
+									})
+								})
+							}
 						}
 					})
 				} else {

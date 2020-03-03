@@ -1,7 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "mescroll-uni": "/third/mescroll-uni/mescroll-uni",
-    "ordercell": "/components/personal/xw-dth-order-cell"
-  }
-}
