@@ -1,11 +1,12 @@
 import http from '@/utils/base-http.js'
+import novalid_http from '@/utils/novalid-http.js'
 import BasUrl from '@/utils/config'
 
 
 //用户登录
 export const login = (params) => {
 	http.config.loading = true;
-	return http.get('user/login', {
+	return novalid_http.get('user/login', {
 		params: params
 	})
 }
@@ -22,7 +23,9 @@ export const sendSmsCode = (params) => {
 };
 //注册用户
 export const register = (params) => {
-	return http.post('/user/register', params)
+	novalid_http.config.loading = true;
+	novalid_http.config.text = '正在注册...';
+	return novalid_http.post('/user/register', params)
 };
 
 //更新用户信息

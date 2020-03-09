@@ -1,5 +1,5 @@
 import http from '@/utils/base-http.js'
-
+import novalid_http from '@/utils/novalid-http.js'
 //获取首页数据
 export const getFindHomeGoods = (params) => {
 	let userInfo = uni.getStorageSync("userInfo");
@@ -61,11 +61,11 @@ export const saveUserAddress = (params) => {
 }
 //用户登录
 export const login = (params) => {
-	return http.post('/user/login',params)
+	return novalid_http.post('/user/login',params)
 };
 //注册用户/保存用户信息
 export const saveUser = (params) => {
-	return http.post('/user/saveUser',params)
+	return http.novalid_http('/user/saveUser',params)
 };
 //注册用户/保存用户信息
 export const deleteAddress = (params) => {

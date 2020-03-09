@@ -2,14 +2,14 @@
  * 人脸识别服务接口
  */
 import http from '@/utils/base-http.js'
-
+import novalid_http from '@/utils/novalid-http.js'
 /**
  * 获取token
  */
 export const getVerifyToken = (params) => {
 	http.config.loading = true;
 	http.config.text = '正在加载...'
-	return http.get('/face/getVerifyToken', {
+	return novalid_http.get('/face/getVerifyToken', {
 		params: params
 	})
 }
