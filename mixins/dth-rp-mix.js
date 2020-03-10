@@ -117,7 +117,6 @@ export const mixin_dth_rp_aly = {
 							data
 						} = res;
 						if (data.verifyStatus == 1) {
-							
 							if (this.faceVerifyParams.bizType == 'realPersonAuth') {
 								////实人认证 需要跟身身份证做比较
 								//比较实人认证和填写身份证是否是同一人

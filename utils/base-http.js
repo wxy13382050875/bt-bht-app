@@ -70,12 +70,13 @@ function handlerError(statusCode, msg) {
 		uni.showToast({
 			title: '登陆失效',
 			icon: 'none',
+			duration: 3000,
 			success() {
 				setTimeout(() => {
 					uni.redirectTo({
 						url: '/pages/common/login'
 					})
-				})
+				}, 3000)
 			}
 		})
 	} else {

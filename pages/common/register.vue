@@ -124,13 +124,23 @@ export default {
 					 */
 					this.realPersonAuth()
 						.then(res => {
-							//实人认证通过，提交注册
-							this.submitRegisterInfo();
+							uni.showToast({
+								title: res,
+								icon: 'success',
+								duration: 3000,
+								success: () => {
+									setTimeout(() => {
+										//实人认证通过，提交注册
+										this.submitRegisterInfo();
+									}, 3000);
+								}
+							});
 						})
 						.catch(error => {
 							uni.showToast({
 								title: error,
-								icon: 'none'
+								icon: 'none',
+								duration: 3000
 							});
 						});
 				})
@@ -152,12 +162,14 @@ export default {
 					let { code, msg } = res;
 					if (code == '200') {
 						uni.showToast({
-							title: '注册成功'
+							title: '注册成功',
+							duration: 3000
 						});
 						setTimeout(() => {
-							uni.removeStorageSync('mobileCode');
-							this.$Router.back();
-						}, 2000);
+							uni.redirectTo({
+								url: '/pages/common/login'
+							});
+						}, 3000);
 					} else {
 						uni.showToast({
 							title: msg,
@@ -176,7 +188,6 @@ export default {
 			let role = this.roleData[target.value];
 			this.regData.roleId = role.code;
 			this.roleText = role.value;
-			console.log(role);
 		},
 		//获取验证码
 		getCode() {

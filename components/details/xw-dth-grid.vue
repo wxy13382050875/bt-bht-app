@@ -1,10 +1,10 @@
 <template>
 	<view class="bht-fun-wrapper">
 		<view class="bht-fun">
-			<navigator hover-class="none" class="items" v-for="(item, index) in dataSource" :key="index" :url="item.url">
+			<view hover-class="none" class="items" v-for="(item, index) in dataSource" :key="index" @click="navTo(item.url)">
 				<image class="icon" :style="{ width: iconWdith + 'rpx', height: iconWdith + 'rpx' }" :src="item.pictureUrl"></image>
 				<view class="title">{{ item.name }}</view>
-			</navigator>
+			</view>
 		</view>
 	</view>
 </template>
@@ -12,7 +12,9 @@
 <script>
 import { mapGetters, mapActions } from 'vuex';
 import { submitInvoice } from '@/api/bill';
+import { mixin_dth_rp_aly } from '@/mixins/dth-rp-mix.js';
 export default {
+	mixins: [mixin_dth_rp_aly],
 	props: {
 		dataSource: {
 			type: Array,
@@ -25,7 +27,33 @@ export default {
 			default: 94
 		}
 	},
-	created() {}
+	created() {},
+	methods: {
+		navTo(url) {
+			let { idCode, phone } = uni.getStorageSync('userInfo');
+			this.liveFaceVerify(idCode)
+				.then(res => {
+					uni.showToast({
+						title: '认证成功',
+						duration: 3000,
+						success: () => {
+							setTimeout(() => {
+								uni.navigateTo({
+									url: url
+								});
+							}, 3000);
+						}
+					});
+				})
+				.catch(error => {
+					uni.showToast({
+						title: error,
+						icon: 'none',
+						duration: 3000
+					});
+				});
+		}
+	}
 };
 </script>
 

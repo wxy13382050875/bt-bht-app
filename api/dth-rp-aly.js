@@ -7,8 +7,8 @@ import novalid_http from '@/utils/novalid-http.js'
  * 获取token
  */
 export const getVerifyToken = (params) => {
-	http.config.loading = true;
-	http.config.text = '正在加载...'
+	novalid_http.config.loading = true;
+	novalid_http.config.text = '正在加载...'
 	return novalid_http.get('/face/getVerifyToken', {
 		params: params
 	})
@@ -18,8 +18,7 @@ export const getVerifyToken = (params) => {
  * 获取认证结果
  */
 export const getVerifyResult = (params) => {
-
-	return http.get('/face/getVerifyResult', {
+	return novalid_http.get('/face/getVerifyResult', {
 		params: params
 	})
 }
@@ -40,7 +39,7 @@ export const getFaceImageUrl = (params) => {
  * @param phone
  */
 export const getCivilFaceStatus = (params) => {
-	http.config.loading = true;
-	http.config.text = '正在验证信息...'
-	return http.post('/face/setCivilFaceStatus', params);
+	novalid_http.config.loading = true;
+	novalid_http.config.text = '正在验证信息...'
+	return novalid_http.post('/face/setCivilFaceStatus', params);
 }
